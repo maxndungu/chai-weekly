@@ -89,7 +89,7 @@ def latest_reports(url, pattern, keep=2):
         full = urllib.parse.urljoin(url, href)
         if full not in seen and re.search(pattern, f"{full} {text}"):
             seen.add(full)
-            name = urllib.parse.unquote(full.rsplit("/", 1)[-1])
+            name = urllib.parse.unquote(full.rstrip("/").rsplit("/", 1)[-1])
             label = name if re.search(r"\.(pdf|docx?|xlsx?)$", name, re.I) or not text else text
             found.append((" ".join(label.split()), urllib.parse.quote(full, safe=":/?&=#%")))
     return found[:keep]  # listing pages put the newest report first
