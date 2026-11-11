@@ -1,0 +1,11 @@
+---
+layout: default
+title: Archive
+permalink: /archive/
+---
+<h1 class="headline">Every edition</h1>
+<ul class="archive">
+{% for post in site.posts %}
+  <li><a href="{{ post.url | relative_url }}"><span class="date">No. {{ post.issue }} · {{ post.date | date: "%-d %b %Y" }}</span><strong>{{ post.title }}</strong><small>{{ post.deck | default: post.description }}</small></a></li>
+{% endfor %}
+</ul>

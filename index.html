@@ -1,0 +1,38 @@
+---
+layout: default
+---
+{% assign lead = site.posts.first %}
+{% if lead %}
+<section class="front">
+  <div class="lead">
+    <p class="kicker">This week's edition · No. {{ lead.issue }}</p>
+    <h1 class="headline big"><a href="{{ lead.url | relative_url }}">{{ lead.title }}</a></h1>
+    <p class="deck">{{ lead.deck | default: lead.description }}</p>
+    <p class="byline">{{ lead.date | date: "%-d %B %Y" }} · <a href="{{ lead.url | relative_url }}">Read the full edition →</a></p>
+  </div>
+  <aside class="rail">
+    {% include signup.html %}
+  </aside>
+</section>
+{% if lead.stories %}
+<section class="grid">
+  {% for s in lead.stories %}
+  <a class="teaser" href="{{ lead.url | relative_url }}#{{ s.anchor }}">
+    <span class="label">{{ s.section }}</span>
+    <h2>{{ s.headline }}</h2>
+    <p>{{ s.summary }}</p>
+  </a>
+  {% endfor %}
+</section>
+{% endif %}
+{% endif %}
+<section class="past">
+  <h2 class="label rule">Past editions</h2>
+  <ul class="archive">
+  {% for post in site.posts offset:1 limit:6 %}
+    <li><a href="{{ post.url | relative_url }}"><span class="date">No. {{ post.issue }} · {{ post.date | date: "%-d %b %Y" }}</span><strong>{{ post.title }}</strong></a></li>
+  {% else %}
+    <li class="muted">The first edition is above. Past editions will collect here each week.</li>
+  {% endfor %}
+  </ul>
+</section>

@@ -1,0 +1,17 @@
+---
+layout: default
+---
+<article class="story">
+  <p class="kicker">Edition No. {{ page.issue }} · {{ page.date | date: "%-d %B %Y" }}</p>
+  <h1 class="headline">{{ page.title }}</h1>
+  {% if page.deck %}<p class="deck">{{ page.deck }}</p>{% endif %}
+  <p class="byline">By the {{ site.title }} desk · {{ page.content | number_of_words | divided_by: 220 | plus: 1 }} min read</p>
+  {% if page.stories %}
+  <aside class="contents">
+    <h2 class="label">In this edition</h2>
+    <ol>{% for s in page.stories %}<li><a href="#{{ s.anchor }}"><span>{{ s.section }}</span>{{ s.headline }}</a></li>{% endfor %}</ol>
+  </aside>
+  {% endif %}
+  <div class="body">{{ content }}</div>
+</article>
+{% include signup.html %}

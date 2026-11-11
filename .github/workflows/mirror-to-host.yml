@@ -1,0 +1,39 @@
+# On every push to main, build the site and copy it to your paid host.
+# GitHub Pages keeps working as before; this just mirrors the same files.
+# Set ONE of these groups of repo secrets (Settings > Secrets and variables > Actions):
+#   SSH/rsync (VPS, most modern hosts): DEPLOY_HOST, DEPLOY_USER, DEPLOY_PATH, DEPLOY_SSH_KEY
+#   FTP (cPanel-style shared hosting):  FTP_SERVER, FTP_USERNAME, FTP_PASSWORD, FTP_PATH
+# If neither group is set, the job builds and skips the upload.
+name: Mirror to host
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    env:
+      HAS_SSH: ${{ secrets.DEPLOY_HOST != '' }}
+      HAS_FTP: ${{ secrets.FTP_SERVER != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with: { ruby-version: "3.3", bundler-cache: true }
+      - name: Build
+        run: bundle exec jekyll build --baseurl "" -d _site
+        env: { JEKYLL_ENV: production }
+      - name: Upload over SSH (rsync)
+        if: env.HAS_SSH == 'true'
+        run: |
+          install -m 600 /dev/null ~/.ssh_key && echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh_key
+          rsync -az --delete -e "ssh -i ~/.ssh_key -o StrictHostKeyChecking=accept-new" \
+            _site/ "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/"
+      - name: Upload over FTP
+        if: env.HAS_FTP == 'true'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./_site/
+          server-dir: ${{ secrets.FTP_PATH }}/

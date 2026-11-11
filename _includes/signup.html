@@ -1,0 +1,20 @@
+<section class="signup">
+  <h2 class="label">Subscribe, free</h2>
+  <p>The week in tea, in your inbox every Saturday. No ads, unsubscribe any time.</p>
+  {% if site.buttondown_username != "" %}
+  <form action="https://buttondown.com/api/emails/embed-subscribe/{{ site.buttondown_username }}" method="post" target="popupwindow" class="signup-form">
+    <label for="bd-email" class="sr">Email address</label>
+    <input type="email" name="email" id="bd-email" placeholder="Your email" required>
+    <button type="submit">Subscribe</button>
+  </form>
+  {% elsif site.substack_url != "" %}
+  <iframe src="{{ site.substack_url }}/embed" width="100%" height="150" style="border:none;background:transparent" frameborder="0" scrolling="no" title="Subscribe"></iframe>
+  {% else %}
+  <form class="signup-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Coming soon';">
+    <label for="ph-email" class="sr">Email address</label>
+    <input type="email" id="ph-email" placeholder="Your email" required>
+    <button type="submit">Subscribe</button>
+  </form>
+  <p class="fine">Sign-up opens soon.</p>
+  {% endif %}
+</section>

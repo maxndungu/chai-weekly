@@ -1,0 +1,21 @@
+{% assign latest = site.posts.first %}
+<header class="masthead {% if include.compact %}compact{% endif %}">
+  <div class="strip">
+    <span>Vol. I · No. {{ site.posts.size }}</span>
+    <span class="strip-mid">{{ site.time | date: "%A, %-d %B %Y" }}</span>
+    <span>Free · Weekly</span>
+  </div>
+  <a class="nameplate" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+  <p class="motto">{{ site.motto }}</p>
+  <nav class="sections">
+    {% for s in latest.stories %}<a href="{{ latest.url | relative_url }}#{{ s.anchor }}">{{ s.section }}</a>
+    {% endfor %}
+    <a href="{{ '/archive/' | relative_url }}">Archive</a>
+    <a href="{{ '/about/' | relative_url }}">About</a>
+  </nav>
+  {% if latest.snapshot %}
+  <div class="ticker" aria-label="Market snapshot">
+    {% for s in latest.snapshot %}<span><b>{{ s.label }}</b> {{ s.value }}{% if s.note %} <em>{{ s.note }}</em>{% endif %}</span>{% endfor %}
+  </div>
+  {% endif %}
+</header>

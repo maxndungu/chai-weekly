@@ -1,0 +1,22 @@
+# Weekly auction reports, checked by gather.py every run.
+# Format: market | listing page | regex for report links (matched on the link's URL + text)
+# Leave the regex empty for pages that are tables or need a browser: they are listed as "check by hand".
+# {year} is replaced with the current year.
+
+# Global round-up (Mombasa, Colombo, North & South India, Jakarta, and more)
+All markets (Tea Price Report) | https://teajourney.pub/tea-price-report/ | /tea-price-report/(week|tpr|tea-price-report-week)[^"]*
+
+# Kenya / East Africa
+Mombasa (EATTA statistics) | https://eatta.co.ke/statistics#reports |
+Mombasa (ATB broker report) | https://www.atbltd.com/assets/Documents/currentmarketreport.pdf |
+
+# Sri Lanka
+Colombo (Forbes & Walker) | https://www.forbestea.com/statistics-tea-market-reports | Sale of .*\.pdf
+Colombo (Tea Exporters Association weekly report) | https://teasrilanka.org/week-market-reports |
+
+# India
+India, all centres (Tea Board weekly prices) | https://www.teaboard.gov.in/WEEKLYPRICES/{year} |
+Kolkata, Guwahati, Siliguri (J. Thomas) | https://www.jthomasindia.com/ | (?i)(market.?report|synopsis).*\.(pdf|xls)
+
+# Bangladesh
+Chittagong (TTAB weekly market reports) | https://ttabctg.com/market_reports/weekly-mr/ | /wp-content/uploads/.*\.(pdf|docx?)

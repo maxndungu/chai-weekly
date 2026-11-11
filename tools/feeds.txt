@@ -1,0 +1,29 @@
+# One feed per line: section | url   (lines starting with # are ignored)
+# Google News search feeds work for almost any topic and need no API key.
+auction | https://news.google.com/rss/search?q=Mombasa+tea+auction+when:7d&hl=en-KE&gl=KE&ceid=KE:en
+auction | https://news.google.com/rss/search?q=EATTA+tea+prices+when:7d&hl=en-KE&gl=KE&ceid=KE:en
+ktda | https://news.google.com/rss/search?q=KTDA+tea+when:7d&hl=en-KE&gl=KE&ceid=KE:en
+ktda | https://news.google.com/rss/search?q=%22tea+factory%22+Kenya+farmers+when:7d&hl=en-KE&gl=KE&ceid=KE:en
+ktda | https://news.google.com/rss/search?q=%22Tea+Board+of+Kenya%22+OR+%22Tea+Act%22+when:7d&hl=en-KE&gl=KE&ceid=KE:en
+weather | https://news.google.com/rss/search?q=Kenya+Met+rainfall+forecast+when:7d&hl=en-KE&gl=KE&ceid=KE:en
+weather | https://news.google.com/rss/search?q=Kericho+OR+Nyeri+OR+Kisii+rains+when:7d&hl=en-KE&gl=KE&ceid=KE:en
+farming | https://news.google.com/rss/search?q=tea+farmers+Kenya+fertilizer+OR+pruning+OR+pests+when:7d&hl=en-KE&gl=KE&ceid=KE:en
+culture | https://news.google.com/rss/search?q=Kenyan+tea+culture+OR+chai+OR+%22tea+tourism%22+when:14d&hl=en-KE&gl=KE&ceid=KE:en
+global | https://news.google.com/rss/search?q=global+tea+market+prices+when:7d&hl=en&gl=US&ceid=US:en
+
+# --- World tea (everything below feeds the "Around the tea world" section) ---
+world | https://news.google.com/rss/search?q=tea+industry+OR+%22tea+prices%22+OR+%22tea+auction%22+when:7d&hl=en&gl=US&ceid=US:en
+world | https://news.google.com/rss/search?q=Colombo+tea+auction+OR+%22Ceylon+tea%22+when:7d&hl=en-LK&gl=LK&ceid=LK:en
+world | https://news.google.com/rss/search?q=Assam+OR+Darjeeling+OR+Nilgiri+tea+when:7d&hl=en-IN&gl=IN&ceid=IN:en
+world | https://news.google.com/rss/search?q=%22Tea+Board+of+India%22+OR+%22Indian+tea%22+exports+when:7d&hl=en-IN&gl=IN&ceid=IN:en
+world | https://news.google.com/rss/search?q=China+tea+exports+OR+Pu-erh+OR+%22green+tea%22+market+when:7d&hl=en&gl=US&ceid=US:en
+world | https://news.google.com/rss/search?q=matcha+OR+%22Japanese+tea%22+when:7d&hl=en&gl=US&ceid=US:en
+world | https://news.google.com/rss/search?q=Rwanda+OR+Uganda+OR+Malawi+OR+Tanzania+tea+when:7d&hl=en&gl=US&ceid=US:en
+world | https://news.google.com/rss/search?q=Vietnam+OR+Indonesia+OR+Turkey+OR+Argentina+tea+harvest+when:14d&hl=en&gl=US&ceid=US:en
+world | https://news.google.com/rss/search?q=%22tea+market%22+Pakistan+OR+Egypt+OR+UK+OR+Iran+imports+when:7d&hl=en&gl=US&ceid=US:en
+world | https://stir-tea-coffee.com/feed/
+world | https://www.teaandcoffee.net/feed/
+world | https://www.worldteanews.com/rss.xml
+
+# --- Auction reports ---
+auctions | https://teajourney.pub/tea-price-report/feed/
