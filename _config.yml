@@ -7,7 +7,7 @@ substack_url: ""
 permalink: /issues/:year/:month/:day/:title/
 markdown: kramdown
 exclude: [tools, README.md, sources, drafts]
-baseurl: ""
-url: ""
+baseurl: "/chai-weekly"
+url: "https://maxndungu.github.io"
 # Your paid-host domain, e.g. "https://chaiweekly.co.ke". Marks it as the main copy for search engines.
 canonical_url: ""
