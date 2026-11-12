@@ -21,7 +21,10 @@ publishes the issue to the site; nothing goes live without that merge.
      anchors that match the `##` headings as kramdown slugs).
    - Every section ends with an italic Sources line of real links you opened.
    - No figure without a source; anything unconfirmed goes in the reviewer notes, not the issue.
-7. Create branch `draft/issue-<NNN>`, commit, push, and open a pull request to `main`:
+   - Titles and salutations: search the whole file (title, deck, snapshot, stories, body) for
+     every person's name. Each one needs a correct title ("President Ruto", never bare "Ruto");
+     see the "Names and titles" rule in DRAFT_PROMPT.md. Fix any bare surname before committing.
+7. Create branch `draft/issue-<NNN>` (if that branch already exists from an earlier closed draft, use `draft/issue-<NNN>-<today>`), commit, push, and open a pull request to `main`:
    - Title: `Issue #N draft: <headline>`
    - Body: a 3-line summary of the issue, then **Reviewer notes**: figures you could not
      confirm, contradictions between sources, and anything that needs Maxwell's judgement.
