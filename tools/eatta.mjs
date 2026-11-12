@@ -20,9 +20,12 @@ const rows = await page.$$eval("table tr", (trs) => trs.map((tr) => [...tr.cells
 const links = await page.$$eval("a[href], button[data-href]", (els) =>
   els.map((e) => `${e.innerText.trim()} -> ${e.getAttribute("href") || e.dataset.href}`).filter((s) => /excel|pdf|xls|csv|report/i.test(s)));
 
-console.log(`# EATTA statistics (rendered ${new Date().toISOString().slice(0, 10)})\n`);
-console.log("## Page text\n\n" + text.split("\n").filter(Boolean).slice(0, 80).join("\n"));
-console.log("\n## Table rows\n\n" + rows.slice(0, 15).map((r) => `- ${r}`).join("\n"));
-console.log("\n## Download links\n\n" + (links.join("\n") || "(none found)"));
-console.log("\n## Data requests\n\n" + requests.join("\n"));
+const glance = text.split("\n").map((l) => l.trim()).filter(Boolean);
+const start = glance.findIndex((l) => /^Sale \d+ Auction Data/.test(l));
+const end = glance.findIndex((l) => /^Average price \(USD per kg\)/.test(l));
+console.log(`\n## Mombasa auction (EATTA, rendered ${new Date().toISOString().slice(0, 10)}) <${url}>\n`);
+console.log((start >= 0 ? glance.slice(start, end > start ? end : start + 25) : glance.slice(0, 40)).join(" · "));
+console.log("\n| Sale | Date | Sold (kg) | Avg USD/kg |\n|---|---|---|---|");
+for (const r of rows.slice(1, 7)) console.log(`| ${r.replace("Latest", " (latest)")} |`);
+if (process.env.EATTA_DEBUG) console.log("\nData requests:\n" + requests.join("\n"));
 await browser.close();

@@ -7,7 +7,7 @@
 All markets (Tea Price Report) | https://teajourney.pub/tea-price-report/ | /tea-price-report/(week|tpr|tea-price-report-week)[^"]*
 
 # Kenya / East Africa
-Mombasa (EATTA statistics) | https://eatta.co.ke/statistics#reports |
+# Mombasa EATTA figures are collected by tools/eatta.mjs (the page needs a browser).
 Mombasa (ATB broker report) | https://www.atbltd.com/assets/Documents/currentmarketreport.pdf |
 
 # Sri Lanka
