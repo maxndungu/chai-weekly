@@ -1,0 +1,6 @@
+{% if site.goatcounter_code != "" and jekyll.environment == "production" %}
+<script data-goatcounter="https://{{ site.goatcounter_code }}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+{% endif %}
+{% if site.umami_src != "" and site.umami_website_id != "" %}
+<script defer src="{{ site.umami_src }}" data-website-id="{{ site.umami_website_id }}"></script>
+{% endif %}

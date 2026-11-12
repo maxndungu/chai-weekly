@@ -11,3 +11,10 @@ baseurl: "/chai-weekly"
 url: "https://maxndungu.github.io"
 # Your paid-host domain, e.g. "https://chaiweekly.co.ke". Marks it as the main copy for search engines.
 canonical_url: ""
+# Visitor tracking (pick one). GoatCounter is free and cookie-free: sign up at goatcounter.com and
+# put your code here (e.g. "chaiweekly" for chaiweekly.goatcounter.com). Visits from the email show
+# up as campaign "newsletter"; shared links show up by referring site.
+goatcounter_code: ""
+# Or self-host Umami on your VPS and fill these two in instead.
+umami_src: ""
+umami_website_id: ""

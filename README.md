@@ -48,3 +48,10 @@ GitHub stays the source of truth. Every push to `main` also triggers `.github/wo
    - **FTP** (cPanel shared hosting such as Truehost, HostPinnacle or Namecheap): `FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD`, `FTP_PATH` (usually `public_html`).
 2. Set `canonical_url` in `_config.yml` to your domain so Google treats it as the main copy and not the GitHub Pages one.
 3. Point your domain's DNS at the host as the host instructs.
+
+## Email list, unsubscribe and tracking
+
+- **Subscribe box + sending:** [Buttondown](https://buttondown.com) (free up to 100 subscribers). Put your username in `buttondown_username` in `_config.yml`. Import your own list under Subscribers > Import (only people who agreed to receive it). Buttondown puts an unsubscribe link in every email automatically.
+- **Email drafts:** add repo secret `BUTTONDOWN_API_KEY`. Each time an issue is merged, `.github/workflows/email-draft.yml` creates a Buttondown *draft* (never sends). Open Buttondown, check it, press Send.
+- **Opens:** Buttondown's Analytics add-on (about $9/month) shows who opened each email.
+- **Site visits (free):** sign up at [GoatCounter](https://www.goatcounter.com) and set `goatcounter_code`. Links in the email carry `utm_source=newsletter`, so visits from the email show as campaign "newsletter"; shared links show by referring site (WhatsApp, Facebook, X...).
