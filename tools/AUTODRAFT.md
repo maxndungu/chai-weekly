@@ -1,8 +1,8 @@
 # Automatic weekly draft: instructions for Claude
 
-A scheduled Claude session follows this file every Monday at about 07:15 Nairobi time, after
+A scheduled Claude session follows this file every Wednesday at about 07:15 Nairobi time, after
 the 06:00 "Gather sources" job has committed `sources/YYYY-MM-DD.md`. The goal is a finished
-draft waiting as a pull request for Maxwell's ~15 minute review. Merging the pull request
+draft waiting as a pull request. Publishing is on Wednesdays because the Mombasa auction runs on Monday (sometimes into Tuesday): use that sale's final figures and the reporting published on Monday-Tuesday to build the week's narrative. The draft is for Maxwell's ~15 minute review. Merging the pull request
 publishes the issue to the site; nothing goes live without that merge.
 
 ## Steps
@@ -15,7 +15,7 @@ publishes the issue to the site; nothing goes live without that merge.
 4. Read `tools/DRAFT_PROMPT.md` and follow it exactly. Open the actual articles and auction
    reports (the "Auction reports" section of the sources file) before using any figure. Pick
    the week's real lead story; check `tools/reports.txt` links marked "check by hand" too.
-5. Save the issue as `_posts/<today>-issue-<NNN>.md` (NNN zero-padded, today = the Monday).
+5. Save the issue as `_posts/<today>-issue-<NNN>.md` (NNN zero-padded, today = the Wednesday).
 6. Sanity checks before committing:
    - Front matter has title, issue, deck, description, snapshot (4-5 items), stories (6, with
      anchors that match the `##` headings as kramdown slugs).

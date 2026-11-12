@@ -1,7 +1,7 @@
-# Every Monday 06:00 Nairobi time, collect the week's tea news into sources/.
+# Every Wednesday 06:00 Nairobi time (after the Monday/Tuesday Mombasa sale), collect the week's tea news into sources/.
 name: Gather sources
 on:
-  schedule: [{ cron: "0 3 * * 1" }]
+  schedule: [{ cron: "0 3 * * 3" }]
   workflow_dispatch:
 permissions:
   contents: write
