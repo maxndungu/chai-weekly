@@ -1,8 +1,14 @@
-# Every Wednesday 06:00 Nairobi time (after the Monday/Tuesday Mombasa sale), collect the week's tea news into sources/.
+# Every Wednesday 06:00 Nairobi time (after the Monday/Tuesday Mombasa sale), collect the week's tea news into sources/
+# and add the latest EATTA sales to data/mombasa-eatta-sales.csv.
 name: Gather sources
 on:
   schedule: [{ cron: "0 3 * * 3" }]
   workflow_dispatch:
+    inputs:
+      csv_only:
+        description: "Only update the EATTA sales CSV (skip news and the sources file)"
+        type: boolean
+        default: false
 permissions:
   contents: write
 jobs:
@@ -13,14 +19,19 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: python tools/gather.py
+        if: ${{ !inputs.csv_only }}
+      - name: Save every EATTA sale to data/mombasa-eatta-sales.csv
+        run: python tools/eatta_csv.py || echo "EATTA CSV update failed; check https://eatta.co.ke/statistics"
       - uses: actions/setup-node@v4
+        if: ${{ !inputs.csv_only }}
         with: { node-version: "20" }
       - name: Mombasa figures from EATTA (page needs a browser)
+        if: ${{ !inputs.csv_only }}
         run: |
           npm install --no-save playwright@1.48.2 && npx playwright install --with-deps chromium
           node tools/eatta.mjs >> "sources/$(date +%F).md" || echo "- **Mombasa (EATTA)**: could not render, check by hand <https://eatta.co.ke/statistics>" >> "sources/$(date +%F).md"
       - run: |
           git config user.name "chai-bot"
           git config user.email "chai-bot@users.noreply.github.com"
-          git add sources && git commit -m "Sources for $(date +%F)" || { echo "nothing new"; exit 0; }
+          git add sources $(ls -d data 2>/dev/null) && git commit -m "Sources and EATTA sales for $(date +%F)" || { echo "nothing new"; exit 0; }
           git pull --rebase origin main && git push

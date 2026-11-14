@@ -32,6 +32,10 @@ tools/DRAFT_PROMPT.md   the prompt for Claude to draft each issue
 4. **Publish**: save it as `_posts/YYYY-MM-DD-issue-NNN.md` (GitHub's "Add file" button works) and commit. The site updates itself.
 5. **Send**: paste the same markdown into a new Buttondown email (or Substack post) and send.
 
+## Mombasa price history (data/)
+
+`data/mombasa-eatta-sales.csv` holds every Mombasa auction sale from EATTA's statistics page: sale number, date, overall, CTC and orthodox average US$/kg and kg sold. EATTA only shows the current year, so this file is the long-run history. The Wednesday collector adds each new sale, updates any figure EATTA revises (and prints what changed), and never deletes rows. To update it on any other day: Actions, "Gather sources", Run workflow, tick "Only update the EATTA sales CSV". The file is kept out of the public website.
+
 ## Running locally (optional)
 
 ```
