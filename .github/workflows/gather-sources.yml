@@ -1,5 +1,5 @@
 # Every Wednesday 06:00 Nairobi time (after the Monday/Tuesday Mombasa sale), collect the week's tea news into sources/
-# and add the latest EATTA sales to data/mombasa-eatta-sales.csv.
+# and add the latest EATTA sales to _data/mombasa_eatta_sales.csv.
 name: Gather sources
 on:
   schedule: [{ cron: "0 3 * * 3" }]
@@ -20,7 +20,7 @@ jobs:
         with: { python-version: "3.12" }
       - run: python tools/gather.py
         if: ${{ !inputs.csv_only }}
-      - name: Save every EATTA sale to data/mombasa-eatta-sales.csv
+      - name: Save every EATTA sale to _data/mombasa_eatta_sales.csv
         run: python tools/eatta_csv.py || echo "EATTA CSV update failed; check https://eatta.co.ke/statistics"
       - uses: actions/setup-node@v4
         if: ${{ !inputs.csv_only }}
@@ -33,5 +33,5 @@ jobs:
       - run: |
           git config user.name "chai-bot"
           git config user.email "chai-bot@users.noreply.github.com"
-          git add sources $(ls -d data 2>/dev/null) && git commit -m "Sources and EATTA sales for $(date +%F)" || { echo "nothing new"; exit 0; }
+          git add sources _data && git commit -m "Sources and EATTA sales for $(date +%F)" || { echo "nothing new"; exit 0; }
           git pull --rebase origin main && git push

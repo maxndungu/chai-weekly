@@ -1,0 +1,7 @@
+---
+layout: null
+permalink: /downloads/worldbank-tea-mombasa-monthly.csv
+---
+month,usd_kg,source
+{% for r in site.data.worldbank_tea_mombasa_monthly %}{{ r.month }},{{ r.usd_kg }},"World Bank Commodity Price Data (Pink Sheet), Tea Mombasa, CC BY 4.0"
+{% endfor %}

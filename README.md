@@ -32,9 +32,14 @@ tools/DRAFT_PROMPT.md   the prompt for Claude to draft each issue
 4. **Publish**: save it as `_posts/YYYY-MM-DD-issue-NNN.md` (GitHub's "Add file" button works) and commit. The site updates itself.
 5. **Send**: paste the same markdown into a new Buttondown email (or Substack post) and send.
 
-## Mombasa price history (data/)
+## Auction analysis page and price history (_data/)
 
-`data/mombasa-eatta-sales.csv` holds every Mombasa auction sale from EATTA's statistics page: sale number, date, overall, CTC and orthodox average US$/kg and kg sold. EATTA only shows the current year, so this file is the long-run history. The Wednesday collector adds each new sale, updates any figure EATTA revises (and prints what changed), and never deletes rows. To update it on any other day: Actions, "Gather sources", Run workflow, tick "Only update the EATTA sales CSV". The file is kept out of the public website.
+The site's **Auctions** page (`auctions.html`, at /auctions/) combines two files:
+
+- `_data/mombasa_eatta_sales.csv`: every Mombasa sale from EATTA's statistics page. EATTA only shows the current year, so this file is the long-run weekly history. The Wednesday collector adds each new sale, updates any figure EATTA revises (and prints what changed), and never deletes rows. To update it on another day: Actions, "Gather sources", Run workflow, tick "Only update the EATTA sales CSV".
+- `_data/worldbank_tea_mombasa_monthly.csv`: the World Bank Pink Sheet "Tea, Mombasa" monthly price since January 1992 (CC BY 4.0). It is not updated automatically yet: add a line `YYYY-MM,price` early each month when the World Bank publishes.
+
+The page draws its charts and tables from these files, and offers both as CSV downloads (`downloads/`).
 
 ## Running locally (optional)
 

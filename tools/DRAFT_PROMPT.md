@@ -41,3 +41,7 @@ Style: write like a serious newspaper. Open the issue with a datelined lede para
 Names and titles (house rule, never skip): always give people their correct title. First mention: title + full name ("President William Ruto", "Agriculture Cabinet Secretary Mutahi Kagwe", "KTDA chairman Enos Njeru", "Prime Minister Kamil Idris"). Later mentions: title + surname ("President Ruto", "CS Kagwe", "Mr Njeru"). Never use a bare surname for anyone, especially heads of state, government officials, MPs, governors, chiefs and religious leaders, and never in a headline, deck, ticker label or teaser: write "President Ruto pledges..." not "Ruto pledges...". Use the official's current title as stated by the source; if unsure, use the fuller form. Apply the same courtesy to foreign leaders and officials.
 
 After the file, list for the human reviewer: (a) any figure you could not confirm, (b) anything that looked contradictory between sources.
+
+
+## Auction analysis page
+In "The auction this week", link readers to the full sale-by-sale history: `[Auction analysis]({{ '/auctions/' | relative_url }})`. Use the same EATTA figures as the page, so the issue and the page agree.

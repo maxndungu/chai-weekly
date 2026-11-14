@@ -1,4 +1,4 @@
-"""Save every Mombasa auction sale from EATTA's statistics API into data/mombasa-eatta-sales.csv.
+"""Save every Mombasa auction sale from EATTA's statistics API into _data/mombasa_eatta_sales.csv.
 
 EATTA's API only serves the current year, so this file is our own long-run history: each run adds new
 sales and updates any figure EATTA has revised, and never deletes old rows. Stdlib only.
@@ -11,7 +11,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 API = "https://eatta.co.ke/api/sales-report.php?year={year}"
-OUT = Path(__file__).resolve().parent.parent / "data" / "mombasa-eatta-sales.csv"
+OUT = Path(__file__).resolve().parent.parent / "_data" / "mombasa_eatta_sales.csv"
 COLS = ["year", "sale", "auction_date", "avg_usd_kg", "sold_kg", "ctc_avg_usd_kg", "ctc_sold_kg",
         "orthodox_avg_usd_kg", "orthodox_sold_kg", "offered_kg", "unsold_pct", "first_saved", "last_checked"]
 VALUE_COLS = COLS[2:11]

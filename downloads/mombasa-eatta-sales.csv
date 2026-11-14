@@ -1,0 +1,7 @@
+---
+layout: null
+permalink: /downloads/mombasa-eatta-sales.csv
+---
+year,sale,auction_date,avg_usd_kg,sold_kg,ctc_avg_usd_kg,ctc_sold_kg,orthodox_avg_usd_kg,orthodox_sold_kg,source
+{% for r in site.data.mombasa_eatta_sales %}{{ r.year }},{{ r.sale }},{{ r.auction_date }},{{ r.avg_usd_kg }},{{ r.sold_kg }},{{ r.ctc_avg_usd_kg }},{{ r.ctc_sold_kg }},{{ r.orthodox_avg_usd_kg }},{{ r.orthodox_sold_kg }},EATTA auction statistics (eatta.co.ke/statistics) via Chai Weekly
+{% endfor %}
