@@ -1,0 +1,21 @@
+# Temporary: shows the shape of EATTA's data API so the CSV export can be written. Removed after use.
+name: Probe EATTA API
+on: workflow_dispatch
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+      - run: |
+          npm install --no-save playwright@1.48.2 && npx playwright install --with-deps chromium
+          cat > p.mjs <<'JS'
+          import { chromium } from "playwright";
+          const b = await chromium.launch(); const p = await b.newPage();
+          p.on("response", async (r) => { if (r.url().includes("/api/")) { try { const t = await r.text(); console.log("=== " + r.url() + " " + r.status() + " len " + t.length + "\n" + t.slice(0, 2500)); } catch (e) {} } });
+          await p.goto("https://eatta.co.ke/statistics", { waitUntil: "networkidle", timeout: 60000 });
+          for (const y of [2025, 2026]) { const r = await p.request.get("https://eatta.co.ke/api/sales-report.php?year=" + y); const t = await r.text(); console.log("=== direct " + y + " " + r.status() + " len " + t.length + "\n" + t.slice(0, 1500) + "\n...\n" + t.slice(-800)); }
+          await b.close();
+          JS
+          node p.mjs
+          echo "=== plain curl"; curl -sS -m 30 -A "Mozilla/5.0" "https://eatta.co.ke/api/sales-report.php?year=2026" | head -c 600
