@@ -27,7 +27,8 @@
     [last.y + " so far", f2(avg), "low " + f2(lo) + " · high " + f2(hi) + (last.v >= hi ? " · <b>year's high</b>" : "")]
   ];
   document.getElementById("mp-stats").innerHTML = tiles.map(function (t) { return "<div class='stat'><span class='stat-label'>" + t[0] + "</span><strong>" + t[1] + "</strong><span class='stat-note'>" + t[2] + "</span></div>"; }).join("");
-  var NS = "http://www.w3.org/2000/svg", W = 640, H = 150, P = { l: 40, r: 10, t: 10, b: 22 };
+  var narrow = document.getElementById("mp-chart").clientWidth < 500;
+  var NS = "http://www.w3.org/2000/svg", W = narrow ? 360 : 640, H = narrow ? 190 : 150, P = { l: 40, r: 10, t: 10, b: 22 };
   var el = function (n, a, p) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); p && p.appendChild(e); return e; };
   var mn = Math.floor((lo - 0.02) * 20) / 20, mx = Math.ceil((hi + 0.02) * 20) / 20;
   var t0 = Date.parse(last.y + "-01-01"), t1 = Date.parse(last.y + "-12-31");

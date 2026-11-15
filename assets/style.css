@@ -213,3 +213,13 @@ a { color:inherit; }
 .wx-flag.heavy { color: #8a1c1c; } .wx-flag.wet { color: #1f4e79; } .wx-flag.dry { color: #8a5a00; }
 .wx-flag.cold { color: #3b6e9c; } .wx-flag.frost { color: #5b2a86; }
 .wx-ok { color: var(--muted, #555); font-style: italic; }
+
+/* Phone: keep the auction panel a compact strip of three figures with a readable chart */
+@media (max-width:639px) {
+  .stat-row.compact { grid-template-columns:repeat(3, 1fr); }
+  .stat-row.compact .stat { border-bottom:0; padding:10px 6px 10px 0; }
+  .stat-row.compact .stat + .stat { padding-left:8px; border-left:1px solid var(--hair); }
+  .stat-row.compact .stat strong { font-size:21px; }
+  .stat-row.compact .stat-label { font-size:9.5px; letter-spacing:.06em; }
+  .stat-row.compact .stat-note { font-size:11.5px; }
+}
