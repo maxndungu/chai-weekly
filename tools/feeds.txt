@@ -21,6 +21,14 @@ eastafrica | https://news.google.com/rss/search?q=%22Burundi+tea%22+OR+%22Burund
 eastafrica | https://news.google.com/rss/search?q=%22Malawi+tea%22+OR+%22Malawian+tea%22+OR+%22Tea+Association+of+Malawi%22+OR+%22Limbe+tea+auction%22+when:7d&hl=en-KE&gl=KE&ceid=KE:en
 eastafrica | https://news.google.com/rss/search?q=%22Ethiopian+tea%22+OR+%22Congo+tea%22+OR+%22Madagascar+tea%22+OR+%22Mozambique+tea%22+when:7d&hl=en-KE&gl=KE&ceid=KE:en
 
+# --- Tenders and jobs (feeds "Tenders and jobs"; also check the pages listed in DRAFT_PROMPT) ---
+notices | https://news.google.com/rss/search?q=tea+tender+OR+%22tea+factory%22+tender+OR+KTDA+tender+when:14d&hl=en-KE&gl=KE&ceid=KE:en
+notices | https://news.google.com/rss/search?q=%22tea+factory%22+OR+%22tea+estate%22+OR+KTDA+jobs+OR+vacancy+OR+recruitment+when:14d&hl=en-KE&gl=KE&ceid=KE:en
+notices | https://news.google.com/rss/search?q=tea+tender+OR+vacancy+Uganda+OR+Rwanda+OR+Tanzania+OR+Malawi+when:14d&hl=en-KE&gl=KE&ceid=KE:en
+
+# --- Factory spotlight ideas: factories and cooperatives in the news ---
+factories | https://news.google.com/rss/search?q=%22tea+factory%22+OR+%22tea+cooperative%22+Kenya+OR+Uganda+OR+Rwanda+OR+Tanzania+OR+Malawi+when:30d&hl=en-KE&gl=KE&ceid=KE:en
+
 # --- World tea (everything below feeds the "Around the tea world" section) ---
 world | https://news.google.com/rss/search?q=tea+industry+OR+%22tea+prices%22+OR+%22tea+auction%22+when:7d&hl=en&gl=US&ceid=US:en
 world | https://news.google.com/rss/search?q=Colombo+tea+auction+OR+%22Ceylon+tea%22+when:7d&hl=en-LK&gl=LK&ceid=LK:en

@@ -25,8 +25,10 @@ publishes the issue to the site; nothing goes live without that merge.
    its link in `url`; use `month:` when only the month is known. Delete events that have ended. List
    every change under "Events" in the pull-request notes.
 6. Sanity checks before committing:
-   - Front matter has title, issue, deck, description, snapshot (4-5 items), stories (7: Markets, Industry, East Africa, World, Weather, Farming, Culture, with
+   - Front matter has title, issue, deck, description, snapshot (4-5 items), stories (8: Markets, Industry, East Africa, World, Weather, Farming, Spotlight, Culture, with
      anchors that match the `##` headings as kramdown slugs).
+   - Tenders and jobs: every item still open on the issue date, each with its official link; no fee-charging jobs.
+   - From the shamba: only a real reader submission (never invented); otherwise the one-line invitation.
    - Every section ends with an italic Sources line of real links you opened.
    - No figure without a source; anything unconfirmed goes in the reviewer notes, not the issue.
    - Titles and salutations: search the whole file (title, deck, snapshot, stories, body) for
