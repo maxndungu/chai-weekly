@@ -1,0 +1,69 @@
+---
+layout: default
+title: Send us a story
+description: Farmers, factory staff, traders and tea lovers can send Chai Weekly a story, a photo or a tip for publication.
+permalink: /submit/
+---
+<article class="analysis submit">
+  <p class="kicker">Your story</p>
+  <h1 class="headline">Send us a story</h1>
+  <p class="deck">Something happening at your factory, on your shamba, at the auction or in your tea cup? Tell us. Good stories go into the Wednesday edition, with your name if you want it.</p>
+
+  <div class="submit-grid">
+    <form class="story-form" {% if site.story_form_action != "" %}action="{{ site.story_form_action }}" method="POST" enctype="multipart/form-data"{% else %}onsubmit="event.preventDefault(); document.getElementById('sf-wait').hidden = false;"{% endif %}>
+      <input type="hidden" name="_subject" value="Chai Weekly: new story submission">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" value="{{ '/submit/thanks/' | absolute_url }}">
+      <input type="text" name="_honey" class="sr" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <label for="sf-name">Your name</label>
+      <input id="sf-name" name="name" required autocomplete="name">
+
+      <label for="sf-contact">Email or phone (WhatsApp is fine)</label>
+      <input id="sf-contact" name="contact" required autocomplete="email">
+      <span class="hint">So we can check details with you. Never published.</span>
+
+      <label for="sf-where">Where are you? <span class="opt">optional</span></label>
+      <input id="sf-where" name="location" placeholder="e.g. Kericho, Nyeri, Mombasa, Colombo">
+
+      <label for="sf-who">You are a… <span class="opt">optional</span></label>
+      <select id="sf-who" name="role">
+        <option value="">Choose one</option>
+        <option>Tea farmer</option><option>Factory staff or director</option><option>Broker, buyer or exporter</option>
+        <option>Tea lover or reader</option><option>Journalist or researcher</option><option>Other</option>
+      </select>
+
+      <label for="sf-title">Headline for your story</label>
+      <input id="sf-title" name="headline" required maxlength="140">
+
+      <label for="sf-story">Your story</label>
+      <textarea id="sf-story" name="story" rows="10" required placeholder="What happened, where, when, and who was involved. 100 to 600 words is ideal. Swahili or English."></textarea>
+
+      <label for="sf-link">Link to a photo, document or article <span class="opt">optional</span></label>
+      <input id="sf-link" name="link" type="url" placeholder="https://">
+
+      <label for="sf-photo">Or attach a photo <span class="opt">optional, up to 5 MB</span></label>
+      <input id="sf-photo" name="attachment" type="file" accept="image/*,.pdf">
+
+      <label class="check"><input type="checkbox" name="publish_name" value="yes" checked> You can publish my name with the story</label>
+      <label class="check"><input type="checkbox" name="agree" value="yes" required> This is my own story or photo, it's true to the best of my knowledge, and Chai Weekly may edit and publish it</label>
+
+      <button type="submit">Send my story</button>
+      <p class="fine" id="sf-wait" hidden>The story form opens very soon. Until then, reply to any Chai Weekly email with your story.</p>
+    </form>
+
+    <aside class="submit-notes">
+      <h2 class="label rule">What we look for</h2>
+      <ul>
+        <li>News from your factory or county: payments, bonuses, new machines, elections, disputes.</li>
+        <li>What you see at the auction or in the market.</li>
+        <li>Farming that worked (or didn't): pruning, fertiliser, pests, new varieties.</li>
+        <li>Tea culture: your family's chai, a tea shop, a festival, a recipe.</li>
+        <li>Photos of the season: plucking, the factory, the rain (or lack of it).</li>
+      </ul>
+      <h2 class="label rule">How it works</h2>
+      <p>We read everything. We check facts before publishing, and we may contact you first. We edit for length and clarity. Not every story is published, and we can't pay for submissions.</p>
+      <p>Please be fair: no personal attacks, and use people's proper titles.</p>
+    </aside>
+  </div>
+</article>

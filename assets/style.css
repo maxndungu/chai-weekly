@@ -155,3 +155,22 @@ a { color:inherit; }
 .market-panel .byline a { font-weight:600; }
 .events .more { margin:10px 0 0; } .events .more a { font-weight:600; }
 .analysis .events { margin-top:10px; }
+
+/* Send us a story */
+.submit-grid { display:grid; grid-template-columns:1fr; gap:32px; margin-top:24px; }
+@media (min-width:860px) { .submit-grid { grid-template-columns:3fr 2fr; } .submit-notes { border-left:1px solid var(--hair); padding-left:28px; } }
+.story-form { display:flex; flex-direction:column; font-family:var(--sans); }
+.story-form label { font-weight:700; font-size:14px; margin:16px 0 6px; }
+.story-form .opt, .story-form .hint { font-weight:400; font-size:12px; color:var(--muted); }
+.story-form .hint { margin-top:4px; }
+.story-form input:not([type=checkbox]):not([type=file]), .story-form select, .story-form textarea { width:100%; font:16px/1.4 var(--sans); padding:10px 12px; border:1px solid var(--ink); background:var(--paper); color:var(--ink); border-radius:0; }
+.story-form textarea { resize:vertical; }
+.story-form input[type=file] { font:14px var(--sans); }
+.story-form .check { display:flex; gap:10px; align-items:flex-start; font-weight:400; font-size:14px; line-height:1.4; }
+.story-form .check input { margin-top:3px; flex:none; }
+.story-form button { margin-top:22px; align-self:flex-start; font:800 13px var(--sans); letter-spacing:.1em; text-transform:uppercase; background:var(--ink); color:var(--paper); border:0; padding:14px 22px; cursor:pointer; }
+.story-form button:hover { background:var(--accent); }
+.submit-notes ul { padding-left:1.1em; font-size:16px; } .submit-notes li { margin:6px 0; }
+.submit-notes p { font-size:16px; }
+.submit-cta { background:var(--box); border-top:2px solid var(--rule); padding:14px 18px; margin:28px 0 0; font:400 15px/1.5 var(--sans); }
+.submit-cta a { color:var(--accent); font-weight:700; }

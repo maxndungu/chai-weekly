@@ -9,6 +9,10 @@ markdown: kramdown
 exclude: [tools, README.md, sources, drafts, vendor, Gemfile, Gemfile.lock, .bundle, node_modules]
 baseurl: "/chai-weekly"
 url: "https://maxndungu.github.io"
+# "Send us a story" form. Free, no account: put "https://formsubmit.co/YOUR-EMAIL" here, send yourself
+# one test story and click the activation link FormSubmit emails you. It then gives you a random
+# address (formsubmit.co/abc123...) to use instead, so your email isn't visible in the page.
+story_form_action: ""
 # Your paid-host domain, e.g. "https://chaiweekly.co.ke". Marks it as the main copy for search engines.
 canonical_url: ""
 # Visitor tracking (pick one). GoatCounter is free and cookie-free: sign up at goatcounter.com and

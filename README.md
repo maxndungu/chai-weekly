@@ -41,6 +41,16 @@ The site's **Auctions** page (`auctions.html`, at /auctions/) combines two files
 
 The page draws its charts and tables from these files, and offers the World Bank series as a CSV download (`downloads/`). The EATTA file is not offered for download.
 
+## Reader story submissions (/submit/)
+
+The "Send a story" page has a form (name, contact, location, role, headline, story, link or photo, consent). Submissions are emailed to you through FormSubmit (free, no account):
+
+1. In `_config.yml`, set `story_form_action: "https://formsubmit.co/YOUR-EMAIL"` and push.
+2. Send one test story from the site. FormSubmit emails you an activation link; click it.
+3. FormSubmit then gives you a random address like `https://formsubmit.co/abc123…`. Put that in `story_form_action` instead, so your email isn't visible in the page.
+
+Until it's set, the form shows "opens very soon" and asks readers to reply to an issue instead. Stories are never published automatically: you decide, and the Wednesday draft can use a story you forward.
+
 ## Running locally (optional)
 
 ```
