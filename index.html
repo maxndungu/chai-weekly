@@ -13,7 +13,10 @@ layout: default
   </div>
   <aside class="rail">
     {% include signup.html %}
-    {% include events.html limit=3 %}
+    {% capture poster %}{% include ad.html slot="home" %}{% endcapture %}
+    {% assign poster_on = poster | strip | size %}
+    {{ poster }}
+    {% include events.html limit=3 hide=poster_on %}
   </aside>
 </section>
 {% if lead.stories %}

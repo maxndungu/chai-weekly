@@ -4,3 +4,14 @@
 {% if site.umami_src != "" and site.umami_website_id != "" %}
 <script defer src="{{ site.umami_src }}" data-website-id="{{ site.umami_website_id }}"></script>
 {% endif %}
+<script>
+// Hide ads outside their dates (the site only rebuilds weekly); show the front-page events list instead of an expired poster.
+document.addEventListener("DOMContentLoaded", function () {
+  var t = new Date().toISOString().slice(0, 10);
+  document.querySelectorAll(".ad[data-start]").forEach(function (a) {
+    var live = a.getAttribute("data-start") <= t && t <= a.getAttribute("data-end");
+    a.hidden = !live;
+    if (a.classList.contains("ad-poster")) { var ev = document.querySelector(".rail .events"); if (ev) ev.hidden = live; }
+  });
+});
+</script>

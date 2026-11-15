@@ -1,7 +1,7 @@
 {%- comment -%} "Coming up" box: next tea events from _data/events.yml. Past ones are hidden at build time and again in the browser, so the list stays right between weekly builds. {%- endcomment -%}
 {% assign today = site.time | date: "%Y-%m-%d" %}
 {% assign limit = include.limit | default: 99 %}
-<section class="events" aria-labelledby="events-h">
+<section class="events" aria-labelledby="events-h"{% if include.hide and include.hide > 0 %} hidden{% endif %}>
   {% unless include.page %}<h2 class="label rule" id="events-h">Coming up in tea</h2>{% endunless %}
   <ul class="event-list">
     <li class="event recurring"><span class="when">Every Monday</span><strong>Mombasa tea auction</strong><span class="where">Mombasa, Kenya · some weeks a second sale on Tuesday · <a href="{{ '/auctions/' | relative_url }}">results</a></span></li>

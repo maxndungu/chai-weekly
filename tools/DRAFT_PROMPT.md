@@ -45,3 +45,10 @@ After the file, list for the human reviewer: (a) any figure you could not confir
 
 ## Auction analysis page
 In "The auction this week", link readers to the full sale-by-sale history: `[Auction analysis]({{ '/auctions/' | relative_url }})`. Use the same EATTA figures as the page, so the issue and the page agree.
+
+## Sponsor slot
+Right after the Sources line that ends "The auction this week" (before `## KTDA and factory news`), put this line on its own, with a blank line above and below:
+
+{% include ad.html slot="issue" %}
+
+It shows the paid sponsor box when one is booked in `_data/ads.yml` and nothing otherwise. Never write sponsor text yourself and never mention a sponsor in the editorial copy.

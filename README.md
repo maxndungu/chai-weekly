@@ -51,6 +51,18 @@ The "Send a story" page has a form (name, contact, location, role, headline, sto
 
 Until it's set, the form shows "opens very soon" and asks readers to reply to an issue instead. Stories are never published automatically: you decide, and the Wednesday draft can use a story you forward.
 
+## Paid adverts (_data/ads.yml)
+
+Three sponsor slots, all hidden until you switch an ad on, all labelled "Sponsored":
+
+| Slot | Where | Image |
+|---|---|---|
+| `home` | Front page side column, under the subscribe box (replaces the events list while it runs) | Poster, 600 x 900 px portrait |
+| `issue` | Each issue, after the auction prices, and in the email | Banner, 1200 x 400 px, plus one line of text and a link (email apps that block images still show the text) |
+| `auctions` | "Prices brought to you by …" line at the top of the Auctions page | None |
+
+To run an ad: put the image in `assets/ads/`, copy the example in `_data/ads.yml`, fill in sponsor, image, link (website or `https://wa.me/254…`), text, start and end dates, and commit. It appears on the start date and disappears after the end date by itself. The email box uses the ad that is live on the issue's date.
+
 ## Running locally (optional)
 
 ```

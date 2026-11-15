@@ -174,3 +174,16 @@ a { color:inherit; }
 .submit-notes p { font-size:16px; }
 .submit-cta { background:var(--box); border-top:2px solid var(--rule); padding:14px 18px; margin:28px 0 0; font:400 15px/1.5 var(--sans); }
 .submit-cta a { color:var(--accent); font-weight:700; }
+
+/* Sponsored slots (only render when an ad is active in _data/ads.yml) */
+.ad { font-family:var(--sans); }
+.ad[hidden], .events[hidden] { display:none; }
+.ad-label { display:block; font-weight:800; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:0 0 6px; }
+.ad img { display:block; width:100%; height:auto; border:1px solid var(--hair); }
+.ad-text { font-size:14px; line-height:1.45; color:var(--ink-2); margin:8px 0 0; }
+.ad-text a, .ad-line a { color:var(--accent); font-weight:700; }
+.ad-poster { margin-top:28px; padding-top:10px; border-top:1px solid var(--hair); }
+.ad-banner { margin:36px 0 8px; padding:12px 0 14px; border-top:1px solid var(--hair); border-bottom:1px solid var(--hair); }
+.body .ad-banner .ad-text { font-family:var(--sans); }
+.ad-line { font-size:13px; color:var(--ink-2); margin:0 0 6px; }
+.ad-line .ad-label { display:inline; margin-right:6px; }

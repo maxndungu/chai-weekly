@@ -1,0 +1,22 @@
+# Paid adverts. Nothing shows until an entry below is switched on, and each ad only shows
+# between its start and end dates (inclusive). All ads are labelled "Sponsored" on the page.
+#
+# To add one:
+#   1. Put the image in assets/ads/ (e.g. assets/ads/kentea-poster.jpg). JPG or PNG under 500 KB.
+#        home:   a tall poster, 600 x 900 px (portrait 2:3), shown in the front page side column
+#        issue:  a wide banner, 1200 x 400 px (3:1), shown after the auction prices in each issue and email
+#        auctions: no image, a one-line "Prices brought to you by" credit on the Auctions page
+#   2. Copy the example below, remove the "# " at the start of each line, and fill it in.
+#   3. Commit. The site updates in about a minute.
+#
+# - slot: home                      # home | issue | auctions
+#   sponsor: Kentea Packers Ltd     # shown as "Supported by ..."
+#   image: assets/ads/kentea-poster.jpg
+#   alt: Kentea Packers - premium Kenyan tea, packed in Mombasa   # describes the poster for screen readers and when images are off
+#   link: https://example.com       # or a WhatsApp link: https://wa.me/2547XXXXXXXX
+#   text: Premium Kenyan tea, packed in Mombasa. Call 07XX XXX XXX.  # one line; shown under the image (and instead of it if email images are off)
+#   link_text: Visit Kentea         # optional, defaults to "Find out more"
+#   start: 2026-12-01
+#   end: 2026-12-31
+
+[]

@@ -1,0 +1,20 @@
+{%- comment -%}
+Shows the active ad for include.slot (home | issue | auctions) from _data/ads.yml, or nothing.
+Dates are checked when the site builds and again in the reader's browser.
+{%- endcomment -%}
+{%- assign today = site.time | date: "%Y-%m-%d" -%}
+{%- assign ad = nil -%}
+{%- for a in site.data.ads -%}
+{%- assign s = a.start | date: "%Y-%m-%d" -%}{%- assign e = a.end | date: "%Y-%m-%d" -%}
+{%- if a.slot == include.slot and e >= today and ad == nil -%}{%- assign ad = a -%}{%- assign ad_start = s -%}{%- assign ad_end = e -%}{%- endif -%}
+{%- endfor -%}
+{%- if ad -%}
+{%- if ad.image contains "://" -%}{%- assign img = ad.image -%}{%- else -%}{%- assign img = ad.image | prepend: "/" | relative_url -%}{%- endif -%}
+{%- if include.slot == "auctions" -%}
+<p class="ad ad-line" data-start="{{ ad_start }}" data-end="{{ ad_end }}"><span class="ad-label">Sponsored</span> Prices brought to you by <a href="{{ ad.link }}" rel="sponsored noopener" target="_blank">{{ ad.sponsor }}</a>{% if ad.text %} · {{ ad.text }}{% endif %}</p>
+{%- elsif include.slot == "home" -%}
+<aside class="ad ad-poster" data-start="{{ ad_start }}" data-end="{{ ad_end }}" aria-label="Sponsored"><span class="ad-label">Sponsored · {{ ad.sponsor }}</span><a href="{{ ad.link }}" rel="sponsored noopener" target="_blank"><img src="{{ img }}" alt="{{ ad.alt | default: ad.sponsor }}" width="600" height="900" loading="lazy"></a>{% if ad.text %}<p class="ad-text">{{ ad.text }} <a href="{{ ad.link }}" rel="sponsored noopener" target="_blank">{{ ad.link_text | default: "Find out more" }} →</a></p>{% endif %}</aside>
+{%- else -%}
+<aside class="ad ad-banner" data-start="{{ ad_start }}" data-end="{{ ad_end }}" aria-label="Sponsored"><span class="ad-label">Sponsored · Supported by {{ ad.sponsor }}</span>{% if ad.image %}<a href="{{ ad.link }}" rel="sponsored noopener" target="_blank"><img src="{{ img }}" alt="{{ ad.alt | default: ad.sponsor }}" width="1200" height="400" loading="lazy"></a>{% endif %}<p class="ad-text">{{ ad.text }} <a href="{{ ad.link }}" rel="sponsored noopener" target="_blank">{{ ad.link_text | default: "Find out more" }} →</a></p></aside>
+{%- endif -%}
+{%- endif -%}
