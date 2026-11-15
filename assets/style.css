@@ -144,3 +144,12 @@ a { color:inherit; }
 .event .where { display:block; font-size:13px; line-height:1.4; color:var(--ink-2); }
 .event .where a { color:var(--accent); }
 .events .fine { font-size:12px; margin-top:8px; }
+
+/* Front-page auction panel */
+.market-panel { margin-top:28px; }
+.stat-row.compact { margin-top:0; border-top:0; }
+@media (min-width:640px) { .stat-row.compact { grid-template-columns:repeat(3, 1fr); } }
+.stat-row.compact .stat strong { font-size:30px; }
+.chart.spark { margin:14px 0 6px; }
+.market-panel .byline { margin:6px 0 0; }
+.market-panel .byline a { font-weight:600; }

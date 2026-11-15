@@ -9,6 +9,7 @@ layout: default
     <h1 class="headline big"><a href="{{ lead.url | relative_url }}">{{ lead.title }}</a></h1>
     <p class="deck">{{ lead.deck | default: lead.description }}</p>
     <p class="byline">{{ lead.date | date: "%-d %B %Y" }} · <a href="{{ lead.url | relative_url }}">Read the full edition →</a></p>
+    {% include market-panel.html %}
   </div>
   <aside class="rail">
     {% include signup.html %}

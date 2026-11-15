@@ -1,0 +1,42 @@
+{%- comment -%} Front-page "At the auction" panel: latest Mombasa sale and this year's trend, from _data/mombasa_eatta_sales.csv. {%- endcomment -%}
+{% assign sales = site.data.mombasa_eatta_sales %}
+{% if sales and sales.size > 1 %}
+{% assign last = sales | last %}
+<section class="market-panel" aria-labelledby="mp-h">
+  <h2 class="label rule" id="mp-h">At the Mombasa auction</h2>
+  <div class="stat-row compact" id="mp-stats">
+    <div class="stat"><span class="stat-label">Sale {{ last.sale }} · {{ last.auction_date | date: "%-d %b" }}</span><strong>${{ last.avg_usd_kg }}</strong><span class="stat-note">average per kg, all teas</span></div>
+  </div>
+  <figure class="chart spark" id="mp-chart" role="img" aria-label="Mombasa auction average price at each sale this year"></figure>
+  <p class="byline"><a href="{{ '/auctions/' | relative_url }}">Every sale and the 30-year history →</a></p>
+</section>
+<script>
+(function () {
+  var S = {{ sales | jsonify }}.map(function (r) { return { y: +r.year, n: +r.sale, d: r.auction_date, v: +r.avg_usd_kg, kg: +r.sold_kg }; })
+    .sort(function (a, b) { return a.y - b.y || a.n - b.n; });
+  var last = S[S.length - 1], prev = S[S.length - 2], ys = S.filter(function (s) { return s.y === last.y; });
+  var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var dl = function (d) { return +d.slice(8, 10) + " " + M[+d.slice(5, 7) - 1]; };
+  var f2 = function (x) { return "$" + x.toFixed(2); };
+  var ch = function (d, unit) { var c = Math.round(d); return "<span class='" + (c > 0 ? "up" : c < 0 ? "down" : "") + "'>" + (c > 0 ? "▲ " : c < 0 ? "▼ " : "▬ ") + Math.abs(c) + unit + "</span>"; };
+  var tkg = ys.reduce(function (a, s) { return a + s.kg; }, 0), avg = ys.reduce(function (a, s) { return a + s.v * s.kg; }, 0) / tkg;
+  var hi = Math.max.apply(0, ys.map(function (s) { return s.v; })), lo = Math.min.apply(0, ys.map(function (s) { return s.v; }));
+  var tiles = [
+    ["Sale " + last.n + " · " + dl(last.d), f2(last.v), ch((last.v - prev.v) * 100, "¢") + " on the week"],
+    ["Sold", (last.kg / 1e6).toFixed(2) + "M kg", ch(100 * (last.kg - prev.kg) / prev.kg, "%") + " on the week"],
+    [last.y + " so far", f2(avg), "low " + f2(lo) + " · high " + f2(hi) + (last.v >= hi ? " · <b>year's high</b>" : "")]
+  ];
+  document.getElementById("mp-stats").innerHTML = tiles.map(function (t) { return "<div class='stat'><span class='stat-label'>" + t[0] + "</span><strong>" + t[1] + "</strong><span class='stat-note'>" + t[2] + "</span></div>"; }).join("");
+  var NS = "http://www.w3.org/2000/svg", W = 640, H = 150, P = { l: 40, r: 10, t: 10, b: 22 };
+  var el = function (n, a, p) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); p && p.appendChild(e); return e; };
+  var mn = Math.floor((lo - 0.02) * 20) / 20, mx = Math.ceil((hi + 0.02) * 20) / 20;
+  var t0 = Date.parse(last.y + "-01-01"), t1 = Date.parse(last.y + "-12-31");
+  var X = function (d) { return P.l + (Date.parse(d) - t0) / (t1 - t0) * (W - P.l - P.r); }, Y = function (v) { return H - P.b - (v - mn) / (mx - mn) * (H - P.t - P.b); };
+  var svg = el("svg", { viewBox: "0 0 " + W + " " + H }, document.getElementById("mp-chart"));
+  for (var v = mn; v <= mx + 1e-9; v += 0.1) { el("line", { x1: P.l, x2: W - P.r, y1: Y(v), y2: Y(v), class: "grid" }, svg); el("text", { x: P.l - 5, y: Y(v) + 4, class: "tick", "text-anchor": "end" }, svg).textContent = "$" + v.toFixed(2); }
+  [0, 3, 6, 9].forEach(function (m) { el("text", { x: X(last.y + "-" + (m < 9 ? "0" : "") + (m + 1) + "-01"), y: H - 6, class: "tick" }, svg).textContent = M[m]; });
+  el("path", { d: ys.map(function (s, i) { return (i ? "L" : "M") + X(s.d).toFixed(1) + "," + Y(s.v).toFixed(1); }).join(""), class: "line-main" }, svg);
+  var dot = el("circle", { cx: X(last.d), cy: Y(last.v), r: 4.5, class: "pt pt-last" }, svg); el("title", {}, dot).textContent = "Sale " + last.n + ": " + f2(last.v);
+})();
+</script>
+{% endif %}
