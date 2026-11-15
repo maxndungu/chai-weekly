@@ -1,10 +1,9 @@
 :root {
+  color-scheme: light; /* always newsprint, even when the reader's device is in dark mode */
   --paper:#fbfaf6; --ink:#121212; --ink-2:#3d3b37; --muted:#6e6a62; --rule:#1d1d1d; --hair:#d9d5cc;
   --accent:#1f5d34; --box:#f2efe6;
   --display:"Playfair Display", Georgia, serif; --serif:"Source Serif 4", Georgia, serif; --sans:"Libre Franklin", system-ui, sans-serif;
 }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --paper:#131210; --ink:#ece8df; --ink-2:#c9c4b8; --muted:#958f83; --rule:#ece8df; --hair:#3a3731; --accent:#8cc79c; --box:#1d1b18; } }
 * { box-sizing:border-box; }
 html { -webkit-text-size-adjust:100%; }
 body { margin:0; background:var(--paper); color:var(--ink); font:18px/1.6 var(--serif); }
@@ -116,7 +115,6 @@ a { color:inherit; }
 .stat strong { display:block; font:700 34px/1.15 var(--display); margin:4px 0; }
 .stat-note { display:block; font:400 13px/1.4 var(--sans); color:var(--ink-2); }
 .up { color:var(--accent); font-weight:600; } .down { color:#b0402b; font-weight:600; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .down { color:#f0927d; } }
 .chart-note { font:400 14px/1.5 var(--sans); color:var(--ink-2); margin:4px 0 8px; }
 .chart { margin:0; } .chart svg { width:100%; height:auto; display:block; overflow:visible; }
 .chart .grid { stroke:var(--hair); stroke-width:1; }
