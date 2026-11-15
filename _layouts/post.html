@@ -2,6 +2,7 @@
 layout: default
 ---
 <article class="story">
+  {% if page.preview %}<p class="preview-banner">Preview only: a test of how a Wednesday edition looks. It is not a published issue and will be removed.</p>{% endif %}
   <p class="kicker">Edition No. {{ page.issue }} · {{ page.date | date: "%-d %B %Y" }}</p>
   <h1 class="headline">{{ page.title }}</h1>
   {% if page.deck %}<p class="deck">{{ page.deck }}</p>{% endif %}

@@ -5,7 +5,7 @@ layout: default
 {% if lead %}
 <section class="front">
   <div class="lead">
-    <p class="kicker">This week's edition · No. {{ lead.issue }}</p>
+    <p class="kicker">This week's edition · No. {{ lead.issue }}{% if lead.preview %} · Preview{% endif %}</p>
     <h1 class="headline big"><a href="{{ lead.url | relative_url }}">{{ lead.title }}</a></h1>
     <p class="deck">{{ lead.deck | default: lead.description }}</p>
     <p class="byline">{{ lead.date | date: "%-d %B %Y" }} · <a href="{{ lead.url | relative_url }}">Read the full edition →</a></p>

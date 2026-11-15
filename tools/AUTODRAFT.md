@@ -10,7 +10,7 @@ publishes the issue to the site; nothing goes live without that merge.
 1. Work in the `maxndungu/chai-weekly` repo, on an up-to-date `main`.
 2. Find the newest `sources/*.md`. If none is from the last 2 days, run `python3 tools/gather.py`
    yourself; if that cannot reach the feeds, use web search for the same sections.
-3. Work out the next issue number (highest `issue:` in `_posts/` + 1) and read the last issue so
+3. If any post in `_posts/` has `preview: true` (a test edition), delete it in your branch first and ignore it when numbering. Work out the next issue number (highest `issue:` in `_posts/` + 1) and read the last issue so
    figures can be compared week on week.
 4. Read `tools/DRAFT_PROMPT.md` and follow it exactly. Open the actual articles and auction
    reports (the "Auction reports" section of the sources file) before using any figure. Pick

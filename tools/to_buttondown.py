@@ -15,6 +15,8 @@ import urllib.request
 path = pathlib.Path(sys.argv[1])
 text = path.read_text()
 _, front, body = text.split("---", 2)
+if re.search(r"^preview:\s*true", front, re.M):
+    print("Preview issue: no email draft created."); sys.exit(0)
 title = re.search(r'^title:\s*"?(.*?)"?\s*$', front, re.M).group(1)
 issue = re.search(r"^issue:\s*(\d+)", front, re.M).group(1)
 deck = (re.search(r'^deck:\s*"?(.*?)"?\s*$', front, re.M) or [None, ""])[1]

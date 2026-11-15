@@ -187,3 +187,4 @@ a { color:inherit; }
 .body .ad-banner .ad-text { font-family:var(--sans); }
 .ad-line { font-size:13px; color:var(--ink-2); margin:0 0 6px; }
 .ad-line .ad-label { display:inline; margin-right:6px; }
+.preview-banner { background:#b0402b; color:#fff; font:700 13px/1.4 var(--sans); padding:10px 14px; margin:0 0 18px; }
