@@ -12,7 +12,10 @@ publishes the issue to the site; nothing goes live without that merge.
    yourself; if that cannot reach the feeds, use web search for the same sections.
 3. If any post in `_posts/` has `preview: true` (a test edition), delete it in your branch first and ignore it when numbering. Work out the next issue number (highest `issue:` in `_posts/` + 1) and read the last issue so
    figures can be compared week on week.
-4. Read `tools/DRAFT_PROMPT.md` and follow it exactly. Open the actual articles and auction
+4. Read `tools/DRAFT_PROMPT.md` and follow it exactly. Note: the `news.google.com` links in the sources
+   file can't be fetched (robots.txt). For each story you want, search the web for its headline to get the
+   publisher's own URL, read that, and cite the publisher URL. Nation (nation.africa) also refuses fetching;
+   use another outlet's report of the same story. Open the actual articles and auction
    reports (the "Auction reports" section of the sources file) before using any figure. Pick
    the week's real lead story; check `tools/reports.txt` links marked "check by hand" too.
 5. Save the issue as `_posts/<today>-issue-<NNN>.md` (NNN zero-padded, today = the Wednesday).
