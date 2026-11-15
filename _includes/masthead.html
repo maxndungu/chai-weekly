@@ -11,6 +11,7 @@
     {% for s in latest.stories %}<a href="{{ latest.url | relative_url }}#{{ s.anchor }}">{{ s.section }}</a>
     {% endfor %}
     <a href="{{ '/auctions/' | relative_url }}">Auctions</a>
+    <a href="{{ '/events/' | relative_url }}">Events</a>
     <a href="{{ '/archive/' | relative_url }}">Archive</a>
     <a href="{{ '/about/' | relative_url }}">About</a>
   </nav>

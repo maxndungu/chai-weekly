@@ -153,3 +153,5 @@ a { color:inherit; }
 .chart.spark { margin:14px 0 6px; }
 .market-panel .byline { margin:6px 0 0; }
 .market-panel .byline a { font-weight:600; }
+.events .more { margin:10px 0 0; } .events .more a { font-weight:600; }
+.analysis .events { margin-top:10px; }
