@@ -13,6 +13,14 @@ global | https://news.google.com/rss/search?q=global+tea+market+prices+when:7d&h
 events | https://news.google.com/rss/search?q=%22tea+festival%22+OR+%22tea+expo%22+OR+%22tea+convention%22+OR+%22tea+fair%22+when:14d&hl=en&gl=US&ceid=US:en
 events | https://news.google.com/rss/search?q=%22tea+convention%22+OR+%22tea+festival%22+Kenya+OR+Africa+when:30d&hl=en-KE&gl=KE&ceid=KE:en
 
+# --- East Africa: the other EATTA member countries (feeds the "East Africa" section) ---
+eastafrica | https://news.google.com/rss/search?q=Uganda+tea+farmers+OR+%22Uganda+Tea+Development+Agency%22+OR+%22Ugandan+tea%22+when:7d&hl=en-KE&gl=KE&ceid=KE:en
+eastafrica | https://news.google.com/rss/search?q=Tanzania+tea+OR+%22Tea+Board+of+Tanzania%22+OR+%22Tanzanian+tea%22+when:7d&hl=en-KE&gl=KE&ceid=KE:en
+eastafrica | https://news.google.com/rss/search?q=Rwanda+tea+OR+NAEB+tea+OR+%22Rwandan+tea%22+when:7d&hl=en-KE&gl=KE&ceid=KE:en
+eastafrica | https://news.google.com/rss/search?q=Burundi+tea+OR+%22Office+du+Th%C3%A9+du+Burundi%22+OR+%22Burundi+tea%22+when:7d&hl=en-KE&gl=KE&ceid=KE:en
+eastafrica | https://news.google.com/rss/search?q=Malawi+tea+OR+%22Tea+Association+of+Malawi%22+OR+Limbe+tea+auction+when:7d&hl=en-KE&gl=KE&ceid=KE:en
+eastafrica | https://news.google.com/rss/search?q=Ethiopia+tea+OR+Congo+tea+OR+Madagascar+tea+OR+Mozambique+tea+when:7d&hl=en-KE&gl=KE&ceid=KE:en
+
 # --- World tea (everything below feeds the "Around the tea world" section) ---
 world | https://news.google.com/rss/search?q=tea+industry+OR+%22tea+prices%22+OR+%22tea+auction%22+when:7d&hl=en&gl=US&ceid=US:en
 world | https://news.google.com/rss/search?q=Colombo+tea+auction+OR+%22Ceylon+tea%22+when:7d&hl=en-LK&gl=LK&ceid=LK:en

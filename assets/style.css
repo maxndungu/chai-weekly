@@ -186,3 +186,6 @@ a { color:inherit; }
 .ad-line { font-size:13px; color:var(--ink-2); margin:0 0 6px; }
 .ad-line .ad-label { display:inline; margin-right:6px; }
 .preview-banner { background:#b0402b; color:#fff; font:700 13px/1.4 var(--sans); padding:10px 14px; margin:0 0 18px; }
+/* 7 sections: let a lone last teaser span the row */
+@media (min-width:1000px) { .grid .teaser:last-child:nth-child(3n+1) { grid-column:1 / -1; border-right:0; } }
+@media (min-width:700px) and (max-width:999px) { .grid .teaser:last-child:nth-child(2n+1) { grid-column:1 / -1; border-right:0; } }
