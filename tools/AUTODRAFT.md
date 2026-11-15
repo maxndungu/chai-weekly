@@ -16,6 +16,11 @@ publishes the issue to the site; nothing goes live without that merge.
    reports (the "Auction reports" section of the sources file) before using any figure. Pick
    the week's real lead story; check `tools/reports.txt` links marked "check by hand" too.
 5. Save the issue as `_posts/<today>-issue-<NNN>.md` (NNN zero-padded, today = the Wednesday).
+   Then update `_data/events.yml` (the homepage "Coming up in tea" box): read the `## events` section
+   of the sources file, and add any tea-specific event in the next 12 months (fair, expo, convention,
+   festival, tea day) or fix a changed date. Open the organiser's page or a news report first and put
+   its link in `url`; use `month:` when only the month is known. Delete events that have ended. List
+   every change under "Events" in the pull-request notes.
 6. Sanity checks before committing:
    - Front matter has title, issue, deck, description, snapshot (4-5 items), stories (6, with
      anchors that match the `##` headings as kramdown slugs).

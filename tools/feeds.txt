@@ -10,6 +10,8 @@ weather | https://news.google.com/rss/search?q=Kericho+OR+Nyeri+OR+Kisii+rains+w
 farming | https://news.google.com/rss/search?q=tea+farmers+Kenya+fertilizer+OR+pruning+OR+pests+when:7d&hl=en-KE&gl=KE&ceid=KE:en
 culture | https://news.google.com/rss/search?q=Kenyan+tea+culture+OR+chai+OR+%22tea+tourism%22+when:14d&hl=en-KE&gl=KE&ceid=KE:en
 global | https://news.google.com/rss/search?q=global+tea+market+prices+when:7d&hl=en&gl=US&ceid=US:en
+events | https://news.google.com/rss/search?q=%22tea+festival%22+OR+%22tea+expo%22+OR+%22tea+convention%22+OR+%22tea+fair%22+when:14d&hl=en&gl=US&ceid=US:en
+events | https://news.google.com/rss/search?q=%22tea+convention%22+OR+%22tea+festival%22+Kenya+OR+Africa+when:30d&hl=en-KE&gl=KE&ceid=KE:en
 
 # --- World tea (everything below feeds the "Around the tea world" section) ---
 world | https://news.google.com/rss/search?q=tea+industry+OR+%22tea+prices%22+OR+%22tea+auction%22+when:7d&hl=en&gl=US&ceid=US:en

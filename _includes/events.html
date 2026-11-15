@@ -1,0 +1,26 @@
+{%- comment -%} "Coming up" box: next tea events from _data/events.yml. Past ones are hidden at build time and again in the browser, so the list stays right between weekly builds. {%- endcomment -%}
+{% assign today = site.time | date: "%Y-%m-%d" %}
+{% assign this_month = site.time | date: "%Y-%m" %}
+<section class="events" aria-labelledby="events-h">
+  <h2 class="label rule" id="events-h">Coming up in tea</h2>
+  <ul class="event-list">
+    <li class="event recurring"><span class="when">Every Monday</span><strong>Mombasa tea auction</strong><span class="where">Mombasa, Kenya · some weeks a second sale on Tuesday · <a href="{{ '/auctions/' | relative_url }}">results</a></span></li>
+    {% assign shown = 0 %}
+    {% for e in site.data.events %}
+      {% capture last %}{% if e.end %}{{ e.end }}{% elsif e.start %}{{ e.start }}{% else %}{{ e.month }}-31{% endif %}{% endcapture %}
+      {% if last >= today and shown < 5 %}
+      {% assign shown = shown | plus: 1 %}
+      <li class="event" data-last="{{ last }}">
+        <span class="when">{% if e.start %}{% assign sm = e.start | date: "%m" %}{% assign em = e.end | date: "%m" %}{% if e.end and sm == em %}{{ e.start | date: "%-d" }}–{{ e.end | date: "%-d %b" }}{% elsif e.end %}{{ e.start | date: "%-d %b" }}–{{ e.end | date: "%-d %b" }}{% else %}{{ e.start | date: "%-d %b" }}{% endif %} {{ e.start | date: "%Y" }}{% else %}{% assign m = e.month | append: "-01" %}Expected {{ m | date: "%B %Y" }}{% endif %}</span>
+        <strong>{% if e.url %}<a href="{{ e.url }}">{{ e.name }}</a>{% else %}{{ e.name }}{% endif %}</strong>
+        <span class="where">{{ e.place }}{% if e.kind %} · {{ e.kind }}{% endif %}{% if e.note %} · {{ e.note }}{% endif %}</span>
+      </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+  <p class="fine muted">Dates come from organisers and trade-fair listings; check before you travel. Know an event? Just reply to any issue.</p>
+</section>
+<script>
+(function () { var t = new Date().toISOString().slice(0, 10);
+  document.querySelectorAll(".event[data-last]").forEach(function (li) { if (li.getAttribute("data-last") < t) li.remove(); }); })();
+</script>

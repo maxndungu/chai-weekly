@@ -12,6 +12,7 @@ layout: default
   </div>
   <aside class="rail">
     {% include signup.html %}
+    {% include events.html %}
   </aside>
 </section>
 {% if lead.stories %}
@@ -25,6 +26,8 @@ layout: default
   {% endfor %}
 </section>
 {% endif %}
+{% else %}
+{% include events.html %}
 {% endif %}
 <section class="past">
   <h2 class="label rule">Past editions</h2>

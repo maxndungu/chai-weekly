@@ -1,0 +1,54 @@
+# Upcoming tea events shown on the homepage ("Coming up" box). Past events drop off by themselves.
+# Fields:
+#   name, place, url (official page or the best public listing), kind (Trade fair / Festival / Convention / Tea day)
+#   start: YYYY-MM-DD and optional end: YYYY-MM-DD  -- when the exact days are known
+#   month: YYYY-MM                                   -- when only the month is known (shown as "Expected")
+#   note: short extra line (optional)
+# Only add an event with a link to where the date was found. The Wednesday draft checks the
+# "events" news feed and proposes additions or date changes in its pull request.
+
+- name: Folk Tea Festival (6th edition)
+  start: 2026-11-28
+  end: 2026-11-29
+  place: Hatipoti Tea Estate, Biswanath Chariali, Assam, India
+  kind: Festival
+  url: https://www.sentinelassam.com/north-east-india-news/assam-news/assam-welcomes-creative-minds-and-tradition-for-the-6th-folk-tea-festival-this-november
+
+- name: Global Tea Fair China (Shenzhen)
+  month: 2026-12
+  place: Shenzhen Convention & Exhibition Center, China
+  kind: Trade fair
+  url: https://www.tradefairdates.com/Tea+trade+fairs-Y418-S1.html
+  note: Listings disagree on the days (10–14 or 17–21 Dec)
+
+- name: World Tea Expo
+  month: 2027-03
+  place: Las Vegas, USA
+  kind: Trade fair
+  url: https://www.worldteaexpo.com/
+  note: Now a pavilion within Bar & Restaurant Expo
+
+- name: China (Xiamen) International Tea Fair
+  month: 2027-04
+  place: Xiamen International Conference & Exhibition Center, China
+  kind: Trade fair
+  url: https://www.tradefairdates.com/Tea+trade+fairs-Y418-S1.html
+
+- name: International Tea Day
+  start: 2027-05-21
+  place: Worldwide; FAO observance in Rome
+  kind: Tea day
+  url: https://www.fao.org/international-tea-day/en
+
+- name: HKTDC Hong Kong International Tea Fair
+  month: 2027-08
+  place: Hong Kong Convention and Exhibition Centre
+  kind: Trade fair
+  url: https://www.tradefairdates.com/Tea+trade+fairs-Y418-S1.html
+
+- name: Taiwan International Tea Expo
+  start: 2027-11-12
+  end: 2027-11-15
+  place: Nangang Exhibition Center, Taipei, Taiwan
+  kind: Trade fair
+  url: https://www.tradefairdates.com/Tea+trade+fairs-Y418-S1.html
