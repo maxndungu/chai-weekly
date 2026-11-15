@@ -1,0 +1,72 @@
+---
+layout: default
+title: Weather in the tea areas
+description: Rain over the past week and the 7-day forecast for the tea-growing areas of Kenya and East Africa, with heavy rain, dry spell and cold night alerts.
+permalink: /weather/
+---
+<article class="analysis weather">
+  <p class="kicker">Weather</p>
+  <h1 class="headline">Rain and frost watch for the tea areas</h1>
+  <p class="deck">Rain over the past seven days and the forecast for the next seven, for the main tea-growing areas of Kenya and the region. Tea likes steady rain and warm nights; a heavy downpour, a dry week or a cold night all show up in the leaf and at the auction a few weeks later.</p>
+  <p class="wx-status" id="wx-status">Loading the latest forecast…</p>
+  <p class="wx-key"><span class="wx-flag heavy">Heavy rain</span> a day of 50 mm or more ahead · <span class="wx-flag wet">Wet days</span> a day of 20 mm or more · <span class="wx-flag dry">Dry week</span> under 5 mm in the next 7 days · <span class="wx-flag cold">Cold nights</span> 8°C or below · <span class="wx-flag frost">Frost risk</span> 3°C or below</p>
+  <div id="wx-groups"></div>
+  <p class="source">Forecast: <a href="https://open-meteo.com/">Open-Meteo.com</a> weather model (CC BY 4.0), for a point in each area. These are model estimates, not rain gauge readings. For official warnings see the <a href="https://meteo.go.ke/">Kenya Meteorological Department</a>.</p>
+</article>
+<script id="wx-areas" type="application/json">{{ site.data.tea_areas | jsonify }}</script>
+<script id="wx-snapshot" type="application/json">{{ site.data.weather_snapshot | jsonify }}</script>
+<script>
+(function () {
+  var areas = JSON.parse(document.getElementById('wx-areas').textContent);
+  var status = document.getElementById('wx-status'), box = document.getElementById('wx-groups');
+  var DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  function sum(a) { return Math.round(a.reduce(function (s, x) { return s + (x || 0); }, 0) * 10) / 10; }
+  function flags(rain, tmin) {
+    var f = [], mx = Math.max.apply(null, rain.map(function (x) { return x || 0; })), mn = Math.min.apply(null, tmin);
+    if (mx >= 50) f.push(['heavy', 'Heavy rain']); else if (mx >= 20) f.push(['wet', 'Wet days']);
+    if (sum(rain) < 5) f.push(['dry', 'Dry week']);
+    if (mn <= 3) f.push(['frost', 'Frost risk']); else if (mn <= 8) f.push(['cold', 'Cold nights']);
+    return f;
+  }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function card(a, x) {
+    var top = Math.max(20, Math.max.apply(null, x.days.map(function (d) { return d.rain; })));
+    var bars = x.days.map(function (d) {
+      var h = Math.round(d.rain / top * 88), day = DAYS[new Date(d.date + 'T12:00:00').getDay()];
+      return '<div class="wx-day" title="' + d.date + ': ' + d.rain + ' mm, ' + d.tmin + '–' + d.tmax + '°C"><span class="wx-mm">' + (d.rain >= 1 ? Math.round(d.rain) : '') +
+        '</span><span class="wx-bar"><i style="height:' + h + '%"></i></span><span class="wx-dn">' + day + '</span><span class="wx-t">' + Math.round(d.tmax) + '°<br><em>' + Math.round(d.tmin) + '°</em></span></div>';
+    }).join('');
+    var fl = x.flags.map(function (f) { return '<span class="wx-flag ' + f[0] + '">' + f[1] + '</span>'; }).join(' ') || '<span class="wx-ok">Nothing unusual</span>';
+    return '<section class="wx-card"><h3>' + esc(a.name) + '</h3><div class="wx-nums"><div><b>' + x.past + ' mm</b><span>rain, last 7 days</span></div><div><b>' + x.next + ' mm</b><span>forecast, next 7 days</span></div></div>' +
+      '<div class="wx-week">' + bars + '</div><p class="wx-flags">' + fl + '</p></section>';
+  }
+  function render(rows, note) {
+    var groups = [], html = '';
+    rows.forEach(function (r) { if (groups.indexOf(r.a.group) < 0) groups.push(r.a.group); });
+    groups.forEach(function (g) {
+      html += '<h2 class="wx-group">' + esc(g) + '</h2><div class="wx-grid">' + rows.filter(function (r) { return r.a.group === g; }).map(function (r) { return card(r.a, r.x); }).join('') + '</div>';
+    });
+    box.innerHTML = html; status.textContent = note;
+  }
+  function fromSnapshot() {
+    var s = JSON.parse(document.getElementById('wx-snapshot').textContent || 'null');
+    if (!s || !s.areas) { status.textContent = 'The forecast could not load just now. Try again in a few minutes, or see meteo.go.ke.'; return; }
+    render(s.areas.map(function (r) {
+      return { a: r, x: { past: r.rain_past7, next: r.rain_next7, days: r.days, flags: flags(r.days.map(function (d) { return d.rain; }), r.days.map(function (d) { return d.tmin; })) } };
+    }), 'The live forecast could not load, so this is the copy saved on ' + s.updated + '.');
+  }
+  var url = 'https://api.open-meteo.com/v1/forecast?latitude=' + areas.map(function (a) { return a.lat; }).join(',') +
+    '&longitude=' + areas.map(function (a) { return a.lon; }).join(',') +
+    '&daily=precipitation_sum,temperature_2m_max,temperature_2m_min&past_days=7&forecast_days=7&timezone=Africa%2FNairobi';
+  fetch(url).then(function (r) { if (!r.ok) throw r.status; return r.json(); }).then(function (data) {
+    if (!Array.isArray(data)) data = [data];
+    var rows = areas.map(function (a, i) {
+      var d = data[i].daily, rain = d.precipitation_sum.map(function (x) { return x || 0; });
+      var days = d.time.slice(7, 14).map(function (t, j) { return { date: t, rain: rain[7 + j], tmin: d.temperature_2m_min[7 + j], tmax: d.temperature_2m_max[7 + j] }; });
+      return { a: a, x: { past: sum(rain.slice(0, 7)), next: sum(rain.slice(7, 14)), days: days, flags: flags(rain.slice(7, 14), d.temperature_2m_min.slice(7, 14)) } };
+    });
+    var now = new Date();
+    render(rows, 'Live forecast, updated ' + now.toLocaleString('en-GB', { weekday: 'long', hour: '2-digit', minute: '2-digit', timeZone: 'Africa/Nairobi' }) + ' Nairobi time.');
+  }).catch(fromSnapshot);
+})();
+</script>

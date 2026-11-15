@@ -1,0 +1,21 @@
+[
+  {"group": "Kenya, west of the Rift", "name": "Kericho", "lat": -0.367, "lon": 35.283},
+  {"group": "Kenya, west of the Rift", "name": "Bomet", "lat": -0.782, "lon": 35.342},
+  {"group": "Kenya, west of the Rift", "name": "Nandi Hills", "lat": 0.103, "lon": 35.183},
+  {"group": "Kenya, west of the Rift", "name": "Kisii", "lat": -0.681, "lon": 34.766},
+  {"group": "Kenya, west of the Rift", "name": "Nyamira", "lat": -0.563, "lon": 34.935},
+  {"group": "Kenya, east of the Rift", "name": "Nyeri", "lat": -0.420, "lon": 36.947},
+  {"group": "Kenya, east of the Rift", "name": "Murang'a (Kangema)", "lat": -0.685, "lon": 36.966},
+  {"group": "Kenya, east of the Rift", "name": "Kirinyaga (Kerugoya)", "lat": -0.499, "lon": 37.280},
+  {"group": "Kenya, east of the Rift", "name": "Kiambu (Limuru)", "lat": -1.107, "lon": 36.642},
+  {"group": "Kenya, east of the Rift", "name": "Embu", "lat": -0.531, "lon": 37.450},
+  {"group": "Kenya, east of the Rift", "name": "Meru", "lat": -0.047, "lon": 37.649},
+  {"group": "East Africa and the region", "name": "Fort Portal, Uganda", "lat": 0.671, "lon": 30.275},
+  {"group": "East Africa and the region", "name": "Nyungwe, Rwanda", "lat": -2.476, "lon": 29.093},
+  {"group": "East Africa and the region", "name": "Muramvya, Burundi", "lat": -3.266, "lon": 29.607},
+  {"group": "East Africa and the region", "name": "Mufindi, Tanzania", "lat": -8.600, "lon": 35.300},
+  {"group": "East Africa and the region", "name": "Mulanje, Malawi", "lat": -16.031, "lon": 35.500},
+  {"group": "East Africa and the region", "name": "Gurué, Mozambique", "lat": -15.463, "lon": 36.984},
+  {"group": "East Africa and the region", "name": "Gore, Ethiopia", "lat": 8.149, "lon": 35.537},
+  {"group": "East Africa and the region", "name": "Fianarantsoa, Madagascar", "lat": -21.450, "lon": 47.090}
+]

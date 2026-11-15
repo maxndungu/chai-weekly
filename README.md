@@ -86,3 +86,7 @@ GitHub stays the source of truth. Every push to `main` also triggers `.github/wo
 - **Email drafts:** add repo secret `BUTTONDOWN_API_KEY`. Each time an issue is merged, `.github/workflows/email-draft.yml` creates a Buttondown *draft* (never sends). Open Buttondown, check it, press Send.
 - **Opens:** Buttondown's Analytics add-on (about $9/month) shows who opened each email.
 - **Site visits (free):** sign up at [GoatCounter](https://www.goatcounter.com) and set `goatcounter_code`. Links in the email carry `utm_source=newsletter`, so visits from the email show as campaign "newsletter"; shared links show by referring site (WhatsApp, Facebook, X...).
+
+## Tea weather page
+
+`/weather/` shows rain for the past 7 days and the 7-day forecast for each place in `_data/tea_areas.json` (add or move an area there). Readers' browsers fetch the live forecast from Open-Meteo (free, no key). Each Wednesday the collector also runs `tools/weather.py`, which saves `_data/weather_snapshot.json` (used if the live forecast can't load) and adds a weather table to the sources file for the draft. Open-Meteo's free service is for non-commercial use; if Chai Weekly starts earning, move to their paid API plan or re-check the terms.

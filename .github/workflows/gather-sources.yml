@@ -20,6 +20,9 @@ jobs:
         with: { python-version: "3.12" }
       - run: python tools/gather.py
         if: ${{ !inputs.csv_only }}
+      - name: Weather snapshot for the tea areas
+        if: ${{ !inputs.csv_only }}
+        run: python tools/weather.py >> "sources/$(date +%F).md"
       - name: Save every EATTA sale to _data/mombasa_eatta_sales.csv
         run: python tools/eatta_csv.py || echo "EATTA CSV update failed; check https://eatta.co.ke/statistics"
       - uses: actions/setup-node@v4
