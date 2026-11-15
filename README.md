@@ -39,7 +39,7 @@ The site's **Auctions** page (`auctions.html`, at /auctions/) combines two files
 - `_data/mombasa_eatta_sales.csv`: every Mombasa sale from EATTA's statistics page. EATTA only shows the current year, so this file is the long-run weekly history. The Wednesday collector adds each new sale, updates any figure EATTA revises (and prints what changed), and never deletes rows. To update it on another day: Actions, "Gather sources", Run workflow, tick "Only update the EATTA sales CSV".
 - `_data/worldbank_tea_mombasa_monthly.csv`: the World Bank Pink Sheet "Tea, Mombasa" monthly price since January 1992 (CC BY 4.0). It is not updated automatically yet: add a line `YYYY-MM,price` early each month when the World Bank publishes.
 
-The page draws its charts and tables from these files, and offers both as CSV downloads (`downloads/`).
+The page draws its charts and tables from these files, and offers the World Bank series as a CSV download (`downloads/`). The EATTA file is not offered for download.
 
 ## Running locally (optional)
 
