@@ -4,7 +4,7 @@ Uses the free Open-Meteo API (no key; data CC BY 4.0, credit Open-Meteo.com). Wr
   - _data/weather_snapshot.json  (the Weather page shows this if the live forecast can't load)
   - a markdown table on stdout, which the collector appends to the week's sources file
 """
-import json, pathlib, sys, urllib.request
+import json, pathlib, sys, time, urllib.request
 from datetime import datetime, timezone
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -32,8 +32,15 @@ def summarise(d):
 def main():
     lat = ",".join(str(a["lat"]) for a in AREAS); lon = ",".join(str(a["lon"]) for a in AREAS)
     req = urllib.request.Request(URL.format(lat=lat, lon=lon), headers={"User-Agent": "chai-weekly collector"})
-    with urllib.request.urlopen(req, timeout=60) as resp:
-        data = json.load(resp)
+    for attempt in range(4):
+        try:
+            with urllib.request.urlopen(req, timeout=90) as resp:
+                data = json.load(resp)
+            break
+        except Exception:
+            if attempt == 3:
+                raise
+            time.sleep(15 * (attempt + 1))
     if isinstance(data, dict):
         data = [data]
     rows = [{**a, **summarise(d["daily"])} for a, d in zip(AREAS, data)]
