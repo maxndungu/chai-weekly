@@ -18,6 +18,7 @@ publishes the issue to the site; nothing goes live without that merge.
    use another outlet's report of the same story. Open the actual articles and auction
    reports (the "Auction reports" section of the sources file) before using any figure. Pick
    the week's real lead story; check `tools/reports.txt` links marked "check by hand" too.
+4b. Read `tools/MUST_INCLUDE.md`. Every item under "Open" must be in this issue, written as that file says; then move it to "Done" (with the issue number) in the same pull request, and list it in the PR notes under "Must-include items".
 5. Save the issue as `_posts/<today>-issue-<NNN>.md` (NNN zero-padded, today = the Wednesday).
    Then update `_data/events.yml` (the homepage "Coming up in tea" box): read the `## events` section
    of the sources file, and add any tea-specific event in the next 12 months (fair, expo, convention,
