@@ -1,8 +1,12 @@
 # Every Wednesday 06:00 Nairobi time (after the Monday/Tuesday Mombasa sale), collect the week's tea news into sources/
 # and add the latest EATTA sales to _data/mombasa_eatta_sales.csv.
+# Every Friday 13:00 Nairobi time, refresh only the EATTA sales file: late sales are added until Friday noon, so
+# Wednesday's figures for the latest sale are provisional and Friday's are final.
 name: Gather sources
 on:
-  schedule: [{ cron: "0 3 * * 3" }]
+  schedule:
+    - cron: "0 3 * * 3"   # Wednesday 06:00 Nairobi: news, weather, EATTA
+    - cron: "0 10 * * 5"  # Friday 13:00 Nairobi: final EATTA figures only
   workflow_dispatch:
     inputs:
       csv_only:
@@ -16,6 +20,8 @@ concurrency: { group: gather-sources, cancel-in-progress: false }
 jobs:
   gather:
     runs-on: ubuntu-latest
+    env:
+      CSV_ONLY: ${{ inputs.csv_only || github.event.schedule == '0 10 * * 5' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -24,21 +30,21 @@ jobs:
       # and whatever was collected is still saved.
       - name: News headlines and auction report links
         id: news
-        if: ${{ !inputs.csv_only }}
+        if: ${{ env.CSV_ONLY != 'true' }}
         # Exit code 3 = every feed failed on a re-run, and the file gathered earlier today was kept as it is.
         run: python tools/gather.py || { code=$?; if [ $code -eq 3 ]; then echo "kept=1" >> "$GITHUB_OUTPUT"; fi; exit $code; }
       - name: Weather snapshot for the tea areas
-        if: ${{ !cancelled() && !inputs.csv_only && steps.news.outputs.kept != '1' }}
+        if: ${{ !cancelled() && env.CSV_ONLY != 'true' && steps.news.outputs.kept != '1' }}
         run: python tools/weather.py >> "sources/$(date +%F).md"
       - name: Save every EATTA sale to _data/mombasa_eatta_sales.csv
         if: ${{ !cancelled() }}
         run: |
           python tools/eatta_csv.py || { echo "::error::EATTA CSV update failed; check https://eatta.co.ke/statistics"; exit 1; }
       - uses: actions/setup-node@v4
-        if: ${{ !cancelled() && !inputs.csv_only && steps.news.outputs.kept != '1' }}
+        if: ${{ !cancelled() && env.CSV_ONLY != 'true' && steps.news.outputs.kept != '1' }}
         with: { node-version: "22" }
       - name: Mombasa figures from EATTA (page needs a browser)
-        if: ${{ !cancelled() && !inputs.csv_only && steps.news.outputs.kept != '1' }}
+        if: ${{ !cancelled() && env.CSV_ONLY != 'true' && steps.news.outputs.kept != '1' }}
         run: |
           mkdir -p sources
           ( npm install --no-save playwright@1.48.2 && npx playwright install --with-deps chromium ) || echo "::warning::Could not install the browser for EATTA"

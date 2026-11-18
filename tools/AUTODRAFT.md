@@ -34,6 +34,7 @@ publishes the issue to the site; nothing goes live without that merge.
    - Every section with a fact or figure (One number and Shamba tip included) ends with an italic Sources line of real links you opened (exceptions are listed in DRAFT_PROMPT.md).
    - The week ahead: every date confirmed by a source from this year, inside the next 10 days, with a link; drop anything older (see the Assam note in MUST_INCLUDE.md).
    - Prices: auction prices in US dollars only, no Ksh equivalents in brackets.
+   - Mombasa figures: this week's sale is labelled provisional; last week's sale is quoted with its final (Friday) figures from `_data/mombasa_eatta_sales.csv` if they changed, and the change is listed in the reviewer notes.
    - No figure without a source; anything unconfirmed goes in the reviewer notes, not the issue.
    - Titles and salutations: search the whole file (title, deck, snapshot, stories, body) for
      every person's name. Each one needs a correct title ("President Ruto", never bare "Ruto");
