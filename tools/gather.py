@@ -144,14 +144,18 @@ def main():
             out.append(f"- {d} · {title} ({source}) <{link}>")
     total = sum(len(r) for r in by_section.values())
     path = ROOT / "sources" / f"{today}.md"
+    if total == 0 and path.exists():
+        # Every feed failed (network or a feed outage) on a re-run: keep the file already gathered today.
+        print(f"No news items fetched from any feed; {path.name} left unchanged.", file=sys.stderr)
+        sys.exit(3)
     if total == 0:
-        # Every feed failed (network or a feed outage). Keep any file already gathered today, and fail
-        # loudly so the run shows red in the Actions tab instead of committing an empty file.
-        sys.exit(f"No news items fetched from any feed; {path.name} left unchanged.")
+        out.append("\n## News\n\n- No news could be fetched from any feed this run. Search the web for this week's tea news by hand.")
     out += report_lines()
     path.parent.mkdir(exist_ok=True)
     path.write_text("\n".join(out) + "\n")
     print(f"Wrote {total} items to {path}")
+    if total == 0:
+        sys.exit(1)  # turn the run red so the outage is noticed
 
 
 if __name__ == "__main__":

@@ -13,6 +13,6 @@ layout: null
 <link>{{ site.url }}{{ site.baseurl }}{{ post.url }}</link>
 <guid>{{ site.url }}{{ site.baseurl }}{{ post.url }}</guid>
 <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
-{% if site.canonical_url != "" %}{% assign base = site.canonical_url %}{% else %}{% assign base = site.url %}{% endif %}{% assign abs_href = 'href="' | append: base | append: '/' %}{% assign abs_src = 'src="' | append: base | append: '/' %}<description>{{ post.content | replace: 'href="/', abs_href | replace: 'src="/', abs_src | xml_escape }}</description>
+{% assign abs_href = 'href="' | append: site.url | append: '/' %}{% assign abs_src = 'src="' | append: site.url | append: '/' %}<description>{{ post.content | replace: 'href="/', abs_href | replace: 'src="/', abs_src | xml_escape }}</description>
 </item>{% endfor %}
 </channel></rss>

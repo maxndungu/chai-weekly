@@ -7,7 +7,7 @@
 <script>
 // Hide ads outside their dates (the site only rebuilds weekly); show the front-page events list instead of an expired poster.
 document.addEventListener("DOMContentLoaded", function () {
-  var t = new Date().toLocaleDateString("en-CA", { timeZone: "Africa/Nairobi" });
+  var t = (function () { var p = {}; new Intl.DateTimeFormat("en-US", { timeZone: "Africa/Nairobi", year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; }); return p.year + "-" + p.month + "-" + p.day; })();
   document.querySelectorAll(".ad[data-start]").forEach(function (a) {
     var live = a.getAttribute("data-start") <= t && t <= a.getAttribute("data-end");
     a.hidden = !live;

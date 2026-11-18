@@ -62,8 +62,16 @@ class Gather(unittest.TestCase):
         path.write_text("good file")
         with self.assertRaises(SystemExit) as e:
             self.run_with([("kenya", "u")], lambda u: (_ for _ in ()).throw(OSError("blocked")))
-        self.assertNotEqual(e.exception.code, 0)
+        self.assertEqual(e.exception.code, 3)
         self.assertEqual(path.read_text(), "good file")
+
+    def test_total_outage_on_first_run_writes_honest_note_and_fails(self):
+        with self.assertRaises(SystemExit) as e:
+            out = self.run_with([("kenya", "u")], lambda u: (_ for _ in ()).throw(OSError("blocked")))
+        self.assertEqual(e.exception.code, 1)
+        text = (self.tmp / "sources" / f"{dt.date.today().isoformat()}.md").read_text()
+        self.assertIn("No news could be fetched", text)
+        self.assertIn("## Auction reports", text)
 
     def test_feeds_line_without_bar_is_skipped(self):
         feeds = TOOLS / "feeds.txt"

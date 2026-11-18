@@ -23,20 +23,22 @@ jobs:
       # A failed step turns the run red (GitHub emails the repo owner), but the steps after it still run
       # and whatever was collected is still saved.
       - name: News headlines and auction report links
+        id: news
         if: ${{ !inputs.csv_only }}
-        run: python tools/gather.py
+        # Exit code 3 = every feed failed on a re-run, and the file gathered earlier today was kept as it is.
+        run: python tools/gather.py || { code=$?; if [ $code -eq 3 ]; then echo "kept=1" >> "$GITHUB_OUTPUT"; fi; exit $code; }
       - name: Weather snapshot for the tea areas
-        if: ${{ !cancelled() && !inputs.csv_only }}
+        if: ${{ !cancelled() && !inputs.csv_only && steps.news.outputs.kept != '1' }}
         run: python tools/weather.py >> "sources/$(date +%F).md"
       - name: Save every EATTA sale to _data/mombasa_eatta_sales.csv
         if: ${{ !cancelled() }}
         run: |
           python tools/eatta_csv.py || { echo "::error::EATTA CSV update failed; check https://eatta.co.ke/statistics"; exit 1; }
       - uses: actions/setup-node@v4
-        if: ${{ !cancelled() && !inputs.csv_only }}
+        if: ${{ !cancelled() && !inputs.csv_only && steps.news.outputs.kept != '1' }}
         with: { node-version: "22" }
       - name: Mombasa figures from EATTA (page needs a browser)
-        if: ${{ !cancelled() && !inputs.csv_only }}
+        if: ${{ !cancelled() && !inputs.csv_only && steps.news.outputs.kept != '1' }}
         run: |
           mkdir -p sources
           ( npm install --no-save playwright@1.48.2 && npx playwright install --with-deps chromium ) || echo "::warning::Could not install the browser for EATTA"
