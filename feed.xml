@@ -2,15 +2,17 @@
 layout: null
 ---
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0"><channel>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
 <title>{{ site.title | xml_escape }}</title>
 <link>{{ site.url }}{{ site.baseurl }}/</link>
 <description>{{ site.description | xml_escape }}</description>
+<language>en</language>
+<atom:link href="{{ site.url }}{{ site.baseurl }}/feed.xml" rel="self" type="application/rss+xml"/>
 {% for post in site.posts limit:20 %}{% if post.preview %}{% continue %}{% endif %}<item>
 <title>{{ post.title | xml_escape }}</title>
 <link>{{ site.url }}{{ site.baseurl }}{{ post.url }}</link>
 <guid>{{ site.url }}{{ site.baseurl }}{{ post.url }}</guid>
 <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
-<description>{{ post.content | xml_escape }}</description>
+{% if site.canonical_url != "" %}{% assign base = site.canonical_url %}{% else %}{% assign base = site.url %}{% endif %}{% assign abs_href = 'href="' | append: base | append: '/' %}{% assign abs_src = 'src="' | append: base | append: '/' %}<description>{{ post.content | replace: 'href="/', abs_href | replace: 'src="/', abs_src | xml_escape }}</description>
 </item>{% endfor %}
 </channel></rss>

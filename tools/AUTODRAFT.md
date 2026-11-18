@@ -29,9 +29,11 @@ publishes the issue to the site; nothing goes live without that merge.
    - Front matter has title, issue, deck, description, snapshot (4-5 items), stories (8: Markets, Industry, East Africa, World, Weather, Farming, Spotlight, Culture, with
      anchors that match the `##` headings as kramdown slugs).
    - Tenders and jobs: every item still open on the issue date, each with its official link; no fee-charging jobs.
-   - Leadership and court stories (appointments, removals, elections): search for follow-ups from at least two outlets dated after the first report (court orders often reverse an appointment within days) and report the latest position.
+   - Leadership and court stories (appointments, removals, elections): search for follow-ups from at least two outlets dated after the first report (court orders often reverse an appointment within days) and report the latest position. If only one outlet reports it, or you could not open the article yourself (e.g. Nation), leave it out of the issue and put it in the reviewer notes.
    - From the shamba: only a real reader submission (never invented); otherwise the one-line invitation.
-   - Every section ends with an italic Sources line of real links you opened.
+   - Every section with a fact or figure (One number and Shamba tip included) ends with an italic Sources line of real links you opened (exceptions are listed in DRAFT_PROMPT.md).
+   - The week ahead: every date confirmed by a source from this year, inside the next 10 days, with a link; drop anything older (see the Assam note in MUST_INCLUDE.md).
+   - Prices: auction prices in US dollars only, no Ksh equivalents in brackets.
    - No figure without a source; anything unconfirmed goes in the reviewer notes, not the issue.
    - Titles and salutations: search the whole file (title, deck, snapshot, stories, body) for
      every person's name. Each one needs a correct title ("President Ruto", never bare "Ruto");

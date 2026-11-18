@@ -1,0 +1,21 @@
+# Runs on every pull request (including the Wednesday draft) before you merge.
+# A red cross means something would break on the site or in the collector; a green tick means the checks passed.
+name: Checks
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Collector and email scripts
+        run: python -m unittest discover -s tests -v
+      - uses: ruby/setup-ruby@v1
+        with: { ruby-version: "3.3", bundler-cache: true }
+      - name: Build the site
+        run: bundle exec jekyll build -d _site
+      - name: Links, anchors, share previews, nothing private published
+        run: python tests/check_site.py _site

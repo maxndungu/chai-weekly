@@ -6,8 +6,15 @@ Dates are checked when the site builds and again in the reader's browser.
 {%- assign ad = nil -%}
 {%- for a in site.data.ads -%}
 {%- assign s = a.start | date: "%Y-%m-%d" -%}{%- assign e = a.end | date: "%Y-%m-%d" -%}
-{%- if a.slot == include.slot and e >= today and ad == nil -%}{%- assign ad = a -%}{%- assign ad_start = s -%}{%- assign ad_end = e -%}{%- endif -%}
+{%- if a.slot == include.slot and s <= today and e >= today and ad == nil -%}{%- assign ad = a -%}{%- assign ad_start = s -%}{%- assign ad_end = e -%}{%- endif -%}
 {%- endfor -%}
+{%- comment -%} Nothing running today: use the next booked ad, which the browser switches on when its start date arrives. {%- endcomment -%}
+{%- if ad == nil -%}{%- assign soonest = "9999-12-31" -%}
+{%- for a in site.data.ads -%}
+{%- assign s = a.start | date: "%Y-%m-%d" -%}{%- assign e = a.end | date: "%Y-%m-%d" -%}
+{%- if a.slot == include.slot and s > today and s < soonest -%}{%- assign ad = a -%}{%- assign ad_start = s -%}{%- assign ad_end = e -%}{%- assign soonest = s -%}{%- endif -%}
+{%- endfor -%}
+{%- endif -%}
 {%- if ad -%}
 {%- if ad.image contains "://" -%}{%- assign img = ad.image -%}{%- else -%}{%- assign img = ad.image | prepend: "/" | relative_url -%}{%- endif -%}
 {%- if include.slot == "auctions" -%}

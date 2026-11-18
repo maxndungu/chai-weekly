@@ -11,6 +11,8 @@ on:
         default: false
 permissions:
   contents: write
+# Never run two collections at once (a manual run during the scheduled one); the second waits its turn.
+concurrency: { group: gather-sources, cancel-in-progress: false }
 jobs:
   gather:
     runs-on: ubuntu-latest
@@ -18,22 +20,30 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - run: python tools/gather.py
+      # A failed step turns the run red (GitHub emails the repo owner), but the steps after it still run
+      # and whatever was collected is still saved.
+      - name: News headlines and auction report links
         if: ${{ !inputs.csv_only }}
+        run: python tools/gather.py
       - name: Weather snapshot for the tea areas
-        if: ${{ !inputs.csv_only }}
+        if: ${{ !cancelled() && !inputs.csv_only }}
         run: python tools/weather.py >> "sources/$(date +%F).md"
       - name: Save every EATTA sale to _data/mombasa_eatta_sales.csv
-        run: python tools/eatta_csv.py || echo "EATTA CSV update failed; check https://eatta.co.ke/statistics"
-      - uses: actions/setup-node@v4
-        if: ${{ !inputs.csv_only }}
-        with: { node-version: "20" }
-      - name: Mombasa figures from EATTA (page needs a browser)
-        if: ${{ !inputs.csv_only }}
+        if: ${{ !cancelled() }}
         run: |
-          npm install --no-save playwright@1.48.2 && npx playwright install --with-deps chromium
+          python tools/eatta_csv.py || { echo "::error::EATTA CSV update failed; check https://eatta.co.ke/statistics"; exit 1; }
+      - uses: actions/setup-node@v4
+        if: ${{ !cancelled() && !inputs.csv_only }}
+        with: { node-version: "22" }
+      - name: Mombasa figures from EATTA (page needs a browser)
+        if: ${{ !cancelled() && !inputs.csv_only }}
+        run: |
+          mkdir -p sources
+          ( npm install --no-save playwright@1.48.2 && npx playwright install --with-deps chromium ) || echo "::warning::Could not install the browser for EATTA"
           node tools/eatta.mjs >> "sources/$(date +%F).md" || echo "- **Mombasa (EATTA)**: could not render, check by hand <https://eatta.co.ke/statistics>" >> "sources/$(date +%F).md"
-      - run: |
+      - name: Save what was collected
+        if: ${{ !cancelled() }}
+        run: |
           git config user.name "chai-bot"
           git config user.email "chai-bot@users.noreply.github.com"
           git add sources _data && git commit -m "Sources and EATTA sales for $(date +%F)" || { echo "nothing new"; exit 0; }

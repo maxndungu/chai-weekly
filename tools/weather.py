@@ -17,15 +17,19 @@ def summarise(d):
     rain, tmax, tmin, days = d["precipitation_sum"], d["temperature_2m_max"], d["temperature_2m_min"], d["time"]
     past, nxt = slice(0, 7), slice(7, 14)
     r = lambda xs: round(sum(x or 0 for x in xs), 1)
+    # The model sometimes leaves a day empty (null); skip those instead of failing the whole table.
+    lo = lambda xs: min((x for x in xs if x is not None), default=None)
+    hi = lambda xs: max((x for x in xs if x is not None), default=None)
     wet_i = max(range(7, 14), key=lambda i: rain[i] or 0)
     flags = []
-    if max(rain[nxt]) >= 50: flags.append("Heavy rain")
-    elif max(rain[nxt]) >= 20: flags.append("Wet days")
+    if (hi(rain[nxt]) or 0) >= 50: flags.append("Heavy rain")
+    elif (hi(rain[nxt]) or 0) >= 20: flags.append("Wet days")
     if r(rain[nxt]) < 5: flags.append("Dry week")
-    if min(tmin[nxt]) <= 3: flags.append("Frost risk")
-    elif min(tmin[nxt]) <= 8: flags.append("Cold nights")
+    coldest = lo(tmin[nxt])
+    if coldest is not None and coldest <= 3: flags.append("Frost risk")
+    elif coldest is not None and coldest <= 8: flags.append("Cold nights")
     return {"rain_past7": r(rain[past]), "rain_next7": r(rain[nxt]), "wettest_day": days[wet_i], "wettest_mm": rain[wet_i] or 0,
-            "min_night": min(tmin[nxt]), "max_day": max(tmax[nxt]), "flags": flags,
+            "min_night": coldest, "max_day": hi(tmax[nxt]), "flags": flags,
             "days": [{"date": days[i], "rain": rain[i] or 0, "tmin": tmin[i], "tmax": tmax[i]} for i in range(7, 14)]}
 
 
@@ -49,7 +53,7 @@ def main():
     print(f"\n## Weather in the tea areas (Open-Meteo model, {stamp}) <https://open-meteo.com/>\n")
     print("| Area | Rain last 7 days | Rain next 7 days | Wettest day ahead | Coldest night | Watch |\n|---|---|---|---|---|---|")
     for x in rows:
-        print(f"| {x['name']} | {x['rain_past7']} mm | {x['rain_next7']} mm | {x['wettest_day']}: {x['wettest_mm']} mm | {x['min_night']}°C | {', '.join(x['flags']) or '–'} |")
+        print(f"| {x['name']} | {x['rain_past7']} mm | {x['rain_next7']} mm | {x['wettest_day']}: {x['wettest_mm']} mm | {'?' if x['min_night'] is None else x['min_night']}°C | {', '.join(x['flags']) or '–'} |")
     print("\nModel estimates, not station readings. Check Kenya Met (meteo.go.ke) warnings before quoting.")
 
 

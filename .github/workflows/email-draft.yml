@@ -1,12 +1,17 @@
 # When a new issue is published (merged to main), create a Buttondown email DRAFT of it.
 # Nothing is sent: open Buttondown, check the draft and press Send.
 # Needs repo secret BUTTONDOWN_API_KEY (Buttondown > Settings > API). Skips quietly without it.
+# To redo a draft by hand: Actions > Email draft > Run workflow, and give the issue file (e.g. _posts/2026-11-18-issue-003.md).
 name: Email draft
 on:
   push:
     branches: [main]
     paths: ["_posts/**"]
   workflow_dispatch:
+    inputs:
+      post:
+        description: "Issue file to turn into a draft, e.g. _posts/2026-11-18-issue-003.md"
+        required: true
 jobs:
   draft:
     runs-on: ubuntu-latest
@@ -14,10 +19,20 @@ jobs:
       BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
     steps:
       - uses: actions/checkout@v4
-        with: { fetch-depth: 2 }
+        with: { fetch-depth: 0 }
       - name: Create Buttondown draft for each new issue
         if: env.BUTTONDOWN_API_KEY != ''
+        env:
+          BEFORE: ${{ github.event.before }}
+          POST: ${{ inputs.post }}
         run: |
           SITE_URL=$(python3 -c "import re;c=open('_config.yml').read();g=lambda k:(re.search(r'^'+k+r':\s*\"?([^\"\n]*)',c,re.M) or [0,''])[1];print((g('canonical_url') or g('url')+g('baseurl')).rstrip('/'))")
           export SITE_URL
-          for f in $(git diff --name-only --diff-filter=A HEAD~1 HEAD -- _posts); do python3 tools/to_buttondown.py "$f"; done
+          if [ -n "$POST" ]; then
+            files="$POST"
+          else
+            # Every issue added by this push, however the pull request was merged (one commit or several).
+            git cat-file -e "$BEFORE^{commit}" 2>/dev/null || BEFORE=HEAD~1
+            files=$(git diff --name-only --diff-filter=A "$BEFORE" HEAD -- _posts)
+          fi
+          for f in $files; do python3 tools/to_buttondown.py "$f"; done

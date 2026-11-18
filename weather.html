@@ -22,7 +22,7 @@ permalink: /weather/
   var DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   function sum(a) { return Math.round(a.reduce(function (s, x) { return s + (x || 0); }, 0) * 10) / 10; }
   function flags(rain, tmin) {
-    var f = [], mx = Math.max.apply(null, rain.map(function (x) { return x || 0; })), mn = Math.min.apply(null, tmin);
+    var f = [], mx = Math.max.apply(null, rain.map(function (x) { return x || 0; })), mn = Math.min.apply(null, tmin.filter(function (x) { return x != null; }));
     if (mx >= 50) f.push(['heavy', 'Heavy rain']); else if (mx >= 20) f.push(['wet', 'Wet days']);
     if (sum(rain) < 5) f.push(['dry', 'Dry week']);
     if (mn <= 3) f.push(['frost', 'Frost risk']); else if (mn <= 8) f.push(['cold', 'Cold nights']);

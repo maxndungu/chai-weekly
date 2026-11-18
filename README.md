@@ -63,10 +63,19 @@ Three sponsor slots, all hidden until you switch an ad on, all labelled "Sponsor
 
 To run an ad: put the image in `assets/ads/`, copy the example in `_data/ads.yml`, fill in sponsor, image, link (website or `https://wa.me/254…`), text, start and end dates, and commit. It appears on the start date and disappears after the end date by itself. The email box uses the ad that is live on the issue's date.
 
+## Checks before you merge
+
+Every pull request (including the Wednesday draft) runs the "Checks" job: the collector and email scripts are tested with fake data, the site is built, and every page is checked for broken links and anchors, missing share previews, and private folders (submissions/, sources/, tools/) being published. A green tick means it passed; a red cross means don't merge yet. The Wednesday collector also turns red (and GitHub emails you) if a step fails, but it still saves whatever it collected.
+
+## Link previews on WhatsApp and Facebook
+
+Each page has share tags, so a shared link shows the headline and summary. To add a picture to the preview, put a 1200 x 630 px image in `assets/` and set `share_image: "assets/<file>"` in `_config.yml`.
+
 ## Running locally (optional)
 
 ```
 python3 tools/gather.py        # needs only Python 3
+python3 -m unittest discover -s tests   # the script tests (no internet needed)
 bundle install && bundle exec jekyll serve   # preview the site, needs Ruby
 ```
 
