@@ -6,7 +6,11 @@ if anything has changed or cannot be confirmed, say so in the reviewer notes rat
 
 ## Open
 
-### Assam tea and the EU's lower pesticide residue limits (requested 16 Nov 2026, for issue #3)
+_Nothing open._
+
+## Done
+
+### Assam tea and the EU's lower pesticide residue limits (requested 16 Nov 2026) — done in issue #3 (2026-11-18), lead item of Around the tea world
 Section: Around the tea world (lead item of that section).
 Frame it as **tighter maximum residue limits (MRLs)**, NOT a "ban": the chemicals can still be used, but residues above the limit cannot be sold in the EU.
 Checked facts (16 Nov 2026):
@@ -22,5 +26,3 @@ Checked facts (16 Nov 2026):
 Sources: https://assamtribune.com/assam/eus-new-pesticide-limits-threaten-assam-tea-exports-to-europe-uk-1569461 · https://knnindia.co.in/news/newsdetails/sectors/exportimports/assam-tea-industry-faces-export-crisis-amid-eu-chemical-ban · https://www.sentinelassam.com/more-news/editorial/fixing-assam-teas-pesticide-testing-bottlenecks
 
 Not for the Week ahead: the Assam tea workers' "25 November" protest deadline (Assam Tribune, 25 Oct 2025) was 25 Nov 2025, a year ago. Only include Assam tea worker protests if a 2026 report confirms a new date.
-
-## Done
