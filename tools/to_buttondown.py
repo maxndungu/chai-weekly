@@ -63,6 +63,8 @@ def issue_ad(issue_date):
 
 body = re.sub(r"^\{%\s*include ad\.html[^%]*%\}\s*$", issue_ad(f"{y}-{m}-{d}"), body, flags=re.M)
 body = re.sub(r"^\{%.*?%\}\s*$", "", body, flags=re.M)  # any other Liquid tags
+# Links to the site's own pages, e.g. {{ '/weather/' | relative_url }}, become full web addresses.
+body = re.sub(r"\{\{\s*['\"]([^'\"]*)['\"]\s*\|\s*(?:relative|absolute)_url\s*\}\}", lambda m: site + "/" + m.group(1).lstrip("/"), body)
 tag = "utm_source=newsletter&utm_medium=email&utm_campaign=issue-" + issue
 email = (
     f"*{deck}*\n\n[Read this edition on the web]({web}?{tag})\n\n{body.strip()}\n\n---\n\n"

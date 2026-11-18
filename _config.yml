@@ -6,7 +6,8 @@ buttondown_username: ""
 substack_url: ""
 permalink: /issues/:year/:month/:day/:title/
 markdown: kramdown
-exclude: [tools, README.md, sources, drafts, vendor, Gemfile, Gemfile.lock, .bundle, node_modules]
+plugins: [jekyll-sitemap]
+exclude: [tools, tests, README.md, sources, submissions, drafts, vendor, Gemfile, Gemfile.lock, .bundle, node_modules]
 baseurl: "/chai-weekly"
 url: "https://maxndungu.github.io"
 # "Send us a story" form. Free, no account: put "https://formsubmit.co/YOUR-EMAIL" here, send yourself
@@ -15,6 +16,9 @@ url: "https://maxndungu.github.io"
 story_form_action: ""
 # Your paid-host domain, e.g. "https://chaiweekly.co.ke". Marks it as the main copy for search engines.
 canonical_url: ""
+# Picture shown when a link is shared on WhatsApp, Facebook or X, e.g. "assets/share.jpg" (1200 x 630 px).
+# Leave blank for a text-only preview.
+share_image: ""
 # Visitor tracking (pick one). GoatCounter is free and cookie-free: sign up at goatcounter.com and
 # put your code here (e.g. "chaiweekly" for chaiweekly.goatcounter.com). Visits from the email show
 # up as campaign "newsletter"; shared links show up by referring site.

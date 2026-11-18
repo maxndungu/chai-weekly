@@ -1,7 +1,7 @@
 {%- comment -%} "Coming up" box: next tea events from _data/events.yml. Past ones are hidden at build time and again in the browser, so the list stays right between weekly builds. {%- endcomment -%}
 {% assign today = site.time | date: "%Y-%m-%d" %}
 {% assign limit = include.limit | default: 99 %}
-<section class="events" aria-labelledby="events-h"{% if include.hide and include.hide > 0 %} hidden{% endif %}>
+<section class="events"{% unless include.page %} aria-labelledby="events-h"{% endunless %}{% if include.hide and include.hide > 0 %} hidden{% endif %}>
   {% unless include.page %}<h2 class="label rule" id="events-h">Coming up in tea</h2>{% endunless %}
   <ul class="event-list">
     <li class="event recurring"><span class="when">Every Monday</span><strong>Mombasa tea auction</strong><span class="where">Mombasa, Kenya · some weeks a second sale on Tuesday · <a href="{{ '/auctions/' | relative_url }}">results</a></span></li>
@@ -22,6 +22,6 @@
   <p class="fine muted">Dates come from organisers and trade-fair listings; check before you travel. Know an event? Just reply to any issue.</p>
 </section>
 <script>
-(function () { var t = new Date().toISOString().slice(0, 10);
+(function () { var t = (function () { var p = {}; new Intl.DateTimeFormat("en-US", { timeZone: "Africa/Nairobi", year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; }); return p.year + "-" + p.month + "-" + p.day; })();
   document.querySelectorAll(".event[data-last]").forEach(function (li) { if (li.getAttribute("data-last") < t) li.remove(); }); })();
 </script>

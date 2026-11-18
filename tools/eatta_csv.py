@@ -34,7 +34,7 @@ def rows_from(data):
     for s in data.get("sales", []):
         ctc, orth = s.get("ctc") or {}, s.get("orthodox") or {}
         yield {
-            "year": year, "sale": str(s["saleNumber"]), "auction_date": s.get("auctionDate") or "",
+            "year": year, "sale": str(s["saleNumber"]).strip().lstrip("0") or "0", "auction_date": s.get("auctionDate") or "",
             "avg_usd_kg": num(s.get("averagePriceUsd"), 2), "sold_kg": num(s.get("soldKg")),
             "ctc_avg_usd_kg": num(ctc.get("averagePriceUsd"), 2), "ctc_sold_kg": num(ctc.get("soldKg")),
             "orthodox_avg_usd_kg": num(orth.get("averagePriceUsd"), 2),
@@ -44,16 +44,23 @@ def rows_from(data):
 
 
 def main():
-    data = json.load(open(sys.argv[1])) if len(sys.argv) > 1 else fetch(datetime.now(timezone.utc).year)
-    if not data.get("ok") or not data.get("sales"):
-        sys.exit(f"EATTA API returned no sales: {str(data)[:200]}")
+    if len(sys.argv) > 1:
+        datasets = [json.load(open(sys.argv[1]))]
+    else:
+        now = datetime.now(timezone.utc)
+        datasets = [fetch(now.year)]
+        if now.month == 1:  # early January: the new year has no sales yet, and EATTA may still revise December's
+            datasets.insert(0, fetch(now.year - 1))
+    datasets = [d for d in datasets if d.get("ok") and d.get("sales")]
+    if not datasets:
+        sys.exit("EATTA API returned no sales")
     today = datetime.now(timezone.utc).date().isoformat()
     existing = {}
     if OUT.exists():
         with OUT.open(newline="") as f:
             existing = {(r["year"], r["sale"]): r for r in csv.DictReader(f)}
     added = revised = 0
-    for new in rows_from(data):
+    for new in (row for data in datasets for row in rows_from(data)):
         key = (new["year"], new["sale"])
         old = existing.get(key)
         if old is None:

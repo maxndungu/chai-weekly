@@ -6,7 +6,7 @@ Paste everything below the line into Claude, then paste this week's `sources/YYY
 
 You are drafting this week's issue of **Chai Weekly**, a free hobby newsletter about tea with an East African view: Kenya first, then the other EATTA member countries (Uganda, Tanzania, Rwanda, Burundi, Ethiopia, DR Congo, Malawi, Madagascar, Mozambique), then the rest of the tea world, for farmers, tea lovers and the diaspora. Readers skim on their phones.
 
-Use ONLY facts you can trace to the sources below (open the links and read them). Every section ends with an italic "Sources:" line of markdown links. If a section has no fresh source this week, write one honest line saying so rather than inventing anything. Quote prices exactly, with the currency, and say which sale or date they come from.
+Use ONLY facts you can trace to the sources below (open the links and read them). Every section that states a fact or a figure (One number and Shamba tip included) ends with an italic "Sources:" line of markdown links. The only sections that may skip it are a one-line "nothing this week" or From the shamba invitation, and The week ahead when every bullet carries its own link. If a section has no fresh source this week, write one honest line saying so rather than inventing anything. Quote prices exactly, with the currency, and say which sale or date they come from.
 
 Output a single Jekyll markdown file with this front matter:
 
@@ -19,15 +19,15 @@ deck: "<one-sentence subheadline that adds what the headline leaves out>"
 description: "<one sentence summary for the archive>"
 snapshot:   # 4-5 market figures for the ticker under the masthead
   - { label: "Mombasa avg", value: "$X.XX/kg", note: "▲/▼ vs last week" }
-  - { label: "Top lot", value: "<factory> US$N.NN/kg" }
+  - { label: "Top lot", value: "<factory> US$N.NN/kg" }   # "Top lot" only if the source says it was the highest price of the whole sale; otherwise a true label such as "Best east of Rift"
   - { label: "...", value: "..." }
-stories:    # one per section, shown as front-page teasers; anchor = the section heading's slug
+stories:    # exactly 8, shown as front-page teasers: Markets, Industry, East Africa, World, Weather, Farming, Spotlight, Culture (not From the shamba, Tenders, Week ahead or One number); anchor = the section heading's slug
   - { section: "Markets", anchor: "the-auction-this-week", headline: "<story headline>", summary: "<one or two sentences>" }
   - { section: "East Africa", anchor: "east-africa", headline: "...", summary: "..." }   # plus Industry, World, Weather, Farming, Spotlight, Culture
 ---
 ```
 
-Prices stay in US dollars as the auction publishes them (the paper is read by producers outside Kenya too). Do not convert to shillings.
+Prices stay in US dollars as the auction publishes them (the paper is read by producers outside Kenya too). Do not convert to shillings, and do not add Ksh equivalents in brackets after auction prices even when the source gives them. Farmer payments, bonuses and turnover that are announced in shillings stay in shillings.
 
 Then these sections, in this order, about 1,000 to 1,300 words total:
 
@@ -35,7 +35,7 @@ Then these sections, in this order, about 1,000 to 1,300 words total:
 2. **KTDA and factory news**: payments, bonuses, policy, levies, factory elections. Plain-language "what this means for farmers".
 3. **East Africa**: the 2 to 4 biggest tea stories from the other EATTA member countries this week, from the `## eastafrica` section of the sources: Uganda, Tanzania, Rwanda, Burundi, Ethiopia, DR Congo, Malawi, Madagascar and Mozambique. Include their teas' prices at Mombasa when a report gives them (e.g. Rwanda, Uganda and Burundi averages), and news from their tea boards and factories (NAEB in Rwanda, OTB in Burundi, the Uganda Tea Development Agency, the Tea Board of Tanzania, Tea Association of Malawi). One short paragraph each with a bold lead-in naming the country. If there is nothing new from a country, leave it out; if there is nothing from the region at all, say so in one line.
 4. **Around the tea world**: the 2 to 4 biggest tea stories from outside East Africa this week (Sri Lanka, India, China, Japan, Vietnam, Turkey, major importers like Pakistan, Egypt and the UK). One short paragraph each with a bold lead-in, then one line on why it matters for Kenyan tea.
-5. **Weather in the tea counties**: KMD forecasts and warnings first, then the "Weather in the tea areas" table in the sources file (Open-Meteo model: rain last 7 days, next 7 days, coldest night, flags) for Kericho, Bomet, Nandi, Kisii, Nyamira, Nyeri, Murang'a, Kirinyaga, Kiambu, Embu, Meru, plus a line on any flagged area elsewhere in the region. Call the figures model forecasts, never measured rain. End the section with a link: [Rain and forecast for every tea area](/chai-weekly/weather/).
+5. **Weather in the tea counties**: KMD forecasts and warnings first, then the "Weather in the tea areas" table in the sources file (Open-Meteo model: rain last 7 days, next 7 days, coldest night, flags) for Kericho, Bomet, Nandi, Kisii, Nyamira, Nyeri, Murang'a, Kirinyaga, Kiambu, Embu, Meru, plus a line on any flagged area elsewhere in the region. Call the figures model forecasts, never measured rain. End the section with a link: [Rain and forecast for every tea area]({{ '/weather/' | relative_url }}). Always write links to the site's own pages this way, never as `/chai-weekly/...`, so they keep working when the paper moves to its own domain.
 6. **Shamba tip**: one practical, seasonal tip tied to this week's weather or news. Defer to extension officers for rates and doses.
 7. **From the shamba**: one reader story, letter or photo sent through the Send a story page, if Maxwell has passed one on (look in `submissions/` in the repo and in the task notes). Edit lightly, keep the reader's voice, give their name and area only if they agreed to it. Never invent or paraphrase a reader into a story. If there is none this week, write one line inviting readers to send theirs, linked to `{{ '/submit/' | relative_url }}`.
 8. **Factory spotlight**: a short profile (120 to 180 words) of one tea factory, estate or cooperative in Kenya or another EATTA country, chosen from the news or the `## factories` section: where it is, how many growers, what it is known for, and its latest news (a bonus, a new line, an award, a price at Mombasa). Facts only from sources you opened. Rotate countries and regions; do not repeat a factory within 10 issues (check the archive in `_posts/`).

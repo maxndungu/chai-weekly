@@ -20,7 +20,12 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with: { ruby-version: "3.3", bundler-cache: true }
       - name: Build
-        run: bundle exec jekyll build --baseurl "" -d _site
+        # On your own domain the site lives at the root, so links, the RSS feed and the story form's
+        # thank-you page use canonical_url from _config.yml instead of the GitHub Pages address.
+        run: |
+          CANON=$(ruby -ryaml -e 'puts YAML.load_file("_config.yml")["canonical_url"].to_s.chomp("/")')
+          if [ -n "$CANON" ]; then printf 'url: "%s"\nbaseurl: ""\n' "$CANON" > /tmp/mirror.yml; else printf 'baseurl: ""\n' > /tmp/mirror.yml; fi
+          bundle exec jekyll build --config _config.yml,/tmp/mirror.yml -d _site
         env: { JEKYLL_ENV: production }
       - name: Upload over SSH (rsync)
         if: env.HAS_SSH == 'true'

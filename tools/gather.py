@@ -24,6 +24,9 @@ def read_feeds():
     for line in (HERE / "feeds.txt").read_text().splitlines():
         line = line.strip()
         if line and not line.startswith("#"):
+            if "|" not in line:  # a typo in feeds.txt shouldn't stop the run
+                print(f"! skipped feeds.txt line without '|': {line}", file=sys.stderr)
+                continue
             section, url = (p.strip() for p in line.split("|", 1))
             yield section, url
 
@@ -42,8 +45,10 @@ def items(root):
         when = it.findtext("pubDate")
         try:
             date = email.utils.parsedate_to_datetime(when) if when else None
-        except (TypeError, ValueError):
+        except (TypeError, ValueError, IndexError):
             date = None
+        if date and date.tzinfo is None:  # "-0000" dates come back without a timezone
+            date = date.replace(tzinfo=dt.timezone.utc)
         yield title, link, source, date
 
 
@@ -119,10 +124,11 @@ def main():
     for section, url in read_feeds():
         try:
             root = fetch(url)
+            found = list(items(root))
         except Exception as e:  # one bad feed shouldn't stop the run
             print(f"! skipped {url}: {e}", file=sys.stderr)
             continue
-        for title, link, source, date in items(root):
+        for title, link, source, date in found:
             key = title.lower().rsplit(" - ", 1)[0]
             if not title or key in seen or (date and date < cutoff):
                 continue
@@ -136,12 +142,20 @@ def main():
         for date, title, link, source in sorted(rows, key=lambda r: r[0] or cutoff, reverse=True):
             d = date.strftime("%d %b") if date else "?"
             out.append(f"- {d} · {title} ({source}) <{link}>")
-    out += report_lines()
+    total = sum(len(r) for r in by_section.values())
     path = ROOT / "sources" / f"{today}.md"
+    if total == 0 and path.exists():
+        # Every feed failed (network or a feed outage) on a re-run: keep the file already gathered today.
+        print(f"No news items fetched from any feed; {path.name} left unchanged.", file=sys.stderr)
+        sys.exit(3)
+    if total == 0:
+        out.append("\n## News\n\n- No news could be fetched from any feed this run. Search the web for this week's tea news by hand.")
+    out += report_lines()
     path.parent.mkdir(exist_ok=True)
     path.write_text("\n".join(out) + "\n")
-    total = sum(len(r) for r in by_section.values())
     print(f"Wrote {total} items to {path}")
+    if total == 0:
+        sys.exit(1)  # turn the run red so the outage is noticed
 
 
 if __name__ == "__main__":

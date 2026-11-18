@@ -23,6 +23,12 @@ const links = await page.$$eval("a[href], button[data-href]", (els) =>
 const glance = text.split("\n").map((l) => l.trim()).filter(Boolean);
 const start = glance.findIndex((l) => /^Sale \d+ Auction Data/.test(l));
 const end = glance.findIndex((l) => /^Average price \(USD per kg\)/.test(l));
+if (start < 0 && rows.length < 2) {
+  // EATTA's page didn't load or changed its layout: print nothing and fail, so the collector writes its "check by hand" line.
+  console.error("EATTA figures not found on the page");
+  await browser.close();
+  process.exit(1);
+}
 console.log(`\n## Mombasa auction (EATTA, rendered ${new Date().toISOString().slice(0, 10)}) <${url}>\n`);
 console.log((start >= 0 ? glance.slice(start, end > start ? end : start + 25) : glance.slice(0, 40)).join(" · "));
 console.log("\n| Sale | Date | Sold (kg) | Avg USD/kg |\n|---|---|---|---|");

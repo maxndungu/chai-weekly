@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-{% assign lead = site.posts.first %}
+{% assign pubs = site.posts | where_exp: "p", "p.preview != true" %}{% assign lead = pubs.first | default: site.posts.first %}
 {% if lead %}
 <section class="front">
   <div class="lead">
