@@ -1,6 +1,6 @@
 # Chai Weekly
 
-A free weekly newsletter about tea (Kenya first, plus world tea news), published as a static Jekyll site that GitHub Pages builds for free.
+A free, independent weekly digital magazine about the global tea industry, published from East Africa. It is a static Jekyll site that GitHub Pages builds for free.
 
 ```
 _posts/            one markdown file per issue (YYYY-MM-DD-issue-NNN.md)
@@ -32,6 +32,26 @@ tools/DRAFT_PROMPT.md   the prompt for Claude to draft each issue
 4. **Publish**: save it as `_posts/YYYY-MM-DD-issue-NNN.md` (GitHub's "Add file" button works) and commit. The site updates itself.
 5. **Send**: paste the same markdown into a new Buttondown email (or Substack post) and send.
 
+## How the magazine is put together
+
+| What | Where it comes from |
+|---|---|
+| Header, footer, menu | `_includes/header.html`, `_includes/footer.html`, `_data/nav.yml` (the six menu items) |
+| Look | `assets/style.css` (colours and fonts at the top), fonts in `assets/fonts/` (Fraunces and Instrument Sans, both free under the SIL Open Font License) |
+| Homepage | `index.html`: edition number and date, the three auction prices, the cover story, six story cards, the green market feature, "Inside this edition", events, previous editions, subscribe |
+| Cover story | the issue's `title`, `deck` and `cover:` (which story the title is about) |
+| Story cards and section pages | each issue's `stories:` list; categories (Markets, Industry, Origins, People, Culture) come from `_data/categories.yml` |
+| Pictures | `_data/photos.yml` (see below); until a photo fits, each category shows its drawn illustration from `assets/art/` |
+| Market prices | Mombasa: `_data/mombasa_eatta_sales.csv`. Colombo and Chittagong: `_data/colombo_sales.csv`, `_data/chittagong_sales.csv`, one line per sale from the brokers' reports, added by the Wednesday draft. A market with no sourced line shows "No verified figure yet". Market descriptions: `_data/markets.yml` |
+| Subscribe box | `_includes/subscribe.html`; set `buttondown_username`, `substack_url` or `newsletter_action` in `_config.yml` |
+| Contact details and social links | `contact_email`, `contact_whatsapp` and `social:` in `_config.yml`; blank ones are hidden |
+
+Pages: `/` home, each issue (the article page), `/archive/` (search and filters), `/markets/` (Mombasa, Colombo, Chittagong), `/auctions/` (Mombasa in depth), `/industry/`, `/origins/`, `/people/`, `/culture/`, `/weather/`, `/events/`, `/about/`, `/submit/` (contact and story form; `/contact/` forwards there).
+
+### Adding photos
+
+Put a landscape JPG (about 2000 px wide, under 500 KB) in `assets/photos/`, and add it to `_data/photos.yml` with what it shows (`alt`), where and when (`caption`, only if you know), the credit, and the categories it suits. Use only your own photos or ones whose licence allows it. To put one on an issue, add `image: <id>` to the issue's front matter. Photos tagged with a category are used on that category's story cards automatically.
+
 ## Auction analysis page and price history (_data/)
 
 The site's **Auctions** page (`auctions.html`, at /auctions/) combines two files:
@@ -57,7 +77,7 @@ Three sponsor slots, all hidden until you switch an ad on, all labelled "Sponsor
 
 | Slot | Where | Image |
 |---|---|---|
-| `home` | Front page side column, under the subscribe box (replaces the events list while it runs) | Poster, 600 x 900 px portrait |
+| `home` | Homepage, beside "Inside this edition" (replaces the "Coming up in tea" list while it runs) | Poster, 600 x 900 px portrait |
 | `issue` | Each issue, after the auction prices, and in the email | Banner, 1200 x 400 px, plus one line of text and a link (email apps that block images still show the text) |
 | `auctions` | "Prices brought to you by …" line at the top of the Auctions page | None |
 

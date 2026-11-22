@@ -1,11 +1,37 @@
 ---
 layout: default
 title: Archive
+description: Every edition of Chai Weekly, by week and publication date, with search and filters.
 permalink: /archive/
 ---
-<h1 class="headline">Every edition</h1>
-<ul class="archive">
-{% for post in site.posts %}
-  <li><a href="{{ post.url | relative_url }}"><span class="date">No. {{ post.issue }} · {{ post.date | date: "%-d %b %Y" }}</span><strong>{{ post.title }}</strong><small>{{ post.deck | default: post.description }}</small></a></li>
-{% endfor %}
-</ul>
+{%- include latest.html -%}
+<header class="page-head wrap">
+  <p class="eyebrow">The archive</p>
+  <h1 class="page-title">Every edition</h1>
+  <p class="page-intro">{{ editions.size }} weekly editions since {{ editions.last.date | date: "%-d %B %Y" }}. Search them, or filter by section and year.</p>
+</header>
+<div class="wrap archive-tools" role="search">
+  <label class="field">
+    <span>Search editions</span>
+    <input type="search" id="archive-q" placeholder="Try “Uganda”, “KTDA” or “matcha”" autocomplete="off">
+  </label>
+  <div class="field">
+    <span id="archive-cat-l">Section</span>
+    <div class="chips" role="group" aria-labelledby="archive-cat-l">
+      <button type="button" class="chip" data-cat="" aria-pressed="true">All</button>
+      {%- for c in site.data.categories %}<button type="button" class="chip" data-cat="{{ c.id }}" aria-pressed="false">{{ c.name }}</button>{% endfor %}
+    </div>
+  </div>
+  <label class="field field-year">
+    <span>Year</span>
+    <select id="archive-year"><option value="">All years</option>{% assign years = editions | map: "date" | map: "year" %}{% assign ys = "" %}{% for e in editions %}{% assign y = e.date | date: "%Y" %}{% unless ys contains y %}{% assign ys = ys | append: y | append: "," %}<option>{{ y }}</option>{% endunless %}{% endfor %}</select>
+  </label>
+  <p class="archive-count" id="archive-count" role="status" aria-live="polite"></p>
+</div>
+<section class="wrap archive-list" aria-labelledby="editions-h">
+  <h2 class="visually-hidden" id="editions-h">Editions</h2>
+  <div class="edition-grid" id="archive-grid">
+    {%- for e in editions %}{% include edition-card.html issue=e n=forloop.index0 %}{% endfor %}
+  </div>
+  <p class="archive-empty" id="archive-empty" hidden>No edition matches that search. Try a shorter word, or clear the filters.</p>
+</section>

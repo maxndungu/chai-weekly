@@ -1,0 +1,67 @@
+{%- comment -%} Forest-green market feature on the homepage. Figures come only from _data/mombasa_eatta_sales.csv; the words come from this edition's own stories. {%- endcomment -%}
+{%- assign mstory = include.issue.stories | where: "section", "Markets" | first -%}
+{%- assign wstory = include.issue.stories | where: "section", "World" | first -%}
+{%- assign sales = site.data.mombasa_eatta_sales -%}
+<section class="intel" aria-labelledby="intel-h">
+  <div class="wrap intel-grid">
+    <div class="intel-copy">
+      <p class="eyebrow">Market intelligence <span class="dot">·</span> Edition {% include edition-no.html n=include.issue.issue %}</p>
+      {%- if mstory %}
+      <h2 class="intel-h" id="intel-h"><a href="{{ include.issue.url | relative_url }}#{{ mstory.anchor }}">{{ mstory.headline }}</a></h2>
+      <p class="intel-lede">{{ mstory.summary }}</p>
+      <a class="button button-light" href="{{ include.issue.url | relative_url }}#{{ mstory.anchor }}">Read the auction report</a>
+      {%- else %}
+      <h2 class="intel-h" id="intel-h">The Mombasa auction, sale by sale</h2>
+      {%- endif %}
+      {%- if wstory %}
+      <div class="intel-world">
+        <p class="eyebrow">Global trade</p>
+        <h3><a href="{{ include.issue.url | relative_url }}#{{ wstory.anchor }}">{{ wstory.headline }}</a></h3>
+        <p>{{ wstory.summary }}</p>
+      </div>
+      {%- endif %}
+    </div>
+    {%- if sales and sales.size > 1 %}
+    {% include market-figures.html id="mombasa" %}
+    <div class="intel-data">
+      <div class="intel-stats" id="intel-stats">
+        <div class="istat"><span class="istat-label">Mombasa · Sale {{ m_sale }}</span><strong>{{ m_price }}</strong><span class="istat-note">{{ m_change }}</span></div>
+        <div class="istat"><span class="istat-label">Sold</span>{%- assign mkg = _l.sold_kg | divided_by: 10000.0 | round | divided_by: 100.0 -%}<strong>{{ mkg }}M kg</strong><span class="istat-note">{{ m_when }}</span></div>
+      </div>
+      <figure class="intel-chart" id="intel-chart" role="img" aria-label="Line chart: Mombasa auction average price, US dollars per kg, at each sale this year"></figure>
+      <p class="intel-source">Average price per kg, all teas, at each sale this year. {{ m_status }}. Source: <a href="https://eatta.co.ke/statistics">EATTA</a>.</p>
+      <ul class="intel-links">
+        <li><a href="{{ '/auctions/' | relative_url }}">Every sale, and 30 years of prices</a></li>
+        <li><a href="{{ '/markets/' | relative_url }}#colombo">Colombo and Chittagong</a></li>
+      </ul>
+    </div>
+    <script>
+    (function () {
+      var S = {{ sales | jsonify }}.map(function (r) { return { y: +r.year, n: +r.sale, d: r.auction_date, v: +r.avg_usd_kg, kg: +r.sold_kg }; })
+        .sort(function (a, b) { return a.y - b.y || a.n - b.n; });
+      var last = S[S.length - 1], ys = S.filter(function (s) { return s.y === last.y; });
+      if (ys.length < 2) return;
+      var tkg = ys.reduce(function (a, s) { return a + s.kg; }, 0), avg = ys.reduce(function (a, s) { return a + s.v * s.kg; }, 0) / tkg;
+      var hi = Math.max.apply(0, ys.map(function (s) { return s.v; })), lo = Math.min.apply(0, ys.map(function (s) { return s.v; }));
+      var f2 = function (x) { return "$" + x.toFixed(2); };
+      var box = document.getElementById("intel-stats");
+      box.insertAdjacentHTML("beforeend", "<div class='istat'><span class='istat-label'>" + last.y + " so far</span><strong>" + f2(avg) + "</strong><span class='istat-note'>low " + f2(lo) + " · high " + f2(hi) + "</span></div>");
+      var M = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+      var fig = document.getElementById("intel-chart"), narrow = fig.clientWidth < 460;
+      var NS = "http://www.w3.org/2000/svg", W = narrow ? 360 : 560, H = narrow ? 200 : 210, P = { l: 44, r: 14, t: 12, b: 24 };
+      var el = function (n, a, p) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); p && p.appendChild(e); return e; };
+      var mn = Math.floor((lo - 0.02) * 20) / 20, mx = Math.ceil((hi + 0.02) * 20) / 20;
+      var t0 = Date.parse(last.y + "-01-01"), t1 = Date.parse(last.y + "-12-31");
+      var X = function (d) { return P.l + (Date.parse(d) - t0) / (t1 - t0) * (W - P.l - P.r); }, Y = function (v) { return H - P.b - (v - mn) / (mx - mn) * (H - P.t - P.b); };
+      var svg = el("svg", { viewBox: "0 0 " + W + " " + H, "aria-hidden": "true" }, fig);
+      for (var v = mn; v <= mx + 1e-9; v += 0.1) { el("line", { x1: P.l, x2: W - P.r, y1: Y(v), y2: Y(v), class: "grid" }, svg); el("text", { x: P.l - 8, y: Y(v) + 4, class: "tick", "text-anchor": "end" }, svg).textContent = "$" + v.toFixed(2); }
+      [0, 3, 6, 9].forEach(function (m) { el("text", { x: X(last.y + "-" + (m < 9 ? "0" : "") + (m + 1) + "-01"), y: H - 4, class: "tick" }, svg).textContent = M[m]; });
+      var line = ys.map(function (s, i) { return (i ? "L" : "M") + X(s.d).toFixed(1) + "," + Y(s.v).toFixed(1); }).join("");
+      el("path", { d: line + "L" + X(last.d).toFixed(1) + "," + (H - P.b) + "L" + X(ys[0].d).toFixed(1) + "," + (H - P.b) + "Z", class: "area" }, svg);
+      el("path", { d: line, class: "line" }, svg);
+      el("circle", { cx: X(last.d), cy: Y(last.v), r: 5, class: "pt" }, svg);
+    })();
+    </script>
+    {%- endif %}
+  </div>
+</section>

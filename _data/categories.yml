@@ -1,0 +1,43 @@
+# The magazine's five story categories. Each story in an issue's `stories:` list gets its category from
+# its `section` (see `sections` below), or from its own `category:` field when you want to override it.
+# `art` is the illustration shown when no photo from _data/photos.yml fits.
+- id: markets
+  name: Markets
+  long: Markets and Trade
+  url: /markets/
+  sections: [Markets]
+  art: markets
+  art_alt: "Illustration: a gold price line running across fine ledger lines on forest green"
+  intro: "Auction prices, volumes and the trade that moves the world's tea, starting at Mombasa."
+- id: industry
+  name: Industry
+  long: Industry News
+  url: /industry/
+  sections: [Industry, East Africa, World]
+  art: industry
+  art_alt: "Illustration: three gold factory rollers with tea leaves passing beneath them"
+  intro: "Factories, boards, policy and business across East Africa's tea countries and the wider tea world."
+- id: origins
+  name: Origins
+  long: Tea Origins and Production
+  url: /origins/
+  sections: [Weather, Farming, Spotlight]
+  art: origins
+  art_alt: "Illustration: green hills ribbed with rows of tea bushes under a gold sun"
+  intro: "Where tea grows and how it is made: the weather in the tea areas, the shamba and the factory floor."
+- id: people
+  name: People
+  long: People in Tea
+  url: /people/
+  sections: [People, From the shamba]
+  art: people
+  art_alt: "Illustration: two leaves and a bud, the tea plucker's standard, drawn in gold"
+  intro: "The growers, pluckers, factory hands, traders and readers who make tea happen."
+- id: culture
+  name: Culture
+  long: Culture and Lifestyle
+  url: /culture/
+  sections: [Culture]
+  art: culture
+  art_alt: "Illustration: a cup of tea on a saucer with rising steam"
+  intro: "How the world drinks its tea, from a pot of chai ya tangawizi to a matcha bowl in Kagoshima."

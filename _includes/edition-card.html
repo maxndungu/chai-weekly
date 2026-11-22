@@ -1,0 +1,12 @@
+{% include cover-story.html issue=include.issue %}
+<article class="edition-card" data-search="{{ include.issue.title | append: ' ' | append: include.issue.deck | append: ' ' | append: include.issue.description | escape }}{% for s in include.issue.stories %} {{ s.headline | escape }}{% endfor %}" data-year="{{ include.issue.date | date: '%Y' }}" data-cats="{% for s in include.issue.stories %}{% include category.html story=s %}{{ cat.id }} {% endfor %}">
+  <a class="card-link" href="{{ include.issue.url | relative_url }}">
+    <div class="edition-cover">
+      {% include media.html photo=include.issue.image cat=cover_cat n=include.n class="card-media" sizes="(min-width: 1000px) 33vw, (min-width: 640px) 50vw, 100vw" %}
+      <span class="edition-badge"><span>Edition</span>{% include edition-no.html n=include.issue.issue %}</span>
+    </div>
+    <p class="eyebrow"><time datetime="{{ include.issue.date | date: '%Y-%m-%d' }}">{{ include.issue.date | date: "%A %-d %B %Y" }}</time></p>
+    <h3 class="card-title">{{ include.issue.title }}</h3>
+  </a>
+  <p class="card-summary">{{ include.issue.deck | default: include.issue.description }}</p>
+</article>

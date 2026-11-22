@@ -1,0 +1,8 @@
+{%- comment -%} Inline picture inside an issue: {% include figure.html photo="kericho-plucking" %} (id from _data/photos.yml). Shows nothing if the id is unknown. {%- endcomment -%}
+{%- assign _ph = site.data.photos | where: "id", include.photo | first -%}
+{%- if _ph -%}
+<figure class="inline-figure{% if include.wide %} is-wide{% endif %}">
+  <img src="{{ _ph.file | prepend: '/' | relative_url }}" alt="{{ _ph.alt | escape }}" loading="lazy" decoding="async">
+  <figcaption>{{ include.caption | default: _ph.caption }} <span class="credit">{{ _ph.credit }}</span></figcaption>
+</figure>
+{%- endif -%}

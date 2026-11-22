@@ -1,0 +1,32 @@
+# The three auctions on the homepage and Markets page. Figures come only from the CSV files in _data/:
+#   Mombasa:    mombasa_eatta_sales.csv (EATTA, added by the Wednesday collector, final after Friday noon)
+#   Colombo:    colombo_sales.csv      (one line per sale, added by the Wednesday draft from the brokers' report)
+#   Chittagong: chittagong_sales.csv   (the same, from the brokers' report)
+# Nothing is shown for a market that has no row with a source: the page says so instead.
+- id: mombasa
+  name: Mombasa
+  country: Kenya
+  full: Mombasa Tea Auction
+  run_by: East African Tea Trade Association (EATTA)
+  when: Mondays, with some sales running into Tuesday
+  currency: US$ per kg
+  official: https://eatta.co.ke/statistics
+  about: "The world's largest auction for black CTC tea. Teas from Kenya, Uganda, Tanzania, Rwanda, Burundi, Ethiopia, DR Congo, Malawi, Madagascar and Mozambique are sold here in US dollars."
+- id: colombo
+  name: Colombo
+  country: Sri Lanka
+  full: Colombo Tea Auction
+  run_by: Colombo Tea Traders' Association, with weekly reports from the brokers
+  when: Weekly, usually Monday and Tuesday
+  currency: Sri Lankan rupees per kg, with the US$ figure where the brokers give it
+  official: https://www.forbestea.com/
+  about: "The world's oldest running tea auction and the main market for Ceylon tea, sold by elevation: high, medium and low grown."
+- id: chittagong
+  name: Chittagong
+  country: Bangladesh
+  full: Chittagong Tea Auction
+  run_by: Tea Traders Association of Bangladesh, with weekly reports from the brokers
+  when: Weekly, usually Monday
+  currency: Bangladeshi taka per kg
+  official: https://ttabctg.com/
+  about: "Bangladesh's main tea auction. Most of the tea is bought for the home market, so prices follow local demand closely."

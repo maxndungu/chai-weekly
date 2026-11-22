@@ -13,19 +13,24 @@ Output a single Jekyll markdown file with this front matter:
 ```
 ---
 layout: post
-title: "<Front-page headline in Title Case, newspaper style, under 80 characters>"
+title: "<Cover headline in Title Case, under 80 characters: the week's lead story>"
 issue: N
-deck: "<one-sentence subheadline that adds what the headline leaves out>"
+cover: "<anchor of the story the title is about, e.g. east-africa or the-auction-this-week>"
+deck: "<one-sentence standfirst that adds what the headline leaves out>"
 description: "<one sentence summary for the archive>"
-snapshot:   # 4-5 market figures for the ticker under the masthead
+snapshot:   # 4-5 market figures, shown as "This week in numbers" on the issue page
   - { label: "Mombasa avg", value: "$X.XX/kg", note: "▲/▼ vs last week" }
   - { label: "Top lot", value: "<factory> US$N.NN/kg" }   # "Top lot" only if the source says it was the highest price of the whole sale; otherwise a true label such as "Best east of Rift"
   - { label: "...", value: "..." }
-stories:    # exactly 8, shown as front-page teasers: Markets, Industry, East Africa, World, Weather, Farming, Spotlight, Culture (not From the shamba, Tenders, Week ahead or One number); anchor = the section heading's slug
+stories:    # exactly 8, shown as story cards on the homepage: Markets, Industry, East Africa, World, Weather, Farming, Spotlight, Culture (not From the shamba, Tenders, Week ahead or One number); anchor = the section heading's slug
   - { section: "Markets", anchor: "the-auction-this-week", headline: "<story headline>", summary: "<one or two sentences>" }
   - { section: "East Africa", anchor: "east-africa", headline: "...", summary: "..." }   # plus Industry, World, Weather, Farming, Spotlight, Culture
 ---
 ```
+
+The site files each story under a category from its section (`_data/categories.yml`): Markets is Markets and Trade; Industry, East Africa and World are Industry News; Weather, Farming and Spotlight are Tea Origins and Production; Culture is Culture and Lifestyle. When a story is mainly about people (pluckers, a farmer, a factory worker, a reader), add `category: "people"` to its line so it appears under People in Tea, e.g. `{ section: "Culture", category: "people", anchor: "tea-culture", ... }`.
+
+Pictures: add `image: <id>` to the front matter only when a photo in `_data/photos.yml` truly shows the subject of the cover story (its caption must stay true). Never use or link a picture from anywhere else, and never describe a library photo as if it was taken for this story. If nothing fits, leave `image` out: the site shows the section's illustration. A story line can take `image: "<id>"` the same way. Do not add an `author:` line; the byline is the Chai Weekly desk unless Maxwell names a writer.
 
 Prices stay in US dollars as the auction publishes them (the paper is read by producers outside Kenya too). Do not convert to shillings, and do not add Ksh equivalents in brackets after auction prices even when the source gives them. Farmer payments, bonuses and turnover that are announced in shillings stay in shillings.
 
@@ -44,7 +49,7 @@ Then these sections, in this order, about 1,000 to 1,300 words total:
 11. **The week ahead**: 3 to 6 dated bullets for the next 7 to 10 days: the next Mombasa sale (number and date), other auctions, events from `_data/events.yml`, reports or decisions due (tea board figures, bonus announcements, court dates), with a link for each.
 12. **One number**: a single striking figure from this week, explained in two sentences.
 
-Style: write like a serious newspaper. Open the issue with a datelined lede paragraph (e.g. "NAIROBI —") that tells the week's main story in two or three sentences. Inside each section use the inverted pyramid: the most important fact first, then context, then detail. Attribute every figure ("according to EATTA", "KTDA said"). Short sentences, plain words, no hype, no exclamation marks, no financial advice. Use these exact `##` section headings so the links stay predictable: The auction this week, KTDA and factory news, East Africa, Around the tea world, Weather in the tea counties, Shamba tip, From the shamba, Factory spotlight, Tea culture, Tenders and jobs, The week ahead, One number. Each `anchor` in `stories` is its heading in lowercase with spaces as hyphens (e.g. `shamba-tip`); give each story its own headline in the `stories` front matter instead. A little Swahili is welcome in the culture and farming sections.
+Style: write like a serious magazine of record. Open the issue with a datelined lede paragraph (e.g. "NAIROBI —") that tells the week's main story in two or three sentences. Inside each section use the inverted pyramid: the most important fact first, then context, then detail. Attribute every figure ("according to EATTA", "KTDA said"). Short sentences, plain words, no hype, no exclamation marks, no financial advice. Use these exact `##` section headings so the links stay predictable: The auction this week, KTDA and factory news, East Africa, Around the tea world, Weather in the tea counties, Shamba tip, From the shamba, Factory spotlight, Tea culture, Tenders and jobs, The week ahead, One number. Each `anchor` in `stories` is its heading in lowercase with spaces as hyphens (e.g. `shamba-tip`); give each story its own headline in the `stories` front matter instead. A little Swahili is welcome in the culture and farming sections.
 
 Names and titles (house rule, never skip): always give people their correct title. First mention: title + full name ("President William Ruto", "Agriculture Cabinet Secretary Mutahi Kagwe", "KTDA chairman Enos Njeru", "Prime Minister Kamil Idris"). Later mentions: title + surname ("President Ruto", "CS Kagwe", "Mr Njeru"). Never use a bare surname for anyone, especially heads of state, government officials, MPs, governors, chiefs and religious leaders, and never in a headline, deck, ticker label or teaser: write "President Ruto pledges..." not "Ruto pledges...". Use the official's current title as stated by the source; if unsure, use the fuller form. Apply the same courtesy to foreign leaders and officials.
 
@@ -60,3 +65,21 @@ Right after the Sources line that ends "The auction this week" (before `## KTDA 
 {% include ad.html slot="issue" %}
 
 It shows the paid sponsor box when one is booked in `_data/ads.yml` and nothing otherwise. Never write sponsor text yourself and never mention a sponsor in the editorial copy.
+
+
+## Colombo and Chittagong price files
+The homepage and the Markets page show Colombo and Chittagong only from `_data/colombo_sales.csv` and `_data/chittagong_sales.csv`. After writing the auctions table, add one line to each file for the newest sale whose average the report actually gives (skip it if the line is already there; never add a sale with "Not yet published"). Keep the columns as they are:
+
+- `colombo_sales.csv`: `sale,sale_dates,avg_local,currency,avg_usd_kg,change,sold,note,source,source_url,reported`, e.g. `45,16–17 Nov 2026,1230.10,Rs,3.75,▲ 2¢,5.12M kg,,"Forbes & Walker, Sale of 23 & 24 November",https://...,2026-11-25`
+- `chittagong_sales.csv`: `sale,sale_date,avg_local,currency,change,sold_pct,note,source,source_url,reported`, e.g. `30,2026-11-23,277.40,Tk,▲ Tk1.25,90.1,,"National Brokers, Chittagong Sale 30",https://...,2026-11-25`
+
+Numbers without commas; `change` exactly as the report gives it; `source_url` the report you opened; `reported` the issue date. Figures must match the table in the issue. List the lines you added in the reviewer notes.
+
+## Pull quotes and pictures inside the text (optional)
+A short, striking quote that a named person really said, copied exactly from a source you opened, can be set as a pull quote: a markdown blockquote with the speaker on its last line, e.g.
+
+> "The EU notification on lowering MRL for three compounds has become critical."
+>
+> <cite>Mr Joydeep Phukan, secretary, Tea Research Association</cite>
+
+At most one per issue, never invented or paraphrased, and the same quote must also appear (attributed) in the section text. A library photo can be placed inside a section with `{% include figure.html photo="<id>" %}` on its own line, only under the same rule as `image`.

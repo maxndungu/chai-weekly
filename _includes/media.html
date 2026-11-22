@@ -1,0 +1,22 @@
+{%- comment -%}
+A picture for a story or edition. Uses the photo named in include.photo (an id in _data/photos.yml),
+else a library photo tagged with the category include.cat (rotating by include.n), else the category's illustration.
+Params: photo, cat (category object), n (number), class, eager (true for the first big image), caption (true to show credit).
+{%- endcomment -%}
+{%- assign ph = nil -%}
+{%- if include.photo -%}{%- assign ph = site.data.photos | where: "id", include.photo | first -%}{%- endif -%}
+{%- unless ph -%}
+  {%- assign cid = include.cat.id -%}
+  {%- assign pool = site.data.photos | where_exp: "p", "p.categories contains cid" -%}
+  {%- if pool.size > 0 -%}{%- assign i = include.n | default: 0 | modulo: pool.size -%}{%- assign ph = pool[i] -%}{%- endif -%}
+{%- endunless -%}
+{%- if ph -%}
+<figure class="media {{ include.class }}">
+  <img src="{{ ph.file | prepend: '/' | relative_url }}"{% if ph.small %} srcset="{{ ph.small | prepend: '/' | relative_url }} 800w, {{ ph.file | prepend: '/' | relative_url }} 2000w" sizes="{{ include.sizes | default: '100vw' }}"{% endif %} alt="{{ ph.alt | escape }}" {% if include.eager %}fetchpriority="high"{% else %}loading="lazy"{% endif %} decoding="async">
+  {%- if include.caption %}<figcaption>{% if ph.caption %}{{ ph.caption }} {% endif %}<span class="credit">{% if ph.credit_url and ph.credit_url != "" %}<a href="{{ ph.credit_url }}">{{ ph.credit }}</a>{% else %}{{ ph.credit }}{% endif %}</span></figcaption>{% endif %}
+</figure>
+{%- else -%}
+<figure class="media art art-{{ include.cat.art | default: 'origins' }} {{ include.class }}">
+  <img src="{{ include.cat.art | default: 'origins' | prepend: '/assets/art/' | append: '.svg' | relative_url }}" alt="{{ include.cat.art_alt | escape }}" {% if include.eager %}fetchpriority="high"{% else %}loading="lazy"{% endif %} decoding="async">
+</figure>
+{%- endif -%}

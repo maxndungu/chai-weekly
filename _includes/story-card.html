@@ -1,0 +1,11 @@
+{%- comment -%} One story from an edition. Params: story, issue, n, size ("lg" | "md" | "sm"), show_edition. {%- endcomment -%}
+{% include category.html story=include.story %}
+<article class="card card-{{ include.size | default: 'md' }}">
+  <a class="card-link" href="{{ include.issue.url | relative_url }}#{{ include.story.anchor }}">
+    {% include media.html photo=include.story.image cat=cat n=include.n class="card-media" sizes="(min-width: 1000px) 33vw, (min-width: 640px) 50vw, 100vw" %}
+    <p class="eyebrow">{{ cat.long }}{% if include.show_edition %} <span class="dot">·</span> Edition {% include edition-no.html n=include.issue.issue %}{% endif %}</p>
+    <h3 class="card-title">{{ include.story.headline }}</h3>
+  </a>
+  <p class="card-summary">{{ include.story.summary }}</p>
+  {% if include.show_edition %}<p class="card-meta"><time datetime="{{ include.issue.date | date: '%Y-%m-%d' }}">{{ include.issue.date | date: "%-d %B %Y" }}</time></p>{% endif %}
+</article>
