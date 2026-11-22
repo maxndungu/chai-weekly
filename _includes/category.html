@@ -1,0 +1,5 @@
+{%- comment -%} Sets `cat` to the category of include.story: its own `category:` if given, else by its section. {%- endcomment -%}
+{%- assign cat = nil -%}
+{%- if include.story.category -%}{%- assign cat = site.data.categories | where: "id", include.story.category | first -%}{%- endif -%}
+{%- unless cat -%}{%- for c in site.data.categories -%}{%- if c.sections contains include.story.section -%}{%- assign cat = c -%}{%- break -%}{%- endif -%}{%- endfor -%}{%- endunless -%}
+{%- unless cat -%}{%- assign cat = site.data.categories | where: "id", "industry" | first -%}{%- endunless -%}

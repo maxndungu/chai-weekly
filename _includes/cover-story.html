@@ -1,0 +1,5 @@
+{%- comment -%} Sets `cover` (the story in include.issue's `stories` that the title is about) and `cover_cat`. {%- endcomment -%}
+{%- assign cover = nil -%}
+{%- if include.issue.cover -%}{%- assign cover = include.issue.stories | where: "anchor", include.issue.cover | first -%}{%- endif -%}
+{%- unless cover -%}{%- assign cover = include.issue.stories | first -%}{%- endunless -%}
+{%- if cover -%}{% include category.html story=cover %}{%- assign cover_cat = cat -%}{%- else -%}{%- assign cover_cat = site.data.categories | first -%}{%- endif -%}

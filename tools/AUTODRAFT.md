@@ -26,8 +26,10 @@ publishes the issue to the site; nothing goes live without that merge.
    its link in `url`; use `month:` when only the month is known. Delete events that have ended. List
    every change under "Events" in the pull-request notes.
 6. Sanity checks before committing:
-   - Front matter has title, issue, deck, description, snapshot (4-5 items), stories (8: Markets, Industry, East Africa, World, Weather, Farming, Spotlight, Culture, with
-     anchors that match the `##` headings as kramdown slugs).
+   - Front matter has title, issue, cover (the anchor of the lead story), deck, description, snapshot (4-5 items), stories (8: Markets, Industry, East Africa, World, Weather, Farming, Spotlight, Culture, with
+     anchors that match the `##` headings as kramdown slugs; `category: "people"` on any story mainly about people). `image:` only if it names a photo in `_data/photos.yml` that truly fits; otherwise leave it out.
+   - Colombo and Chittagong: the newest sale with a published average is added to `_data/colombo_sales.csv` and `_data/chittagong_sales.csv` (see DRAFT_PROMPT.md), matching the issue's table.
+   - Run `python3 -m unittest discover -s tests`; it checks the front matter, the price files and the photo library. Fix anything it reports.
    - Tenders and jobs: every item still open on the issue date, each with its official link; no fee-charging jobs.
    - Leadership and court stories (appointments, removals, elections): search for follow-ups from at least two outlets dated after the first report (court orders often reverse an appointment within days) and report the latest position. If only one outlet reports it, or you could not open the article yourself (e.g. Nation), leave it out of the issue and put it in the reviewer notes.
    - From the shamba: only a real reader submission (never invented); otherwise the one-line invitation.

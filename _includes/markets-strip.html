@@ -1,0 +1,24 @@
+<section class="markets-strip" aria-labelledby="markets-strip-h">
+  <div class="wrap">
+    <div class="strip-head">
+      <h2 class="section-label" id="markets-strip-h">Tea market intelligence</h2>
+      <a class="text-link" href="{{ '/markets/' | relative_url }}">All markets</a>
+    </div>
+    <div class="strip-grid">
+      {%- for mk in site.data.markets %}
+      {% include market-figures.html id=mk.id %}
+      <article class="market market-{{ mk.id }}">
+        <h3 class="market-name"><a href="{{ '/markets/' | relative_url }}#{{ mk.id }}">{{ mk.name }} <span>{{ mk.country }}</span></a></h3>
+        {%- if m_has %}
+        <p class="market-price">{{ m_price }}<span class="unit">/kg</span></p>
+        <p class="market-change {{ m_dir }}">{{ m_change }}{% if m_local != "" %} <span class="market-local">· {{ m_local }}</span>{% endif %}</p>
+        <p class="market-meta">Sale {{ m_sale }}{% if m_when != "" %} · {{ m_when }}{% endif %}<br><span class="market-status">{{ m_status }}</span> · <a href="{{ m_source_url }}">{{ m_source }}</a></p>
+        {%- else %}
+        <p class="market-empty">No verified figure yet. We only show prices we can source.</p>
+        {%- endif %}
+        <a class="market-more" href="{{ '/markets/' | relative_url }}#{{ mk.id }}" aria-label="{{ mk.full }}: market report">Market report</a>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>

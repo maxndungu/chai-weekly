@@ -1,45 +1,106 @@
 ---
 layout: default
+body_class: home
 ---
-{% assign pubs = site.posts | where_exp: "p", "p.preview != true" %}{% assign lead = pubs.first | default: site.posts.first %}
-{% if lead %}
-<section class="front">
-  <div class="lead">
-    <p class="kicker">This week's edition · No. {{ lead.issue }}{% if lead.preview %} · Preview{% endif %}</p>
-    <h1 class="headline big"><a href="{{ lead.url | relative_url }}">{{ lead.title }}</a></h1>
-    <p class="deck">{{ lead.deck | default: lead.description }}</p>
-    <p class="byline">{{ lead.date | date: "%-d %B %Y" }} · <a href="{{ lead.url | relative_url }}">Read the full edition →</a></p>
-    {% include market-panel.html %}
+{%- include latest.html -%}
+{%- assign lead = latest -%}
+{%- if lead -%}
+{% include cover-story.html issue=lead %}
+{%- assign words = lead.content | number_of_words -%}{%- assign minutes = words | divided_by: 220 | plus: 1 -%}
+
+<section class="edition-bar" aria-label="This week's edition">
+  <div class="wrap edition-inner">
+    <p class="edition-no" aria-hidden="true">{% include edition-no.html n=lead.issue %}</p>
+    <div class="edition-text">
+      <p class="eyebrow">This week's edition</p>
+      <p class="edition-line"><strong>Edition {% include edition-no.html n=lead.issue %}</strong> <span class="dot">·</span> <time datetime="{{ lead.date | date: '%Y-%m-%d' }}">{{ lead.date | date: "%A %-d %B %Y" }}</time></p>
+      <p class="edition-sub">Free to read <span class="dot">·</span> {{ lead.stories.size }} stories <span class="dot">·</span> {{ minutes }} min read</p>
+    </div>
+    <a class="text-link edition-link" href="{{ lead.url | relative_url }}">Read the full edition</a>
   </div>
-  <aside class="rail">
-    {% include signup.html %}
-    {% capture poster %}{% include ad.html slot="home" %}{% endcapture %}
-    {% assign poster_on = poster | strip | size %}
-    {{ poster }}
-    {% include events.html limit=3 hide=poster_on %}
-  </aside>
 </section>
-{% if lead.stories %}
-<section class="grid">
-  {% for s in lead.stories %}
-  <a class="teaser" href="{{ lead.url | relative_url }}#{{ s.anchor }}">
-    <span class="label">{{ s.section }}</span>
-    <h2>{{ s.headline }}</h2>
-    <p>{{ s.summary }}</p>
-  </a>
-  {% endfor %}
+
+{% include markets-strip.html %}
+
+<section class="cover" aria-labelledby="cover-h">
+  <div class="cover-media-wrap">
+    {% include media.html photo=lead.image cat=cover_cat n=0 class="cover-media" eager=true caption=true %}
+  </div>
+  <div class="wrap cover-body">
+    <div class="cover-panel">
+      <p class="eyebrow"><a href="{{ cover_cat.url | relative_url }}">{{ cover_cat.long }}</a> <span class="dot">·</span> Cover story</p>
+      <h1 class="cover-h" id="cover-h"><a href="{{ lead.url | relative_url }}">{{ lead.title }}</a></h1>
+      <p class="cover-intro">{{ lead.deck | default: lead.description }}</p>
+      <p class="byline">By {{ lead.author | default: site.default_author }} <span class="dot">·</span> <time datetime="{{ lead.date | date: '%Y-%m-%d' }}">{{ lead.date | date: "%-d %B %Y" }}</time> <span class="dot">·</span> {{ minutes }} min read</p>
+      <a class="button" href="{{ lead.url | relative_url }}">Read story</a>
+    </div>
+  </div>
 </section>
-{% endif %}
-{% else %}
-{% include events.html %}
-{% endif %}
-<section class="past">
-  <h2 class="label rule">Past editions</h2>
-  <ul class="archive">
-  {% for post in site.posts offset:1 limit:6 %}
-    <li><a href="{{ post.url | relative_url }}"><span class="date">No. {{ post.issue }} · {{ post.date | date: "%-d %b %Y" }}</span><strong>{{ post.title }}</strong></a></li>
-  {% else %}
-    <li class="muted">The first edition is above. Past editions will collect here each week.</li>
-  {% endfor %}
-  </ul>
+
+{%- comment -%} Story grid: one story from each category first (in category order), then fill up to six. The cover story is left out. {%- endcomment -%}
+{%- assign used = "|" | append: cover.anchor | append: "|" -%}
+{%- assign picks = "" -%}{%- assign count = 0 -%}
+{%- for c in site.data.categories -%}
+  {%- for s in lead.stories -%}
+    {%- include category.html story=s -%}
+    {%- capture key -%}|{{ s.anchor }}|{%- endcapture -%}
+    {%- unless used contains key -%}{%- if cat.id == c.id -%}{%- assign used = used | append: s.anchor | append: "|" -%}{%- assign picks = picks | append: s.anchor | append: "," -%}{%- assign count = count | plus: 1 -%}{%- break -%}{%- endif -%}{%- endunless -%}
+  {%- endfor -%}
+{%- endfor -%}
+{%- for s in lead.stories -%}{%- if count < 6 -%}{%- capture key -%}|{{ s.anchor }}|{%- endcapture -%}
+  {%- unless used contains key -%}{%- assign used = used | append: s.anchor | append: "|" -%}{%- assign picks = picks | append: s.anchor | append: "," -%}{%- assign count = count | plus: 1 -%}{%- endunless -%}
+{%- endif -%}{%- endfor -%}
+{%- assign pick_list = picks | split: "," -%}
+<section class="latest" aria-labelledby="latest-h">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="section-title" id="latest-h">Latest stories</h2>
+      <p class="section-note">From edition {% include edition-no.html n=lead.issue %}, {{ lead.date | date: "%-d %B %Y" }}</p>
+    </div>
+    <div class="story-grid">
+      {%- for a in pick_list %}{% assign s = lead.stories | where: "anchor", a | first %}
+      {% include story-card.html story=s issue=lead n=forloop.index %}
+      {%- endfor %}
+    </div>
+  </div>
 </section>
+
+{% include market-intel.html issue=lead %}
+
+<section class="inside" aria-labelledby="inside-h">
+  <div class="wrap inside-grid">
+    <div class="inside-list">
+      <h2 class="section-title" id="inside-h">Inside this edition</h2>
+      <ol class="toc-list">
+        {%- for s in lead.stories %}{% include category.html story=s %}
+        <li><a href="{{ lead.url | relative_url }}#{{ s.anchor }}"><span class="toc-n">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span><span class="toc-text"><span class="eyebrow">{{ cat.long }}</span><strong>{{ s.headline }}</strong><span class="toc-sum">{{ s.summary }}</span></span></a></li>
+        {%- endfor %}
+      </ol>
+      <a class="button button-outline" href="{{ lead.url | relative_url }}">Read edition {% include edition-no.html n=lead.issue %} in full</a>
+    </div>
+    <div class="inside-rail rail">
+      {% capture poster %}{% include ad.html slot="home" %}{% endcapture %}
+      {% assign poster_on = poster | strip | size %}
+      {{ poster }}
+      {% include events.html limit=4 hide=poster_on %}
+    </div>
+  </div>
+</section>
+
+{%- assign past = editions | where_exp: "p", "p.url != lead.url" -%}
+{%- if past.size > 0 %}
+<section class="past" aria-labelledby="past-h">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="section-title" id="past-h">Previous editions</h2>
+      <a class="text-link" href="{{ '/archive/' | relative_url }}">The full archive</a>
+    </div>
+    <div class="edition-grid">
+      {%- for e in past limit: 3 %}{% include edition-card.html issue=e n=forloop.index %}{% endfor %}
+    </div>
+  </div>
+</section>
+{%- endif %}
+{%- else -%}
+<section class="wrap page-head"><h1 class="page-title">The first edition is on its way.</h1></section>
+{%- endif -%}

@@ -1,35 +1,14 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light">
-  <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
-  <meta name="description" content="{{ page.deck | default: page.description | default: site.description | escape }}">
-  {% if site.canonical_url != "" %}{% assign share_url = site.canonical_url %}{% else %}{% assign share_url = site.url | append: site.baseurl %}{% endif %}
-  <meta property="og:site_name" content="{{ site.title }}">
-  <meta property="og:title" content="{{ page.title | default: site.title | escape }}">
-  <meta property="og:description" content="{{ page.deck | default: page.description | default: site.description | escape }}">
-  <meta property="og:url" content="{{ share_url }}{{ page.url }}">
-  <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
-  {% if site.share_image and site.share_image != "" %}<meta property="og:image" content="{{ share_url }}/{{ site.share_image }}">{% endif %}
-  <meta name="twitter:card" content="{% if site.share_image and site.share_image != "" %}summary_large_image{% else %}summary{% endif %}">
-  {% if site.canonical_url != "" %}<link rel="canonical" href="{{ site.canonical_url }}{{ page.url }}">{% endif %}
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Libre+Franklin:wght@400;600;800&display=swap">
-  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
-  {% include analytics.html %}
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
+{% include head.html %}
 </head>
-<body>
-  <div class="paper">
-    {% if page.layout == 'post' %}{% include masthead.html compact=true %}{% else %}{% include masthead.html %}{% endif %}
-    <main>{{ content }}</main>
-    <footer class="colophon">
-      <span>{{ site.title }} · A free, independent hobby newsletter about tea, from East Africa and the world.</span>
-      <span><a href="{{ '/archive/' | relative_url }}">Archive</a> · <a href="{{ '/about/' | relative_url }}">About</a> · <a href="{{ '/feed.xml' | relative_url }}">RSS</a></span>
-    </footer>
-  </div>
+<body class="{{ page.body_class | default: page.layout | default: 'page' }}">
+  {% if page.layout == 'post' %}{% include header.html compact=true %}{% else %}{% include header.html %}{% endif %}
+  <main id="main" tabindex="-1">
+{{ content }}
+  </main>
+  {% include subscribe.html %}
+  {% include footer.html %}
 </body>
 </html>
