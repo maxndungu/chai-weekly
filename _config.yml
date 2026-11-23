@@ -26,3 +26,9 @@ goatcounter_code: ""
 # Or self-host Umami on your VPS and fill these two in instead.
 umami_src: ""
 umami_website_id: ""
+# preview/ holds a built copy of the redesign (see tools/build_preview.sh). Keep it out of the sitemap.
+defaults:
+  - scope:
+      path: "preview"
+    values:
+      sitemap: false
