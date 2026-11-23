@@ -1,7 +1,0 @@
-# Main menu. "latest" is filled in with the newest edition automatically.
-- { title: Latest, url: latest }
-- { title: Markets, url: /markets/ }
-- { title: Industry, url: /industry/ }
-- { title: Origins, url: /origins/ }
-- { title: Culture, url: /culture/ }
-- { title: Archive, url: /archive/ }

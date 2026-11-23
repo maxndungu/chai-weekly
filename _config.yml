@@ -1,31 +1,9 @@
 title: Chai Weekly
-motto: "The world of tea, one story at a time"
-positioning: "Independent coverage of the global tea industry, markets, people and culture."
-perspective: "Published from East Africa, with a global outlook."
-description: "Chai Weekly is a free, independent weekly magazine about the global tea industry: auction markets, industry news, tea origins, the people who grow and trade tea, and tea culture. Published from East Africa, with a global outlook."
-# Byline used when an issue has no `author:` of its own.
-default_author: "Chai Weekly desk"
-
-# Mailing list behind "Get the free weekly edition". Fill in ONE of these; the form switches over by itself.
-# Until one is set, the form checks the address and says honestly that sign-up is not open yet.
-buttondown_username: ""   # e.g. "chaiweekly" for buttondown.com/chaiweekly
-substack_url: ""          # e.g. "https://chaiweekly.substack.com"
-# Any other provider with a plain HTML sign-up form (Mailchimp, MailerLite, listmonk on your VPS...):
-# its form "action" URL and the name of its email field.
-newsletter_action: ""
-newsletter_email_field: "email"
-
-# Contact details shown in the footer and on the contact page. Leave blank to hide.
-contact_email: ""
-contact_whatsapp: ""      # e.g. "254712345678" (no +), shown as a WhatsApp link
-# Social links in the footer. Leave blank to hide.
-social:
-  x: ""                   # full URLs, e.g. "https://x.com/chaiweekly"
-  facebook: ""
-  instagram: ""
-  linkedin: ""
-  youtube: ""
-  whatsapp_channel: ""
+motto: "Tea news from East Africa and the world, every week"
+description: A free weekly newsletter about tea, from Mombasa to Kampala, Kigali and Lilongwe, and on to Colombo and Kagoshima. Auction prices, industry news, weather in the growing regions, farming tips and tea culture.
+# Paste your Buttondown username OR Substack URL here (leave the other blank).
+buttondown_username: ""
+substack_url: ""
 permalink: /issues/:year/:month/:day/:title/
 markdown: kramdown
 plugins: [jekyll-sitemap]

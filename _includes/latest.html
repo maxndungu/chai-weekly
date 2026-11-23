@@ -1,3 +1,0 @@
-{%- comment -%} Sets `latest` (newest published edition) and `editions` (all published editions, newest first). {%- endcomment -%}
-{%- assign editions = site.posts | where_exp: "p", "p.preview != true" -%}
-{%- assign latest = editions.first | default: site.posts.first -%}
