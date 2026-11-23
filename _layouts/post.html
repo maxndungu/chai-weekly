@@ -1,74 +1,19 @@
 ---
 layout: default
 ---
-{%- include cover-story.html issue=page -%}
-{%- assign minutes = content | number_of_words | divided_by: 220 | plus: 1 -%}
-{%- assign body = content -%}
-{%- for s in page.stories -%}{% include category.html story=s %}
-  {%- capture find -%}<h2 id="{{ s.anchor }}">{%- endcapture -%}
-  {%- capture repl -%}<p class="section-kicker"><a href="{{ cat.url | relative_url }}">{{ cat.long }}</a></p><h2 id="{{ s.anchor }}">{%- endcapture -%}
-  {%- assign body = body | replace_first: find, repl -%}
-{%- endfor -%}
-<article class="article">
-  <header class="article-head wrap">
-    {% if page.preview %}<p class="preview-banner">Preview only: a test of how a Wednesday edition looks. It is not a published issue.</p>{% endif %}
-    <p class="eyebrow"><a href="{{ '/archive/' | relative_url }}">Edition {% include edition-no.html n=page.issue %}</a> <span class="dot">·</span> <a href="{{ cover_cat.url | relative_url }}">{{ cover_cat.long }}</a></p>
-    <h1 class="article-title">{{ page.title }}</h1>
-    {% if page.deck %}<p class="standfirst">{{ page.deck }}</p>{% endif %}
-    <p class="byline">By {{ page.author | default: site.default_author }} <span class="dot">·</span> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%A %-d %B %Y" }}</time> <span class="dot">·</span> {{ minutes }} min read</p>
-  </header>
-  <div class="article-hero">
-    {% include media.html photo=page.image cat=cover_cat n=0 class="hero-media" eager=true caption=true %}
-  </div>
-  {% if page.snapshot %}
-  <section class="numbers wrap" aria-label="This week in numbers">
-    <h2 class="numbers-h">This week in numbers</h2>
-    <dl class="numbers-list">
-      {%- for n in page.snapshot %}
-      <div><dt>{{ n.label }}</dt><dd><strong>{{ n.value }}</strong>{% if n.note %}<span>{{ n.note }}</span>{% endif %}</dd></div>
-      {%- endfor %}
-    </dl>
-  </section>
+<article class="story">
+  {% if page.preview %}<p class="preview-banner">Preview only: a test of how a Wednesday edition looks. It is not a published issue and will be removed.</p>{% endif %}
+  <p class="kicker">Edition No. {{ page.issue }} · {{ page.date | date: "%-d %B %Y" }}</p>
+  <h1 class="headline">{{ page.title }}</h1>
+  {% if page.deck %}<p class="deck">{{ page.deck }}</p>{% endif %}
+  <p class="byline">By the {{ site.title }} desk · {{ page.content | number_of_words | divided_by: 220 | plus: 1 }} min read</p>
+  {% if page.stories %}
+  <aside class="contents">
+    <h2 class="label">In this edition</h2>
+    <ol>{% for s in page.stories %}<li><a href="#{{ s.anchor }}"><span>{{ s.section }}</span>{{ s.headline }}</a></li>{% endfor %}</ol>
+  </aside>
   {% endif %}
-  <div class="article-grid wrap">
-    {% if page.stories %}
-    <nav class="article-toc" aria-labelledby="toc-h">
-      <h2 class="toc-h" id="toc-h">In this edition</h2>
-      <ol>
-        {%- for s in page.stories %}{% include category.html story=s %}
-        <li><a href="#{{ s.anchor }}"><span class="eyebrow">{{ cat.name }}</span>{{ s.headline }}</a></li>
-        {%- endfor %}
-      </ol>
-    </nav>
-    {% endif %}
-    <div class="article-body prose">
-{{ body }}
-    </div>
-    <div class="article-side">
-      {% include share.html %}
-    </div>
-  </div>
-  <div class="wrap article-foot">
-    {% include share.html %}
-    <p class="submit-cta">Got a story from your factory, shamba or tea cup? <a href="{{ '/submit/' | relative_url }}">Send it to Chai Weekly</a></p>
-    <nav class="pager" aria-label="Other editions">
-      {% if page.previous %}<a class="pager-prev" href="{{ page.previous.url | relative_url }}"><span class="eyebrow">Previous edition · {% include edition-no.html n=page.previous.issue %}</span><strong>{{ page.previous.title }}</strong></a>{% else %}<span></span>{% endif %}
-      {% if page.next %}<a class="pager-next" href="{{ page.next.url | relative_url }}"><span class="eyebrow">Next edition · {% include edition-no.html n=page.next.issue %}</span><strong>{{ page.next.title }}</strong></a>{% endif %}
-    </nav>
-  </div>
+  <div class="body">{{ content }}</div>
 </article>
-{%- include latest.html -%}
-{%- assign related = editions | where_exp: "p", "p.url != page.url" -%}
-{%- if related.size > 0 %}
-<section class="past related" aria-labelledby="related-h">
-  <div class="wrap">
-    <div class="section-head">
-      <h2 class="section-title" id="related-h">More from Chai Weekly</h2>
-      <a class="text-link" href="{{ '/archive/' | relative_url }}">Every edition</a>
-    </div>
-    <div class="edition-grid">
-      {%- for e in related limit: 3 %}{% include edition-card.html issue=e n=forloop.index %}{% endfor %}
-    </div>
-  </div>
-</section>
-{%- endif %}
+<p class="submit-cta">Got a story from your factory, shamba or tea cup? <a href="{{ '/submit/' | relative_url }}">Send it to Chai Weekly →</a></p>
+{% include signup.html %}

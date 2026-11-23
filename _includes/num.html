@@ -1,4 +1,0 @@
-{%- comment -%} Prints include.v with thousands separators, keeping its decimals as written: 7579307 -> 7,579,307; 1237.84 -> 1,237.84 {%- endcomment -%}
-{%- assign _s = include.v | append: "" | strip -%}{%- assign _p = _s | split: "." -%}{%- assign _d = _p[0] | split: "" | reverse -%}{%- assign _o = "" -%}
-{%- for ch in _d -%}{%- assign _m = forloop.index0 | modulo: 3 -%}{%- if forloop.index0 > 0 and _m == 0 -%}{%- assign _o = "," | append: _o -%}{%- endif -%}{%- assign _o = ch | append: _o -%}{%- endfor -%}
-{{ _o }}{%- if _p.size > 1 -%}.{{ _p[1] }}{%- endif -%}
