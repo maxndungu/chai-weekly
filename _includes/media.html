@@ -5,24 +5,14 @@ Params: photo, cat (category object), n (number), class, eager (true for the fir
 {%- endcomment -%}
 {%- assign ph = nil -%}
 {%- if include.photo -%}{%- assign ph = site.data.photos | where: "id", include.photo | first -%}{%- endif -%}
-{%- unless used_photos -%}{%- assign used_photos = "|" -%}{%- endunless -%}
 {%- unless ph -%}
-  {%- comment -%} A library photo for the category that this page has not shown yet, so pictures don't repeat. {%- endcomment -%}
   {%- assign cid = include.cat.id -%}
   {%- assign pool = site.data.photos | where_exp: "p", "p.categories contains cid" -%}
-  {%- if pool.size > 0 -%}
-    {%- assign start = include.n | default: 0 | modulo: pool.size -%}
-    {%- for k in (1..pool.size) -%}
-      {%- assign i = start | plus: k | minus: 1 | modulo: pool.size -%}{%- assign cand = pool[i] -%}
-      {%- capture key -%}|{{ cand.id }}|{%- endcapture -%}
-      {%- unless used_photos contains key -%}{%- assign ph = cand -%}{%- break -%}{%- endunless -%}
-    {%- endfor -%}
-  {%- endif -%}
+  {%- if pool.size > 0 -%}{%- assign i = include.n | default: 0 | modulo: pool.size -%}{%- assign ph = pool[i] -%}{%- endif -%}
 {%- endunless -%}
-{%- if ph -%}{%- assign used_photos = used_photos | append: ph.id | append: "|" -%}{%- endif -%}
 {%- if ph -%}
 <figure class="media {{ include.class }}">
-  <img src="{{ ph.file | prepend: '/' | relative_url }}"{% if ph.small %} srcset="{{ ph.small | prepend: '/' | relative_url }} 800w, {{ ph.file | prepend: '/' | relative_url }} 2000w" sizes="{{ include.sizes | default: '100vw' }}"{% endif %} alt="{{ ph.alt | escape }}"{% if ph.position %} style="object-position: {{ ph.position }}"{% endif %} {% if include.eager %}fetchpriority="high"{% else %}loading="lazy"{% endif %} decoding="async">
+  <img src="{{ ph.file | prepend: '/' | relative_url }}"{% if ph.small %} srcset="{{ ph.small | prepend: '/' | relative_url }} 800w, {{ ph.file | prepend: '/' | relative_url }} 2000w" sizes="{{ include.sizes | default: '100vw' }}"{% endif %} alt="{{ ph.alt | escape }}" {% if include.eager %}fetchpriority="high"{% else %}loading="lazy"{% endif %} decoding="async">
   {%- if include.caption %}<figcaption>{% if ph.caption %}{{ ph.caption }} {% endif %}<span class="credit">{% if ph.credit_url and ph.credit_url != "" %}<a href="{{ ph.credit_url }}">{{ ph.credit }}</a>{% else %}{{ ph.credit }}{% endif %}</span></figcaption>{% endif %}
 </figure>
 {%- else -%}

@@ -27,10 +27,9 @@
 <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
 <link rel="preload" href="{{ '/assets/fonts/fraunces-latin-opsz-normal.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{{ '/assets/fonts/instrument-sans-latin-wght-normal.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
-{%- assign v = site.time | date: '%Y%m%d%H%M' -%}
-<link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}?v={{ v }}">
+<link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
 <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
-<script defer src="{{ '/assets/site.js' | relative_url }}?v={{ v }}"></script>
+<script defer src="{{ '/assets/site.js' | relative_url }}"></script>
 {%- if is_post %}
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":{{ page.title | jsonify }},"description":{{ page.deck | default: page.description | jsonify }},"datePublished":"{{ page.date | date_to_xmlschema }}","dateModified":"{{ page.last_modified_at | default: page.date | date_to_xmlschema }}","image":["{{ share_url }}/{{ og_img }}"],"author":{"@type":"Organization","name":{{ page.author | default: site.default_author | jsonify }}},"publisher":{"@type":"Organization","name":"{{ site.title }}","logo":{"@type":"ImageObject","url":"{{ share_url }}/assets/share-card.png"}},"mainEntityOfPage":"{{ share_url }}{{ page.url }}","isAccessibleForFree":true}</script>
 {%- elsif page.url == '/' %}
