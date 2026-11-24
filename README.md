@@ -79,6 +79,15 @@ python3 -m unittest discover -s tests   # the script tests (no internet needed)
 bundle install && bundle exec jekyll serve   # preview the site, needs Ruby
 ```
 
+## Own domain (chaiweekly.co.ke)
+
+The site is served at https://chaiweekly.co.ke by GitHub Pages. The `CNAME` file holds the domain, and
+`_config.yml` has `url: "https://chaiweekly.co.ke"`, `baseurl: ""` and the same address as `canonical_url`.
+DNS (at HostDeal): four A records for `@` to 185.199.108.153, 185.199.109.153, 185.199.110.153 and
+185.199.111.153, and a CNAME record for `www` to `maxndungu.github.io`. In the repo's Settings > Pages the
+custom domain is `chaiweekly.co.ke` with Enforce HTTPS ticked. Old `maxndungu.github.io/chai-weekly/` links
+redirect to the domain automatically. Always link the site's own pages with `relative_url`, never a fixed path.
+
 ## Mirroring to a paid host (optional)
 
 GitHub stays the source of truth. Every push to `main` also triggers `.github/workflows/mirror-to-host.yml`, which builds the site and uploads it to your host.
@@ -103,6 +112,6 @@ GitHub stays the source of truth. Every push to `main` also triggers `.github/wo
 ## Redesign preview
 
 A built copy of the magazine redesign lives in `preview/` and is served at
-https://maxndungu.github.io/chai-weekly/preview/. It is not linked from the live site, is hidden from
+https://chaiweekly.co.ke/preview/. It is not linked from the live site, is hidden from
 search engines and shows a "preview" bar. Rebuild it from the redesign's commit or branch with
 `tools/build_preview.sh <commit-or-branch>`. Delete `preview/` once the redesign goes live.
