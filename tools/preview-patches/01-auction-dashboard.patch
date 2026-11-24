@@ -1,6 +1,6 @@
 diff --git a/_includes/auction-dashboard.html b/_includes/auction-dashboard.html
 new file mode 100644
-index 0000000..fe3e93b
+index 0000000..5f1bf96
 --- /dev/null
 +++ b/_includes/auction-dashboard.html
 @@ -0,0 +1,101 @@
@@ -98,7 +98,7 @@ index 0000000..fe3e93b
 +
 +    <div class="dash-notes">
 +      <p class="fine" id="dash-provisional" hidden><span class="dash-badge">Provisional</span> EATTA adds late sales until Friday noon, Nairobi time, so the newest sale's figures can still change until then.</p>
-+      <p class="fine">The average for a run of sales is weighted by the kilograms sold at each sale. <strong>Share sold</strong> (absorption) is the kilograms sold as a share of the kilograms offered, both from the same source, and the offered and sold bars use the same figures. EATTA's own count of kilograms sold, used for the headline figure and the table, can differ by a few per cent from the figures behind the share sold. Orthodox tea is sold every other week, so the weeks in between show as <em>No orthodox sale</em>; its lines join the weeks it was sold. Separate orthodox figures start at sale 38 of 2025; earlier sales show <em>Not available</em>.</p>
++      <p class="fine">The average for a run of sales is weighted by the kilograms sold at each sale. <strong>Share sold</strong> (absorption) is the kilograms sold as a share of the kilograms offered, both from the same source, and the offered and sold bars use the same figures. EATTA's own count of kilograms sold, used for the headline figure and the table, can differ by a few per cent from the figures behind the share sold. Orthodox tea is sold every other week, so the Orthodox view lists only the weeks it was sold. Separate orthodox figures start at sale 38 of 2025.</p>
 +      <p class="fine"><strong>Sources:</strong> prices and kilograms sold from 2026 are from the <a href="https://eatta.co.ke/statistics">East African Tea Trade Association's auction statistics</a>, saved every Wednesday and checked again after Friday noon. The monthly series since 1992 is the World Bank's Commodity Price Data ("Pink Sheet"), "Tea, Mombasa", licensed CC BY 4.0; it runs a few cents above the auction's own sale averages because it is measured differently.</p>
 +    </div>
 +    <noscript><p class="fine">The dashboard needs JavaScript. The Mombasa section below lists the latest sales.</p></noscript>
@@ -107,10 +107,10 @@ index 0000000..fe3e93b
 +</section>
 diff --git a/assets/dashboard.js b/assets/dashboard.js
 new file mode 100644
-index 0000000..1a99b43
+index 0000000..bcfba22
 --- /dev/null
 +++ b/assets/dashboard.js
-@@ -0,0 +1,524 @@
+@@ -0,0 +1,529 @@
 +/* Mombasa auction dashboard (Markets page).
 +   Data: assets/data/mombasa-sales.json = {eatta, combrok, highlights}, filled by Jekyll from _data/:
 +     eatta      mombasa_eatta_sales.csv        official EATTA figures, 2026 on (prices and kg sold)
@@ -151,7 +151,7 @@ index 0000000..1a99b43
 +  var signed = function (v, f) { return (v > 0 ? "+" : v < 0 ? "−" : "") + f(Math.abs(v)); };
 +
 +  var byYear = {}, years = [], highlights = {};
-+  var st = { year: null, from: null, to: null, tea: "all", cmp: true, sort: "sale", dir: 1 };
++  var st = { year: null, from: null, to: null, tea: "all", cmp: true, sort: "sale", dir: -1 };  // newest sale first
 +
 +  /* ---------- data ---------- */
 +  function build(data) {
@@ -211,7 +211,12 @@ index 0000000..1a99b43
 +    var d = dateOf(r.date), add = (5 - d.getUTCDay() + 7) % 7;
 +    return Date.now() < d.getTime() + add * 864e5 + 9 * 36e5; // Friday noon Nairobi = 09:00 UTC
 +  }
-+  var inRange = function (y) { return (byYear[y == null ? st.year : y] || []).filter(function (r) { return r.n >= st.from && r.n <= st.to; }); };
++  // The chosen run of sales. For orthodox, only the weeks it was sold: it runs every other week, so the rest are left out.
++  var inRange = function (y) {
++    return (byYear[y == null ? st.year : y] || []).filter(function (r) {
++      return r.n >= st.from && r.n <= st.to && (st.tea !== "orthodox" || r.orthodox.p != null || r.orthodox.kg != null);
++    });
++  };
 +  function lastYear(n) {
 +    if (!st.cmp) return null;
 +    var prev = byYear[st.year - 1] || [];
@@ -482,7 +487,7 @@ index 0000000..1a99b43
 +      var s = st.sort === c.k ? (st.dir > 0 ? "ascending" : "descending") : "none";
 +      return '<th scope="col" aria-sort="' + s + '"><button type="button" class="dash-sort" data-k="' + c.k + '">' + c.h + '<span class="dash-arrow" aria-hidden="true">' + (s === "ascending" ? "▲" : s === "descending" ? "▼" : "") + "</span></button></th>";
 +    }).join("") + "</tr>";
-+    t.tBodies[0].innerHTML = data.map(function (d) {
++    t.tBodies[0].innerHTML = !data.length ? '<tr><td colspan="' + cols.length + '" class="muted">' + noneText("No " + TEA[st.tea] + " sales in this run") + "</td></tr>" : data.map(function (d) {
 +      var cells = {
 +        sale: String(d.sale) + (provisional(d.r) ? ' <span class="dash-badge">Provisional</span>' : ""),
 +        date: d.date ? dShort(d.date) : "",
@@ -731,6 +736,21 @@ index c8ab93a..58914d4 100644
 +.dash-notes .dash-badge { margin: 0 4px 0 0; }
 +@media (max-width: 899px) { .dash-charts, .dash-lower { grid-template-columns: 1fr; } }
 +@media (max-width: 559px) { .dash-controls { padding: 14px 16px; gap: 12px; } .dash-field { flex: 1 1 40%; } .dash-field select { min-width: 0; width: 100%; } .dash-field:nth-child(n+4) { flex-basis: 100%; } }
+diff --git a/auctions.html b/auctions.html
+index aa62fd8..5e615ab 100644
+--- a/auctions.html
++++ b/auctions.html
+@@ -8,9 +8,8 @@ permalink: /auctions/
+   <p class="kicker"><a href="{{ '/markets/' | relative_url }}">Markets</a> · Mombasa in depth</p>
+   <h1 class="headline">The Mombasa tea auction, sale by sale</h1>
+   <p class="deck">Every sale this year from the East African Tea Trade Association, set against the World Bank's monthly Mombasa price going back to 1992. Updated every Wednesday after the sale.</p>
+-  {% include ad.html slot="auctions" %}
+-
+   <div class="stat-row" id="stats" aria-live="polite"></div>
++  {% include ad.html slot="auctions" %}
+ 
+   <section>
+     <h2 class="label rule">This year, sale by sale</h2>
 diff --git a/markets.html b/markets.html
 index ebca5fc..e5eb39b 100644
 --- a/markets.html
