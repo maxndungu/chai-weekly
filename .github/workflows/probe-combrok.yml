@@ -1,0 +1,18 @@
+# Temporary: looks at how Combrok's market report page loads its figures. Removed before the PR.
+name: Probe Combrok
+on:
+  push:
+    branches: [claude/project-thread-6k4und]
+    paths: [.github/workflows/probe-combrok.yml, tools/probe_combrok.mjs]
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - run: npm install --no-save playwright@1.48.2 && npx playwright install --with-deps chromium
+      - run: node tools/probe_combrok.mjs
+      - run: |
+          for y in 2025 2024 2023; do echo "== EATTA $y"; curl -s -m 30 -A "Mozilla/5.0" "https://eatta.co.ke/api/sales-report.php?year=$y" | head -c 600; echo; done
+          echo "== robots"; curl -s -m 30 https://combrok.co.ke/robots.txt | head -40
