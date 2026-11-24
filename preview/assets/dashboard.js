@@ -33,15 +33,28 @@
     var rows = {}, key = function (y, n) { return y + "-" + n; };
     var get = function (y, n) {
       var k = key(y, n);
-      return rows[k] || (rows[k] = { y: y, n: n, date: "", src: "combrok", all: {}, ctc: {}, orthodox: {}, cb: { ctc: {}, orthodox: {} } });
+      return rows[k] || (rows[k] = { y: y, n: n, date: "", src: "combrok", all: {}, ctc: {}, orthodox: {}, cb: { all: {}, ctc: {}, orthodox: {} } });
     };
+    // Maxwell's lot-by-lot records (2009 to 2020), totalled per sale: used where neither Combrok nor EATTA has the sale.
+    (data.history || []).forEach(function (h) {
+      var r = get(+h.year, +h.sale);
+      r.src = "history"; r.date = h.auction_date || "";
+      ["all", "ctc", "orthodox"].forEach(function (t) {
+        r.cb[t] = { p: num(h[t + "_avg_usd_kg"]), kg: num(h[t + "_sold_kg"]), off: num(h[t + "_offered_kg"]),
+          lo: num(h[t + "_offered_lots"]), ls: num(h[t + "_sold_lots"]) };
+        r[t] = { p: r.cb[t].p, kg: r.cb[t].kg };
+      });
+    });
     (data.combrok || []).forEach(function (c) {
       var r = get(+c.year, +c.sale);
+      if (r.src === "history") { r.src = "combrok"; r.cb = { all: {}, ctc: {}, orthodox: {} }; r.orthodox = {}; }
+      r.src = "combrok";
       ["ctc", "orthodox"].forEach(function (t) {
         r.cb[t] = { p: num(c[t + "_avg_usd_kg"]), kg: num(c[t + "_sold_kg"]), off: num(c[t + "_offered_kg"]),
           lo: num(c[t + "_offered_lots"]), ls: num(c[t + "_sold_lots"]) };
       });
       // Combrok's "CTC" auction totals match EATTA's all-teas totals, so they stand for all teas too.
+      r.cb.all = r.cb.ctc;
       r.all = { p: r.cb.ctc.p, kg: r.cb.ctc.kg };
       r.ctc = { p: r.cb.ctc.p, kg: r.cb.ctc.kg };
       r.orthodox = { p: r.cb.orthodox.p, kg: r.cb.orthodox.kg };
@@ -62,7 +75,7 @@
   // Figures for the chosen tea: price and kg sold from the main source, offered and lots from Combrok.
   function pick(r, tea) {
     tea = tea || st.tea;
-    var m = r[tea] || {}, cb = r.cb[tea === "orthodox" ? "orthodox" : "ctc"] || {};
+    var m = r[tea] || {}, cb = r.cb[tea] || {};
     var abs = cb.off && cb.kg != null ? cb.kg / cb.off : null;
     return { p: m.p != null ? m.p : null, kg: m.kg || null, off: cb.off || null, cbKg: cb.kg, abs: abs, lo: cb.lo, ls: cb.ls };
   }
@@ -105,16 +118,31 @@
     fillSelect($("dash-from"), opts, st.from);
     fillSelect($("dash-to"), opts, st.to);
     each("[data-tea]", function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-tea") === st.tea ? "true" : "false"); });
+    var qk = quickOf();
+    each("[data-last]", function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-last") === qk ? "true" : "false"); });
     var c = $("dash-cmp"), hasPrev = !!byYear[st.year - 1];
     c.checked = st.cmp && hasPrev; c.disabled = !hasPrev;
     $("dash-cmp-l").textContent = "Compare with " + (st.year - 1);
   }
+  // Which quick pick matches the current range ("all", "4", "13"), or null for a hand-picked range.
+  function quickOf() {
+    var rows = byYear[st.year], n = rows.length, last = rows[n - 1].n;
+    if (st.to !== last) return null;
+    if (st.from === rows[0].n) return "all";
+    if (n > 4 && st.from === rows[n - 4].n) return "4";
+    if (n > 13 && st.from === rows[n - 13].n) return "13";
+    return null;
+  }
+  function applyQuick(k) {
+    var rows = byYear[st.year];
+    st.to = rows[rows.length - 1].n;
+    st.from = k === "all" ? rows[0].n : rows[Math.max(0, rows.length - +k)].n;
+  }
+  // A new year opens on its whole run of sales, or on the same quick pick (last 4, last 13) if one was on.
   function setYear(y) {
-    var keepFrom = st.from, keepTo = st.to, rows = byYear[y], nums = rows.map(function (r) { return r.n; });
+    var q = quickOf();
     st.year = y;
-    st.from = nums.indexOf(keepFrom) >= 0 ? keepFrom : rows[0].n;
-    st.to = nums.indexOf(keepTo) >= 0 ? keepTo : rows[rows.length - 1].n;
-    if (st.from > st.to) st.from = rows[0].n;
+    applyQuick(q === "4" || q === "13" ? q : "all");
   }
   function saveUrl() {
     if (!window.history || !history.replaceState) return;
@@ -132,9 +160,7 @@
     each("[data-tea]", function (b) { b.addEventListener("click", function () { st.tea = b.getAttribute("data-tea"); update(); }); });
     each("[data-last]", function (b) {
       b.addEventListener("click", function () {
-        var rows = byYear[st.year], k = b.getAttribute("data-last");
-        st.to = rows[rows.length - 1].n;
-        st.from = k === "all" ? rows[0].n : rows[Math.max(0, rows.length - +k)].n;
+        applyQuick(b.getAttribute("data-last"));
         update();
       });
     });
@@ -387,11 +413,68 @@
   }
 
   function sourceNote() {
-    var rows = inRange(), cb = rows.some(function (r) { return r.src === "combrok"; });
-    $("dash-src-year").hidden = !cb;
+    var rows = inRange(), src = rows.length ? rows[0].src : "";
+    $("dash-src-combrok").hidden = src !== "combrok";
+    $("dash-src-history").hidden = src !== "history";
+  }
+
+  /* ---------- the long view: World Bank monthly Mombasa price since 1992 ---------- */
+  var wb = [], longSpan = "all";
+  function longChart() {
+    var box = $("dash-long");
+    if (!wb.length) { box.hidden = true; return; }
+    box.hidden = false;
+    var lastYr = +wb[wb.length - 1].m.slice(0, 4);
+    var pts = longSpan === "all" ? wb : wb.filter(function (d) { return +d.m.slice(0, 4) > lastYr - +longSpan; });
+    each("[data-span]", function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-span") === longSpan ? "true" : "false"); });
+    var first = pts[0], last = pts[pts.length - 1];
+    var hi = pts.reduce(function (a, d) { return d.v > a.v ? d : a; }), lo = pts.reduce(function (a, d) { return d.v < a.v ? d : a; });
+    var mname = function (m) { return MON[+m.slice(5, 7) - 1] + " " + m.slice(0, 4); };
+    $("dash-long-stats").innerHTML =
+      "<span><b>" + usd(last.v) + "</b> latest, " + mname(last.m) + "</span>" +
+      "<span><b>" + usd(first.v) + "</b> at the start, " + mname(first.m) + "</span>" +
+      "<span><b>" + usd(hi.v) + "</b> highest, " + mname(hi.m) + "</span>" +
+      "<span><b>" + usd(lo.v) + "</b> lowest, " + mname(lo.m) + "</span>";
+    var fig = $("dash-long-chart"), f = frame(fig, fig.clientWidth < 520 ? 220 : 280), P = f.P;
+    var vs = pts.map(function (d) { return d.v; });
+    var ticks = niceTicks(Math.min.apply(0, vs) - 0.05, Math.max.apply(0, vs) + 0.05, 5), y0 = ticks[0], y1 = ticks[ticks.length - 1];
+    var n = pts.length, plotW = f.W - P.l - P.r;
+    var X = function (i) { return P.l + i / Math.max(1, n - 1) * plotW; };
+    var Y = function (v) { return f.H - P.b - (v - y0) / (y1 - y0) * (f.H - P.t - P.b); };
+    ticks.forEach(function (v) {
+      el("line", { x1: P.l, x2: f.W - P.r, y1: Y(v), y2: Y(v), "class": "grid" }, f.svg);
+      el("text", { x: P.l - 8, y: Y(v) + 4, "class": "tick", "text-anchor": "end" }, f.svg).textContent = "$" + v.toFixed(2);
+    });
+    var span = +last.m.slice(0, 4) - +first.m.slice(0, 4), every = span > 24 ? 5 : span > 10 ? 2 : 1;
+    pts.forEach(function (d, i) {
+      var yr = +d.m.slice(0, 4);
+      if (d.m.slice(5) !== "01" || yr % every) return;
+      var x = X(i);
+      if (x < P.l + 14 || x > f.W - P.r - 14) return;
+      el("line", { x1: x, x2: x, y1: f.H - P.b, y2: f.H - P.b + 4, "class": "grid" }, f.svg);
+      el("text", { x: x, y: f.H - 8, "class": "tick", "text-anchor": "middle" }, f.svg).textContent = yr;
+    });
+    el("path", { d: pts.map(function (d, i) { return (i ? "L" : "M") + X(i).toFixed(1) + "," + Y(d.v).toFixed(1); }).join(""), "class": "dash-line thin" }, f.svg);
+    el("circle", { cx: X(n - 1), cy: Y(last.v), r: 4.5, "class": "dash-dot last" }, f.svg);
+    var cross = el("line", { y1: P.t, y2: f.H - P.b, "class": "dash-cross", visibility: "hidden" }, f.svg);
+    var ring = el("circle", { r: 5, "class": "dash-ring", visibility: "hidden" }, f.svg);
+    var hit = el("rect", { x: P.l, y: 0, width: plotW, height: f.H, fill: "transparent" }, f.svg);
+    var move = function (evt) {
+      var b = f.svg.getBoundingClientRect(), x = (evt.clientX - b.left) * f.W / b.width;
+      var i = Math.max(0, Math.min(n - 1, Math.round((x - P.l) / plotW * (n - 1)))), d = pts[i];
+      cross.setAttribute("x1", X(i)); cross.setAttribute("x2", X(i)); cross.setAttribute("visibility", "visible");
+      ring.setAttribute("cx", X(i)); ring.setAttribute("cy", Y(d.v)); ring.setAttribute("visibility", "visible");
+      var yAgo = wb.filter(function (o) { return o.m === (+d.m.slice(0, 4) - 1) + d.m.slice(4); })[0];
+      showTip(evt, '<div class="dash-tip-h">' + mname(d.m) + "</div>" + tipRow("k-cur", "World Bank, Mombasa", usd(d.v) + "/kg") +
+        (yAgo ? '<div class="dash-tip-note">' + signed(d.v - yAgo.v, usd) + " on " + mname(yAgo.m) + "</div>" : ""));
+    };
+    hit.addEventListener("pointermove", move);
+    hit.addEventListener("pointerdown", move);
+    hit.addEventListener("pointerleave", function () { cross.setAttribute("visibility", "hidden"); ring.setAttribute("visibility", "hidden"); hideTip(); });
   }
 
   function draw() {
+    longChart();
     var rows = inRange();
     lineChart("dash-price", "dash-legend", rows, function (r) { return pick(r).p; }, function (v) { return "$" + v.toFixed(2); }, function (v) { return usd(v) + (v > 0.5 ? "/kg" : ""); }, "No published " + TEA[st.tea] + " average in these sales", 0.03);
     lineChart("dash-abs", "dash-abs-legend", rows, function (r) { return pick(r).abs; }, function (v) { return Math.round(v * 100) + "%"; }, pct, "No offered figures for these sales", 0.02);
@@ -406,6 +489,9 @@
   function start(data) {
     if (Array.isArray(data)) data = { eatta: data };
     build(data);
+    wb = (data.worldbank || []).filter(function (d) { return d.month && d.usd_kg !== "" && d.usd_kg != null; })
+      .map(function (d) { return { m: d.month, v: +d.usd_kg }; }).sort(function (a, b) { return a.m < b.m ? -1 : 1; });
+    each("[data-span]", function (b) { b.addEventListener("click", function () { longSpan = b.getAttribute("data-span"); longChart(); }); });
     if (!years.length) throw new Error("no sales");
     var q = new URLSearchParams(location.search), y = +q.get("year");
     st.year = byYear[y] ? y : years[years.length - 1];
