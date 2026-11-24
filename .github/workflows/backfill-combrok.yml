@@ -1,0 +1,20 @@
+# Temporary: one-off backfill of _data/mombasa_combrok_sales.csv on this branch. Removed before merge.
+name: Backfill Combrok
+on:
+  push:
+    branches: [claude/project-thread-6k4und]
+    paths: [.github/workflows/backfill-combrok.yml]
+permissions:
+  contents: write
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/combrok_csv.py
+      - run: |
+          for f in sale-highlights ctc-broker; do echo "== $f"; curl -s -m 30 -A "Mozilla/5.0" "https://combrok.co.ke/assets/data/$f.json" | head -c 1500; echo; done
+          curl -s -m 30 -A "Mozilla/5.0" "https://combrok.co.ke/assets/js/market-reports.js" | head -c 6000
+      - run: |
+          git config user.name "chai-bot"; git config user.email "chai-bot@users.noreply.github.com"
+          git add _data/mombasa_combrok_sales.csv && git commit -m "Backfill Combrok sales" && git push
