@@ -1,18 +1,19 @@
-# Every Wednesday 06:00 Nairobi time (after the Monday/Tuesday Mombasa sale), collect the week's tea news into sources/
-# and add the latest EATTA sales to _data/mombasa_eatta_sales.csv. It also notes any sale where Combrok's
-# figures differ from EATTA's (in the sources file, for the reviewer notes), and saves Combrok's per-sale
-# figures (kg and lots offered, so the dashboard can show the share sold) to _data/mombasa_combrok_sales.csv.
-# Every Friday 13:00 Nairobi time, refresh only the EATTA sales file: late sales are added until Friday noon, so
-# Wednesday's figures for the latest sale are provisional and Friday's are final.
+# Auction data (the Auctions page and dashboard) updates twice a week only, Tuesday 16:00 and Friday 14:00
+# Nairobi time (Maxwell's choice, 2026-11-24): the EATTA sales go to _data/mombasa_eatta_sales.csv and Combrok's per-sale figures
+# (kg and lots offered, for the share sold) to _data/mombasa_combrok_sales.csv. EATTA keeps adding late sales until
+# Friday noon, so Tuesday's figures for the newest sale are provisional and Friday's run saves the final ones.
+# Every Wednesday 06:00 Nairobi time, collect the week's tea news into sources/ for the draft, with EATTA's figures
+# and the Combrok cross-check as text for the reviewer notes. The Wednesday run does not change the auction data files.
 name: Gather sources
 on:
   schedule:
-    - cron: "0 3 * * 3"   # Wednesday 06:00 Nairobi: news, weather, EATTA
-    - cron: "0 10 * * 5"  # Friday 13:00 Nairobi: final EATTA figures only
+    - cron: "0 13 * * 2"  # Tuesday 16:00 Nairobi: auction data only (EATTA and Combrok files)
+    - cron: "0 11 * * 5"  # Friday 14:00 Nairobi: auction data only, final figures
+    - cron: "0 3 * * 3"   # Wednesday 06:00 Nairobi: news, weather, auction text for the draft
   workflow_dispatch:
     inputs:
       csv_only:
-        description: "Only update the EATTA sales CSV (skip news and the sources file)"
+        description: "Only update the auction data (EATTA and Combrok files; skip news and the sources file)"
         type: boolean
         default: false
 permissions:
@@ -23,7 +24,9 @@ jobs:
   gather:
     runs-on: ubuntu-latest
     env:
-      CSV_ONLY: ${{ inputs.csv_only || github.event.schedule == '0 10 * * 5' }}
+      CSV_ONLY: ${{ inputs.csv_only || github.event.schedule == '0 13 * * 2' || github.event.schedule == '0 11 * * 5' }}
+      # The scheduled Wednesday run leaves the auction data files alone (they update on Tuesdays and Fridays only).
+      WEDNESDAY: ${{ github.event.schedule == '0 3 * * 3' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -39,11 +42,11 @@ jobs:
         if: ${{ !cancelled() && env.CSV_ONLY != 'true' && steps.news.outputs.kept != '1' }}
         run: python tools/weather.py >> "sources/$(date +%F).md"
       - name: Save every EATTA sale to _data/mombasa_eatta_sales.csv
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() && env.WEDNESDAY != 'true' }}
         run: |
           python tools/eatta_csv.py || { echo "::error::EATTA CSV update failed; check https://eatta.co.ke/statistics"; exit 1; }
       - name: Save Combrok's per-sale figures (offered, sold, lots, grade averages) for the dashboard
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() && env.WEDNESDAY != 'true' }}
         run: |
           python tools/combrok_csv.py || echo "::warning::Combrok figures not updated; the dashboard keeps last week's offered and absorption figures"
       - uses: actions/setup-node@v4
