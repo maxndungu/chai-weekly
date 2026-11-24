@@ -18,7 +18,7 @@ story_form_action: ""
 canonical_url: "https://chaiweekly.co.ke"
 # Picture shown when a link is shared on WhatsApp, Facebook or X, e.g. "assets/share.jpg" (1200 x 630 px).
 # Leave blank for a text-only preview.
-share_image: ""
+share_image: "assets/share-card.jpg"
 # Visitor tracking (pick one). GoatCounter is free and cookie-free: sign up at goatcounter.com and
 # put your code here (e.g. "chaiweekly" for chaiweekly.goatcounter.com). Visits from the email show
 # up as campaign "newsletter"; shared links show up by referring site.
