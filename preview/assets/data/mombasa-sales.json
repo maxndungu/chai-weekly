@@ -2,4 +2,4 @@
 layout: null
 sitemap: false
 ---
-{{ site.data.mombasa_eatta_sales | jsonify }}
+{"eatta": {{ site.data.mombasa_eatta_sales | jsonify }}, "combrok": {{ site.data.mombasa_combrok_sales | jsonify }}, "highlights": {{ site.data.mombasa_combrok_highlights | jsonify }}}

@@ -220,3 +220,23 @@ class CombrokCheck(unittest.TestCase):
              mock.patch("sys.stdout", new_callable=__import__("io").StringIO) as out:
             self.c.main()
         self.assertIn("Could not read Combrok's figures", out.getvalue())
+
+
+class CombrokCsv(unittest.TestCase):
+    """Combrok's per-sale figures are added, revised in place and never deleted."""
+
+    def test_merge_adds_revises_and_keeps(self):
+        c = load("combrok_csv")
+        existing = {("2019", "5"): {"year": "2019", "sale": "5", "ctc_sold_kg": "1", "first_saved": "2026-01-01"}}
+        feeds = {"ctc": [{"year": 2026, "sale": 46, "offered_lots": 3365, "sold_lots": 3052, "qty_offered": 8109761,
+                          "qty_sold": 7338014, "avg_prc": 2.34}, {"sale": 1}],
+                 "orthodox": [{"year": 2026, "sale": 46, "qty_offered": 110239, "qty_sold": 42249, "avg_prc": 3.45}]}
+        self.assertEqual(c.merge(existing, feeds, "2026-11-24"), (1, 0))
+        row = existing[("2026", "46")]
+        self.assertEqual((row["ctc_offered_kg"], row["ctc_sold_kg"], row["ctc_avg_usd_kg"]), ("8109761", "7338014", "2.34"))
+        self.assertEqual((row["orthodox_offered_kg"], row["orthodox_offered_lots"]), ("110239", ""))
+        feeds["ctc"][0]["qty_sold"] = 7400000
+        self.assertEqual(c.merge(existing, feeds, "2026-11-28"), (0, 1))
+        self.assertEqual(existing[("2026", "46")]["ctc_sold_kg"], "7400000")
+        self.assertEqual(existing[("2026", "46")]["first_saved"], "2026-11-24")
+        self.assertIn(("2019", "5"), existing)

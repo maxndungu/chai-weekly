@@ -1,8 +1,8 @@
-"""Cross-check our EATTA figures against Combrok's Mombasa auction figures, for Maxwell's eyes only.
+"""Cross-check our EATTA figures against Combrok's Mombasa auction figures, for the reviewer notes.
 
 Combrok Limited (a Mombasa tea broker) publishes per-sale figures on https://combrok.co.ke/market-reports,
-marked "All rights reserved". We do NOT publish them or save them in _data/: this script only prints the
-sales where the two sources differ, for the reviewer notes. Our published figures stay EATTA's.
+built from the public auction results. The dashboard uses them (with credit) for what EATTA does not publish;
+for prices and kg sold the issue and site quote EATTA. This script prints the sales where the two differ.
 
 Combrok's "CTC" auction figures track EATTA's all-teas totals (e.g. sale 40/2026: $2.22, 6.52m kg on both),
 so they are compared with the all-teas columns; orthodox is compared with orthodox.
@@ -79,9 +79,9 @@ def compare(eatta_rows, combrok, now=None):
 
 def main():
     today = datetime.now(NAIROBI).date().isoformat()
-    print(f"\n## Cross-check: Combrok figures (internal, do not publish), {today} <{PAGE}>\n")
-    print("Combrok's figures are copyright Combrok Limited. Use them only to spot a sale worth re-checking on "
-          "<https://eatta.co.ke/statistics>; the issue and the site quote EATTA only.\n")
+    print(f"\n## Cross-check: Combrok figures vs EATTA, {today} <{PAGE}>\n")
+    print("For prices and kg sold the issue quotes EATTA; a gap below is a sale worth re-checking on "
+          "<https://eatta.co.ke/statistics>.\n")
     try:
         if len(sys.argv) > 2:
             combrok = {"ctc": json.load(open(sys.argv[1])), "orthodox": json.load(open(sys.argv[2]))}
