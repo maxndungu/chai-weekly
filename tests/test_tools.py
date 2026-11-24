@@ -177,3 +177,46 @@ class Buttondown(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class CombrokCheck(unittest.TestCase):
+    """The cross-check flags real gaps, calls a gap on a provisional sale expected, and never fails the run."""
+    ROWS = [
+        {"year": "2026", "sale": "44", "auction_date": "2026-11-02", "avg_usd_kg": "2.33", "sold_kg": "6656373",
+         "orthodox_avg_usd_kg": "3.58", "orthodox_sold_kg": "50620"},
+        {"year": "2026", "sale": "45", "auction_date": "2026-11-09", "avg_usd_kg": "2.36", "sold_kg": "6843760",
+         "orthodox_avg_usd_kg": "", "orthodox_sold_kg": ""},
+        {"year": "2026", "sale": "46", "auction_date": "2026-11-16", "avg_usd_kg": "2.34", "sold_kg": "7579307",
+         "orthodox_avg_usd_kg": "3.43", "orthodox_sold_kg": "51829"},
+    ]
+    CTC = [{"year": 2026, "sale": 44, "qty_sold": 6618629, "avg_prc": 2.32},
+           {"year": 2026, "sale": 45, "qty_sold": 6658368, "avg_prc": 2.36},
+           {"year": 2026, "sale": 46, "qty_sold": 7338014, "avg_prc": 2.34},
+           {"year": 2025, "sale": 46, "qty_sold": 1, "avg_prc": 9.99}]
+    ORTH = [{"year": 2026, "sale": 44, "qty_sold": 50620, "avg_prc": 3.58}]
+
+    def setUp(self):
+        self.c = load("combrok_check")
+
+    def test_flags_gaps_and_marks_provisional(self):
+        wed = dt.datetime(2026, 11, 18, 7, 0, tzinfo=self.c.NAIROBI)
+        lines, flagged = self.c.compare(self.ROWS, {"ctc": self.CTC, "orthodox": self.ORTH}, now=wed)
+        text = "\n".join(lines)
+        self.assertEqual(flagged, 2)  # sale 45 and 46 kg; sale 44 is within a cent and 2%
+        self.assertNotIn("Sale 44 (all teas)", text)
+        self.assertIn("Sale 45 (all teas): sold EATTA 6,843,760 kg vs Combrok 6,658,368 kg", text)
+        self.assertIn("**check**", [l for l in lines if l.startswith("- Sale 45")][0])
+        self.assertIn("provisional", [l for l in lines if l.startswith("- Sale 46 (all")][0])
+        self.assertIn("Sale 46 (orthodox): not in Combrok's figures yet.", text)
+        self.assertNotIn("9.99", text)  # other years are ignored
+
+    def test_final_after_friday_noon(self):
+        self.assertFalse(self.c.final("2026-11-16", dt.datetime(2026, 11, 20, 11, 59, tzinfo=self.c.NAIROBI)))
+        self.assertTrue(self.c.final("2026-11-16", dt.datetime(2026, 11, 20, 12, 0, tzinfo=self.c.NAIROBI)))
+        self.assertTrue(self.c.final("2026-11-17", dt.datetime(2026, 11, 20, 12, 0, tzinfo=self.c.NAIROBI)))  # Tuesday sale
+
+    def test_fetch_failure_does_not_fail(self):
+        with mock.patch.object(self.c, "fetch", side_effect=OSError("blocked")), \
+             mock.patch("sys.stdout", new_callable=__import__("io").StringIO) as out:
+            self.c.main()
+        self.assertIn("Could not read Combrok's figures", out.getvalue())

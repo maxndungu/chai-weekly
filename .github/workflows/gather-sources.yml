@@ -1,5 +1,6 @@
 # Every Wednesday 06:00 Nairobi time (after the Monday/Tuesday Mombasa sale), collect the week's tea news into sources/
-# and add the latest EATTA sales to _data/mombasa_eatta_sales.csv.
+# and add the latest EATTA sales to _data/mombasa_eatta_sales.csv. It also notes any sale where Combrok's
+# figures differ from EATTA's (in the sources file only, for the reviewer notes).
 # Every Friday 13:00 Nairobi time, refresh only the EATTA sales file: late sales are added until Friday noon, so
 # Wednesday's figures for the latest sale are provisional and Friday's are final.
 name: Gather sources
@@ -49,6 +50,9 @@ jobs:
           mkdir -p sources
           ( npm install --no-save playwright@1.48.2 && npx playwright install --with-deps chromium ) || echo "::warning::Could not install the browser for EATTA"
           node tools/eatta.mjs >> "sources/$(date +%F).md" || echo "- **Mombasa (EATTA)**: could not render, check by hand <https://eatta.co.ke/statistics>" >> "sources/$(date +%F).md"
+      - name: Cross-check against Combrok's figures (internal, never published)
+        if: ${{ !cancelled() && env.CSV_ONLY != 'true' && steps.news.outputs.kept != '1' }}
+        run: python tools/combrok_check.py >> "sources/$(date +%F).md"
       - name: Save what was collected
         if: ${{ !cancelled() }}
         run: |
