@@ -17,9 +17,28 @@
     <a href="{{ '/submit/' | relative_url }}">Send a story</a>
     <a href="{{ '/about/' | relative_url }}">About</a>
   </nav>
-  {% if latest.snapshot %}
+  {%- comment -%}
+    Mombasa figures come from _data/mombasa_eatta_sales.csv, so the ticker moves with the Auctions page (the auction
+    data updates Tuesday 16:00 and Friday 14:00 Nairobi). The other markets come from the latest issue's snapshot.
+    The issue's "Top lot" is shown only while it belongs to the newest Mombasa sale.
+  {%- endcomment -%}
+  {% assign msales = site.data.mombasa_eatta_sales %}
+  {% if latest.snapshot or msales %}
   <div class="ticker" aria-label="Market snapshot">
-    {% for s in latest.snapshot %}<span><b>{{ s.label }}</b> {{ s.value }}{% if s.note %} <em>{{ s.note }}</em>{% endif %}</span>{% endfor %}
+    {%- if msales and msales.size > 0 -%}
+      {%- assign ms = msales | last -%}{%- assign pi = msales.size | minus: 2 -%}{%- assign mp = msales[pi] -%}
+      {%- assign fri = ms.auction_date | date: "%u" | plus: 0 -%}{%- assign fri = 5 | minus: fri -%}{%- if fri < 0 %}{% assign fri = fri | plus: 7 %}{% endif -%}
+      {%- assign final_at = ms.auction_date | date: "%s" | plus: 0 | plus: 32400 -%}{%- assign fri_s = fri | times: 86400 -%}{%- assign final_at = final_at | plus: fri_s -%}
+      {%- assign now_s = site.time | date: "%s" | plus: 0 -%}
+      {%- assign a = ms.avg_usd_kg | times: 100 | round -%}{%- assign b = mp.avg_usd_kg | times: 100 | round -%}{%- assign dc = a | minus: b -%}
+      {%- assign kg = ms.sold_kg | divided_by: 10000.0 | round | divided_by: 100.0 -%}
+      {%- assign dk = ms.sold_kg | minus: mp.sold_kg | times: 100.0 | divided_by: mp.sold_kg | round -%}
+      <span><b>Mombasa (Sale {{ ms.sale }})</b> ${{ ms.avg_usd_kg }}/kg <em>{% if dc > 0 %}▲ {{ dc }}¢{% elsif dc < 0 %}▼ {{ dc | abs }}¢{% else %}▬ 0¢{% endif %}</em>{% if now_s < final_at %} <i class="ticker-prov">provisional</i>{% endif %}</span>
+      <span><b>Tea sold</b> {{ kg }}M kg{% if mp %} <em>{% if dk >= 0 %}▲{% else %}▼{% endif %} {{ dk | abs }}%</em>{% endif %}</span>
+    {%- endif -%}
+    {%- assign keep_top = false -%}
+    {%- for s in latest.snapshot -%}{%- if s.label contains "Mombasa" and ms and s.label contains ms.sale -%}{%- assign keep_top = true -%}{%- endif -%}{%- endfor -%}
+    {% for s in latest.snapshot %}{% if ms and s.label contains "Mombasa" %}{% continue %}{% endif %}{% if ms and s.label == "Tea sold" %}{% continue %}{% endif %}{% if s.label == "Top lot" and ms and keep_top == false %}{% continue %}{% endif %}<span><b>{{ s.label }}</b> {{ s.value }}{% if s.note %} <em>{{ s.note }}</em>{% endif %}</span>{% endfor %}
   </div>
   {% endif %}
 </header>
