@@ -8,14 +8,14 @@ permalink: /issues/:year/:month/:day/:title/
 markdown: kramdown
 plugins: [jekyll-sitemap]
 exclude: [tools, tests, README.md, sources, submissions, drafts, vendor, Gemfile, Gemfile.lock, .bundle, node_modules]
-baseurl: "/chai-weekly"
-url: "https://maxndungu.github.io"
+baseurl: ""
+url: "https://chaiweekly.co.ke"
 # "Send us a story" form. Free, no account: put "https://formsubmit.co/YOUR-EMAIL" here, send yourself
 # one test story and click the activation link FormSubmit emails you. It then gives you a random
 # address (formsubmit.co/abc123...) to use instead, so your email isn't visible in the page.
 story_form_action: ""
-# Your paid-host domain, e.g. "https://chaiweekly.co.ke". Marks it as the main copy for search engines.
-canonical_url: ""
+# The paper's own address. Marks it as the main copy for search engines (and for a paid-host mirror, if used).
+canonical_url: "https://chaiweekly.co.ke"
 # Picture shown when a link is shared on WhatsApp, Facebook or X, e.g. "assets/share.jpg" (1200 x 630 px).
 # Leave blank for a text-only preview.
 share_image: ""
