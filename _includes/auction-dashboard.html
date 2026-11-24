@@ -2,7 +2,7 @@
   Mombasa auction dashboard (live Auctions page; the magazine preview has its own copy in tools/preview-patches/).
   {% include auction-dashboard.html long=false %} leaves out the monthly 1992-on chart where the page already has one. Figures come only from _data/mombasa_eatta_sales.csv
   (EATTA, 2026 on) and _data/mombasa_combrok_sales.csv (Combrok, 2020 on: kg and lots offered and sold), both saved
-  by the Tuesday 16:00 collector, served as assets/data/mombasa-sales.json and drawn by assets/dashboard.js.
+  by the Tuesday 16:00 and Friday 14:00 collector, served as assets/data/mombasa-sales.json and drawn by assets/dashboard.js.
 {%- endcomment -%}
 <section class="dash" id="dashboard" aria-labelledby="dash-h" data-src="{{ '/assets/data/mombasa-sales.json' | relative_url }}">
   <div class="wrap">
@@ -96,7 +96,7 @@
     <div class="dash-notes">
       <p class="fine" id="dash-provisional" hidden><span class="dash-badge">Provisional</span> EATTA adds late sales until Friday noon, Nairobi time, so the newest sale's figures can still change until then.</p>
       <p class="fine">The average for a run of sales is weighted by the kilograms sold at each sale. <strong>Share sold</strong> (absorption) is the kilograms sold as a share of the kilograms offered, both from the same source, and the offered and sold bars use the same figures. EATTA's own count of kilograms sold, used for the headline figure and the table, can differ by a few per cent from the figures behind the share sold. Orthodox tea is sold every other week, so the Orthodox view lists only the weeks it was sold. Separate orthodox figures start at sale 38 of 2025.</p>
-      <p class="fine"><strong>Sources:</strong> prices and kilograms sold from 2026 are from the <a href="https://eatta.co.ke/statistics">East African Tea Trade Association's auction statistics</a>, updated every Tuesday at 4pm, Nairobi time.{% unless include.long == false %} The monthly price since 1992 runs a few cents above the auction's own sale averages because it is measured differently. Monthly prices since 1992: World Bank Commodity Price Data, CC BY 4.0.{% endunless %}</p>
+      <p class="fine"><strong>Sources:</strong> prices and kilograms sold from 2026 are from the <a href="https://eatta.co.ke/statistics">East African Tea Trade Association's auction statistics</a>, updated every Tuesday at 4pm and Friday at 2pm (final figures), Nairobi time.{% unless include.long == false %} The monthly price since 1992 runs a few cents above the auction's own sale averages because it is measured differently. Monthly prices since 1992: World Bank Commodity Price Data, CC BY 4.0.{% endunless %}</p>
     </div>
     <noscript><p class="fine">The dashboard needs JavaScript. The Mombasa section below lists the latest sales.</p></noscript>
   </div>

@@ -1,13 +1,14 @@
-# Auction data (the Auctions page and dashboard) updates once a week only, every Tuesday 16:00 Nairobi time
-# (Maxwell's choice, 2026-11-24): the EATTA sales go to _data/mombasa_eatta_sales.csv and Combrok's per-sale figures
+# Auction data (the Auctions page and dashboard) updates twice a week only, Tuesday 16:00 and Friday 14:00
+# Nairobi time (Maxwell's choice, 2026-11-24): the EATTA sales go to _data/mombasa_eatta_sales.csv and Combrok's per-sale figures
 # (kg and lots offered, for the share sold) to _data/mombasa_combrok_sales.csv. EATTA keeps adding late sales until
-# Friday noon, so Tuesday's figures for the newest sale are provisional; the next Tuesday's run brings them up to date.
+# Friday noon, so Tuesday's figures for the newest sale are provisional and Friday's run saves the final ones.
 # Every Wednesday 06:00 Nairobi time, collect the week's tea news into sources/ for the draft, with EATTA's figures
 # and the Combrok cross-check as text for the reviewer notes. The Wednesday run does not change the auction data files.
 name: Gather sources
 on:
   schedule:
     - cron: "0 13 * * 2"  # Tuesday 16:00 Nairobi: auction data only (EATTA and Combrok files)
+    - cron: "0 11 * * 5"  # Friday 14:00 Nairobi: auction data only, final figures
     - cron: "0 3 * * 3"   # Wednesday 06:00 Nairobi: news, weather, auction text for the draft
   workflow_dispatch:
     inputs:
@@ -23,8 +24,8 @@ jobs:
   gather:
     runs-on: ubuntu-latest
     env:
-      CSV_ONLY: ${{ inputs.csv_only || github.event.schedule == '0 13 * * 2' }}
-      # The scheduled Wednesday run leaves the auction data files alone (they update on Tuesdays only).
+      CSV_ONLY: ${{ inputs.csv_only || github.event.schedule == '0 13 * * 2' || github.event.schedule == '0 11 * * 5' }}
+      # The scheduled Wednesday run leaves the auction data files alone (they update on Tuesdays and Fridays only).
       WEDNESDAY: ${{ github.event.schedule == '0 3 * * 3' }}
     steps:
       - uses: actions/checkout@v4
