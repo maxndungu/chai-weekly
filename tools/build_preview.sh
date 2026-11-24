@@ -19,6 +19,8 @@ for p in "$ROOT"/tools/preview-patches/*.patch; do
   [ -e "$p" ] || continue
   git -C "$TMP/src" apply --whitespace=nowarn "$p" || { echo "could not apply $(basename "$p")" >&2; exit 1; }
 done
+# Build with the live data files, so pages that embed data at build time (the Auctions page) show current figures.
+cp "$ROOT"/_data/*.csv "$ROOT"/_data/*.json "$TMP/src/_data/" 2>/dev/null || true
 LIVE_DATA="assets/data/mombasa-sales.json"
 [ -f "$ROOT/Gemfile.lock" ] && cp "$ROOT/Gemfile.lock" "$TMP/src/"
 (cd "$TMP/src" && LANG=C.UTF-8 LC_ALL=C.UTF-8 bundle exec jekyll build -q --baseurl "$BASE/preview" -d "$TMP/out")
