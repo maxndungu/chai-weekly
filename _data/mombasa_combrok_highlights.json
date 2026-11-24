@@ -1,0 +1,121 @@
+[
+ {
+  "year": 2025,
+  "sale": 41,
+  "top_prices": [
+   {
+    "price_usc": 405,
+    "grade": "BP1",
+    "mark": "Gatare",
+    "country": "Rwanda"
+   },
+   {
+    "price_usc": 380,
+    "grade": "PF1",
+    "mark": "Mununga",
+    "country": "Kenya"
+   },
+   {
+    "price_usc": 364,
+    "grade": "PD",
+    "mark": "Gacharage",
+    "country": "Kenya"
+   },
+   {
+    "price_usc": 366,
+    "grade": "DUST1",
+    "mark": "Gathuthi",
+    "country": "Kenya"
+   }
+  ],
+  "grade_avgs": {
+   "EOR": {
+    "BP1": 277,
+    "PF1": 324,
+    "PD": 327,
+    "DUST1": 329,
+    "DUST": 171,
+    "FNGS": 166
+   },
+   "WOR": {
+    "BP1": 184,
+    "PF1": 230,
+    "PD": 188,
+    "DUST1": 198,
+    "DUST": 140,
+    "FNGS": 145
+   },
+   "KTDA": {
+    "BP1": 228,
+    "PF1": 282,
+    "PD": 251,
+    "DUST1": 280,
+    "DUST": 152,
+    "FNGS": 151
+   },
+   "PLANTATIONS": {
+    "BP1": 174.6,
+    "PF1": 182.1,
+    "PD": 170.3,
+    "DUST1": 153,
+    "BP": 181,
+    "PF": 137.2,
+    "DUST": 117.7,
+    "FNGS": 129.9,
+    "BMF": 113.5
+   },
+   "KENYA": {
+    "BP1": 209,
+    "PF1": 247,
+    "PD": 205,
+    "DUST1": 250,
+    "BP": 181,
+    "PF": 137,
+    "DUST": 133,
+    "FNGS": 141,
+    "BMF": 114
+   },
+   "UGANDA": {
+    "BP1": 122,
+    "PF1": 108,
+    "PD": 107,
+    "DUST1": 103,
+    "BP": 105,
+    "PF": 102,
+    "DUST": 91,
+    "FNGS": 87,
+    "BMF": 86
+   },
+   "RWANDA": {
+    "BP1": 336,
+    "PF1": 330,
+    "PD": 328,
+    "DUST1": 306,
+    "BP": 268,
+    "PF": 216,
+    "DUST": 179,
+    "FNGS": 211
+   },
+   "BURUNDI": {
+    "PF1": 216,
+    "DUST": 123,
+    "FNGS": 139
+   }
+  },
+  "packages_sold": {
+   "TOTAL": 86158,
+   "BP1": 10720,
+   "PF1": 30720,
+   "PD": 25701,
+   "DUST1": 6560,
+   "BP": 1157,
+   "PF": 1940,
+   "DUST": 2620,
+   "FNGS": 3800,
+   "BMF": 2940
+  },
+  "kilos_sold": 5785906.8,
+  "kilos_last_year": 5698296,
+  "uploaded_at": "2026-11-05T07:57:45+00:00"
+ }
+]
