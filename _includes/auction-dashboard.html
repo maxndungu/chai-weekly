@@ -1,0 +1,104 @@
+{%- comment -%}
+  Mombasa auction dashboard (live Auctions page; the magazine preview has its own copy in tools/preview-patches/).
+  {% include auction-dashboard.html long=false %} leaves out the monthly 1992-on chart where the page already has one. Figures come only from _data/mombasa_eatta_sales.csv
+  (EATTA, 2026 on) and _data/mombasa_combrok_sales.csv (Combrok, 2020 on: kg and lots offered and sold), both saved
+  by the Wednesday collector, served as assets/data/mombasa-sales.json and drawn by assets/dashboard.js.
+{%- endcomment -%}
+<section class="dash" id="dashboard" aria-labelledby="dash-h" data-src="{{ '/assets/data/mombasa-sales.json' | relative_url }}">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="section-title" id="dash-h">Mombasa auction dashboard</h2>
+      <p class="section-note">Prices, volumes and the share of tea sold at every sale since 2009. Pick a year and a run of sales.</p>
+    </div>
+
+    <form class="dash-controls" aria-label="Choose the sales to show" onsubmit="return false">
+      <label class="dash-field"><span>Year</span><select id="dash-year"></select></label>
+      <label class="dash-field"><span>From sale</span><select id="dash-from"></select></label>
+      <label class="dash-field"><span>To sale</span><select id="dash-to"></select></label>
+      <div class="dash-field"><span id="dash-tea-l">Tea</span>
+        <div class="chips" role="group" aria-labelledby="dash-tea-l">
+          <button type="button" class="chip" data-tea="all" aria-pressed="true">All teas</button>
+          <button type="button" class="chip" data-tea="ctc" aria-pressed="false">CTC</button>
+          <button type="button" class="chip" data-tea="orthodox" aria-pressed="false">Orthodox</button>
+        </div>
+      </div>
+      <div class="dash-field"><span id="dash-quick-l">Quick pick</span>
+        <div class="chips" role="group" aria-labelledby="dash-quick-l">
+          <button type="button" class="chip" data-last="4">Last 4</button>
+          <button type="button" class="chip" data-last="13">Last 13</button>
+          <button type="button" class="chip" data-last="all">Whole year</button>
+        </div>
+      </div>
+      <label class="dash-check"><input type="checkbox" id="dash-cmp" checked> <span id="dash-cmp-l">Compare with last year</span></label>
+    </form>
+
+    <div class="stat-row dash-stats" id="dash-stats" aria-live="polite"></div>
+
+    <div class="dash-charts">
+      <figure class="dash-panel">
+        <figcaption><span class="dash-panel-h">Average price at each sale</span><span class="dash-panel-u">US$ per kg</span></figcaption>
+        <div class="dash-legend" id="dash-legend" hidden></div>
+        <div class="chart dash-chart" id="dash-price" role="img" aria-label="Line chart of the average price at each sale in the range you picked"></div>
+      </figure>
+      <figure class="dash-panel">
+        <figcaption><span class="dash-panel-h">Share of tea sold</span><span class="dash-panel-u">% of kg offered</span></figcaption>
+        <div class="dash-legend" id="dash-abs-legend" hidden></div>
+        <div class="chart dash-chart" id="dash-abs" role="img" aria-label="Line chart of the share of tea offered that was sold at each sale"></div>
+      </figure>
+      <figure class="dash-panel dash-wide">
+        <figcaption><span class="dash-panel-h">Offered and sold at each sale</span><span class="dash-panel-u" id="dash-kg-u">million kg</span></figcaption>
+        <div class="dash-legend" id="dash-kg-legend" hidden></div>
+        <div class="chart dash-chart" id="dash-kg" role="img" aria-label="Bar chart of the kilograms offered and sold at each sale in the range you picked"></div>
+      </figure>
+    </div>
+
+    <div class="table-wrap dash-table" tabindex="0" role="region" aria-label="Sales in the range you picked">
+      <table class="data-table" id="dash-table">
+        <caption id="dash-caption">Sales</caption>
+        <thead></thead><tbody></tbody>
+      </table>
+    </div>
+
+    <div class="dash-lower">
+      <div class="table-wrap" tabindex="0" role="region" aria-label="The same sales in each year">
+        <table class="data-table dash-years" id="dash-years">
+          <caption id="dash-years-caption">The same sales in each year</caption>
+          <thead><tr><th scope="col">Year</th><th scope="col">Average US$/kg</th><th scope="col">Change</th><th scope="col">Offered (m kg)</th><th scope="col">Sold (m kg)</th><th scope="col">Share sold</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <section class="dash-hl" id="dash-hl" hidden aria-labelledby="dash-hl-h">
+        <h3 class="dash-hl-h" id="dash-hl-h">Best prices and grade averages</h3>
+        <p class="dash-panel-u">Top prices</p>
+        <ol class="dash-hl-top" id="dash-hl-top"></ol>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Grade averages"><table class="data-table dash-grades" id="dash-hl-grades"></table></div>
+      </section>
+    </div>
+
+    {%- unless include.long == false %}
+    <section class="dash-long" id="dash-long" hidden aria-labelledby="dash-long-h">
+      <div class="dash-long-head">
+        <div>
+          <h3 class="dash-panel-h" id="dash-long-h">The long view: the Mombasa price every month since 1992</h3>
+          <p class="fine">World Bank monthly average for Mombasa tea, US$ per kg, not adjusted for inflation.</p>
+        </div>
+        <div class="chips" role="group" aria-label="Years to show">
+          <button type="button" class="chip" data-span="all" aria-pressed="true">Since 1992</button>
+          <button type="button" class="chip" data-span="10" aria-pressed="false">Last 10 years</button>
+          <button type="button" class="chip" data-span="5" aria-pressed="false">Last 5 years</button>
+        </div>
+      </div>
+      <p class="dash-long-stats" id="dash-long-stats"></p>
+      <div class="chart dash-chart" id="dash-long-chart" role="img" aria-label="Line chart of the World Bank monthly Mombasa tea price since 1992"></div>
+    </section>
+    {%- endunless %}
+
+    <div class="dash-notes">
+      <p class="fine" id="dash-provisional" hidden><span class="dash-badge">Provisional</span> EATTA adds late sales until Friday noon, Nairobi time, so the newest sale's figures can still change until then.</p>
+      <p class="fine">The average for a run of sales is weighted by the kilograms sold at each sale. <strong>Share sold</strong> (absorption) is the kilograms sold as a share of the kilograms offered, both from the same source, and the offered and sold bars use the same figures. EATTA's own count of kilograms sold, used for the headline figure and the table, can differ by a few per cent from the figures behind the share sold. Orthodox tea is not sold at every sale; its lines join the sales where an orthodox average was published.</p>
+      <p class="fine"><strong>Sources:</strong> prices and kilograms sold from 2026 are from the <a href="https://eatta.co.ke/statistics">East African Tea Trade Association's auction statistics</a>, saved every Wednesday and checked again after Friday noon.{% unless include.long == false %} The monthly series since 1992 is the World Bank's Commodity Price Data ("Pink Sheet"), "Tea, Mombasa", licensed CC BY 4.0; it runs a few cents above the auction's own sale averages because it is measured differently.{% endunless %}</p>
+    </div>
+    <noscript><p class="fine">The dashboard needs JavaScript. The Mombasa section below lists the latest sales.</p></noscript>
+  </div>
+  <div class="dash-tip" id="dash-tip" role="status" hidden></div>
+</section>
