@@ -1,6 +1,6 @@
 diff --git a/_includes/auction-dashboard.html b/_includes/auction-dashboard.html
 new file mode 100644
-index 0000000..a44e2b5
+index 0000000..ff7765b
 --- /dev/null
 +++ b/_includes/auction-dashboard.html
 @@ -0,0 +1,101 @@
@@ -84,7 +84,7 @@ index 0000000..a44e2b5
 +      <div class="dash-long-head">
 +        <div>
 +          <h3 class="dash-panel-h" id="dash-long-h">The long view: the Mombasa price every month since 1992</h3>
-+          <p class="fine">Monthly Mombasa auction price, US$ per kg, not adjusted for inflation.</p>
++          <p class="fine">World Bank monthly average for Mombasa tea, US$ per kg, not adjusted for inflation.</p>
 +        </div>
 +        <div class="chips" role="group" aria-label="Years to show">
 +          <button type="button" class="chip" data-span="all" aria-pressed="true">Since 1992</button>
@@ -93,7 +93,7 @@ index 0000000..a44e2b5
 +        </div>
 +      </div>
 +      <p class="dash-long-stats" id="dash-long-stats"></p>
-+      <div class="chart dash-chart" id="dash-long-chart" role="img" aria-label="Line chart of the monthly Mombasa auction price since 1992"></div>
++      <div class="chart dash-chart" id="dash-long-chart" role="img" aria-label="Line chart of the World Bank monthly Mombasa tea price since 1992"></div>
 +    </section>
 +
 +    <div class="dash-notes">
@@ -107,7 +107,7 @@ index 0000000..a44e2b5
 +</section>
 diff --git a/assets/dashboard.js b/assets/dashboard.js
 new file mode 100644
-index 0000000..c043453
+index 0000000..bcfba22
 --- /dev/null
 +++ b/assets/dashboard.js
 @@ -0,0 +1,529 @@
@@ -545,7 +545,7 @@ index 0000000..c043453
 +  }
 +
 +
-+  /* ---------- the long view: monthly Mombasa price since 1992 (World Bank series) ---------- */
++  /* ---------- the long view: World Bank monthly Mombasa price since 1992 ---------- */
 +  var wb = [], longSpan = "all";
 +  function longChart() {
 +    var box = $("dash-long");
@@ -593,7 +593,7 @@ index 0000000..c043453
 +      cross.setAttribute("x1", X(i)); cross.setAttribute("x2", X(i)); cross.setAttribute("visibility", "visible");
 +      ring.setAttribute("cx", X(i)); ring.setAttribute("cy", Y(d.v)); ring.setAttribute("visibility", "visible");
 +      var yAgo = wb.filter(function (o) { return o.m === (+d.m.slice(0, 4) - 1) + d.m.slice(4); })[0];
-+      showTip(evt, '<div class="dash-tip-h">' + mname(d.m) + "</div>" + tipRow("k-cur", "Mombasa, monthly", usd(d.v) + "/kg") +
++      showTip(evt, '<div class="dash-tip-h">' + mname(d.m) + "</div>" + tipRow("k-cur", "World Bank, Mombasa", usd(d.v) + "/kg") +
 +        (yAgo ? '<div class="dash-tip-note">' + signed(d.v - yAgo.v, usd) + " on " + mname(yAgo.m) + "</div>" : ""));
 +    };
 +    hit.addEventListener("pointermove", move);
@@ -737,7 +737,7 @@ index c8ab93a..58914d4 100644
 +@media (max-width: 899px) { .dash-charts, .dash-lower { grid-template-columns: 1fr; } }
 +@media (max-width: 559px) { .dash-controls { padding: 14px 16px; gap: 12px; } .dash-field { flex: 1 1 40%; } .dash-field select { min-width: 0; width: 100%; } .dash-field:nth-child(n+4) { flex-basis: 100%; } }
 diff --git a/auctions.html b/auctions.html
-index aa62fd8..551cc0b 100644
+index aa62fd8..beeaeb8 100644
 --- a/auctions.html
 +++ b/auctions.html
 @@ -1,16 +1,15 @@
@@ -760,15 +760,6 @@ index aa62fd8..551cc0b 100644
  
    <section>
      <h2 class="label rule">This year, sale by sale</h2>
-@@ -21,7 +20,7 @@ permalink: /auctions/
- 
-   <section>
-     <h2 class="label rule">The long view, 1992 to today</h2>
--    <p class="chart-note">World Bank monthly Mombasa tea price, US$ per kg (not adjusted for inflation).</p>
-+    <p class="chart-note">Monthly Mombasa auction price since 1992, US$ per kg (not adjusted for inflation).</p>
-     <figure class="chart" id="chart-long" role="img" aria-label="Monthly Mombasa tea price since 1992"></figure>
-   </section>
- 
 @@ -42,18 +41,19 @@ permalink: /auctions/
  
    <section class="sources">
@@ -794,24 +785,6 @@ index aa62fd8..551cc0b 100644
    var MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
    var NS = "http://www.w3.org/2000/svg";
    var $ = function (id) { return document.getElementById(id); };
-@@ -89,7 +89,7 @@ permalink: /auctions/
-     ["Latest sale", f2(last.avg), "Sale " + last.sale + ", " + dlabel(last.date) + (prev ? " · <span class='" + cls(last.avg - prev.avg) + "'>" + cents(last.avg - prev.avg) + "</span> on the week" : "")],
-     ["Sold at that sale", kg(last.kg), prev ? "<span class='" + cls(last.kg - prev.kg) + "'>" + (last.kg >= prev.kg ? "▲ " : "▼ ") + Math.abs(Math.round(100 * (last.kg - prev.kg) / prev.kg)) + "%</span> on the week" : ""],
-     [yr + " so far", f2(ytd), ys.length + " sales · " + (tkg / 1e6).toFixed(0) + "M kg · low " + f2(lo.avg) + ", high " + f2(hi.avg)],
--    ["World Bank, " + mlabel(wl.m), f2(wl.v), (lastYear ? "<span class='" + cls(wl.v - lastYear) + "'>" + cents(wl.v - lastYear) + "</span> on a year ago · " : "") + "higher than " + pct + "% of months since " + wb[0].m.slice(0, 4)]
-+    ["Monthly price, " + mlabel(wl.m), f2(wl.v), (lastYear ? "<span class='" + cls(wl.v - lastYear) + "'>" + cents(wl.v - lastYear) + "</span> on a year ago · " : "") + "higher than " + pct + "% of months since " + wb[0].m.slice(0, 4)]
-   ];
-   $("stats").innerHTML = stats.map(function (s) { return "<div class='stat'><span class='stat-label'>" + s[0] + "</span><strong>" + s[1] + "</strong><span class='stat-note'>" + s[2] + "</span></div>"; }).join("");
- 
-@@ -156,7 +156,7 @@ permalink: /auctions/
- 
-   var months = {};
-   ys.forEach(function (s) { var k = s.date.slice(0, 7); (months[k] = months[k] || []).push(s); });
--  table("t-month", ["Month", "Sales", "EATTA average", "Sold", "World Bank", "Gap"], Object.keys(months).sort().reverse().map(function (k) {
-+  table("t-month", ["Month", "Sales", "EATTA average", "Sold", "Monthly price", "Gap"], Object.keys(months).sort().reverse().map(function (k) {
-     var ss = months[k], w = ss.reduce(function (a, s) { return a + s.kg; }, 0), a = ss.reduce(function (a, s) { return a + s.avg * s.kg; }, 0) / w;
-     return [mlabel(k), ss.length, f2(a), kg(w), wbBy[k] ? f2(wbBy[k]) : "Not yet out", wbBy[k] ? "+" + Math.round((wbBy[k] - a) * 100) + "¢" : ""];
-   }));
 @@ -168,10 +168,26 @@ permalink: /auctions/
  
    var years = {};
