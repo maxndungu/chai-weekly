@@ -432,7 +432,7 @@
   }
 
 
-  /* ---------- the long view: World Bank monthly Mombasa price since 1992 ---------- */
+  /* ---------- the long view: monthly Mombasa price since 1992 (World Bank series) ---------- */
   var wb = [], longSpan = "all";
   function longChart() {
     var box = $("dash-long");
@@ -480,7 +480,7 @@
       cross.setAttribute("x1", X(i)); cross.setAttribute("x2", X(i)); cross.setAttribute("visibility", "visible");
       ring.setAttribute("cx", X(i)); ring.setAttribute("cy", Y(d.v)); ring.setAttribute("visibility", "visible");
       var yAgo = wb.filter(function (o) { return o.m === (+d.m.slice(0, 4) - 1) + d.m.slice(4); })[0];
-      showTip(evt, '<div class="dash-tip-h">' + mname(d.m) + "</div>" + tipRow("k-cur", "World Bank, Mombasa", usd(d.v) + "/kg") +
+      showTip(evt, '<div class="dash-tip-h">' + mname(d.m) + "</div>" + tipRow("k-cur", "Mombasa, monthly", usd(d.v) + "/kg") +
         (yAgo ? '<div class="dash-tip-note">' + signed(d.v - yAgo.v, usd) + " on " + mname(yAgo.m) + "</div>" : ""));
     };
     hit.addEventListener("pointermove", move);

@@ -1,13 +1,13 @@
 ---
 layout: default
 title: Auction analysis
-description: Every Mombasa tea auction sale this year from EATTA, set against the World Bank's monthly Mombasa tea price back to 1992.
+description: Every Mombasa tea auction sale this year from EATTA, set against the monthly Mombasa auction price back to 1992.
 permalink: /auctions/
 ---
 <article class="analysis">
   <p class="kicker">Markets · Auction analysis</p>
   <h1 class="headline">The Mombasa tea auction, sale by sale</h1>
-  <p class="deck">Every sale this year from the East African Tea Trade Association, set against the World Bank's monthly Mombasa price going back to 1992. Updated every Wednesday after the sale.</p>
+  <p class="deck">Every sale this year from the East African Tea Trade Association, set against the monthly Mombasa auction price going back to 1992. Updated every Wednesday after the sale.</p>
   <div class="stat-row" id="stats" aria-live="polite"></div>
   {% include ad.html slot="auctions" %}
   {% include auction-dashboard.html long=false %}
@@ -15,14 +15,14 @@ permalink: /auctions/
 
   <section>
     <h2 class="label rule">This year, sale by sale</h2>
-    <p class="chart-note">Average price at each Mombasa sale (US$ per kg, all teas), with the World Bank's monthly figure for comparison.</p>
+    <p class="chart-note">Average price at each Mombasa sale (US$ per kg, all teas), with the monthly average for comparison.</p>
     <figure class="chart" id="chart-weekly" role="img" aria-label="Weekly Mombasa auction average price this year"></figure>
     <p class="chart-note" id="gap-note"></p>
   </section>
 
   <section>
     <h2 class="label rule">The long view, 1992 to today</h2>
-    <p class="chart-note">World Bank monthly Mombasa tea price, US$ per kg (not adjusted for inflation).</p>
+    <p class="chart-note">Monthly Mombasa auction price since 1992, US$ per kg (not adjusted for inflation).</p>
     <figure class="chart" id="chart-long" role="img" aria-label="Monthly Mombasa tea price since 1992"></figure>
   </section>
 
@@ -43,12 +43,11 @@ permalink: /auctions/
 
   <section class="sources">
     <h2 class="label rule">Data and sources</h2>
-    <p><strong>Download:</strong> <a href="{{ '/downloads/worldbank-tea-mombasa-monthly.csv' | relative_url }}">World Bank monthly series (CSV)</a></p>
     <p><strong>Weekly sales:</strong> <a href="https://eatta.co.ke/statistics">East African Tea Trade Association auction statistics</a>, all teas sold at each sale, with CTC and orthodox shown separately where EATTA reports them. EATTA's site only shows the current year, so Chai Weekly keeps each sale as it is published and updates it if EATTA revises a figure.</p>
-    <p><strong>Monthly series:</strong> World Bank Commodity Price Data (the "Pink Sheet"), "Tea, Mombasa": an average of weekly quotes for all teas of African origin, licensed CC BY 4.0. It runs a few cents above EATTA's own sale averages because the two are measured differently, so the page shows them side by side rather than mixing them.</p>
-    <p class="fine muted">Figures are as published by each source. Check the originals before trading on them. Spot an error? Just reply to any issue.</p>
+    <p><strong>Monthly series since 1992:</strong> the Mombasa auction price for each month. It runs a few cents above EATTA's own sale averages because the two are measured differently, so the page shows them side by side rather than mixing them.</p>
+    <p class="fine muted">Monthly prices since 1992: World Bank Commodity Price Data, CC BY 4.0. Figures are as published by each source. Check the originals before trading on them. Spot an error? Just reply to any issue.</p>
   </section>
-  <noscript><p>The charts and tables on this page need JavaScript. The World Bank download above has the monthly figures.</p></noscript>
+  <noscript><p>The charts and tables on this page need JavaScript.</p></noscript>
 </article>
 
 <script>
@@ -90,7 +89,7 @@ permalink: /auctions/
     ["Latest sale", f2(last.avg), "Sale " + last.sale + ", " + dlabel(last.date) + (prev ? " · <span class='" + cls(last.avg - prev.avg) + "'>" + cents(last.avg - prev.avg) + "</span> on the week" : "")],
     ["Sold at that sale", kg(last.kg), prev ? "<span class='" + cls(last.kg - prev.kg) + "'>" + (last.kg >= prev.kg ? "▲ " : "▼ ") + Math.abs(Math.round(100 * (last.kg - prev.kg) / prev.kg)) + "%</span> on the week" : ""],
     [yr + " so far", f2(ytd), ys.length + " sales · " + (tkg / 1e6).toFixed(0) + "M kg · low " + f2(lo.avg) + ", high " + f2(hi.avg)],
-    ["World Bank, " + mlabel(wl.m), f2(wl.v), (lastYear ? "<span class='" + cls(wl.v - lastYear) + "'>" + cents(wl.v - lastYear) + "</span> on a year ago · " : "") + "higher than " + pct + "% of months since " + wb[0].m.slice(0, 4)]
+    ["Monthly price, " + mlabel(wl.m), f2(wl.v), (lastYear ? "<span class='" + cls(wl.v - lastYear) + "'>" + cents(wl.v - lastYear) + "</span> on a year ago · " : "") + "higher than " + pct + "% of months since " + wb[0].m.slice(0, 4)]
   ];
   $("stats").innerHTML = stats.map(function (s) { return "<div class='stat'><span class='stat-label'>" + s[0] + "</span><strong>" + s[1] + "</strong><span class='stat-note'>" + s[2] + "</span></div>"; }).join("");
 
@@ -110,7 +109,7 @@ permalink: /auctions/
   function path(pts) { return pts.map(function (p, i) { return (i ? "L" : "M") + p[0].toFixed(1) + "," + p[1].toFixed(1); }).join(""); }
   function dot(c, x, y, r, klass, tip) { var d = el("circle", { cx: x, cy: y, r: r, class: klass }, c.svg); el("title", {}, d).textContent = tip; }
 
-  // Chart 1: weekly sales this year, with World Bank monthly steps
+  // Chart 1: weekly sales this year, with the monthly series as steps
   (function () {
     var t0 = Date.parse(yr + "-01-01"), t1 = Date.parse(yr + "-12-31");
     var vals = ys.map(function (s) { return s.avg; });
@@ -124,7 +123,7 @@ permalink: /auctions/
       if (wbBy[k]) {
         var x2 = c.X(i < 11 ? Date.parse(yr + "-" + (i < 8 ? "0" : "") + (i + 2) + "-01") : t1);
         var ln = el("line", { x1: x, x2: x2, y1: c.Y(wbBy[k]), y2: c.Y(wbBy[k]), class: "wb-step" }, c.svg);
-        el("title", {}, ln).textContent = "World Bank, " + mlabel(k) + ": " + f2(wbBy[k]);
+        el("title", {}, ln).textContent = "Monthly price, " + mlabel(k) + ": " + f2(wbBy[k]);
       }
     });
     var pts = ys.map(function (s) { return [c.X(Date.parse(s.date)), c.Y(s.avg)]; });
@@ -132,7 +131,7 @@ permalink: /auctions/
     ys.forEach(function (s, i) { dot(c, pts[i][0], pts[i][1], s === last ? 4.5 : 2.6, "pt" + (s === last ? " pt-last" : ""), "Sale " + s.sale + ", " + dlabel(s.date) + ": " + f2(s.avg) + " · " + kg(s.kg)); });
     var lg = el("g", { class: "legend" }, c.svg);
     el("line", { x1: 60, x2: 80, y1: 22, y2: 22, class: "line-main" }, lg); el("text", { x: 86, y: 26, class: "tick" }, lg).textContent = "EATTA sale average";
-    el("line", { x1: 230, x2: 250, y1: 22, y2: 22, class: "wb-step" }, lg); el("text", { x: 256, y: 26, class: "tick" }, lg).textContent = "World Bank monthly";
+    el("line", { x1: 230, x2: 250, y1: 22, y2: 22, class: "wb-step" }, lg); el("text", { x: 256, y: 26, class: "tick" }, lg).textContent = "Monthly average";
   })();
 
   // Chart 2: long run
@@ -157,7 +156,7 @@ permalink: /auctions/
 
   var months = {};
   ys.forEach(function (s) { var k = s.date.slice(0, 7); (months[k] = months[k] || []).push(s); });
-  table("t-month", ["Month", "Sales", "EATTA average", "Sold", "World Bank", "Gap"], Object.keys(months).sort().reverse().map(function (k) {
+  table("t-month", ["Month", "Sales", "EATTA average", "Sold", "Monthly price", "Gap"], Object.keys(months).sort().reverse().map(function (k) {
     var ss = months[k], w = ss.reduce(function (a, s) { return a + s.kg; }, 0), a = ss.reduce(function (a, s) { return a + s.avg * s.kg; }, 0) / w;
     return [mlabel(k), ss.length, f2(a), kg(w), wbBy[k] ? f2(wbBy[k]) : "Not yet out", wbBy[k] ? "+" + Math.round((wbBy[k] - a) * 100) + "¢" : ""];
   }));
@@ -169,7 +168,7 @@ permalink: /auctions/
 
   var years = {};
   wb.forEach(function (r) { var y = r.m.slice(0, 4); (years[y] = years[y] || []).push(r.v); });
-  table("t-year", ["Year", "World Bank average", "Lowest month", "Highest month", "EATTA sale average"], Object.keys(years).sort().reverse().map(function (y) {
+  table("t-year", ["Year", "Monthly average", "Lowest month", "Highest month", "EATTA sale average"], Object.keys(years).sort().reverse().map(function (y) {
     var v = years[y], av = v.reduce(function (a, b) { return a + b; }, 0) / v.length;
     var es = sales.filter(function (s) { return s.year === +y; }), ew = es.reduce(function (a, s) { return a + s.kg; }, 0);
     return [y + (v.length < 12 ? " <span class='muted'>(" + v.length + " mo)</span>" : ""), f2(av), f2(Math.min.apply(0, v)), f2(Math.max.apply(0, v)), ew ? f2(es.reduce(function (a, s) { return a + s.avg * s.kg; }, 0) / ew) : "–"];
@@ -177,6 +176,6 @@ permalink: /auctions/
 
   // Gap note
   var gaps = Object.keys(months).filter(function (k) { return wbBy[k]; }).map(function (k) { var ss = months[k], w = ss.reduce(function (a, s) { return a + s.kg; }, 0); return wbBy[k] - ss.reduce(function (a, s) { return a + s.avg * s.kg; }, 0) / w; });
-  if (gaps.length) $("gap-note").textContent = "In " + yr + " the World Bank figure has run " + Math.round(Math.min.apply(0, gaps) * 100) + " to " + Math.round(Math.max.apply(0, gaps) * 100) + " US cents above EATTA's sale averages every month. The two are measured differently, so watch the direction of each, not the gap.";
+  if (gaps.length) $("gap-note").textContent = "In " + yr + " the monthly price has run " + Math.round(Math.min.apply(0, gaps) * 100) + " to " + Math.round(Math.max.apply(0, gaps) * 100) + " US cents above EATTA's sale averages every month. The two are measured differently, so watch the direction of each, not the gap.";
 })();
 </script>
