@@ -22,9 +22,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/chai-weekly/preview/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/chai-weekly/preview/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/chai-weekly/preview/assets/fonts/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/chai-weekly/preview/assets/style.css?v=202611240423">
+<link rel="preload" href="/chai-weekly/preview/assets/fonts/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/chai-weekly/preview/assets/style.css?v=202611240912">
 <link rel="alternate" type="application/rss+xml" title="Chai Weekly" href="/chai-weekly/feed.xml">
-<script defer src="/chai-weekly/preview/assets/site.js?v=202611240423"></script>
+<script defer src="/chai-weekly/preview/assets/site.js?v=202611240912"></script>
 
 
 <script>
@@ -192,18 +192,34 @@ document.addEventListener("DOMContentLoaded", function () {
       </section>
     </div>
 
+    <section class="dash-long" id="dash-long" hidden aria-labelledby="dash-long-h">
+      <div class="dash-long-head">
+        <div>
+          <h3 class="dash-panel-h" id="dash-long-h">The long view: the Mombasa price every month since 1992</h3>
+          <p class="fine">World Bank monthly average for Mombasa tea, US$ per kg, not adjusted for inflation.</p>
+        </div>
+        <div class="chips" role="group" aria-label="Years to show">
+          <button type="button" class="chip" data-span="all" aria-pressed="true">Since 1992</button>
+          <button type="button" class="chip" data-span="10" aria-pressed="false">Last 10 years</button>
+          <button type="button" class="chip" data-span="5" aria-pressed="false">Last 5 years</button>
+        </div>
+      </div>
+      <p class="dash-long-stats" id="dash-long-stats"></p>
+      <div class="chart dash-chart" id="dash-long-chart" role="img" aria-label="Line chart of the World Bank monthly Mombasa tea price since 1992"></div>
+    </section>
+
     <div class="dash-notes">
       <p class="fine" id="dash-provisional" hidden><span class="dash-badge">Provisional</span> EATTA adds late sales until Friday noon, Nairobi time, so the newest sale's figures can still change until then.</p>
       <p class="fine" id="dash-src-year" hidden>For years before 2026 every figure is from Combrok's auction reports, and all teas and CTC show the same figures.</p>
       <p class="fine">The average for a run of sales is weighted by the kilograms sold at each sale. <strong>Share sold</strong> (absorption) is the kilograms sold as a share of the kilograms offered, both as reported by Combrok, and the offered and sold bars use the same figures. EATTA's own count of kilograms sold, used for the headline figure and the table, can differ from Combrok's by a few per cent. Orthodox tea is not sold at every sale; its lines join the sales where an orthodox average was published.</p>
-      <p class="fine"><strong>Sources:</strong> prices and kilograms sold from 2026 are from the <a href="https://eatta.co.ke/statistics">East African Tea Trade Association's auction statistics</a>, saved every Wednesday and checked again after Friday noon. Kilograms and lots offered, earlier years, best prices and grade averages are from <a href="https://combrok.co.ke/market-reports">Combrok Limited's market reports</a>, prepared from the Mombasa tea auction results.</p>
+      <p class="fine"><strong>Sources:</strong> prices and kilograms sold from 2026 are from the <a href="https://eatta.co.ke/statistics">East African Tea Trade Association's auction statistics</a>, saved every Wednesday and checked again after Friday noon. Kilograms and lots offered, earlier years, best prices and grade averages are from <a href="https://combrok.co.ke/market-reports">Combrok Limited's market reports</a>, prepared from the Mombasa tea auction results. The monthly series since 1992 is the World Bank's Commodity Price Data ("Pink Sheet"), "Tea, Mombasa", licensed CC BY 4.0; it runs a few cents above the auction's own sale averages because it is measured differently.</p>
     </div>
     <noscript><p class="fine">The dashboard needs JavaScript. The Mombasa section below lists the latest sales.</p></noscript>
   </div>
   <div class="dash-tip" id="dash-tip" role="status" hidden></div>
 </section>
 
-<script defer src="/chai-weekly/preview/assets/dashboard.js?v=1795494221"></script>
+<script defer src="/chai-weekly/preview/assets/dashboard.js?v=1795511556"></script>
 
 <section class="market-section" id="mombasa" aria-labelledby="mombasa-h">
   <div class="wrap market-section-grid">
