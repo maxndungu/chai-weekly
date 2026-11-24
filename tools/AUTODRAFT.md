@@ -36,6 +36,7 @@ publishes the issue to the site; nothing goes live without that merge.
    - Prices: auction prices in US dollars only, no Ksh equivalents in brackets.
    - Mombasa figures: this week's sale is labelled provisional; last week's sale is quoted with its final (Friday) figures from `_data/mombasa_eatta_sales.csv` if they changed, and the change is listed in the reviewer notes.
    - No figure without a source; anything unconfirmed goes in the reviewer notes, not the issue.
+   - Combrok cross-check: copy every line of the "Cross-check: Combrok figures" block of the sources file into the reviewer notes (a difference on a final sale is marked **check**: look at EATTA again before quoting it). Prices and kg sold in the issue are EATTA's. Kg offered and the share sold (absorption) may be quoted from `_data/mombasa_combrok_sales.csv`, credited "according to Combrok's auction report".
    - Titles and salutations: search the whole file (title, deck, snapshot, stories, body) for
      every person's name. Each one needs a correct title ("President Ruto", never bare "Ruto");
      see the "Names and titles" rule in DRAFT_PROMPT.md. Fix any bare surname before committing.

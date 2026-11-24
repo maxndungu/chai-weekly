@@ -22,9 +22,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/chai-weekly/preview/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/chai-weekly/preview/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/chai-weekly/preview/assets/fonts/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/chai-weekly/preview/assets/style.css?v=202611230702">
+<link rel="preload" href="/chai-weekly/preview/assets/fonts/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/chai-weekly/preview/assets/style.css?v=202611240423">
 <link rel="alternate" type="application/rss+xml" title="Chai Weekly" href="/chai-weekly/feed.xml">
-<script defer src="/chai-weekly/preview/assets/site.js?v=202611230702"></script>
+<script defer src="/chai-weekly/preview/assets/site.js?v=202611240423"></script>
 
 
 <script>
@@ -79,7 +79,8 @@ document.addEventListener("DOMContentLoaded", function () {
   <h1 class="page-title">The tea auctions, week by week</h1>
   <p class="page-intro">Prices and volumes from three of the world's great tea auctions, each with its source and the date it was reported. We never estimate or fill in a missing price: when a figure has not been published, we say so.</p>
   
-  <nav class="jump" aria-label="Markets on this page"><a href="#mombasa">Mombasa</a><a href="#colombo">Colombo</a><a href="#chittagong">Chittagong</a>
+  <nav class="jump" aria-label="Markets on this page">
+    <a href="#dashboard">Dashboard</a><a href="#mombasa">Mombasa</a><a href="#colombo">Colombo</a><a href="#chittagong">Chittagong</a>
     <a href="#reports">Market reports</a>
   </nav>
 </header>
@@ -120,6 +121,90 @@ document.addEventListener("DOMContentLoaded", function () {
 </section>
 
 
+<section class="dash" id="dashboard" aria-labelledby="dash-h" data-src="/chai-weekly/preview/assets/data/mombasa-sales.json">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="section-title" id="dash-h">Mombasa auction dashboard</h2>
+      <p class="section-note">Prices, volumes and the share of tea sold at every sale since 2020. Pick a year and a run of sales.</p>
+    </div>
+
+    <form class="dash-controls" aria-label="Choose the sales to show" onsubmit="return false">
+      <label class="dash-field"><span>Year</span><select id="dash-year"></select></label>
+      <label class="dash-field"><span>From sale</span><select id="dash-from"></select></label>
+      <label class="dash-field"><span>To sale</span><select id="dash-to"></select></label>
+      <div class="dash-field"><span id="dash-tea-l">Tea</span>
+        <div class="chips" role="group" aria-labelledby="dash-tea-l">
+          <button type="button" class="chip" data-tea="all" aria-pressed="true">All teas</button>
+          <button type="button" class="chip" data-tea="ctc" aria-pressed="false">CTC</button>
+          <button type="button" class="chip" data-tea="orthodox" aria-pressed="false">Orthodox</button>
+        </div>
+      </div>
+      <div class="dash-field"><span id="dash-quick-l">Quick pick</span>
+        <div class="chips" role="group" aria-labelledby="dash-quick-l">
+          <button type="button" class="chip" data-last="4">Last 4</button>
+          <button type="button" class="chip" data-last="13">Last 13</button>
+          <button type="button" class="chip" data-last="all">Whole year</button>
+        </div>
+      </div>
+      <label class="dash-check"><input type="checkbox" id="dash-cmp" checked> <span id="dash-cmp-l">Compare with last year</span></label>
+    </form>
+
+    <div class="stat-row dash-stats" id="dash-stats" aria-live="polite"></div>
+
+    <div class="dash-charts">
+      <figure class="dash-panel">
+        <figcaption><span class="dash-panel-h">Average price at each sale</span><span class="dash-panel-u">US$ per kg</span></figcaption>
+        <div class="dash-legend" id="dash-legend" hidden></div>
+        <div class="chart dash-chart" id="dash-price" role="img" aria-label="Line chart of the average price at each sale in the range you picked"></div>
+      </figure>
+      <figure class="dash-panel">
+        <figcaption><span class="dash-panel-h">Share of tea sold</span><span class="dash-panel-u">% of kg offered</span></figcaption>
+        <div class="dash-legend" id="dash-abs-legend" hidden></div>
+        <div class="chart dash-chart" id="dash-abs" role="img" aria-label="Line chart of the share of tea offered that was sold at each sale"></div>
+      </figure>
+      <figure class="dash-panel dash-wide">
+        <figcaption><span class="dash-panel-h">Offered and sold at each sale</span><span class="dash-panel-u" id="dash-kg-u">million kg</span></figcaption>
+        <div class="dash-legend" id="dash-kg-legend" hidden></div>
+        <div class="chart dash-chart" id="dash-kg" role="img" aria-label="Bar chart of the kilograms offered and sold at each sale in the range you picked"></div>
+      </figure>
+    </div>
+
+    <div class="table-wrap dash-table" tabindex="0" role="region" aria-label="Sales in the range you picked">
+      <table class="data-table" id="dash-table">
+        <caption id="dash-caption">Sales</caption>
+        <thead></thead><tbody></tbody>
+      </table>
+    </div>
+
+    <div class="dash-lower">
+      <div class="table-wrap" tabindex="0" role="region" aria-label="The same sales in each year">
+        <table class="data-table dash-years" id="dash-years">
+          <caption id="dash-years-caption">The same sales in each year</caption>
+          <thead><tr><th scope="col">Year</th><th scope="col">Average US$/kg</th><th scope="col">Change</th><th scope="col">Offered (m kg)</th><th scope="col">Sold (m kg)</th><th scope="col">Share sold</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <section class="dash-hl" id="dash-hl" hidden aria-labelledby="dash-hl-h">
+        <h3 class="dash-hl-h" id="dash-hl-h">Best prices and grade averages</h3>
+        <p class="dash-panel-u">Top prices</p>
+        <ol class="dash-hl-top" id="dash-hl-top"></ol>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Grade averages"><table class="data-table dash-grades" id="dash-hl-grades"></table></div>
+      </section>
+    </div>
+
+    <div class="dash-notes">
+      <p class="fine" id="dash-provisional" hidden><span class="dash-badge">Provisional</span> EATTA adds late sales until Friday noon, Nairobi time, so the newest sale's figures can still change until then.</p>
+      <p class="fine" id="dash-src-year" hidden>For years before 2026 every figure is from Combrok's auction reports, and all teas and CTC show the same figures.</p>
+      <p class="fine">The average for a run of sales is weighted by the kilograms sold at each sale. <strong>Share sold</strong> (absorption) is the kilograms sold as a share of the kilograms offered, both as reported by Combrok, and the offered and sold bars use the same figures. EATTA's own count of kilograms sold, used for the headline figure and the table, can differ from Combrok's by a few per cent. Orthodox tea is not sold at every sale; its lines join the sales where an orthodox average was published.</p>
+      <p class="fine"><strong>Sources:</strong> prices and kilograms sold from 2026 are from the <a href="https://eatta.co.ke/statistics">East African Tea Trade Association's auction statistics</a>, saved every Wednesday and checked again after Friday noon. Kilograms and lots offered, earlier years, best prices and grade averages are from <a href="https://combrok.co.ke/market-reports">Combrok Limited's market reports</a>, prepared from the Mombasa tea auction results.</p>
+    </div>
+    <noscript><p class="fine">The dashboard needs JavaScript. The Mombasa section below lists the latest sales.</p></noscript>
+  </div>
+  <div class="dash-tip" id="dash-tip" role="status" hidden></div>
+</section>
+
+<script defer src="/chai-weekly/preview/assets/dashboard.js?v=1795494221"></script>
+
 <section class="market-section" id="mombasa" aria-labelledby="mombasa-h">
   <div class="wrap market-section-grid">
     <div class="market-about">
@@ -138,14 +223,8 @@ document.addEventListener("DOMContentLoaded", function () {
         <p class="market-price big">US$2.34<span class="unit">/kg</span></p>
         <p class="market-change down">▼ 2¢ on Sale 45 · 7,579,307 kg sold</p>
         <p class="market-meta"><span class="market-status">Final figures</span> · Source: <a href="https://eatta.co.ke/statistics">EATTA auction statistics</a> · checked 20 Nov 2026</p>
-      </div><figure class="chart market-chart" data-chart="mombasa" role="img" aria-label="Line chart: Mombasa average price at each sale this year, US dollars per kg"></figure>
-      <div class="table-wrap" tabindex="0" role="region" aria-label="Mombasa sales table">
-        <table class="data-table">
-          <caption>Recent sales, all teas</caption>
-          <thead><tr><th scope="col">Sale</th><th scope="col">Date</th><th scope="col">Average US$/kg</th><th scope="col">Sold (kg)</th></tr></thead>
-          <tbody><tr><td>46</td><td>16 Nov 2026</td><td>2.34</td><td>7,579,307</td></tr><tr><td>45</td><td>9 Nov 2026</td><td>2.36</td><td>6,843,760</td></tr><tr><td>44</td><td>2 Nov 2026</td><td>2.33</td><td>6,656,373</td></tr><tr><td>43</td><td>26 Oct 2026</td><td>2.28</td><td>6,618,832</td></tr><tr><td>42</td><td>19 Oct 2026</td><td>2.30</td><td>6,470,951</td></tr><tr><td>41</td><td>12 Oct 2026</td><td>2.25</td><td>6,627,682</td></tr><tr><td>40</td><td>5 Oct 2026</td><td>2.22</td><td>6,514,504</td></tr><tr><td>39</td><td>28 Sep 2026</td><td>2.21</td><td>6,382,808</td></tr></tbody>
-        </table>
       </div>
+      <p class="market-links"><a class="text-link" href="#dashboard">Every sale this year in the dashboard above</a></p>
       <p class="market-links"><a class="text-link" href="/chai-weekly/preview/auctions/">Every sale this year, and the World Bank series since 1992</a></p>
       <p class="fine">EATTA adds late sales until Friday noon, so the newest sale's figures are provisional until then. Weekly figures: <a href="https://eatta.co.ke/statistics">EATTA auction statistics</a>.</p>
     </div>

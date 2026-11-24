@@ -1,5 +1,7 @@
 # Every Wednesday 06:00 Nairobi time (after the Monday/Tuesday Mombasa sale), collect the week's tea news into sources/
-# and add the latest EATTA sales to _data/mombasa_eatta_sales.csv.
+# and add the latest EATTA sales to _data/mombasa_eatta_sales.csv. It also notes any sale where Combrok's
+# figures differ from EATTA's (in the sources file, for the reviewer notes), and saves Combrok's per-sale
+# figures (kg and lots offered, so the dashboard can show the share sold) to _data/mombasa_combrok_sales.csv.
 # Every Friday 13:00 Nairobi time, refresh only the EATTA sales file: late sales are added until Friday noon, so
 # Wednesday's figures for the latest sale are provisional and Friday's are final.
 name: Gather sources
@@ -40,6 +42,10 @@ jobs:
         if: ${{ !cancelled() }}
         run: |
           python tools/eatta_csv.py || { echo "::error::EATTA CSV update failed; check https://eatta.co.ke/statistics"; exit 1; }
+      - name: Save Combrok's per-sale figures (offered, sold, lots, grade averages) for the dashboard
+        if: ${{ !cancelled() }}
+        run: |
+          python tools/combrok_csv.py || echo "::warning::Combrok figures not updated; the dashboard keeps last week's offered and absorption figures"
       - uses: actions/setup-node@v4
         if: ${{ !cancelled() && env.CSV_ONLY != 'true' && steps.news.outputs.kept != '1' }}
         with: { node-version: "22" }
@@ -49,6 +55,9 @@ jobs:
           mkdir -p sources
           ( npm install --no-save playwright@1.48.2 && npx playwright install --with-deps chromium ) || echo "::warning::Could not install the browser for EATTA"
           node tools/eatta.mjs >> "sources/$(date +%F).md" || echo "- **Mombasa (EATTA)**: could not render, check by hand <https://eatta.co.ke/statistics>" >> "sources/$(date +%F).md"
+      - name: Cross-check EATTA against Combrok's figures (for the reviewer notes)
+        if: ${{ !cancelled() && env.CSV_ONLY != 'true' && steps.news.outputs.kept != '1' }}
+        run: python tools/combrok_check.py >> "sources/$(date +%F).md"
       - name: Save what was collected
         if: ${{ !cancelled() }}
         run: |

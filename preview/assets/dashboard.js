@@ -1,0 +1,428 @@
+/* Mombasa auction dashboard (Markets page).
+   Data: assets/data/mombasa-sales.json = {eatta, combrok, highlights}, filled by Jekyll from _data/:
+     eatta      mombasa_eatta_sales.csv        official EATTA figures, 2026 on (prices and kg sold)
+     combrok    mombasa_combrok_sales.csv      Combrok's per-sale figures, 2020 on (kg and lots offered and sold)
+     highlights mombasa_combrok_highlights.json top prices and grade averages per sale
+   EATTA's price and kg sold are used wherever EATTA has the sale; Combrok fills what EATTA does not publish.
+   Never estimates a missing figure. */
+(function () {
+  var root = document.getElementById("dashboard");
+  if (!root) return;
+  var NS = "http://www.w3.org/2000/svg";
+  var $ = function (id) { return document.getElementById(id); };
+  var each = function (sel, fn) { Array.prototype.forEach.call(root.querySelectorAll(sel), fn); };
+  var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  var TEA = { all: "All teas", ctc: "CTC", orthodox: "Orthodox" };
+  var el = function (n, a, p) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; };
+  var usd = function (v) { return "$" + v.toFixed(2); };
+  var pct = function (v) { return (v * 100).toFixed(1) + "%"; };
+  var mkg = function (kg) { return (kg / 1e6).toFixed(kg >= 1e7 ? 1 : 2); };
+  var kgFull = function (kg) { return Math.round(kg).toLocaleString("en-GB"); };
+  var bigKg = function (kg) { return kg >= 1e6 ? mkg(kg) + "<small> m kg</small>" : Math.round(kg / 1e3).toLocaleString("en-GB") + "<small> thousand kg</small>"; };
+  var dateOf = function (s) { var p = s.split("-"); return new Date(Date.UTC(+p[0], +p[1] - 1, +p[2])); };
+  var dShort = function (s) { if (!s) return ""; var d = dateOf(s); return d.getUTCDate() + " " + MON[d.getUTCMonth()]; };
+  var num = function (v) { return v === "" || v == null ? null : +v; };
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+  var signed = function (v, f) { return (v > 0 ? "+" : v < 0 ? "−" : "") + f(Math.abs(v)); };
+
+  var byYear = {}, years = [], highlights = {};
+  var st = { year: null, from: null, to: null, tea: "all", cmp: true, sort: "sale", dir: 1 };
+
+  /* ---------- data ---------- */
+  function build(data) {
+    var rows = {}, key = function (y, n) { return y + "-" + n; };
+    var get = function (y, n) {
+      var k = key(y, n);
+      return rows[k] || (rows[k] = { y: y, n: n, date: "", src: "combrok", all: {}, ctc: {}, orthodox: {}, cb: { ctc: {}, orthodox: {} } });
+    };
+    (data.combrok || []).forEach(function (c) {
+      var r = get(+c.year, +c.sale);
+      ["ctc", "orthodox"].forEach(function (t) {
+        r.cb[t] = { p: num(c[t + "_avg_usd_kg"]), kg: num(c[t + "_sold_kg"]), off: num(c[t + "_offered_kg"]),
+          lo: num(c[t + "_offered_lots"]), ls: num(c[t + "_sold_lots"]) };
+      });
+      // Combrok's "CTC" auction totals match EATTA's all-teas totals, so they stand for all teas too.
+      r.all = { p: r.cb.ctc.p, kg: r.cb.ctc.kg };
+      r.ctc = { p: r.cb.ctc.p, kg: r.cb.ctc.kg };
+      r.orthodox = { p: r.cb.orthodox.p, kg: r.cb.orthodox.kg };
+    });
+    (data.eatta || []).forEach(function (e) {
+      var r = get(+e.year, +e.sale);
+      r.src = "eatta"; r.date = e.auction_date || "";
+      r.all = { p: num(e.avg_usd_kg), kg: num(e.sold_kg) };
+      r.ctc = { p: num(e.ctc_avg_usd_kg), kg: num(e.ctc_sold_kg) };
+      r.orthodox = { p: num(e.orthodox_avg_usd_kg), kg: num(e.orthodox_sold_kg) };
+    });
+    Object.keys(rows).map(function (k) { return rows[k]; }).filter(function (r) { return r.y && r.n; })
+      .sort(function (a, b) { return a.y - b.y || a.n - b.n; })
+      .forEach(function (r) { (byYear[r.y] = byYear[r.y] || []).push(r); });
+    years = Object.keys(byYear).map(Number).sort();
+    (data.highlights || []).forEach(function (h) { highlights[key(+h.year, +h.sale)] = h; });
+  }
+  // Figures for the chosen tea: price and kg sold from the main source, offered and lots from Combrok.
+  function pick(r, tea) {
+    tea = tea || st.tea;
+    var m = r[tea] || {}, cb = r.cb[tea === "orthodox" ? "orthodox" : "ctc"] || {};
+    var abs = cb.off && cb.kg != null ? cb.kg / cb.off : null;
+    return { p: m.p != null ? m.p : null, kg: m.kg || null, off: cb.off || null, cbKg: cb.kg, abs: abs, lo: cb.lo, ls: cb.ls };
+  }
+  function provisional(r) {
+    if (!r.date || r.src !== "eatta") return false;
+    var d = dateOf(r.date), add = (5 - d.getUTCDay() + 7) % 7;
+    return Date.now() < d.getTime() + add * 864e5 + 9 * 36e5; // Friday noon Nairobi = 09:00 UTC
+  }
+  var inRange = function (y) { return (byYear[y == null ? st.year : y] || []).filter(function (r) { return r.n >= st.from && r.n <= st.to; }); };
+  function lastYear(n) {
+    if (!st.cmp) return null;
+    var prev = byYear[st.year - 1] || [];
+    for (var i = 0; i < prev.length; i++) if (prev[i].n === n) return prev[i];
+    return null;
+  }
+  var label = function (r) { return "Sale " + r.n + ", " + (r.date ? dShort(r.date) + " " : "") + r.y; };
+  function totals(rows, tea) {
+    var t = { n: 0, kg: 0, val: 0, pk: 0, off: 0, cbKg: 0, lo: 0, ls: 0 };
+    rows.forEach(function (r) {
+      var x = pick(r, tea);
+      if (x.p != null) { t.n++; if (x.kg) { t.pk += x.kg; t.val += x.kg * x.p; } }
+      if (x.kg) t.kg += x.kg;
+      if (x.off && x.cbKg != null) { t.off += x.off; t.cbKg += x.cbKg; }
+      if (x.lo) { t.lo += x.lo; t.ls += x.ls || 0; }
+    });
+    t.avg = t.pk ? t.val / t.pk : null;
+    t.abs = t.off ? t.cbKg / t.off : null;
+    return t;
+  }
+
+  /* ---------- controls ---------- */
+  function fillSelect(sel, items, val) {
+    sel.innerHTML = "";
+    items.forEach(function (it) { var o = document.createElement("option"); o.value = it[0]; o.textContent = it[1]; sel.appendChild(o); });
+    sel.value = val;
+  }
+  function syncControls() {
+    fillSelect($("dash-year"), years.slice().reverse().map(function (y) { return [y, y]; }), st.year);
+    var opts = byYear[st.year].map(function (r) { return [r.n, "Sale " + r.n + (r.date ? " · " + dShort(r.date) : "")]; });
+    fillSelect($("dash-from"), opts, st.from);
+    fillSelect($("dash-to"), opts, st.to);
+    each("[data-tea]", function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-tea") === st.tea ? "true" : "false"); });
+    var c = $("dash-cmp"), hasPrev = !!byYear[st.year - 1];
+    c.checked = st.cmp && hasPrev; c.disabled = !hasPrev;
+    $("dash-cmp-l").textContent = "Compare with " + (st.year - 1);
+  }
+  function setYear(y) {
+    var keepFrom = st.from, keepTo = st.to, rows = byYear[y], nums = rows.map(function (r) { return r.n; });
+    st.year = y;
+    st.from = nums.indexOf(keepFrom) >= 0 ? keepFrom : rows[0].n;
+    st.to = nums.indexOf(keepTo) >= 0 ? keepTo : rows[rows.length - 1].n;
+    if (st.from > st.to) st.from = rows[0].n;
+  }
+  function saveUrl() {
+    if (!window.history || !history.replaceState) return;
+    var q = new URLSearchParams(location.search);
+    q.set("year", st.year); q.set("from", st.from); q.set("to", st.to);
+    if (st.tea === "all") q.delete("tea"); else q.set("tea", st.tea);
+    if (st.cmp) q.delete("compare"); else q.set("compare", "no");
+    history.replaceState(null, "", location.pathname + "?" + q.toString() + location.hash);
+  }
+  function wire() {
+    $("dash-year").addEventListener("change", function () { setYear(+this.value); update(); });
+    $("dash-from").addEventListener("change", function () { st.from = +this.value; if (st.to < st.from) st.to = st.from; update(); });
+    $("dash-to").addEventListener("change", function () { st.to = +this.value; if (st.from > st.to) st.from = st.to; update(); });
+    $("dash-cmp").addEventListener("change", function () { st.cmp = this.checked; update(); });
+    each("[data-tea]", function (b) { b.addEventListener("click", function () { st.tea = b.getAttribute("data-tea"); update(); }); });
+    each("[data-last]", function (b) {
+      b.addEventListener("click", function () {
+        var rows = byYear[st.year], k = b.getAttribute("data-last");
+        st.to = rows[rows.length - 1].n;
+        st.from = k === "all" ? rows[0].n : rows[Math.max(0, rows.length - +k)].n;
+        update();
+      });
+    });
+    var t;
+    window.addEventListener("resize", function () { clearTimeout(t); t = setTimeout(draw, 150); });
+  }
+
+  /* ---------- headline figures ---------- */
+  function stats(rows) {
+    var tile = function (lbl, value, note) {
+      return '<div class="stat"><span class="stat-label">' + lbl + "</span><strong>" + value + '</strong><span class="stat-note">' + note + "</span></div>";
+    };
+    var t = totals(rows), withP = rows.filter(function (r) { return pick(r).p != null; });
+    if (!withP.length) { $("dash-stats").innerHTML = tile("Average price", "None", TEA[st.tea] + " had no published average in these sales"); return; }
+    var first = withP[0], last = withP[withP.length - 1];
+    var span = withP.length === 1 ? "Sale " + first.n : "Sales " + first.n + " to " + last.n;
+    var prev = st.cmp && byYear[st.year - 1] ? totals(inRange(st.year - 1)) : null;
+    var vs = function (d, f) { return d == null ? "" : " · " + signed(d, f) + " on " + (st.year - 1); };
+    var hi = withP.reduce(function (a, r) { return pick(r).p > pick(a).p ? r : a; });
+    var lo = withP.reduce(function (a, r) { return pick(r).p < pick(a).p ? r : a; });
+    $("dash-stats").innerHTML =
+      tile("Average price", t.avg != null ? usd(t.avg) : "None", span + ", " + TEA[st.tea].toLowerCase() + (prev && prev.avg != null && t.avg != null ? vs(t.avg - prev.avg, usd) : "")) +
+      tile("Tea sold", bigKg(t.kg), t.off ? "of " + bigKg(t.off).replace(/<[^>]+>/g, "") + " offered" : withP.length + " sales") +
+      tile("Share sold", t.abs != null ? pct(t.abs) : "None", t.abs != null ? (t.lo ? kgFull(t.ls) + " of " + kgFull(t.lo) + " lots" : "") + (prev && prev.abs != null ? vs((t.abs - prev.abs) * 100, function (v) { return v.toFixed(1) + " pts"; }) : "") : "No offered figures for these sales") +
+      tile("Highest sale", usd(pick(hi).p), "Sale " + hi.n + (hi.date ? ", " + dShort(hi.date) : "") + "; lowest " + usd(pick(lo).p) + " at sale " + lo.n);
+  }
+
+  /* ---------- chart helpers ---------- */
+  var tip = $("dash-tip");
+  function showTip(evt, html) {
+    tip.innerHTML = html; tip.hidden = false;
+    var r = root.getBoundingClientRect(), w = tip.offsetWidth, h = tip.offsetHeight;
+    var x = evt.clientX - r.left + 14, y = evt.clientY - r.top - h - 12;
+    if (x + w > r.width - 8) x = evt.clientX - r.left - w - 14;
+    if (y < 0) y = evt.clientY - r.top + 18;
+    tip.style.left = Math.max(8, x) + "px"; tip.style.top = y + "px";
+  }
+  var hideTip = function () { tip.hidden = true; };
+  var tipRow = function (cls, lbl, value) { return '<div class="dash-tip-row"><i class="' + cls + '"></i>' + lbl + "<b>" + value + "</b></div>"; };
+  var tipHead = function (r) { return '<div class="dash-tip-h">' + label(r) + (provisional(r) ? " · provisional" : "") + "</div>"; };
+  function frame(fig, H) {
+    fig.innerHTML = "";
+    var W = Math.max(280, Math.round(fig.clientWidth || 600));
+    return { svg: el("svg", { viewBox: "0 0 " + W + " " + H, width: W, height: H, "aria-hidden": "true" }, fig), W: W, H: H, P: { l: 46, r: 12, t: 10, b: 28 } };
+  }
+  function xTicks(f, rows, X) {
+    var n = rows.length, step = Math.max(1, Math.ceil(n / Math.max(2, Math.floor((f.W - 60) / 52))));
+    rows.forEach(function (r, i) {
+      if ((i % step && i !== n - 1) || (i !== n - 1 && n - 1 - i < step * 0.6)) return;
+      el("text", { x: X(i), y: f.H - 8, "class": "tick", "text-anchor": n === 1 ? "middle" : i === 0 ? "start" : i === n - 1 ? "end" : "middle" }, f.svg).textContent = r.n;
+    });
+    el("text", { x: f.P.l - 8, y: f.H - 8, "class": "tick", "text-anchor": "end" }, f.svg).textContent = "Sale";
+  }
+  function niceTicks(lo, hi, count) {
+    var span = hi - lo || 1, raw = span / count, mag = Math.pow(10, Math.floor(Math.log10(raw)));
+    var step = [1, 2, 2.5, 5, 10].map(function (m) { return m * mag; }).filter(function (s) { return s >= raw; })[0];
+    var out = [], v = Math.floor(lo / step) * step;
+    for (; v <= hi + step * 1e-3; v += step) out.push(+v.toFixed(6));
+    if (out[out.length - 1] < hi) out.push(+(out[out.length - 1] + step).toFixed(6));
+    return out;
+  }
+  function empty(f, text) { el("text", { x: f.W / 2, y: f.H / 2, "class": "tick", "text-anchor": "middle" }, f.svg).textContent = text; }
+  function legend(id, show, items) {
+    var l = $(id); l.hidden = !show;
+    if (show) l.innerHTML = items.map(function (it) { return '<span><i class="' + it[0] + '"></i>' + it[1] + "</span>"; }).join("");
+  }
+
+  /* A line chart of one figure per sale, with last year's same sale dashed. */
+  function lineChart(id, legendId, rows, valueOf, fmtAxis, fmtTip, emptyText, minPad) {
+    var fig = $(id), f = frame(fig, fig.clientWidth < 520 ? 220 : 260), P = f.P;
+    var cur = rows.map(valueOf);
+    var prev = rows.map(function (r) { var o = lastYear(r.n); return o ? valueOf(o) : null; });
+    var hasPrev = prev.some(function (v) { return v != null; });
+    legend(legendId, hasPrev, [["k-cur", String(st.year)], ["k-prev", (st.year - 1) + ", same sale"]]);
+    var all = cur.concat(prev).filter(function (v) { return v != null; });
+    if (!all.length) return empty(f, emptyText);
+    var lo = Math.min.apply(0, all), hi = Math.max.apply(0, all), pad = Math.max((hi - lo) * 0.12, minPad);
+    var ticks = niceTicks(lo - pad, hi + pad, 4), y0 = ticks[0], y1 = ticks[ticks.length - 1];
+    var n = rows.length, plotW = f.W - P.l - P.r;
+    var X = function (i) { return n === 1 ? P.l + plotW / 2 : P.l + i / (n - 1) * plotW; };
+    var Y = function (v) { return f.H - P.b - (v - y0) / (y1 - y0) * (f.H - P.t - P.b); };
+    ticks.forEach(function (v) {
+      el("line", { x1: P.l, x2: f.W - P.r, y1: Y(v), y2: Y(v), "class": "grid" }, f.svg);
+      el("text", { x: P.l - 8, y: Y(v) + 4, "class": "tick", "text-anchor": "end" }, f.svg).textContent = fmtAxis(v);
+    });
+    xTicks(f, rows, X);
+    var path = function (vals, cls) {
+      var d = "", pen = false;
+      vals.forEach(function (v, i) { if (v == null) return; d += (pen ? "L" : "M") + X(i).toFixed(1) + "," + Y(v).toFixed(1); pen = true; });
+      if (d) el("path", { d: d, "class": cls }, f.svg);
+    };
+    if (hasPrev) path(prev, "dash-line-prev");
+    path(cur, "dash-line");
+    var dots = cur.filter(function (v) { return v != null; }).length <= 24;
+    cur.forEach(function (v, i) { if (v != null && (dots || i === n - 1)) el("circle", { cx: X(i), cy: Y(v), r: i === n - 1 ? 5 : 4, "class": "dash-dot" + (i === n - 1 ? " last" : "") }, f.svg); });
+    var li = -1; for (var k = n - 1; k >= 0; k--) if (cur[k] != null) { li = k; break; }
+    if (li >= 0) el("text", { x: Math.min(X(li), f.W - P.r), y: Y(cur[li]) - 12, "class": "tick strong dash-halo", "text-anchor": n === 1 ? "middle" : "end" }, f.svg).textContent = fmtTip(cur[li]);
+    var cross = el("line", { y1: P.t, y2: f.H - P.b, "class": "dash-cross", visibility: "hidden" }, f.svg);
+    var ring = el("circle", { r: 6, "class": "dash-ring", visibility: "hidden" }, f.svg);
+    var hit = el("rect", { x: P.l - 10, y: 0, width: plotW + 20, height: f.H, fill: "transparent" }, f.svg);
+    var move = function (evt) {
+      var b = f.svg.getBoundingClientRect(), x = (evt.clientX - b.left) * f.W / b.width;
+      var i = n === 1 ? 0 : Math.max(0, Math.min(n - 1, Math.round((x - P.l) / plotW * (n - 1)))), r = rows[i], v = cur[i];
+      cross.setAttribute("x1", X(i)); cross.setAttribute("x2", X(i)); cross.setAttribute("visibility", "visible");
+      if (v != null) { ring.setAttribute("cx", X(i)); ring.setAttribute("cy", Y(v)); ring.setAttribute("visibility", "visible"); } else ring.setAttribute("visibility", "hidden");
+      var html = tipHead(r) + tipRow("k-cur", hasPrev ? String(st.year) : TEA[st.tea], v != null ? fmtTip(v) : "Not published");
+      if (hasPrev) html += tipRow("k-prev", String(st.year - 1), prev[i] != null ? fmtTip(prev[i]) : "No sale " + r.n);
+      var pj = i - 1; while (pj >= 0 && cur[pj] == null) pj--;
+      if (pj >= 0 && v != null) { var c = v - cur[pj]; html += '<div class="dash-tip-note">' + (c ? (c > 0 ? "Up " : "Down ") + fmtTip(Math.abs(c)).replace("%", " pts") : "Level") + " on sale " + rows[pj].n + "</div>"; }
+      showTip(evt, html);
+    };
+    hit.addEventListener("pointermove", move);
+    hit.addEventListener("pointerdown", move);
+    hit.addEventListener("pointerleave", function () { cross.setAttribute("visibility", "hidden"); ring.setAttribute("visibility", "hidden"); hideTip(); });
+  }
+
+  /* Offered (light) with sold (dark) drawn over it: the dark share of each bar is the share sold. */
+  function kgChart(rows) {
+    var fig = $("dash-kg"), f = frame(fig, fig.clientWidth < 520 ? 210 : 250), P = f.P;
+    var xs = rows.map(function (r) { return pick(r); });
+    var hasOff = xs.some(function (x) { return x.off; });
+    legend("dash-kg-legend", hasOff, [["k-off", "Offered"], ["k-sold", "Sold"]]);
+    var max = Math.max.apply(0, xs.map(function (x) { return Math.max(x.kg || 0, x.off || 0); }).concat([0]));
+    if (!max) return empty(f, "No " + TEA[st.tea] + " sold in these sales");
+    var U = max < 1e6 ? 1e3 : 1e6;
+    $("dash-kg-u").textContent = U === 1e3 ? "thousand kg" : "million kg";
+    var ticks = niceTicks(0, max / U, 4), top = ticks[ticks.length - 1] * U;
+    var dp = ticks.reduce(function (m, t) { var s = String(t).split(".")[1]; return Math.max(m, s ? s.length : 0); }, 0);
+    var n = rows.length, plotW = f.W - P.l - P.r, slot = plotW / n, bw = Math.max(2, Math.min(28, slot - 2));
+    var X = function (i) { return P.l + slot * (i + 0.5); };
+    var Y = function (v) { return f.H - P.b - v / top * (f.H - P.t - P.b); };
+    ticks.forEach(function (t) {
+      el("line", { x1: P.l, x2: f.W - P.r, y1: Y(t * U), y2: Y(t * U), "class": t === 0 ? "grid base" : "grid" }, f.svg);
+      el("text", { x: P.l - 8, y: Y(t * U) + 4, "class": "tick", "text-anchor": "end" }, f.svg).textContent = t.toFixed(dp);
+    });
+    xTicks(f, rows, X);
+    var bar = function (i, v, cls) {
+      var y = Y(v), h = f.H - P.b - y, r = Math.min(4, bw / 2, h), x0 = X(i) - bw / 2, x1 = x0 + bw, yb = f.H - P.b;
+      return el("path", { d: "M" + x0 + "," + yb + "V" + (y + r) + "Q" + x0 + "," + y + " " + (x0 + r) + "," + y + "H" + (x1 - r) + "Q" + x1 + "," + y + " " + x1 + "," + (y + r) + "V" + yb + "Z", "class": cls }, f.svg);
+    };
+    var groups = xs.map(function (x, i) {
+      var g = [];
+      if (x.off) g.push(bar(i, x.off, "dash-bar-off"));
+      var sold = x.off && x.cbKg != null ? x.cbKg : x.kg;
+      if (sold) g.push(bar(i, Math.min(sold, x.off || sold), "dash-bar" + (provisional(rows[i]) ? " prov" : "")));
+      return g;
+    });
+    var hit = el("rect", { x: P.l, y: 0, width: plotW, height: f.H, fill: "transparent" }, f.svg), on = -1;
+    var mark = function (i, add) { (groups[i] || []).forEach(function (b) { b.classList[add ? "add" : "remove"]("on"); }); };
+    var move = function (evt) {
+      var b = f.svg.getBoundingClientRect(), x = (evt.clientX - b.left) * f.W / b.width;
+      var i = Math.max(0, Math.min(n - 1, Math.floor((x - P.l) / slot))), r = rows[i], v = xs[i];
+      if (on !== i) { mark(on, false); mark(i, true); on = i; }
+      var html = tipHead(r);
+      if (v.off) html += tipRow("k-off", "Offered", kgFull(v.off) + " kg");
+      var sold = v.off && v.cbKg != null ? v.cbKg : v.kg;
+      html += tipRow("k-sold", "Sold", sold ? kgFull(sold) + " kg" : "None");
+      if (v.abs != null) html += tipRow("", "Share sold", pct(v.abs));
+      if (v.off && r.src === "eatta" && v.kg && v.cbKg != null && Math.abs(v.kg - v.cbKg) / v.kg > 0.005) html += '<div class="dash-tip-note">EATTA reports ' + kgFull(v.kg) + " kg sold</div>";
+      showTip(evt, html);
+    };
+    hit.addEventListener("pointermove", move);
+    hit.addEventListener("pointerdown", move);
+    hit.addEventListener("pointerleave", function () { mark(on, false); on = -1; hideTip(); });
+  }
+
+  /* ---------- tables ---------- */
+  var COLS = [
+    { k: "sale", h: "Sale" }, { k: "date", h: "Date" }, { k: "p", h: "Average US$/kg" }, { k: "ch", h: "Change" },
+    { k: "off", h: "Offered (kg)" }, { k: "kg", h: "Sold (kg)" }, { k: "abs", h: "Share sold" },
+    { k: "prev", h: "Avg, same sale last year", prev: true }, { k: "prevAbs", h: "Share sold last year", prev: true }
+  ];
+  function salesTable(rows) {
+    var hasPrev = rows.some(function (r) { return lastYear(r.n); }), hasOff = rows.some(function (r) { return pick(r).off; });
+    var cols = COLS.filter(function (c) { return (!c.prev || hasPrev) && ((c.k !== "off" && c.k !== "abs") || hasOff); });
+    var data = rows.map(function (r, i) {
+      var x = pick(r), j = i - 1, o = lastYear(r.n), ox = o ? pick(o) : {};
+      while (j >= 0 && pick(rows[j]).p == null) j--;
+      var before = j >= 0 ? pick(rows[j]).p : null;
+      return { r: r, sale: r.n, date: r.date, p: x.p, kg: x.kg, off: x.off, abs: x.abs,
+        ch: x.p != null && before != null ? x.p - before : null, prev: o ? ox.p : null, prevAbs: o ? ox.abs : null };
+    });
+    data.sort(function (a, b) {
+      var A = a[st.sort], B = b[st.sort];
+      if (A == null && B == null) return a.sale - b.sale;
+      if (A == null || A === "") return 1; if (B == null || B === "") return -1;
+      return (A < B ? -1 : A > B ? 1 : a.sale - b.sale) * st.dir;
+    });
+    var t = $("dash-table");
+    $("dash-caption").textContent = TEA[st.tea] + ", " + st.year + ", sales " + st.from + " to " + st.to;
+    t.tHead.innerHTML = "<tr>" + cols.map(function (c) {
+      var s = st.sort === c.k ? (st.dir > 0 ? "ascending" : "descending") : "none";
+      return '<th scope="col" aria-sort="' + s + '"><button type="button" class="dash-sort" data-k="' + c.k + '">' + c.h + '<span class="dash-arrow" aria-hidden="true">' + (s === "ascending" ? "▲" : s === "descending" ? "▼" : "") + "</span></button></th>";
+    }).join("") + "</tr>";
+    t.tBodies[0].innerHTML = data.map(function (d) {
+      var cells = {
+        sale: String(d.sale) + (provisional(d.r) ? ' <span class="dash-badge">Provisional</span>' : ""),
+        date: d.date ? dShort(d.date) : "",
+        p: d.p != null ? usd(d.p) : '<span class="muted">Not published</span>',
+        ch: d.ch == null ? "" : '<span class="' + (d.ch > 0 ? "up" : d.ch < 0 ? "down" : "") + '">' + signed(d.ch, function (v) { return v.toFixed(2); }) + "</span>",
+        off: d.off ? kgFull(d.off) : "", kg: d.kg ? kgFull(d.kg) : "", abs: d.abs != null ? pct(d.abs) : "",
+        prev: d.prev != null ? usd(d.prev) : "", prevAbs: d.prevAbs != null ? pct(d.prevAbs) : ""
+      };
+      return "<tr>" + cols.map(function (c) { return "<td>" + cells[c.k] + "</td>"; }).join("") + "</tr>";
+    }).join("");
+    each("#dash-table .dash-sort", function (b) {
+      b.addEventListener("click", function () {
+        var k = b.getAttribute("data-k");
+        if (st.sort === k) st.dir = -st.dir; else { st.sort = k; st.dir = k === "sale" || k === "date" ? 1 : -1; }
+        salesTable(inRange());
+        var nb = root.querySelector('#dash-table .dash-sort[data-k="' + k + '"]'); if (nb) nb.focus();
+      });
+    });
+    $("dash-provisional").hidden = !rows.some(provisional);
+  }
+
+  /* The same run of sales in every year we hold. */
+  function yearsTable() {
+    $("dash-years-caption").textContent = TEA[st.tea] + ", sales " + st.from + " to " + st.to + " in each year";
+    var out = [], prevAvg = null;
+    years.forEach(function (y) {
+      var rows = inRange(y);
+      if (!rows.length) return;
+      var t = totals(rows), ch = t.avg != null && prevAvg != null ? t.avg - prevAvg : null;
+      out.push("<tr" + (y === st.year ? ' class="is-current"' : "") + "><td>" + y + (rows.length < st.to - st.from + 1 ? ' <span class="muted">(' + rows.length + " sales)</span>" : "") + "</td><td>" + (t.avg != null ? usd(t.avg) : "") +
+        '</td><td><span class="' + (ch > 0 ? "up" : ch < 0 ? "down" : "") + '">' + (ch == null ? "" : signed(ch, function (v) { return v.toFixed(2); })) +
+        "</span></td><td>" + (t.off ? mkg(t.off) : "") + "</td><td>" + (t.kg ? mkg(t.kg) : "") + "</td><td>" + (t.abs != null ? pct(t.abs) : "") + "</td></tr>");
+      prevAvg = t.avg;
+    });
+    $("dash-years").tBodies[0].innerHTML = out.reverse().join("");
+  }
+
+  /* Top prices and grade averages for the last sale in the range, where Combrok's weekly report has them. */
+  function highlightsPanel() {
+    var box = $("dash-hl"), h = highlights[st.year + "-" + st.to];
+    if (!h) { box.hidden = true; return; }
+    box.hidden = false;
+    var r = (byYear[st.year] || []).filter(function (x) { return x.n === st.to; })[0];
+    $("dash-hl-h").textContent = "Sale " + st.to + ", " + (r && r.date ? dShort(r.date) + " " : "") + st.year + ": best prices and grade averages";
+    var cents = function (v) { return v == null || v === "" ? "" : usd(+v / 100); };
+    var top = (h.top_prices || []).map(function (t) {
+      return "<li><b>" + cents(t.price_usc) + "</b> " + esc(t.mark || "") + " <span>" + esc([t.grade, t.country].filter(Boolean).join(", ")) + "</span></li>";
+    }).join("");
+    $("dash-hl-top").innerHTML = top || '<li class="muted">Not given for this sale</li>';
+    var ga = h.grade_avgs || {}, groups = Object.keys(ga), grades = [];
+    groups.forEach(function (g) { Object.keys(ga[g] || {}).forEach(function (k) { if (grades.indexOf(k) < 0) grades.push(k); }); });
+    var nice = { EOR: "East of Rift", WOR: "West of Rift", KTDA: "KTDA factories", PLANTATIONS: "Plantations" };
+    $("dash-hl-grades").innerHTML = groups.length ? "<thead><tr><th scope=\"col\">US$/kg</th>" + grades.map(function (g) { return '<th scope="col">' + esc(g) + "</th>"; }).join("") + "</tr></thead><tbody>" +
+      groups.map(function (g) { return '<tr><th scope="row">' + esc(nice[g] || g.charAt(0) + g.slice(1).toLowerCase()) + "</th>" + grades.map(function (k) { return "<td>" + cents(ga[g][k]) + "</td>"; }).join("") + "</tr>"; }).join("") + "</tbody>" : "";
+  }
+
+  function sourceNote() {
+    var rows = inRange(), cb = rows.some(function (r) { return r.src === "combrok"; });
+    $("dash-src-year").hidden = !cb;
+  }
+
+  function draw() {
+    var rows = inRange();
+    lineChart("dash-price", "dash-legend", rows, function (r) { return pick(r).p; }, function (v) { return "$" + v.toFixed(2); }, function (v) { return usd(v) + (v > 0.5 ? "/kg" : ""); }, "No published " + TEA[st.tea] + " average in these sales", 0.03);
+    lineChart("dash-abs", "dash-abs-legend", rows, function (r) { return pick(r).abs; }, function (v) { return Math.round(v * 100) + "%"; }, pct, "No offered figures for these sales", 0.02);
+    kgChart(rows);
+  }
+  function update() {
+    syncControls();
+    var rows = inRange();
+    stats(rows); draw(); salesTable(rows); yearsTable(); highlightsPanel(); sourceNote(); saveUrl();
+  }
+
+  function start(data) {
+    if (Array.isArray(data)) data = { eatta: data };
+    build(data);
+    if (!years.length) throw new Error("no sales");
+    var q = new URLSearchParams(location.search), y = +q.get("year");
+    st.year = byYear[y] ? y : years[years.length - 1];
+    var rows = byYear[st.year], nums = rows.map(function (r) { return r.n; });
+    st.from = nums.indexOf(+q.get("from")) >= 0 ? +q.get("from") : rows[0].n;
+    st.to = nums.indexOf(+q.get("to")) >= 0 ? +q.get("to") : rows[rows.length - 1].n;
+    if (st.from > st.to) st.from = st.to;
+    if (TEA[q.get("tea")]) st.tea = q.get("tea");
+    st.cmp = q.get("compare") !== "no";
+    wire(); update();
+    root.classList.add("is-ready");
+  }
+
+  fetch(root.getAttribute("data-src"), { cache: "no-cache" })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(start)
+    .catch(function () {
+      $("dash-stats").innerHTML = '<p class="fine">The sales figures could not be loaded just now. Please refresh the page, or see the latest sales in the Mombasa section below.</p>';
+    });
+})();
