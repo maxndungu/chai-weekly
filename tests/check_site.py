@@ -43,6 +43,9 @@ for f, p in pages.items():
     name = f.relative_to(SITE)
     if "og:title" not in p.meta or "og:description" not in p.meta:
         problems.append(f"{name}: no share preview tags")
+    img = p.meta.get("og:image", "")
+    if img and not img.startswith("https://"):
+        problems.append(f"{name}: share image is not a full https:// address: {img}")
     for link in p.links:
         u = urllib.parse.urlparse(link)
         if u.scheme or link.startswith("//") or link.startswith("mailto:"):
