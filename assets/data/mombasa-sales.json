@@ -1,0 +1,5 @@
+---
+layout: null
+sitemap: false
+---
+{"eatta": {{ site.data.mombasa_eatta_sales | jsonify }}, "combrok": {{ site.data.mombasa_combrok_sales | jsonify }}, "highlights": {{ site.data.mombasa_combrok_highlights | jsonify }}, "history": {{ site.data.mombasa_history_sales | jsonify }}, "worldbank": {{ site.data.worldbank_tea_mombasa_monthly | jsonify }}}

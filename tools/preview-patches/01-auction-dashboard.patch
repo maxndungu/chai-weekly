@@ -1,9 +1,9 @@
 diff --git a/_includes/auction-dashboard.html b/_includes/auction-dashboard.html
 new file mode 100644
-index 0000000..44e99e8
+index 0000000..c3b47db
 --- /dev/null
 +++ b/_includes/auction-dashboard.html
-@@ -0,0 +1,103 @@
+@@ -0,0 +1,101 @@
 +{%- comment -%}
 +  Mombasa auction dashboard on the Markets page. Figures come only from _data/mombasa_eatta_sales.csv
 +  (EATTA, 2026 on) and _data/mombasa_combrok_sales.csv (Combrok, 2020 on: kg and lots offered and sold), both saved
@@ -98,10 +98,8 @@ index 0000000..44e99e8
 +
 +    <div class="dash-notes">
 +      <p class="fine" id="dash-provisional" hidden><span class="dash-badge">Provisional</span> EATTA adds late sales until Friday noon, Nairobi time, so the newest sale's figures can still change until then.</p>
-+      <p class="fine" id="dash-src-combrok" hidden>For 2020 to 2025 every figure is from Combrok's auction reports, and all teas and CTC show the same figures.</p>
-+      <p class="fine" id="dash-src-history" hidden>For 2009 to 2019 the figures are totalled from Chai Weekly's lot-by-lot auction records: every lot catalogued counts as offered, so a lot offered again at a later sale counts each time, so the share sold reads a little lower than in Combrok's reports (for 2020, where both exist: 83.0% from the lot records against 84.8% from Combrok). Dashboard figures for 2020 on are Combrok's.</p>
-+      <p class="fine">The average for a run of sales is weighted by the kilograms sold at each sale. <strong>Share sold</strong> (absorption) is the kilograms sold as a share of the kilograms offered, both from the same source (the lot records to 2019, Combrok from 2020), and the offered and sold bars use the same figures. EATTA's own count of kilograms sold, used for the headline figure and the table, can differ from Combrok's by a few per cent. Orthodox tea is not sold at every sale; its lines join the sales where an orthodox average was published.</p>
-+      <p class="fine"><strong>Sources:</strong> prices and kilograms sold from 2026 are from the <a href="https://eatta.co.ke/statistics">East African Tea Trade Association's auction statistics</a>, saved every Wednesday and checked again after Friday noon. Kilograms and lots offered, earlier years, best prices and grade averages are from <a href="https://combrok.co.ke/market-reports">Combrok Limited's market reports</a>, prepared from the Mombasa tea auction results. Sales from 2009 to 2019 are totalled from Chai Weekly's own lot-by-lot auction records. The monthly series since 1992 is the World Bank's Commodity Price Data ("Pink Sheet"), "Tea, Mombasa", licensed CC BY 4.0; it runs a few cents above the auction's own sale averages because it is measured differently.</p>
++      <p class="fine">The average for a run of sales is weighted by the kilograms sold at each sale. <strong>Share sold</strong> (absorption) is the kilograms sold as a share of the kilograms offered, both from the same source, and the offered and sold bars use the same figures. EATTA's own count of kilograms sold, used for the headline figure and the table, can differ by a few per cent from the figures behind the share sold. Orthodox tea is not sold at every sale; its lines join the sales where an orthodox average was published.</p>
++      <p class="fine"><strong>Sources:</strong> prices and kilograms sold from 2026 are from the <a href="https://eatta.co.ke/statistics">East African Tea Trade Association's auction statistics</a>, saved every Wednesday and checked again after Friday noon. The monthly series since 1992 is the World Bank's Commodity Price Data ("Pink Sheet"), "Tea, Mombasa", licensed CC BY 4.0; it runs a few cents above the auction's own sale averages because it is measured differently.</p>
 +    </div>
 +    <noscript><p class="fine">The dashboard needs JavaScript. The Mombasa section below lists the latest sales.</p></noscript>
 +  </div>
@@ -109,10 +107,10 @@ index 0000000..44e99e8
 +</section>
 diff --git a/assets/dashboard.js b/assets/dashboard.js
 new file mode 100644
-index 0000000..fa5757d
+index 0000000..1ae2543
 --- /dev/null
 +++ b/assets/dashboard.js
-@@ -0,0 +1,514 @@
+@@ -0,0 +1,509 @@
 +/* Mombasa auction dashboard (Markets page).
 +   Data: assets/data/mombasa-sales.json = {eatta, combrok, highlights}, filled by Jekyll from _data/:
 +     eatta      mombasa_eatta_sales.csv        official EATTA figures, 2026 on (prices and kg sold)
@@ -527,11 +525,6 @@ index 0000000..fa5757d
 +      groups.map(function (g) { return '<tr><th scope="row">' + esc(nice[g] || g.charAt(0) + g.slice(1).toLowerCase()) + "</th>" + grades.map(function (k) { return "<td>" + cents(ga[g][k]) + "</td>"; }).join("") + "</tr>"; }).join("") + "</tbody>" : "";
 +  }
 +
-+  function sourceNote() {
-+    var rows = inRange(), src = rows.length ? rows[0].src : "";
-+    $("dash-src-combrok").hidden = src !== "combrok";
-+    $("dash-src-history").hidden = src !== "history";
-+  }
 +
 +  /* ---------- the long view: World Bank monthly Mombasa price since 1992 ---------- */
 +  var wb = [], longSpan = "all";
@@ -598,7 +591,7 @@ index 0000000..fa5757d
 +  function update() {
 +    syncControls();
 +    var rows = inRange();
-+    stats(rows); draw(); salesTable(rows); yearsTable(); highlightsPanel(); sourceNote(); saveUrl();
++    stats(rows); draw(); salesTable(rows); yearsTable(); highlightsPanel(); saveUrl();
 +  }
 +
 +  function start(data) {
