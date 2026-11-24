@@ -13,7 +13,9 @@ from collections import defaultdict
 from pathlib import Path
 
 OUT = Path(__file__).resolve().parent.parent / "_data" / "mombasa_history_sales.csv"
-TEAS = {"all": None, "ctc": "CTC", "orthodox": "ORTHODOX"}
+# No orthodox totals: the workbooks hold only a few lots tagged ORTHODOX (Rwandan BOPF1 and similar, about $0.80/kg),
+# not the orthodox catalogue, so they would misstate orthodox prices. Those lots still count in "all".
+TEAS = {"all": None, "ctc": "CTC"}
 COLS = ["year", "sale", "auction_date"] + [f"{t}_{f}" for t in TEAS for f in
         ("offered_lots", "sold_lots", "offered_kg", "sold_kg", "avg_usd_kg")]
 
