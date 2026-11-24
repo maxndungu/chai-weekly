@@ -1,13 +1,17 @@
 title: Chai Weekly
 motto: "Tea news from East Africa and the world, every week"
 description: "A free weekly tea newspaper from East Africa. Every Wednesday: tea news from Kenya, the region and the world, Mombasa auction prices, tea weather and coming events."
-# Paste your Buttondown username OR Substack URL here (leave the other blank).
-buttondown_username: ""
-substack_url: ""
+# Our own mailing list (listmonk on the VPS; set-up steps in deploy/listmonk/SETUP.md).
+# listmonk_url: where the list runs. listmonk_list_uuid: the list's long code (Lists > the list > "UUID"),
+# used by the Subscribe box. listmonk_list_id: the list's number (shown as #3 etc.), used for email drafts.
+# The Subscribe box stays in "opens soon" mode until listmonk_list_uuid is filled in.
+listmonk_url: "https://list.chaiweekly.co.ke"
+listmonk_list_uuid: ""
+listmonk_list_id: ""
 permalink: /issues/:year/:month/:day/:title/
 markdown: kramdown
 plugins: [jekyll-sitemap]
-exclude: [tools, tests, README.md, sources, submissions, drafts, vendor, Gemfile, Gemfile.lock, .bundle, node_modules]
+exclude: [deploy, tools, tests, README.md, sources, submissions, drafts, vendor, Gemfile, Gemfile.lock, .bundle, node_modules]
 baseurl: ""
 url: "https://chaiweekly.co.ke"
 # "Send us a story" form. Free, no account: put "https://formsubmit.co/YOUR-EMAIL" here, send yourself

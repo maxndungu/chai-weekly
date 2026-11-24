@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
-"""Turn a published issue into a Buttondown email draft (never sends).
+"""Turn a published issue into a listmonk campaign DRAFT (never sends).
 
-Usage: BUTTONDOWN_API_KEY=... SITE_URL=https://... python3 tools/to_buttondown.py _posts/<file>.md
+Usage:
+  LISTMONK_URL=https://list.chaiweekly.co.ke LISTMONK_LIST_ID=3 \
+  LISTMONK_API_USER=... LISTMONK_API_TOKEN=... SITE_URL=https://... \
+  python3 tools/to_listmonk.py _posts/<file>.md
+
+The draft appears under Campaigns in listmonk; Maxwell checks it and presses Start to send.
 Links in the email get ?utm_source=newsletter so site visits from the email can be counted.
-Buttondown adds its own unsubscribe link to every email.
+listmonk's email template adds the unsubscribe link to every email.
 """
 import json
 import os
@@ -71,15 +76,32 @@ email = (
     f"[Read online]({web}?{tag}) · [All editions]({site}/archive/?{tag})\n"
 )
 
+# listmonk reads {{ ... }} as its own template code; issues never need it, so take any stray braces apart.
+email = email.replace("{{", "{ {").replace("}}", "} }")
+
+base = os.environ["LISTMONK_URL"].rstrip("/")
+payload = {
+    "name": f"Chai Weekly No. {issue}",
+    "subject": f"Chai Weekly No. {issue}: {title}",
+    "lists": [int(x) for x in os.environ["LISTMONK_LIST_ID"].replace(" ", "").split(",") if x],
+    "type": "regular",
+    "content_type": "markdown",
+    "body": email,
+    "messenger": "email",
+    "tags": ["issue"],
+}
+if os.environ.get("LISTMONK_FROM"):
+    payload["from_email"] = os.environ["LISTMONK_FROM"]
 req = urllib.request.Request(
-    "https://api.buttondown.com/v1/emails",
-    data=json.dumps({"subject": f"Chai Weekly No. {issue}: {title}", "body": email, "status": "draft"}).encode(),
+    f"{base}/api/campaigns",
+    data=json.dumps(payload).encode(),
     headers={
-        "Authorization": f"Token {os.environ['BUTTONDOWN_API_KEY']}",
+        "Authorization": f"token {os.environ['LISTMONK_API_USER']}:{os.environ['LISTMONK_API_TOKEN']}",
         "Content-Type": "application/json",
-        "X-API-Version": "2026-04-01",  # this version defaults to draft and refuses to send without confirmation
     },
     method="POST",
 )
+# A new campaign is always created as a draft; sending needs a person to press Start in listmonk.
 with urllib.request.urlopen(req, timeout=30) as r:
-    print("Buttondown draft created:", json.load(r).get("id"))
+    data = json.load(r).get("data", {})
+    print(f"listmonk draft created: {base}/admin/campaigns/{data.get('id')} (status: {data.get('status')})")

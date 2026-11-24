@@ -5,7 +5,7 @@ A free weekly newsletter about tea (Kenya first, plus world tea news), published
 ```
 _posts/            one markdown file per issue (YYYY-MM-DD-issue-NNN.md)
 _layouts/, _includes/, assets/   site design (signup box is _includes/signup.html)
-_config.yml        site name + your Buttondown/Substack setting
+_config.yml        site name + mailing list settings (listmonk)
 tools/feeds.txt    RSS feeds to watch (add or remove lines freely)
 tools/reports.txt  weekly auction report pages per market (Mombasa, Colombo, India, Chittagong, ...)
 tools/gather.py    collects the last 8 days of headlines into sources/
@@ -17,7 +17,7 @@ tools/DRAFT_PROMPT.md   the prompt for Claude to draft each issue
 
 1. **GitHub repo**: create a public repo (e.g. `chai-weekly`) and push this folder to it.
 2. **Pages**: repo Settings → Pages → Source: *Deploy from a branch*, branch `main`, folder `/ (root)`. Your site appears at `https://<you>.github.io/chai-weekly/` within a couple of minutes. Then set `baseurl: "/chai-weekly"` and `url: "https://<you>.github.io"` in `_config.yml`.
-3. **Email list**: make a free [Buttondown](https://buttondown.com) account (free up to 100 subscribers, markdown-native) and put your username in `_config.yml` as `buttondown_username`. Or use Substack and set `substack_url` (e.g. `https://chaiweekly.substack.com`). The signup box switches over automatically.
+3. **Email list**: our own list (listmonk) on the VPS. Follow `deploy/listmonk/SETUP.md`, then put the list's UUID and number in `_config.yml` (`listmonk_list_uuid`, `listmonk_list_id`). The signup box switches on automatically.
 4. **Actions**: the "Gather sources" workflow runs on its own every Wednesday. You can also run it by hand from the Actions tab.
 
 ## Weekly routine (about 15 minutes of your time)
@@ -30,7 +30,7 @@ tools/DRAFT_PROMPT.md   the prompt for Claude to draft each issue
 2. **Draft**: paste `tools/DRAFT_PROMPT.md` + the sources file + last week's issue into Claude. Claude returns the full issue.
 3. **Review (10 min)**: check every price against its link, read the reviewer notes Claude lists at the end, fix the tone.
 4. **Publish**: save it as `_posts/YYYY-MM-DD-issue-NNN.md` (GitHub's "Add file" button works) and commit. The site updates itself.
-5. **Send**: paste the same markdown into a new Buttondown email (or Substack post) and send.
+5. **Send**: the merged issue appears as a draft under Campaigns in listmonk. Send yourself a test, then press Start.
 
 ## Auction analysis page and price history (_data/)
 
@@ -100,9 +100,9 @@ GitHub stays the source of truth. Every push to `main` also triggers `.github/wo
 
 ## Email list, unsubscribe and tracking
 
-- **Subscribe box + sending:** [Buttondown](https://buttondown.com) (free up to 100 subscribers). Put your username in `buttondown_username` in `_config.yml`. Import your own list under Subscribers > Import (only people who agreed to receive it). Buttondown puts an unsubscribe link in every email automatically.
-- **Email drafts:** add repo secret `BUTTONDOWN_API_KEY`. Each time an issue is merged, `.github/workflows/email-draft.yml` creates a Buttondown *draft* (never sends). Open Buttondown, check it, press Send.
-- **Opens:** Buttondown's Analytics add-on (about $9/month) shows who opened each email.
+- **Subscribe box + sending:** our own [listmonk](https://listmonk.app) at https://list.chaiweekly.co.ke (free, on the VPS; set-up in `deploy/listmonk/SETUP.md`). Readers confirm by email (double opt-in), then land on `/subscribe/thanks/`. Emails go out through the newsletter@chaiweekly.co.ke StackMail mailbox (about 2,000 recipients a day). Import your own list under Subscribers > Import (only people who agreed to receive it). listmonk puts an unsubscribe link in every email.
+- **Email drafts:** add repo secrets `LISTMONK_API_USER` and `LISTMONK_API_TOKEN`. Each time an issue is merged, `.github/workflows/email-draft.yml` runs `tools/to_listmonk.py`, which creates a listmonk campaign *draft* (never sends). Open listmonk > Campaigns, check it, press Start.
+- **Opens and clicks:** listmonk counts these for free (Campaigns > Analytics).
 - **Site visits (free):** sign up at [GoatCounter](https://www.goatcounter.com) and set `goatcounter_code`. Links in the email carry `utm_source=newsletter`, so visits from the email show as campaign "newsletter"; shared links show by referring site (WhatsApp, Facebook, X...).
 
 ## Tea weather page

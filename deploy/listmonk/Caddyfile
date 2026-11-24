@@ -1,0 +1,5 @@
+# Serves the mailing list at https://list.chaiweekly.co.ke with an automatic certificate.
+{$LIST_DOMAIN} {
+	encode gzip
+	reverse_proxy app:9000
+}
