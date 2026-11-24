@@ -16,7 +16,9 @@ from pathlib import Path
 
 FEEDS = {"ctc": "https://combrok.co.ke/assets/data/ctc-auction.json",
          "orthodox": "https://combrok.co.ke/assets/data/orthodox-auction.json"}
+HIGHLIGHTS = "https://combrok.co.ke/assets/data/sale-highlights.json"
 OUT = Path(__file__).resolve().parent.parent / "_data" / "mombasa_combrok_sales.csv"
+OUT_HL = OUT.with_name("mombasa_combrok_highlights.json")
 FIELDS = ["offered_lots", "sold_lots", "offered_kg", "sold_kg", "avg_usd_kg"]
 COLS = ["year", "sale"] + [f"{k}_{f}" for k in FEEDS for f in FIELDS] + ["first_saved", "last_checked"]
 SRC = {"offered_lots": "offered_lots", "sold_lots": "sold_lots", "offered_kg": "qty_offered",
@@ -74,6 +76,21 @@ def main():
         w.writeheader()
         w.writerows(sorted(existing.values(), key=lambda r: (int(r["year"]), int(r["sale"]))))
     print(f"{OUT.name}: {len(existing)} sales ({added} new, {revised} revised)")
+    if len(sys.argv) <= 2:
+        save_highlights()
+
+
+def save_highlights():
+    """Top prices and grade averages per sale. Keeps sales we saved before if Combrok drops them."""
+    try:
+        new = fetch(HIGHLIGHTS)
+    except Exception as e:
+        print(f"Sale highlights not updated ({type(e).__name__})")
+        return
+    old = json.loads(OUT_HL.read_text()) if OUT_HL.exists() else []
+    keyed = {(int(h["year"]), int(h["sale"])): h for h in old + [h for h in new if "year" in h and "sale" in h]}
+    OUT_HL.write_text(json.dumps([keyed[k] for k in sorted(keyed)], indent=1) + "\n")
+    print(f"{OUT_HL.name}: {len(keyed)} sales")
 
 
 if __name__ == "__main__":
