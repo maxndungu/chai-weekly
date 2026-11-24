@@ -38,7 +38,7 @@
   var signed = function (v, f) { return (v > 0 ? "+" : v < 0 ? "−" : "") + f(Math.abs(v)); };
 
   var byYear = {}, years = [], highlights = {};
-  var st = { year: null, from: null, to: null, tea: "all", cmp: true, sort: "sale", dir: 1 };
+  var st = { year: null, from: null, to: null, tea: "all", cmp: true, sort: "sale", dir: -1 };  // newest sale first
 
   /* ---------- data ---------- */
   function build(data) {
@@ -98,7 +98,12 @@
     var d = dateOf(r.date), add = (5 - d.getUTCDay() + 7) % 7;
     return Date.now() < d.getTime() + add * 864e5 + 9 * 36e5; // Friday noon Nairobi = 09:00 UTC
   }
-  var inRange = function (y) { return (byYear[y == null ? st.year : y] || []).filter(function (r) { return r.n >= st.from && r.n <= st.to; }); };
+  // The chosen run of sales. For orthodox, only the weeks it was sold: it runs every other week, so the rest are left out.
+  var inRange = function (y) {
+    return (byYear[y == null ? st.year : y] || []).filter(function (r) {
+      return r.n >= st.from && r.n <= st.to && (st.tea !== "orthodox" || r.orthodox.p != null || r.orthodox.kg != null);
+    });
+  };
   function lastYear(n) {
     if (!st.cmp) return null;
     var prev = byYear[st.year - 1] || [];
@@ -369,7 +374,7 @@
       var s = st.sort === c.k ? (st.dir > 0 ? "ascending" : "descending") : "none";
       return '<th scope="col" aria-sort="' + s + '"><button type="button" class="dash-sort" data-k="' + c.k + '">' + c.h + '<span class="dash-arrow" aria-hidden="true">' + (s === "ascending" ? "▲" : s === "descending" ? "▼" : "") + "</span></button></th>";
     }).join("") + "</tr>";
-    t.tBodies[0].innerHTML = data.map(function (d) {
+    t.tBodies[0].innerHTML = !data.length ? '<tr><td colspan="' + cols.length + '" class="muted">' + noneText("No " + TEA[st.tea] + " sales in this run") + "</td></tr>" : data.map(function (d) {
       var cells = {
         sale: String(d.sale) + (provisional(d.r) ? ' <span class="dash-badge">Provisional</span>' : ""),
         date: d.date ? dShort(d.date) : "",
