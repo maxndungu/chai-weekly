@@ -33,15 +33,28 @@
     var rows = {}, key = function (y, n) { return y + "-" + n; };
     var get = function (y, n) {
       var k = key(y, n);
-      return rows[k] || (rows[k] = { y: y, n: n, date: "", src: "combrok", all: {}, ctc: {}, orthodox: {}, cb: { ctc: {}, orthodox: {} } });
+      return rows[k] || (rows[k] = { y: y, n: n, date: "", src: "combrok", all: {}, ctc: {}, orthodox: {}, cb: { all: {}, ctc: {}, orthodox: {} } });
     };
+    // Maxwell's lot-by-lot records (2009 to 2020), totalled per sale: used where neither Combrok nor EATTA has the sale.
+    (data.history || []).forEach(function (h) {
+      var r = get(+h.year, +h.sale);
+      r.src = "history"; r.date = h.auction_date || "";
+      ["all", "ctc", "orthodox"].forEach(function (t) {
+        r.cb[t] = { p: num(h[t + "_avg_usd_kg"]), kg: num(h[t + "_sold_kg"]), off: num(h[t + "_offered_kg"]),
+          lo: num(h[t + "_offered_lots"]), ls: num(h[t + "_sold_lots"]) };
+        r[t] = { p: r.cb[t].p, kg: r.cb[t].kg };
+      });
+    });
     (data.combrok || []).forEach(function (c) {
       var r = get(+c.year, +c.sale);
+      if (r.src === "history") { r.src = "combrok"; r.cb = { all: {}, ctc: {}, orthodox: {} }; r.orthodox = {}; }
+      r.src = "combrok";
       ["ctc", "orthodox"].forEach(function (t) {
         r.cb[t] = { p: num(c[t + "_avg_usd_kg"]), kg: num(c[t + "_sold_kg"]), off: num(c[t + "_offered_kg"]),
           lo: num(c[t + "_offered_lots"]), ls: num(c[t + "_sold_lots"]) };
       });
       // Combrok's "CTC" auction totals match EATTA's all-teas totals, so they stand for all teas too.
+      r.cb.all = r.cb.ctc;
       r.all = { p: r.cb.ctc.p, kg: r.cb.ctc.kg };
       r.ctc = { p: r.cb.ctc.p, kg: r.cb.ctc.kg };
       r.orthodox = { p: r.cb.orthodox.p, kg: r.cb.orthodox.kg };
@@ -62,7 +75,7 @@
   // Figures for the chosen tea: price and kg sold from the main source, offered and lots from Combrok.
   function pick(r, tea) {
     tea = tea || st.tea;
-    var m = r[tea] || {}, cb = r.cb[tea === "orthodox" ? "orthodox" : "ctc"] || {};
+    var m = r[tea] || {}, cb = r.cb[tea] || {};
     var abs = cb.off && cb.kg != null ? cb.kg / cb.off : null;
     return { p: m.p != null ? m.p : null, kg: m.kg || null, off: cb.off || null, cbKg: cb.kg, abs: abs, lo: cb.lo, ls: cb.ls };
   }
@@ -400,8 +413,9 @@
   }
 
   function sourceNote() {
-    var rows = inRange(), cb = rows.some(function (r) { return r.src === "combrok"; });
-    $("dash-src-year").hidden = !cb;
+    var rows = inRange(), src = rows.length ? rows[0].src : "";
+    $("dash-src-combrok").hidden = src !== "combrok";
+    $("dash-src-history").hidden = src !== "history";
   }
 
   /* ---------- the long view: World Bank monthly Mombasa price since 1992 ---------- */
