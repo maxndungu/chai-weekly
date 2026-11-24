@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   <section>
     <h2 class="label rule">This year, sale by sale</h2>
-    <p class="chart-note">Average price at each Mombasa sale (US$ per kg, all teas), with the monthly average for comparison.</p>
+    <p class="chart-note">Average price at each Mombasa sale (US$ per kg, all teas), with the World Bank's monthly figure for comparison.</p>
     <figure class="chart" id="chart-weekly" role="img" aria-label="Weekly Mombasa auction average price this year"></figure>
     <p class="chart-note" id="gap-note"></p>
   </section>
@@ -179,7 +179,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function path(pts) { return pts.map(function (p, i) { return (i ? "L" : "M") + p[0].toFixed(1) + "," + p[1].toFixed(1); }).join(""); }
   function dot(c, x, y, r, klass, tip) { var d = el("circle", { cx: x, cy: y, r: r, class: klass }, c.svg); el("title", {}, d).textContent = tip; }
 
-  // Chart 1: weekly sales this year, with the monthly series as steps
+  // Chart 1: weekly sales this year, with World Bank monthly steps
   (function () {
     var t0 = Date.parse(yr + "-01-01"), t1 = Date.parse(yr + "-12-31");
     var vals = ys.map(function (s) { return s.avg; });
@@ -193,7 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (wbBy[k]) {
         var x2 = c.X(i < 11 ? Date.parse(yr + "-" + (i < 8 ? "0" : "") + (i + 2) + "-01") : t1);
         var ln = el("line", { x1: x, x2: x2, y1: c.Y(wbBy[k]), y2: c.Y(wbBy[k]), class: "wb-step" }, c.svg);
-        el("title", {}, ln).textContent = "Monthly price, " + mlabel(k) + ": " + f2(wbBy[k]);
+        el("title", {}, ln).textContent = "World Bank, " + mlabel(k) + ": " + f2(wbBy[k]);
       }
     });
     var pts = ys.map(function (s) { return [c.X(Date.parse(s.date)), c.Y(s.avg)]; });
@@ -201,7 +201,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ys.forEach(function (s, i) { dot(c, pts[i][0], pts[i][1], s === last ? 4.5 : 2.6, "pt" + (s === last ? " pt-last" : ""), "Sale " + s.sale + ", " + dlabel(s.date) + ": " + f2(s.avg) + " · " + kg(s.kg)); });
     var lg = el("g", { class: "legend" }, c.svg);
     el("line", { x1: 60, x2: 80, y1: 22, y2: 22, class: "line-main" }, lg); el("text", { x: 86, y: 26, class: "tick" }, lg).textContent = "EATTA sale average";
-    el("line", { x1: 230, x2: 250, y1: 22, y2: 22, class: "wb-step" }, lg); el("text", { x: 256, y: 26, class: "tick" }, lg).textContent = "Monthly average";
+    el("line", { x1: 230, x2: 250, y1: 22, y2: 22, class: "wb-step" }, lg); el("text", { x: 256, y: 26, class: "tick" }, lg).textContent = "World Bank monthly";
   })();
 
   // Chart 2: long run
@@ -262,7 +262,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Gap note
   var gaps = Object.keys(months).filter(function (k) { return wbBy[k]; }).map(function (k) { var ss = months[k], w = ss.reduce(function (a, s) { return a + s.kg; }, 0); return wbBy[k] - ss.reduce(function (a, s) { return a + s.avg * s.kg; }, 0) / w; });
-  if (gaps.length) $("gap-note").textContent = "In " + yr + " the monthly price has run " + Math.round(Math.min.apply(0, gaps) * 100) + " to " + Math.round(Math.max.apply(0, gaps) * 100) + " US cents above EATTA's sale averages every month. The two are measured differently, so watch the direction of each, not the gap.";
+  if (gaps.length) $("gap-note").textContent = "In " + yr + " the World Bank figure has run " + Math.round(Math.min.apply(0, gaps) * 100) + " to " + Math.round(Math.max.apply(0, gaps) * 100) + " US cents above EATTA's sale averages every month. The two are measured differently, so watch the direction of each, not the gap.";
 })();
 </script>
 
