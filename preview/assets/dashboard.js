@@ -412,11 +412,6 @@
       groups.map(function (g) { return '<tr><th scope="row">' + esc(nice[g] || g.charAt(0) + g.slice(1).toLowerCase()) + "</th>" + grades.map(function (k) { return "<td>" + cents(ga[g][k]) + "</td>"; }).join("") + "</tr>"; }).join("") + "</tbody>" : "";
   }
 
-  function sourceNote() {
-    var rows = inRange(), src = rows.length ? rows[0].src : "";
-    $("dash-src-combrok").hidden = src !== "combrok";
-    $("dash-src-history").hidden = src !== "history";
-  }
 
   /* ---------- the long view: World Bank monthly Mombasa price since 1992 ---------- */
   var wb = [], longSpan = "all";
@@ -483,7 +478,7 @@
   function update() {
     syncControls();
     var rows = inRange();
-    stats(rows); draw(); salesTable(rows); yearsTable(); highlightsPanel(); sourceNote(); saveUrl();
+    stats(rows); draw(); salesTable(rows); yearsTable(); highlightsPanel(); saveUrl();
   }
 
   function start(data) {
