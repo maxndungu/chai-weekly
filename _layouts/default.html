@@ -18,15 +18,15 @@
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Chai Weekly: tea news from East Africa and the world, every week">{% endif %}
+  <meta property="og:image:alt" content="Chai Weekly nameplate: free weekly tea newspaper, chaiweekly.co.ke">{% endif %}
   <meta name="twitter:card" content="{% if site.share_image and site.share_image != "" %}summary_large_image{% else %}summary{% endif %}">
   <meta name="twitter:title" content="{{ page.title | default: site.title | escape }}">
   <meta name="twitter:description" content="{{ page.deck | default: page.description | default: site.description | escape }}">
   {% if site.share_image and site.share_image != "" %}<meta name="twitter:image" content="{{ share_url }}/{{ site.share_image }}">{% endif %}
-  <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
-  <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="48x48">
+  <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="16x16 32x32 48x48">
+  <link rel="icon" href="{{ '/assets/favicon-32.png' | relative_url }}" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="{{ '/apple-touch-icon.png' | relative_url }}">
-  <meta name="theme-color" content="#173E32">
+  <meta name="theme-color" content="#fbfaf6">
   {% if site.canonical_url != "" %}<link rel="canonical" href="{{ site.canonical_url }}{{ page.url }}">{% endif %}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
