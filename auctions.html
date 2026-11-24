@@ -43,7 +43,7 @@ permalink: /auctions/
 
   <section class="sources">
     <h2 class="label rule">Data and sources</h2>
-    <p><strong>Weekly sales:</strong> <a href="https://eatta.co.ke/statistics">East African Tea Trade Association auction statistics</a>, all teas sold at each sale, with CTC and orthodox shown separately where EATTA reports them. EATTA's site only shows the current year, so Chai Weekly keeps each sale as it is published and updates it if EATTA revises a figure. Sale averages for earlier years in the year-by-year table come from Chai Weekly's own weekly auction records, back to 2009; before that, the year's monthly prices are averaged.</p>
+    <p><strong>Weekly sales:</strong> <a href="https://eatta.co.ke/statistics">East African Tea Trade Association auction statistics</a>, all teas sold at each sale, with CTC and orthodox shown separately where EATTA reports them. EATTA's site only shows the current year, so Chai Weekly keeps each sale as it is published and updates it if EATTA revises a figure. Sale averages for earlier years in the year-by-year table come from Chai Weekly's own weekly auction records, back to 2009; before that, the year's World Bank monthly prices are averaged.</p>
     <p><strong>Monthly series since 1992:</strong> the Mombasa auction price for each month. It runs a few cents above EATTA's own sale averages because the two are measured differently, so the page shows them side by side rather than mixing them.</p>
     <p class="fine muted">Monthly prices since 1992: World Bank Commodity Price Data, CC BY 4.0. Figures are as published by each source. Check the originals before trading on them. Spot an error? Just reply to any issue.</p>
   </section>
@@ -179,15 +179,15 @@ permalink: /auctions/
   sales.forEach(function (s) { add(0, s.year, s.avg, s.kg); });
   (CB || []).forEach(function (r) { add(1, +r.year, +r.ctc_avg_usd_kg, +r.ctc_sold_kg); });
   (HIST || []).forEach(function (r) { add(2, +r.year, +r.all_avg_usd_kg, +r.all_sold_kg); });
-  // Years before our weekly records use the average of the monthly prices (marked "monthly"). The change on the
+  // Years before our weekly records use the average of the World Bank monthly prices (marked "World Bank"). The change on the
   // year compares like with like: sale averages where both years have them, monthly averages otherwise.
   var mavg = function (y) { var v = years[y]; return v ? v.reduce(function (a, b) { return a + b; }, 0) / v.length : null; };
-  table("t-year", ["Year", "Monthly average", "Lowest month", "Highest month", "Sale average", "On the year", "Tea sold"], Object.keys(years).sort().reverse().map(function (y) {
+  table("t-year", ["Year", "World Bank average", "Lowest month", "Highest month", "Sale average", "On the year", "Tea sold"], Object.keys(years).sort().reverse().map(function (y) {
     var v = years[y], av = mavg(y);
     var t = sy[y], pt = sy[+y - 1], sa = t ? t.v / t.kg : null, pa = pt ? pt.v / pt.kg : null;
     var cur = sa != null ? sa : av, ch = sa != null && pa != null ? sa - pa : mavg(+y - 1) != null ? av - mavg(+y - 1) : null;
     return [y + (v.length < 12 ? " <span class='muted'>(" + v.length + " mo)</span>" : ""), f2(av), f2(Math.min.apply(0, v)), f2(Math.max.apply(0, v)),
-      "<b>" + f2(cur) + "</b>" + (sa == null ? " <span class='muted'>(monthly)</span>" : t.n < 48 ? " <span class='muted'>(" + t.n + " sales)</span>" : ""),
+      "<b>" + f2(cur) + "</b>" + (sa == null ? " <span class='muted'>(World Bank)</span>" : t.n < 48 ? " <span class='muted'>(" + t.n + " sales)</span>" : ""),
       ch != null ? "<span class='" + cls(ch) + "'>" + cents(ch) + "</span>" : "",
       t ? (t.kg / 1e6).toFixed(0) + "M kg" : ""];
   }));
