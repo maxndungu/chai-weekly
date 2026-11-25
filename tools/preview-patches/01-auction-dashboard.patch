@@ -1,6 +1,6 @@
 diff --git a/_includes/auction-dashboard.html b/_includes/auction-dashboard.html
 new file mode 100644
-index 0000000..f1dd43b
+index 0000000..f9ca811
 --- /dev/null
 +++ b/_includes/auction-dashboard.html
 @@ -0,0 +1,101 @@
@@ -65,9 +65,9 @@ index 0000000..f1dd43b
 +    </div>
 +
 +    <div class="dash-lower">
-+      <div class="table-wrap" tabindex="0" role="region" aria-label="The same sales in each year">
++      <div class="table-wrap" tabindex="0" role="region" aria-label="These sales in each year">
 +        <table class="data-table dash-years" id="dash-years">
-+          <caption id="dash-years-caption">The same sales in each year</caption>
++          <caption id="dash-years-caption">These sales in each year</caption>
 +          <thead><tr><th scope="col">Year</th><th scope="col">Average US$/kg</th><th scope="col">Change</th><th scope="col">Offered (m kg)</th><th scope="col">Sold (m kg)</th><th scope="col">Share sold</th></tr></thead>
 +          <tbody></tbody>
 +        </table>
@@ -97,7 +97,7 @@ index 0000000..f1dd43b
 +    </section>
 +
 +    <div class="dash-notes">
-+      <p class="fine" id="dash-provisional" hidden><span class="dash-badge">Provisional</span> EATTA adds late sales until Friday noon, Nairobi time, so the newest sale's figures can still change until then.</p>
++      <p class="fine" id="dash-provisional" hidden><b class="dash-prov">*</b> Provisional: EATTA adds late sales until Friday noon, Nairobi time, so the newest sale's figures can still change until then.</p>
 +      <p class="fine">The average for a run of sales is weighted by the kilograms sold at each sale. <strong>Share sold</strong> (absorption) is the kilograms sold as a share of the kilograms offered, both from the same source, and the offered and sold bars use the same figures. EATTA's own count of kilograms sold, used for the headline figure and the table, can differ by a few per cent from the figures behind the share sold. Orthodox tea is sold every other week, so the Orthodox view lists only the weeks it was sold. Separate orthodox figures start at sale 38 of 2025.</p>
 +      <p class="fine"><strong>Sources:</strong> prices and kilograms sold from 2026 are from the <a href="https://eatta.co.ke/statistics">East African Tea Trade Association's auction statistics</a>, updated every Tuesday at 4pm and Friday at 2pm (final figures), Nairobi time. Sales from 2009 to 2025 come from Chai Weekly's own weekly auction records. Monthly prices 1992 to 2008: World Bank Commodity Price Data, CC BY 4.0.</p>
 +    </div>
@@ -107,10 +107,10 @@ index 0000000..f1dd43b
 +</section>
 diff --git a/assets/dashboard.js b/assets/dashboard.js
 new file mode 100644
-index 0000000..cc93892
+index 0000000..734bf1a
 --- /dev/null
 +++ b/assets/dashboard.js
-@@ -0,0 +1,545 @@
+@@ -0,0 +1,557 @@
 +/* Mombasa auction dashboard (Markets page).
 +   Data: assets/data/mombasa-sales.json = {eatta, combrok, highlights}, filled by Jekyll from _data/:
 +     eatta      mombasa_eatta_sales.csv        official EATTA figures, 2026 on (prices and kg sold)
@@ -188,7 +188,7 @@ index 0000000..cc93892
 +    (data.eatta || []).forEach(function (e) {
 +      var r = get(+e.year, +e.sale);
 +      r.src = "eatta"; r.date = e.auction_date || "";
-+      r.all = { p: num(e.avg_usd_kg), kg: num(e.sold_kg) };
++      r.all = { p: num(e.avg_usd_kg), kg: num(e.sold_kg), off: num(e.offered_kg) };
 +      r.ctc = { p: num(e.ctc_avg_usd_kg), kg: num(e.ctc_sold_kg) };
 +      r.orthodox = { p: num(e.orthodox_avg_usd_kg), kg: num(e.orthodox_sold_kg) };
 +    });
@@ -200,11 +200,14 @@ index 0000000..cc93892
 +    (data.highlights || []).forEach(function (h) { highlights[key(+h.year, +h.sale)] = h; });
 +  }
 +  // Figures for the chosen tea: price and kg sold from the main source, offered and lots from Combrok.
++  // EATTA first for kg sold and offered, wherever it has the figure (bars, share sold, totals); Combrok only where EATTA's is missing.
 +  function pick(r, tea) {
 +    tea = tea || st.tea;
-+    var m = r[tea] || {}, cb = r.cb[tea] || {};
-+    var abs = cb.off && cb.kg != null ? cb.kg / cb.off : null;
-+    return { p: m.p != null ? m.p : null, kg: m.kg || null, off: cb.off || null, cbKg: cb.kg, abs: abs, lo: cb.lo, ls: cb.ls };
++    var m = r[tea] || {}, cb = r.cb[tea] || {}, ea = r.src === "eatta";
++    var sold = ea && m.kg != null ? m.kg : cb.kg;
++    var off = ea && m.off ? m.off : cb.off;
++    var abs = off && sold != null ? Math.min(1, sold / off) : null;
++    return { p: m.p != null ? m.p : null, kg: m.kg || null, off: off || null, cbKg: sold, abs: abs, lo: cb.lo, ls: cb.ls };
 +  }
 +  function provisional(r) {
 +    if (!r.date || r.src !== "eatta") return false;
@@ -360,13 +363,13 @@ index 0000000..cc93892
 +    if (show) l.innerHTML = items.map(function (it) { return '<span><i class="' + it[0] + '"></i>' + it[1] + "</span>"; }).join("");
 +  }
 +
-+  /* A line chart of one figure per sale, with last year's same sale dashed. */
++  /* A line chart of one figure per sale, with the same sale last year dashed. */
 +  function lineChart(id, legendId, rows, valueOf, fmtAxis, fmtTip, emptyText, minPad) {
 +    var fig = $(id), f = frame(fig, fig.clientWidth < 520 ? 220 : 260), P = f.P;
 +    var cur = rows.map(valueOf);
 +    var prev = rows.map(function (r) { var o = lastYear(r.n); return o ? valueOf(o) : null; });
 +    var hasPrev = prev.some(function (v) { return v != null; });
-+    legend(legendId, hasPrev, [["k-cur", String(st.year)], ["k-prev", (st.year - 1) + ", same sale"]]);
++    legend(legendId, hasPrev, [["k-cur", String(st.year)], ["k-prev", String(st.year - 1)]]);
 +    var all = cur.concat(prev).filter(function (v) { return v != null; });
 +    if (!all.length) return empty(f, emptyText);
 +    var lo = Math.min.apply(0, all), hi = Math.max.apply(0, all), pad = Math.max((hi - lo) * 0.12, minPad);
@@ -414,8 +417,12 @@ index 0000000..cc93892
 +    var fig = $("dash-kg"), f = frame(fig, fig.clientWidth < 520 ? 210 : 250), P = f.P;
 +    var xs = rows.map(function (r) { return pick(r); });
 +    var hasOff = xs.some(function (x) { return x.off; });
-+    legend("dash-kg-legend", hasOff, [["k-off", "Offered"], ["k-sold", "Sold"]]);
-+    var max = Math.max.apply(0, xs.map(function (x) { return Math.max(x.kg || 0, x.off || 0); }).concat([0]));
++    // Last year's same sale: kg sold, drawn over the bars when "compare with last year" is on.
++    var pv = rows.map(function (r) { var o = lastYear(r.n), x = o ? pick(o) : null; return x ? (x.cbKg != null ? x.cbKg : x.kg) || null : null; });
++    var hasPv = pv.some(function (v) { return v != null; });
++    legend("dash-kg-legend", hasOff || hasPv, (hasOff ? [["k-off", "Offered"]] : []).concat([["k-sold", "Sold"]],
++      hasPv ? [["k-prev", "Sold " + (st.year - 1)]] : []));
++    var max = Math.max.apply(0, xs.map(function (x) { return Math.max(x.kg || 0, x.off || 0); }).concat(pv.map(function (v) { return v || 0; }), [0]));
 +    if (!max) return empty(f, noneText("No " + TEA[st.tea] + " sold in these sales"));
 +    var U = max < 1e6 ? 1e3 : 1e6;
 +    $("dash-kg-u").textContent = U === 1e3 ? "thousand kg" : "million kg";
@@ -440,6 +447,11 @@ index 0000000..cc93892
 +      if (sold) g.push(bar(i, Math.min(sold, x.off || sold), "dash-bar" + (provisional(rows[i]) ? " prov" : "")));
 +      return g;
 +    });
++    if (hasPv) {
++      var d = "", pen = false;
++      pv.forEach(function (v, i) { if (v == null) { pen = false; return; } d += (pen ? "L" : "M") + X(i).toFixed(1) + "," + Y(v).toFixed(1); pen = true; });
++      el("path", { d: d, "class": "dash-line-prev" }, f.svg);
++    }
 +    var hit = el("rect", { x: P.l, y: 0, width: plotW, height: f.H, fill: "transparent" }, f.svg), on = -1;
 +    var mark = function (i, add) { (groups[i] || []).forEach(function (b) { b.classList[add ? "add" : "remove"]("on"); }); };
 +    var move = function (evt) {
@@ -451,7 +463,7 @@ index 0000000..cc93892
 +      var sold = v.off && v.cbKg != null ? v.cbKg : v.kg;
 +      html += tipRow("k-sold", "Sold", sold ? kgFull(sold) + " kg" : "None");
 +      if (v.abs != null) html += tipRow("", "Share sold", pct(v.abs));
-+      if (v.off && r.src === "eatta" && v.kg && v.cbKg != null && Math.abs(v.kg - v.cbKg) / v.kg > 0.005) html += '<div class="dash-tip-note">EATTA reports ' + kgFull(v.kg) + " kg sold</div>";
++      if (hasPv) html += tipRow("k-prev", "Sold " + (st.year - 1), pv[i] ? kgFull(pv[i]) + " kg" : "No sale " + r.n);
 +      showTip(evt, html);
 +    };
 +    hit.addEventListener("pointermove", move);
@@ -461,9 +473,9 @@ index 0000000..cc93892
 +
 +  /* ---------- tables ---------- */
 +  var COLS = [
-+    { k: "sale", h: "Sale" }, { k: "date", h: "Date" }, { k: "p", h: "Average US$/kg" }, { k: "ch", h: "Change" },
-+    { k: "off", h: "Offered (kg)" }, { k: "kg", h: "Sold (kg)" }, { k: "abs", h: "Share sold" },
-+    { k: "prev", h: "Avg, same sale last year", prev: true }, { k: "prevAbs", h: "Share sold last year", prev: true }
++    { k: "sale", h: "Sale" }, { k: "date", h: "Date" }, { k: "p", h: "Avg.<br>US$/kg" }, { k: "ch", h: "Change" },
++    { k: "off", h: "Offered<br>(kg)" }, { k: "kg", h: "Sold<br>(kg)" }, { k: "abs", h: "Share<br>sold" },
++    { k: "prev", h: "Avg.<br>last yr", prev: true }, { k: "prevAbs", h: "Share sold<br>last yr", prev: true }
 +  ];
 +  function salesTable(rows) {
 +    var hasPrev = rows.some(function (r) { return lastYear(r.n); }), hasOff = rows.some(function (r) { return pick(r).off; });
@@ -485,11 +497,11 @@ index 0000000..cc93892
 +    $("dash-caption").textContent = TEA[st.tea] + ", " + st.year + ", sales " + st.from + " to " + st.to;
 +    t.tHead.innerHTML = "<tr>" + cols.map(function (c) {
 +      var s = st.sort === c.k ? (st.dir > 0 ? "ascending" : "descending") : "none";
-+      return '<th scope="col" aria-sort="' + s + '"><button type="button" class="dash-sort" data-k="' + c.k + '">' + c.h + '<span class="dash-arrow" aria-hidden="true">' + (s === "ascending" ? "▲" : s === "descending" ? "▼" : "") + "</span></button></th>";
++      return '<th scope="col" aria-sort="' + s + '"><button type="button" class="dash-sort" data-k="' + c.k + '">' + '<span class="dash-h">' + c.h + "</span>" + '<span class="dash-arrow" aria-hidden="true">' + (s === "ascending" ? "▲" : s === "descending" ? "▼" : "") + "</span></button></th>";
 +    }).join("") + "</tr>";
 +    t.tBodies[0].innerHTML = !data.length ? '<tr><td colspan="' + cols.length + '" class="muted">' + noneText("No " + TEA[st.tea] + " sales in this run") + "</td></tr>" : data.map(function (d) {
 +      var cells = {
-+        sale: String(d.sale) + (provisional(d.r) ? ' <span class="dash-badge">Provisional</span>' : ""),
++        sale: String(d.sale) + (provisional(d.r) ? '<sup class="dash-prov" title="Provisional: can change until Friday noon">*</sup>' : ""),
 +        date: d.date ? dShort(d.date) : "",
 +        p: d.p != null ? usd(d.p) : '<span class="muted">' + missing(d.r) + "</span>",
 +        ch: d.ch == null ? "" : '<span class="' + (d.ch > 0 ? "up" : d.ch < 0 ? "down" : "") + '">' + signed(d.ch, function (v) { return v.toFixed(2); }) + "</span>",
@@ -668,10 +680,10 @@ index 0000000..c56b638
 +---
 +{"eatta": {{ site.data.mombasa_eatta_sales | jsonify }}, "combrok": {{ site.data.mombasa_combrok_sales | jsonify }}, "highlights": {{ site.data.mombasa_combrok_highlights | jsonify }}, "history": {{ site.data.mombasa_history_sales | jsonify }}, "worldbank": {{ site.data.worldbank_tea_mombasa_monthly | jsonify }}}
 diff --git a/assets/style.css b/assets/style.css
-index c8ab93a..58914d4 100644
+index c8ab93a..d4c0b37 100644
 --- a/assets/style.css
 +++ b/assets/style.css
-@@ -578,3 +578,80 @@ p { margin: 0 0 1em; }
+@@ -578,3 +578,87 @@ p { margin: 0 0 1em; }
  .cover-media figcaption { top: 0; bottom: auto; max-width: 60%; }
  .cover-media figcaption .credit, .hero-media figcaption .credit { color: var(--on-green-2); }
  @media (max-width: 819px) { .cover-media figcaption { max-width: 100%; } }
@@ -746,6 +758,13 @@ index c8ab93a..58914d4 100644
 +.dash-arrow { font-size: 9px; color: var(--gold-ink); min-width: 9px; }
 +.dash-table .up { color: var(--up); } .dash-table .down { color: var(--down); }
 +.dash-table .muted { color: var(--muted); }
++/* Fits without sideways scrolling on a desktop: headers wrap onto two lines, cells are tighter. */
++#dash-table th, #dash-table td { padding-left: 6px; padding-right: 6px; }
++#dash-table th:first-child, #dash-table td:first-child { padding-left: 0; }
++#dash-table th { vertical-align: bottom; line-height: 1.25; }
++#dash-table .dash-sort { align-items: flex-end; }
++.dash-h { display: inline-block; }
++.dash-prov { color: var(--gold-ink); font-weight: 700; margin-left: 2px; }
 +.dash-badge { display: inline-block; margin-left: 6px; padding: 1px 6px; font: 600 10px/1.5 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--gold-ink); border: 1px solid var(--gold); vertical-align: 1px; }
 +.dash-notes { margin-top: 20px; max-width: 820px; }
 +.dash-notes .fine { margin: 0 0 8px; }
@@ -753,7 +772,7 @@ index c8ab93a..58914d4 100644
 +@media (max-width: 899px) { .dash-charts, .dash-lower { grid-template-columns: 1fr; } }
 +@media (max-width: 559px) { .dash-controls { padding: 14px 16px; gap: 12px; } .dash-field { flex: 1 1 40%; } .dash-field select { min-width: 0; width: 100%; } .dash-field:nth-child(n+4) { flex-basis: 100%; } }
 diff --git a/auctions.html b/auctions.html
-index aa62fd8..8ee3b5d 100644
+index aa62fd8..48ea012 100644
 --- a/auctions.html
 +++ b/auctions.html
 @@ -1,28 +1,26 @@
@@ -817,7 +836,7 @@ index aa62fd8..8ee3b5d 100644
    var MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
    var NS = "http://www.w3.org/2000/svg";
    var $ = function (id) { return document.getElementById(id); };
-@@ -68,28 +67,42 @@ permalink: /auctions/
+@@ -68,29 +67,40 @@ permalink: /auctions/
      return { year: +r.year, sale: +r.sale, date: r.auction_date, avg: +r.avg_usd_kg, kg: +r.sold_kg,
        ctc: r.ctc_avg_usd_kg ? +r.ctc_avg_usd_kg : null, orth: r.orthodox_avg_usd_kg ? +r.orthodox_avg_usd_kg : null };
    }).sort(function (a, b) { return a.year - b.year || a.sale - b.sale; });
@@ -854,8 +873,6 @@ index aa62fd8..8ee3b5d 100644
 -  var below = wb.filter(function (r) { return r.v < wl.v; }).length;
 -  var pct = Math.round(100 * below / wb.length);
 +  var ago = all[(yr - 1) + "-" + last.sale];
-+  var below = allSales.filter(function (s) { return s.avg < last.avg; }).length;
-+  var since = allSales.length ? allSales[0].year : yr;
  
    // Headline numbers
    var stats = [
@@ -863,12 +880,13 @@ index aa62fd8..8ee3b5d 100644
      ["Sold at that sale", kg(last.kg), prev ? "<span class='" + cls(last.kg - prev.kg) + "'>" + (last.kg >= prev.kg ? "▲ " : "▼ ") + Math.abs(Math.round(100 * (last.kg - prev.kg) / prev.kg)) + "%</span> on the week" : ""],
      [yr + " so far", f2(ytd), ys.length + " sales · " + (tkg / 1e6).toFixed(0) + "M kg · low " + f2(lo.avg) + ", high " + f2(hi.avg)],
 -    ["World Bank, " + mlabel(wl.m), f2(wl.v), (lastYear ? "<span class='" + cls(wl.v - lastYear) + "'>" + cents(wl.v - lastYear) + "</span> on a year ago · " : "") + "higher than " + pct + "% of months since " + wb[0].m.slice(0, 4)]
-+    ago ? ["Same sale a year ago", f2(ago.avg), saleLabel(ago) + " · <span class='" + cls(last.avg - ago.avg) + "'>" + cents(last.avg - ago.avg) + "</span> since · higher than " + Math.round(100 * below / allSales.length) + "% of sales since " + since]
-+        : ["Since " + since, Math.round(100 * below / allSales.length) + "%", "of sales averaged less than the latest"]
-   ];
+-  ];
++    ago ? ["A year ago", f2(ago.avg), saleLabel(ago) + " · <span class='" + cls(last.avg - ago.avg) + "'>" + cents(last.avg - ago.avg) + "</span> since"] : null
++  ].filter(Boolean);
    $("stats").innerHTML = stats.map(function (s) { return "<div class='stat'><span class='stat-label'>" + s[0] + "</span><strong>" + s[1] + "</strong><span class='stat-note'>" + s[2] + "</span></div>"; }).join("");
  
-@@ -109,46 +122,41 @@ permalink: /auctions/
+   // SVG helpers
+@@ -109,46 +119,41 @@ permalink: /auctions/
    function path(pts) { return pts.map(function (p, i) { return (i ? "L" : "M") + p[0].toFixed(1) + "," + p[1].toFixed(1); }).join(""); }
    function dot(c, x, y, r, klass, tip) { var d = el("circle", { cx: x, cy: y, r: r, class: klass }, c.svg); el("title", {}, d).textContent = tip; }
  
@@ -932,7 +950,7 @@ index aa62fd8..8ee3b5d 100644
    })();
  
    // Tables
-@@ -156,9 +164,10 @@ permalink: /auctions/
+@@ -156,9 +161,10 @@ permalink: /auctions/
  
    var months = {};
    ys.forEach(function (s) { var k = s.date.slice(0, 7); (months[k] = months[k] || []).push(s); });
@@ -945,7 +963,7 @@ index aa62fd8..8ee3b5d 100644
    }));
  
    table("t-sales", ["Sale", "Date", "Average", "Week on week", "CTC", "Orthodox", "Sold"], ys.slice().reverse().map(function (s) {
-@@ -166,16 +175,27 @@ permalink: /auctions/
+@@ -166,16 +172,27 @@ permalink: /auctions/
      return [s.sale, dlabel(s.date), "<b>" + f2(s.avg) + "</b>", p ? "<span class='" + cls(s.avg - p.avg) + "'>" + cents(s.avg - p.avg) + "</span>" : "", s.ctc ? f2(s.ctc) : "", s.orth ? f2(s.orth) : "–", kg(s.kg)];
    }));
  

@@ -75,7 +75,7 @@
     (data.eatta || []).forEach(function (e) {
       var r = get(+e.year, +e.sale);
       r.src = "eatta"; r.date = e.auction_date || "";
-      r.all = { p: num(e.avg_usd_kg), kg: num(e.sold_kg) };
+      r.all = { p: num(e.avg_usd_kg), kg: num(e.sold_kg), off: num(e.offered_kg) };
       r.ctc = { p: num(e.ctc_avg_usd_kg), kg: num(e.ctc_sold_kg) };
       r.orthodox = { p: num(e.orthodox_avg_usd_kg), kg: num(e.orthodox_sold_kg) };
     });
@@ -87,11 +87,14 @@
     (data.highlights || []).forEach(function (h) { highlights[key(+h.year, +h.sale)] = h; });
   }
   // Figures for the chosen tea: price and kg sold from the main source, offered and lots from Combrok.
+  // EATTA first for kg sold and offered, wherever it has the figure (bars, share sold, totals); Combrok only where EATTA's is missing.
   function pick(r, tea) {
     tea = tea || st.tea;
-    var m = r[tea] || {}, cb = r.cb[tea] || {};
-    var abs = cb.off && cb.kg != null ? cb.kg / cb.off : null;
-    return { p: m.p != null ? m.p : null, kg: m.kg || null, off: cb.off || null, cbKg: cb.kg, abs: abs, lo: cb.lo, ls: cb.ls };
+    var m = r[tea] || {}, cb = r.cb[tea] || {}, ea = r.src === "eatta";
+    var sold = ea && m.kg != null ? m.kg : cb.kg;
+    var off = ea && m.off ? m.off : cb.off;
+    var abs = off && sold != null ? Math.min(1, sold / off) : null;
+    return { p: m.p != null ? m.p : null, kg: m.kg || null, off: off || null, cbKg: sold, abs: abs, lo: cb.lo, ls: cb.ls };
   }
   function provisional(r) {
     if (!r.date || r.src !== "eatta") return false;
@@ -247,13 +250,13 @@
     if (show) l.innerHTML = items.map(function (it) { return '<span><i class="' + it[0] + '"></i>' + it[1] + "</span>"; }).join("");
   }
 
-  /* A line chart of one figure per sale, with last year's same sale dashed. */
+  /* A line chart of one figure per sale, with the same sale last year dashed. */
   function lineChart(id, legendId, rows, valueOf, fmtAxis, fmtTip, emptyText, minPad) {
     var fig = $(id), f = frame(fig, fig.clientWidth < 520 ? 220 : 260), P = f.P;
     var cur = rows.map(valueOf);
     var prev = rows.map(function (r) { var o = lastYear(r.n); return o ? valueOf(o) : null; });
     var hasPrev = prev.some(function (v) { return v != null; });
-    legend(legendId, hasPrev, [["k-cur", String(st.year)], ["k-prev", (st.year - 1) + ", same sale"]]);
+    legend(legendId, hasPrev, [["k-cur", String(st.year)], ["k-prev", String(st.year - 1)]]);
     var all = cur.concat(prev).filter(function (v) { return v != null; });
     if (!all.length) return empty(f, emptyText);
     var lo = Math.min.apply(0, all), hi = Math.max.apply(0, all), pad = Math.max((hi - lo) * 0.12, minPad);
@@ -301,8 +304,12 @@
     var fig = $("dash-kg"), f = frame(fig, fig.clientWidth < 520 ? 210 : 250), P = f.P;
     var xs = rows.map(function (r) { return pick(r); });
     var hasOff = xs.some(function (x) { return x.off; });
-    legend("dash-kg-legend", hasOff, [["k-off", "Offered"], ["k-sold", "Sold"]]);
-    var max = Math.max.apply(0, xs.map(function (x) { return Math.max(x.kg || 0, x.off || 0); }).concat([0]));
+    // Last year's same sale: kg sold, drawn over the bars when "compare with last year" is on.
+    var pv = rows.map(function (r) { var o = lastYear(r.n), x = o ? pick(o) : null; return x ? (x.cbKg != null ? x.cbKg : x.kg) || null : null; });
+    var hasPv = pv.some(function (v) { return v != null; });
+    legend("dash-kg-legend", hasOff || hasPv, (hasOff ? [["k-off", "Offered"]] : []).concat([["k-sold", "Sold"]],
+      hasPv ? [["k-prev", "Sold " + (st.year - 1)]] : []));
+    var max = Math.max.apply(0, xs.map(function (x) { return Math.max(x.kg || 0, x.off || 0); }).concat(pv.map(function (v) { return v || 0; }), [0]));
     if (!max) return empty(f, noneText("No " + TEA[st.tea] + " sold in these sales"));
     var U = max < 1e6 ? 1e3 : 1e6;
     $("dash-kg-u").textContent = U === 1e3 ? "thousand kg" : "million kg";
@@ -327,6 +334,11 @@
       if (sold) g.push(bar(i, Math.min(sold, x.off || sold), "dash-bar" + (provisional(rows[i]) ? " prov" : "")));
       return g;
     });
+    if (hasPv) {
+      var d = "", pen = false;
+      pv.forEach(function (v, i) { if (v == null) { pen = false; return; } d += (pen ? "L" : "M") + X(i).toFixed(1) + "," + Y(v).toFixed(1); pen = true; });
+      el("path", { d: d, "class": "dash-line-prev" }, f.svg);
+    }
     var hit = el("rect", { x: P.l, y: 0, width: plotW, height: f.H, fill: "transparent" }, f.svg), on = -1;
     var mark = function (i, add) { (groups[i] || []).forEach(function (b) { b.classList[add ? "add" : "remove"]("on"); }); };
     var move = function (evt) {
@@ -338,7 +350,7 @@
       var sold = v.off && v.cbKg != null ? v.cbKg : v.kg;
       html += tipRow("k-sold", "Sold", sold ? kgFull(sold) + " kg" : "None");
       if (v.abs != null) html += tipRow("", "Share sold", pct(v.abs));
-      if (v.off && r.src === "eatta" && v.kg && v.cbKg != null && Math.abs(v.kg - v.cbKg) / v.kg > 0.005) html += '<div class="dash-tip-note">EATTA reports ' + kgFull(v.kg) + " kg sold</div>";
+      if (hasPv) html += tipRow("k-prev", "Sold " + (st.year - 1), pv[i] ? kgFull(pv[i]) + " kg" : "No sale " + r.n);
       showTip(evt, html);
     };
     hit.addEventListener("pointermove", move);
@@ -348,9 +360,9 @@
 
   /* ---------- tables ---------- */
   var COLS = [
-    { k: "sale", h: "Sale" }, { k: "date", h: "Date" }, { k: "p", h: "Average US$/kg" }, { k: "ch", h: "Change" },
-    { k: "off", h: "Offered (kg)" }, { k: "kg", h: "Sold (kg)" }, { k: "abs", h: "Share sold" },
-    { k: "prev", h: "Avg, same sale last year", prev: true }, { k: "prevAbs", h: "Share sold last year", prev: true }
+    { k: "sale", h: "Sale" }, { k: "date", h: "Date" }, { k: "p", h: "Avg.<br>US$/kg" }, { k: "ch", h: "Change" },
+    { k: "off", h: "Offered<br>(kg)" }, { k: "kg", h: "Sold<br>(kg)" }, { k: "abs", h: "Share<br>sold" },
+    { k: "prev", h: "Avg.<br>last yr", prev: true }, { k: "prevAbs", h: "Share sold<br>last yr", prev: true }
   ];
   function salesTable(rows) {
     var hasPrev = rows.some(function (r) { return lastYear(r.n); }), hasOff = rows.some(function (r) { return pick(r).off; });
@@ -372,11 +384,11 @@
     $("dash-caption").textContent = TEA[st.tea] + ", " + st.year + ", sales " + st.from + " to " + st.to;
     t.tHead.innerHTML = "<tr>" + cols.map(function (c) {
       var s = st.sort === c.k ? (st.dir > 0 ? "ascending" : "descending") : "none";
-      return '<th scope="col" aria-sort="' + s + '"><button type="button" class="dash-sort" data-k="' + c.k + '">' + c.h + '<span class="dash-arrow" aria-hidden="true">' + (s === "ascending" ? "▲" : s === "descending" ? "▼" : "") + "</span></button></th>";
+      return '<th scope="col" aria-sort="' + s + '"><button type="button" class="dash-sort" data-k="' + c.k + '">' + '<span class="dash-h">' + c.h + "</span>" + '<span class="dash-arrow" aria-hidden="true">' + (s === "ascending" ? "▲" : s === "descending" ? "▼" : "") + "</span></button></th>";
     }).join("") + "</tr>";
     t.tBodies[0].innerHTML = !data.length ? '<tr><td colspan="' + cols.length + '" class="muted">' + noneText("No " + TEA[st.tea] + " sales in this run") + "</td></tr>" : data.map(function (d) {
       var cells = {
-        sale: String(d.sale) + (provisional(d.r) ? ' <span class="dash-badge">Provisional</span>' : ""),
+        sale: String(d.sale) + (provisional(d.r) ? '<sup class="dash-prov" title="Provisional: can change until Friday noon">*</sup>' : ""),
         date: d.date ? dShort(d.date) : "",
         p: d.p != null ? usd(d.p) : '<span class="muted">' + missing(d.r) + "</span>",
         ch: d.ch == null ? "" : '<span class="' + (d.ch > 0 ? "up" : d.ch < 0 ? "down" : "") + '">' + signed(d.ch, function (v) { return v.toFixed(2); }) + "</span>",

@@ -306,6 +306,13 @@ a { color:inherit; }
 .dash-arrow { font-size: 9px; color: var(--gold-ink); min-width: 9px; }
 .dash-table .up { color: var(--up); } .dash-table .down { color: var(--down); }
 .dash-table .muted { color: var(--muted); }
+/* Fits without sideways scrolling on a desktop: headers wrap onto two lines, cells are tighter. */
+#dash-table th, #dash-table td { padding-left: 6px; padding-right: 6px; }
+#dash-table th:first-child, #dash-table td:first-child { padding-left: 0; }
+#dash-table th { vertical-align: bottom; line-height: 1.25; }
+#dash-table .dash-sort { align-items: flex-end; }
+.dash-h { display: inline-block; }
+.dash-prov { color: var(--gold-ink); font-weight: 700; margin-left: 2px; }
 .dash-badge { display: inline-block; margin-left: 6px; padding: 1px 6px; font: 600 10px/1.5 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--gold-ink); border: 1px solid var(--gold); vertical-align: 1px; }
 .dash-notes { margin-top: 20px; max-width: 820px; }
 .dash-notes .fine { margin: 0 0 8px; }
