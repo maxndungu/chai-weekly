@@ -1,15 +1,21 @@
 # Automatic weekly draft: instructions for Claude
 
 A scheduled Claude session follows this file every Wednesday at about 07:15 Nairobi time, after
-the 06:00 "Gather sources" job has committed `sources/YYYY-MM-DD.md`. The goal is a finished
+the early-morning "Gather sources" job (00:41 Nairobi, retried at 05:17) has committed `sources/YYYY-MM-DD.md`. The goal is a finished
 draft waiting as a pull request. Publishing is on Wednesdays because the Mombasa auction runs on Monday (sometimes into Tuesday): use that sale's final figures and the reporting published on Monday-Tuesday to build the week's narrative. The draft is for Maxwell's ~15 minute review. Merging the pull request
 publishes the issue to the site; nothing goes live without that merge.
 
 ## Steps
 
 1. Work in the `maxndungu/chai-weekly` repo, on an up-to-date `main`.
-2. Find the newest `sources/*.md`. If none is from the last 2 days, run `python3 tools/gather.py`
-   yourself; if that cannot reach the feeds, use web search for the same sections.
+2. Find today's `sources/<today>.md` on `main`. GitHub sometimes starts scheduled jobs hours late, so if it is
+   missing, start a news-only run of "Gather sources" (it leaves the auction data files alone):
+   `gh api -X POST repos/maxndungu/chai-weekly/actions/workflows/gather-sources.yml/dispatches -f ref=main -f 'inputs[news_only]=true'`
+   It takes about 5 minutes; wait for the file to appear on `main`, then pull. Never start it without `news_only`
+   (that would also rewrite the auction data files, which update on Tuesdays and Fridays only). If the run fails
+   or can't be started, run `python3 tools/gather.py` yourself; if that cannot reach the feeds either, use
+   `_data/mombasa_eatta_sales.csv` for the Mombasa figures and web search for the news sections, and say so in
+   the reviewer notes.
 3. If any post in `_posts/` has `preview: true` (a test edition), delete it in your branch first and ignore it when numbering. Work out the next issue number (highest `issue:` in `_posts/` + 1) and read the last issue so
    figures can be compared week on week.
 4. Read `tools/DRAFT_PROMPT.md` and follow it exactly. Note: the `news.google.com` links in the sources
