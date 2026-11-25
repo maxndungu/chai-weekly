@@ -206,7 +206,7 @@
     $("dash-stats").innerHTML =
       tile("Average price", t.avg != null ? usd(t.avg) : "None", span + ", " + TEA[st.tea].toLowerCase() + (prev && prev.avg != null && t.avg != null ? vs(t.avg - prev.avg, usd) : "")) +
       tile("Tea sold", bigKg(t.kg), t.off ? "of " + bigKg(t.off).replace(/<[^>]+>/g, "") + " offered" : withP.length + " sales") +
-      tile("Share sold", t.abs != null ? pct(t.abs) : "None", t.abs != null ? (t.lo ? kgFull(t.ls) + " of " + kgFull(t.lo) + " lots" : "") + (prev && prev.abs != null ? vs((t.abs - prev.abs) * 100, function (v) { return v.toFixed(1) + " pts"; }) : "") : "No offered figures for these sales") +
+      tile("Absorption", t.abs != null ? pct(t.abs) : "None", t.abs != null ? (t.lo ? kgFull(t.ls) + " of " + kgFull(t.lo) + " lots" : "") + (prev && prev.abs != null ? vs((t.abs - prev.abs) * 100, function (v) { return v.toFixed(1) + " pts"; }) : "") : "No offered figures for these sales") +
       tile("Highest sale", usd(pick(hi).p), "Sale " + hi.n + (hi.date ? ", " + dShort(hi.date) : "") + "; lowest " + usd(pick(lo).p) + " at sale " + lo.n);
   }
 
@@ -349,7 +349,7 @@
       if (v.off) html += tipRow("k-off", "Offered", kgFull(v.off) + " kg");
       var sold = v.off && v.cbKg != null ? v.cbKg : v.kg;
       html += tipRow("k-sold", "Sold", sold ? kgFull(sold) + " kg" : "None");
-      if (v.abs != null) html += tipRow("", "Share sold", pct(v.abs));
+      if (v.abs != null) html += tipRow("", "Absorption", pct(v.abs));
       if (hasPv) html += tipRow("k-prev", "Sold " + (st.year - 1), pv[i] ? kgFull(pv[i]) + " kg" : "No sale " + r.n);
       showTip(evt, html);
     };
@@ -361,8 +361,8 @@
   /* ---------- tables ---------- */
   var COLS = [
     { k: "sale", h: "Sale" }, { k: "date", h: "Date" }, { k: "p", h: "Avg.<br>US$/kg" }, { k: "ch", h: "Change" },
-    { k: "off", h: "Offered<br>(kg)" }, { k: "kg", h: "Sold<br>(kg)" }, { k: "abs", h: "Share<br>sold" },
-    { k: "prev", h: "Avg.<br>last yr", prev: true }, { k: "prevAbs", h: "Share sold<br>last yr", prev: true }
+    { k: "off", h: "Offered<br>(kg)" }, { k: "kg", h: "Sold<br>(kg)" }, { k: "abs", h: "Absorption" },
+    { k: "prev", h: "Avg.<br>last yr", prev: true }, { k: "prevAbs", h: "Absorption<br>last yr", prev: true }
   ];
   function salesTable(rows) {
     var hasPrev = rows.some(function (r) { return lastYear(r.n); }), hasOff = rows.some(function (r) { return pick(r).off; });
