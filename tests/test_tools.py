@@ -204,6 +204,7 @@ class Listmonk(unittest.TestCase):
         self.assertEqual(sent["content_type"], "html")
         self.assertEqual(sent["lists"], [3])
         self.assertEqual(sent["template_id"], 9)
+        self.assertEqual(sent["from_email"], "Chai Weekly <newsletter@chaiweekly.co.ke>")
         self.assertNotIn("status", sent)  # listmonk creates campaigns as drafts; we never ask it to send
         self.assertIn("https://example.org/chai-weekly/auctions/?utm_source=newsletter", body)
         self.assertIn("https://example.org/chai-weekly/weather/?utm_source=newsletter", body)
