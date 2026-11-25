@@ -5,6 +5,9 @@
 # Combrok posts offered weights later in the week, so a Wednesday 12:13 run (Maxwell, 2026-11-25) rechecks them and
 # EATTA's sold figures, with a 17:13 retry if the newest sale still has no offered figure. Keep this schedule
 # internal: don't mention it on the site, in the newsletter or in the dashboard notes.
+# EATTA updates its figures while the auction runs, so on Mondays and Tuesdays (Maxwell, 2026-11-25) the auction data
+# is also pulled every two hours from 10:13 to 16:13 plus 17:13 Nairobi (this includes the Tuesday 16:13 update). The
+# site marks the newest sale "in progress" until Tuesday 17:30 Nairobi. Also internal: not to be published.
 # Every Wednesday, collect the week's tea news into sources/ for the draft, with EATTA's figures and the Combrok
 # cross-check as text for the reviewer notes. The Wednesday runs do not change the auction data files.
 #
@@ -17,7 +20,7 @@
 name: Gather sources
 on:
   schedule:
-    - cron: "13 13 * * 2"  # Tuesday 16:13 Nairobi: auction data only (EATTA and Combrok files)
+    - cron: "13 7,9,11,13,14 * * 1,2"  # Monday and Tuesday 10:13, 12:13, 14:13, 16:13, 17:13 Nairobi: auction data only, while the sale runs
     - cron: "13 11 * * 5"  # Friday 14:13 Nairobi: auction data only, final figures
     - cron: "13 9 * * 3"   # Wednesday 12:13 Nairobi: auction data only (recheck Combrok offered, EATTA sold)
     - cron: "13 14 * * 3"  # Wednesday 17:13 Nairobi: the same, only if the newest sale still has no offered figure
@@ -42,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TZ: Africa/Nairobi
-      CSV_ONLY: ${{ inputs.csv_only || github.event.schedule == '13 13 * * 2' || github.event.schedule == '13 11 * * 5' || github.event.schedule == '13 9 * * 3' || github.event.schedule == '13 14 * * 3' }}
+      CSV_ONLY: ${{ inputs.csv_only || github.event.schedule == '13 7,9,11,13,14 * * 1,2' || github.event.schedule == '13 11 * * 5' || github.event.schedule == '13 9 * * 3' || github.event.schedule == '13 14 * * 3' }}
       # The Wednesday news runs (and a news-only run by hand) leave the auction data files alone
       # (they update on Tuesdays and Fridays only).
       WEDNESDAY: ${{ inputs.news_only || github.event.schedule == '41 21 * * 2' || github.event.schedule == '17 2 * * 3' }}

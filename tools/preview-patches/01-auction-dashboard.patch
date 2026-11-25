@@ -1,13 +1,13 @@
 diff --git a/_includes/auction-dashboard.html b/_includes/auction-dashboard.html
 new file mode 100644
-index 0000000..e22c88a
+index 0000000..b750c9a
 --- /dev/null
 +++ b/_includes/auction-dashboard.html
-@@ -0,0 +1,101 @@
+@@ -0,0 +1,102 @@
 +{%- comment -%}
 +  Mombasa auction dashboard on the Markets page. Figures come only from _data/mombasa_eatta_sales.csv
 +  (EATTA, 2026 on) and _data/mombasa_combrok_sales.csv (Combrok, 2020 on: kg and lots offered and sold), both saved
-+  by the Tuesday 16:00 and Friday 14:00 collector, served as assets/data/mombasa-sales.json and drawn by assets/dashboard.js.
++  by the auction-data collector, served as assets/data/mombasa-sales.json and drawn by assets/dashboard.js.
 +{%- endcomment -%}
 +<section class="dash" id="dashboard" aria-labelledby="dash-h" data-src="{{ '/assets/data/mombasa-sales.json' | relative_url }}">
 +  <div class="wrap">
@@ -97,9 +97,10 @@ index 0000000..e22c88a
 +    </section>
 +
 +    <div class="dash-notes">
++      <p class="fine" id="dash-live" hidden><span class="dash-live">in progress</span> The auction for this sale is still running, so its figures change as more lots are sold. <span id="dash-live-upd"></span></p>
 +      <p class="fine" id="dash-provisional" hidden><b class="dash-prov">*</b> Provisional: EATTA adds late sales until Friday noon, Nairobi time, so the newest sale's figures can still change until then.</p>
 +      <p class="fine">The average for a run of sales is weighted by the kilograms sold at each sale. <strong>Absorption</strong> is the kilograms sold as a share of the kilograms offered. Kilograms sold and offered are EATTA's wherever EATTA publishes them. Orthodox tea is sold every other week, so the Orthodox view lists only the weeks it was sold. Separate orthodox figures start at sale 38 of 2025.</p>
-+      <p class="fine"><strong>Sources:</strong> prices and kilograms sold from 2026 are from the <a href="https://eatta.co.ke/statistics">East African Tea Trade Association's auction statistics</a>, updated every Tuesday at 4pm and Friday at 2pm (final figures), Nairobi time. Sales from 2009 to 2025 come from Chai Weekly's own weekly auction records. Monthly prices 1992 to 2008: World Bank Commodity Price Data, CC BY 4.0.</p>
++      <p class="fine"><strong>Sources:</strong> prices and kilograms sold from 2026 are from the <a href="https://eatta.co.ke/statistics">East African Tea Trade Association's auction statistics</a>. Sales from 2009 to 2025 come from Chai Weekly's own weekly auction records. Monthly prices 1992 to 2008: World Bank Commodity Price Data, CC BY 4.0.</p>
 +    </div>
 +    <noscript><p class="fine">The dashboard needs JavaScript. The Mombasa section below lists the latest sales.</p></noscript>
 +  </div>
@@ -107,10 +108,10 @@ index 0000000..e22c88a
 +</section>
 diff --git a/assets/dashboard.js b/assets/dashboard.js
 new file mode 100644
-index 0000000..f5437f1
+index 0000000..3fc9536
 --- /dev/null
 +++ b/assets/dashboard.js
-@@ -0,0 +1,557 @@
+@@ -0,0 +1,566 @@
 +/* Mombasa auction dashboard (Markets page).
 +   Data: assets/data/mombasa-sales.json = {eatta, combrok, highlights}, filled by Jekyll from _data/:
 +     eatta      mombasa_eatta_sales.csv        official EATTA figures, 2026 on (prices and kg sold)
@@ -213,6 +214,13 @@ index 0000000..f5437f1
 +    if (!r.date || r.src !== "eatta") return false;
 +    var d = dateOf(r.date), add = (5 - d.getUTCDay() + 7) % 7;
 +    return Date.now() < d.getTime() + add * 864e5 + 9 * 36e5; // Friday noon Nairobi = 09:00 UTC
++  }
++  // A sale still running: from its auction date until Tuesday 17:30 Nairobi (14:30 UTC) of that week.
++  // EATTA updates its figures as the auction goes on, so these change through the day.
++  function inProgress(r) {
++    if (!r.date || r.src !== "eatta") return false;
++    var d = dateOf(r.date), add = (2 - d.getUTCDay() + 7) % 7;
++    return Date.now() < d.getTime() + add * 864e5 + 14.5 * 36e5;
 +  }
 +  // The chosen run of sales. For orthodox, only the weeks it was sold: it runs every other week, so the rest are left out.
 +  var inRange = function (y) {
@@ -335,7 +343,7 @@ index 0000000..f5437f1
 +  }
 +  var hideTip = function () { tip.hidden = true; };
 +  var tipRow = function (cls, lbl, value) { return '<div class="dash-tip-row"><i class="' + cls + '"></i>' + lbl + "<b>" + value + "</b></div>"; };
-+  var tipHead = function (r) { return '<div class="dash-tip-h">' + label(r) + (provisional(r) ? " · provisional" : "") + "</div>"; };
++  var tipHead = function (r) { return '<div class="dash-tip-h">' + label(r) + (inProgress(r) ? " · in progress" : provisional(r) ? " · provisional" : "") + "</div>"; };
 +  function frame(fig, H) {
 +    fig.innerHTML = "";
 +    var W = Math.max(280, Math.round(fig.clientWidth || 600));
@@ -501,7 +509,7 @@ index 0000000..f5437f1
 +    }).join("") + "</tr>";
 +    t.tBodies[0].innerHTML = !data.length ? '<tr><td colspan="' + cols.length + '" class="muted">' + noneText("No " + TEA[st.tea] + " sales in this run") + "</td></tr>" : data.map(function (d) {
 +      var cells = {
-+        sale: String(d.sale) + (provisional(d.r) ? '<sup class="dash-prov" title="Provisional: can change until Friday noon">*</sup>' : ""),
++        sale: String(d.sale) + (inProgress(d.r) ? '<span class="dash-live">in progress</span>' : provisional(d.r) ? '<sup class="dash-prov" title="Provisional: can change until Friday noon">*</sup>' : ""),
 +        date: d.date ? dShort(d.date) : "",
 +        p: d.p != null ? usd(d.p) : '<span class="muted">' + missing(d.r) + "</span>",
 +        ch: d.ch == null ? "" : '<span class="' + (d.ch > 0 ? "up" : d.ch < 0 ? "down" : "") + '">' + signed(d.ch, function (v) { return v.toFixed(2); }) + "</span>",
@@ -518,7 +526,9 @@ index 0000000..f5437f1
 +        var nb = root.querySelector('#dash-table .dash-sort[data-k="' + k + '"]'); if (nb) nb.focus();
 +      });
 +    });
-+    $("dash-provisional").hidden = !rows.some(provisional);
++    $("dash-provisional").hidden = !rows.some(function (r) { return provisional(r) && !inProgress(r); });
++    $("dash-live").hidden = !rows.some(inProgress);
++    var upd = $("dash-live-upd"); if (upd) upd.textContent = window.chaiUpdated && window.chaiUpdated() ? window.chaiUpdated() + "." : "";
 +  }
 +
 +  /* The same run of sales in every year we hold. */
@@ -680,10 +690,10 @@ index 0000000..c56b638
 +---
 +{"eatta": {{ site.data.mombasa_eatta_sales | jsonify }}, "combrok": {{ site.data.mombasa_combrok_sales | jsonify }}, "highlights": {{ site.data.mombasa_combrok_highlights | jsonify }}, "history": {{ site.data.mombasa_history_sales | jsonify }}, "worldbank": {{ site.data.worldbank_tea_mombasa_monthly | jsonify }}}
 diff --git a/assets/style.css b/assets/style.css
-index c8ab93a..d4c0b37 100644
+index c8ab93a..4b95bbd 100644
 --- a/assets/style.css
 +++ b/assets/style.css
-@@ -578,3 +578,87 @@ p { margin: 0 0 1em; }
+@@ -578,3 +578,90 @@ p { margin: 0 0 1em; }
  .cover-media figcaption { top: 0; bottom: auto; max-width: 60%; }
  .cover-media figcaption .credit, .hero-media figcaption .credit { color: var(--on-green-2); }
  @media (max-width: 819px) { .cover-media figcaption { max-width: 100%; } }
@@ -765,6 +775,9 @@ index c8ab93a..d4c0b37 100644
 +#dash-table .dash-sort { align-items: flex-end; }
 +.dash-h { display: inline-block; }
 +.dash-prov { color: var(--gold-ink); font-weight: 700; margin-left: 2px; }
++.dash-live { display: inline-block; margin-left: 6px; padding: 1px 6px; border-radius: 3px; background: var(--gold, #a87a2a); color: #fff; font: 700 10px/1.5 var(--sans, sans-serif); letter-spacing: .06em; text-transform: uppercase; vertical-align: 2px; white-space: nowrap; }
++#dash-live .dash-live { margin: 0 4px 0 0; }
++#dash-table td .dash-live { display: block; width: max-content; margin: 3px 0 0; font-size: 9px; padding: 0 4px; }
 +.dash-badge { display: inline-block; margin-left: 6px; padding: 1px 6px; font: 600 10px/1.5 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--gold-ink); border: 1px solid var(--gold); vertical-align: 1px; }
 +.dash-notes { margin-top: 20px; max-width: 820px; }
 +.dash-notes .fine { margin: 0 0 8px; }
@@ -772,7 +785,7 @@ index c8ab93a..d4c0b37 100644
 +@media (max-width: 899px) { .dash-charts, .dash-lower { grid-template-columns: 1fr; } }
 +@media (max-width: 559px) { .dash-controls { padding: 14px 16px; gap: 12px; } .dash-field { flex: 1 1 40%; } .dash-field select { min-width: 0; width: 100%; } .dash-field:nth-child(n+4) { flex-basis: 100%; } }
 diff --git a/auctions.html b/auctions.html
-index aa62fd8..48ea012 100644
+index aa62fd8..aba568e 100644
 --- a/auctions.html
 +++ b/auctions.html
 @@ -1,28 +1,26 @@
@@ -789,7 +802,7 @@ index aa62fd8..48ea012 100644
 -  <p class="deck">Every sale this year from the East African Tea Trade Association, set against the World Bank's monthly Mombasa price going back to 1992. Updated every Wednesday after the sale.</p>
 -  {% include ad.html slot="auctions" %}
 -
-+  <p class="deck">The Mombasa auction from 1992 to today: prices, volumes and the share of tea sold at every sale since 2009, monthly prices from 1992 to 2008, and how each year compares with the last. Updated every Tuesday at 4pm and Friday at 2pm, Nairobi time.</p>
++  <p class="deck">The Mombasa auction from 1992 to today: prices, volumes and the share of tea sold at every sale since 2009, monthly prices from 1992 to 2008, and how each year compares with the last.</p>
    <div class="stat-row" id="stats" aria-live="polite"></div>
 +  {% include ad.html slot="auctions" %}
  

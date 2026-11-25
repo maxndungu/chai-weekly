@@ -101,6 +101,13 @@
     var d = dateOf(r.date), add = (5 - d.getUTCDay() + 7) % 7;
     return Date.now() < d.getTime() + add * 864e5 + 9 * 36e5; // Friday noon Nairobi = 09:00 UTC
   }
+  // A sale still running: from its auction date until Tuesday 17:30 Nairobi (14:30 UTC) of that week.
+  // EATTA updates its figures as the auction goes on, so these change through the day.
+  function inProgress(r) {
+    if (!r.date || r.src !== "eatta") return false;
+    var d = dateOf(r.date), add = (2 - d.getUTCDay() + 7) % 7;
+    return Date.now() < d.getTime() + add * 864e5 + 14.5 * 36e5;
+  }
   // The chosen run of sales. For orthodox, only the weeks it was sold: it runs every other week, so the rest are left out.
   var inRange = function (y) {
     return (byYear[y == null ? st.year : y] || []).filter(function (r) {
@@ -222,7 +229,7 @@
   }
   var hideTip = function () { tip.hidden = true; };
   var tipRow = function (cls, lbl, value) { return '<div class="dash-tip-row"><i class="' + cls + '"></i>' + lbl + "<b>" + value + "</b></div>"; };
-  var tipHead = function (r) { return '<div class="dash-tip-h">' + label(r) + (provisional(r) ? " · provisional" : "") + "</div>"; };
+  var tipHead = function (r) { return '<div class="dash-tip-h">' + label(r) + (inProgress(r) ? " · in progress" : provisional(r) ? " · provisional" : "") + "</div>"; };
   function frame(fig, H) {
     fig.innerHTML = "";
     var W = Math.max(280, Math.round(fig.clientWidth || 600));
@@ -388,7 +395,7 @@
     }).join("") + "</tr>";
     t.tBodies[0].innerHTML = !data.length ? '<tr><td colspan="' + cols.length + '" class="muted">' + noneText("No " + TEA[st.tea] + " sales in this run") + "</td></tr>" : data.map(function (d) {
       var cells = {
-        sale: String(d.sale) + (provisional(d.r) ? '<sup class="dash-prov" title="Provisional: can change until Friday noon">*</sup>' : ""),
+        sale: String(d.sale) + (inProgress(d.r) ? '<span class="dash-live">in progress</span>' : provisional(d.r) ? '<sup class="dash-prov" title="Provisional: can change until Friday noon">*</sup>' : ""),
         date: d.date ? dShort(d.date) : "",
         p: d.p != null ? usd(d.p) : '<span class="muted">' + missing(d.r) + "</span>",
         ch: d.ch == null ? "" : '<span class="' + (d.ch > 0 ? "up" : d.ch < 0 ? "down" : "") + '">' + signed(d.ch, function (v) { return v.toFixed(2); }) + "</span>",
@@ -405,7 +412,9 @@
         var nb = root.querySelector('#dash-table .dash-sort[data-k="' + k + '"]'); if (nb) nb.focus();
       });
     });
-    $("dash-provisional").hidden = !rows.some(provisional);
+    $("dash-provisional").hidden = !rows.some(function (r) { return provisional(r) && !inProgress(r); });
+    $("dash-live").hidden = !rows.some(inProgress);
+    var upd = $("dash-live-upd"); if (upd) upd.textContent = window.chaiUpdated && window.chaiUpdated() ? window.chaiUpdated() + "." : "";
   }
 
   /* The same run of sales in every year we hold. */

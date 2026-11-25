@@ -22,6 +22,8 @@ a { color:inherit; }
 .ticker { display:flex; flex-wrap:wrap; justify-content:center; gap:4px 26px; padding:8px 0; border-bottom:1px solid var(--hair); font:400 13px/1.4 var(--sans); }
 .ticker b { font-weight:800; text-transform:uppercase; letter-spacing:.06em; font-size:11px; margin-right:4px; }
 .ticker em { font-style:normal; color:var(--accent); font-weight:600; }
+.ticker .ticker-upd { font-style:normal; font-size:11px; color:var(--muted, #6b6b6b); }
+.ticker .ticker-prov.live { color: var(--gold-ink, #8a6a1f); font-weight: 700; }
 .ticker .ticker-prov { font-style:normal; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted, #6b6b6b); }
 .masthead.compact .nameplate { font-size:clamp(34px, 6vw, 56px); margin-top:12px; }
 .masthead.compact .motto { display:none; }
@@ -313,6 +315,9 @@ a { color:inherit; }
 #dash-table .dash-sort { align-items: flex-end; }
 .dash-h { display: inline-block; }
 .dash-prov { color: var(--gold-ink); font-weight: 700; margin-left: 2px; }
+.dash-live, .live-tag { display: inline-block; margin-left: 6px; padding: 1px 6px; border-radius: 3px; background: var(--gold, #a87a2a); color: #fff; font: 700 10px/1.5 var(--sans, sans-serif); letter-spacing: .06em; text-transform: uppercase; vertical-align: 2px; white-space: nowrap; }
+#dash-live .dash-live { margin: 0 4px 0 0; }
+#dash-table td .dash-live { display: block; width: max-content; margin: 3px 0 0; font-size: 9px; padding: 0 4px; }
 .dash-badge { display: inline-block; margin-left: 6px; padding: 1px 6px; font: 600 10px/1.5 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--gold-ink); border: 1px solid var(--gold); vertical-align: 1px; }
 .dash-notes { margin-top: 20px; max-width: 820px; }
 .dash-notes .fine { margin: 0 0 8px; }

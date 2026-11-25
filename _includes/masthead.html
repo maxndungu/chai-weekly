@@ -1,4 +1,17 @@
 {% assign pubs = site.posts | where_exp: "p", "p.preview != true" %}{% assign latest = pubs.first | default: site.posts.first %}
+<script>
+// When the site's figures were last updated (the build time), and a short Nairobi-time label for it,
+// shown next to an "in progress" sale: e.g. "Updated Mon 23 Nov, 2:13 pm".
+window.CHAI_UPDATED = {{ site.time | date: "%s" }}000;
+window.chaiUpdated = function () {
+  try {
+    var d = new Date(window.CHAI_UPDATED);
+    var p = {}; new Intl.DateTimeFormat("en-GB", { timeZone: "Africa/Nairobi", weekday: "short", day: "numeric", month: "short", hour: "numeric", minute: "2-digit", hour12: true })
+      .formatToParts(d).forEach(function (x) { p[x.type] = x.value; });
+    return "Updated " + p.weekday + " " + p.day + " " + p.month + ", " + p.hour + ":" + p.minute + " " + String(p.dayPeriod || "").toLowerCase();
+  } catch (e) { return ""; }
+};
+</script>
 <header class="masthead {% if include.compact %}compact{% endif %}">
   <div class="strip">
     <span>Vol. I · No. {{ latest.issue | default: pubs.size }}</span>
@@ -33,12 +46,20 @@
       {%- assign a = ms.avg_usd_kg | times: 100 | round -%}{%- assign b = mp.avg_usd_kg | times: 100 | round -%}{%- assign dc = a | minus: b -%}
       {%- assign kg = ms.sold_kg | divided_by: 10000.0 | round | divided_by: 100.0 -%}
       {%- assign dk = ms.sold_kg | minus: mp.sold_kg | times: 100.0 | divided_by: mp.sold_kg | round -%}
-      <span><b>Mombasa (Sale {{ ms.sale }})</b> ${{ ms.avg_usd_kg }}/kg <em>{% if dc > 0 %}▲ {{ dc }}¢{% elsif dc < 0 %}▼ {{ dc | abs }}¢{% else %}▬ 0¢{% endif %}</em>{% if now_s < final_at %} <i class="ticker-prov">provisional</i>{% endif %}</span>
+      <span><b>Mombasa (Sale {{ ms.sale }})</b> ${{ ms.avg_usd_kg }}/kg <em>{% if dc > 0 %}▲ {{ dc }}¢{% elsif dc < 0 %}▼ {{ dc | abs }}¢{% else %}▬ 0¢{% endif %}</em>{% if now_s < final_at %} <i class="ticker-prov" data-sale-date="{{ ms.auction_date }}">provisional</i>{% endif %}</span>
       <span><b>Tea sold</b> {{ kg }}M kg{% if mp %} <em>{% if dk >= 0 %}▲{% else %}▼{% endif %} {{ dk | abs }}%</em>{% endif %}</span>
     {%- endif -%}
     {%- assign keep_top = false -%}
     {%- for s in latest.snapshot -%}{%- if s.label contains "Mombasa" and ms and s.label contains ms.sale -%}{%- assign keep_top = true -%}{%- endif -%}{%- endfor -%}
     {% for s in latest.snapshot %}{% if ms and s.label contains "Mombasa" %}{% continue %}{% endif %}{% if ms and s.label == "Tea sold" %}{% continue %}{% endif %}{% if s.label == "Top lot" and ms and keep_top == false %}{% continue %}{% endif %}<span><b>{{ s.label }}</b> {{ s.value }}{% if s.note %} <em>{{ s.note }}</em>{% endif %}</span>{% endfor %}
   </div>
+  <script>
+  // The newest Mombasa sale reads "in progress" while the auction is still running (auction date to Tuesday 17:30 Nairobi).
+  (function () {
+    var m = document.querySelector(".ticker .ticker-prov[data-sale-date]"); if (!m) return;
+    var t = Date.parse(m.getAttribute("data-sale-date") + "T00:00:00Z"), w = new Date(t).getUTCDay();
+    if (Date.now() < t + ((2 - w + 7) % 7) * 864e5 + 14.5 * 36e5) { m.textContent = "in progress"; m.className += " live"; var u = window.chaiUpdated(); if (u) m.insertAdjacentHTML("afterend", ' <i class="ticker-upd">' + u + "</i>"); }
+  })();
+  </script>
   {% endif %}
 </header>
