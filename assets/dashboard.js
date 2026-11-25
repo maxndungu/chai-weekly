@@ -453,23 +453,29 @@
   }
 
 
-  /* ---------- the long view since 1992: monthly averages to 2008, then every sale from 2009 ---------- */
+  /* ---------- the long view since 1992: one point a month (monthly figures to 2008, then each month's sales averaged) ---------- */
   var wb = [], longSpan = "all";
   var mname = function (m) { return MON[+m.slice(5, 7) - 1] + " " + m.slice(0, 4); };
-  // Points placed in time: months mid-month; sales by date, or by sale number (about one a week) where no date is saved.
+  // A sale's month: its date, or where no date is saved, by sale number (sale 1 on the first Monday of January, then weekly).
+  function saleMonth(y, r) {
+    if (r.date) return r.date.slice(0, 7);
+    var j = Date.UTC(y, 0, 1), fm = j + ((8 - new Date(j).getUTCDay()) % 7) * 864e5;
+    return new Date(fm + (r.n - 1) * 7 * 864e5).toISOString().slice(0, 7);
+  }
   function longPts() {
-    var out = wb.filter(function (d) { return d.m < "2009"; }).map(function (d) {
-      return { t: +d.m.slice(0, 4) + (+d.m.slice(5, 7) - 0.5) / 12, v: d.v, y: +d.m.slice(0, 4), k: "m" + d.m.slice(5), lab: mname(d.m), kind: "Monthly average" };
-    });
+    var ms = wb.filter(function (d) { return d.m < "2009"; }).map(function (d) { return { m: d.m, v: d.v }; }), byM = {};
     years.forEach(function (y) {
       if (y < 2009) return;
       byYear[y].forEach(function (r) {
         if (r.all.p == null) return;
-        var t = r.date ? y + (dateOf(r.date).getTime() - Date.UTC(y, 0, 1)) / (365.25 * 864e5) : y + (r.n - 0.5) / 52;
-        out.push({ t: t, v: r.all.p, y: y, k: "s" + r.n, lab: label(r), kind: "Sale average" });
+        var m = saleMonth(y, r), o = byM[m] || (byM[m] = { w: 0, k: 0, n: 0, sum: 0 });
+        o.n++; o.sum += r.all.p; if (r.all.kg) { o.w += r.all.p * r.all.kg; o.k += r.all.kg; }
       });
     });
-    return out.sort(function (a, b) { return a.t - b.t; });
+    Object.keys(byM).forEach(function (m) { var o = byM[m]; ms.push({ m: m, v: o.k ? o.w / o.k : o.sum / o.n }); });
+    return ms.map(function (d) {
+      return { t: +d.m.slice(0, 4) + (+d.m.slice(5, 7) - 0.5) / 12, v: d.v, y: +d.m.slice(0, 4), k: "m" + d.m.slice(5), lab: mname(d.m), kind: "Monthly average" };
+    }).sort(function (a, b) { return a.t - b.t; });
   }
   function longChart() {
     var box = $("dash-long");

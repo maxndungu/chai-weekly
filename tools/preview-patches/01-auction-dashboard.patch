@@ -1,6 +1,6 @@
 diff --git a/_includes/auction-dashboard.html b/_includes/auction-dashboard.html
 new file mode 100644
-index 0000000..b750c9a
+index 0000000..4cc91ee
 --- /dev/null
 +++ b/_includes/auction-dashboard.html
 @@ -0,0 +1,102 @@
@@ -84,7 +84,7 @@ index 0000000..b750c9a
 +      <div class="dash-long-head">
 +        <div>
 +          <h3 class="dash-panel-h" id="dash-long-h">The long view: the Mombasa price since 1992</h3>
-+          <p class="fine">US$ per kg, not adjusted for inflation: the monthly average from 1992 to 2008, then the average at every sale from 2009.</p>
++          <p class="fine">US$ per kg, not adjusted for inflation: the monthly average, 1992 to today.</p>
 +        </div>
 +        <div class="chips" role="group" aria-label="Years to show">
 +          <button type="button" class="chip" data-span="all" aria-pressed="true">Since 1992</button>
@@ -108,10 +108,10 @@ index 0000000..b750c9a
 +</section>
 diff --git a/assets/dashboard.js b/assets/dashboard.js
 new file mode 100644
-index 0000000..3fc9536
+index 0000000..00e66ef
 --- /dev/null
 +++ b/assets/dashboard.js
-@@ -0,0 +1,566 @@
+@@ -0,0 +1,572 @@
 +/* Mombasa auction dashboard (Markets page).
 +   Data: assets/data/mombasa-sales.json = {eatta, combrok, highlights}, filled by Jekyll from _data/:
 +     eatta      mombasa_eatta_sales.csv        official EATTA figures, 2026 on (prices and kg sold)
@@ -567,23 +567,29 @@ index 0000000..3fc9536
 +  }
 +
 +
-+  /* ---------- the long view since 1992: monthly averages to 2008, then every sale from 2009 ---------- */
++  /* ---------- the long view since 1992: one point a month (monthly figures to 2008, then each month's sales averaged) ---------- */
 +  var wb = [], longSpan = "all";
 +  var mname = function (m) { return MON[+m.slice(5, 7) - 1] + " " + m.slice(0, 4); };
-+  // Points placed in time: months mid-month; sales by date, or by sale number (about one a week) where no date is saved.
++  // A sale's month: its date, or where no date is saved, by sale number (sale 1 on the first Monday of January, then weekly).
++  function saleMonth(y, r) {
++    if (r.date) return r.date.slice(0, 7);
++    var j = Date.UTC(y, 0, 1), fm = j + ((8 - new Date(j).getUTCDay()) % 7) * 864e5;
++    return new Date(fm + (r.n - 1) * 7 * 864e5).toISOString().slice(0, 7);
++  }
 +  function longPts() {
-+    var out = wb.filter(function (d) { return d.m < "2009"; }).map(function (d) {
-+      return { t: +d.m.slice(0, 4) + (+d.m.slice(5, 7) - 0.5) / 12, v: d.v, y: +d.m.slice(0, 4), k: "m" + d.m.slice(5), lab: mname(d.m), kind: "Monthly average" };
-+    });
++    var ms = wb.filter(function (d) { return d.m < "2009"; }).map(function (d) { return { m: d.m, v: d.v }; }), byM = {};
 +    years.forEach(function (y) {
 +      if (y < 2009) return;
 +      byYear[y].forEach(function (r) {
 +        if (r.all.p == null) return;
-+        var t = r.date ? y + (dateOf(r.date).getTime() - Date.UTC(y, 0, 1)) / (365.25 * 864e5) : y + (r.n - 0.5) / 52;
-+        out.push({ t: t, v: r.all.p, y: y, k: "s" + r.n, lab: label(r), kind: "Sale average" });
++        var m = saleMonth(y, r), o = byM[m] || (byM[m] = { w: 0, k: 0, n: 0, sum: 0 });
++        o.n++; o.sum += r.all.p; if (r.all.kg) { o.w += r.all.p * r.all.kg; o.k += r.all.kg; }
 +      });
 +    });
-+    return out.sort(function (a, b) { return a.t - b.t; });
++    Object.keys(byM).forEach(function (m) { var o = byM[m]; ms.push({ m: m, v: o.k ? o.w / o.k : o.sum / o.n }); });
++    return ms.map(function (d) {
++      return { t: +d.m.slice(0, 4) + (+d.m.slice(5, 7) - 0.5) / 12, v: d.v, y: +d.m.slice(0, 4), k: "m" + d.m.slice(5), lab: mname(d.m), kind: "Monthly average" };
++    }).sort(function (a, b) { return a.t - b.t; });
 +  }
 +  function longChart() {
 +    var box = $("dash-long");
@@ -785,7 +791,7 @@ index c8ab93a..4b95bbd 100644
 +@media (max-width: 899px) { .dash-charts, .dash-lower { grid-template-columns: 1fr; } }
 +@media (max-width: 559px) { .dash-controls { padding: 14px 16px; gap: 12px; } .dash-field { flex: 1 1 40%; } .dash-field select { min-width: 0; width: 100%; } .dash-field:nth-child(n+4) { flex-basis: 100%; } }
 diff --git a/auctions.html b/auctions.html
-index aa62fd8..aba568e 100644
+index aa62fd8..c52ceaa 100644
 --- a/auctions.html
 +++ b/auctions.html
 @@ -1,28 +1,26 @@
@@ -818,7 +824,7 @@ index aa62fd8..aba568e 100644
      <h2 class="label rule">The long view, 1992 to today</h2>
 -    <p class="chart-note">World Bank monthly Mombasa tea price, US$ per kg (not adjusted for inflation).</p>
 -    <figure class="chart" id="chart-long" role="img" aria-label="Monthly Mombasa tea price since 1992"></figure>
-+    <p class="chart-note">Mombasa tea price, US$ per kg, not adjusted for inflation: the monthly average from 1992 to 2008, then the average at every sale from 2009.</p>
++    <p class="chart-note">Mombasa tea price, US$ per kg, not adjusted for inflation: the monthly average, 1992 to today.</p>
 +    <figure class="chart" id="chart-long" role="img" aria-label="Mombasa tea price since 1992"></figure>
    </section>
  
@@ -899,7 +905,7 @@ index aa62fd8..aba568e 100644
    $("stats").innerHTML = stats.map(function (s) { return "<div class='stat'><span class='stat-label'>" + s[0] + "</span><strong>" + s[1] + "</strong><span class='stat-note'>" + s[2] + "</span></div>"; }).join("");
  
    // SVG helpers
-@@ -109,46 +119,41 @@ permalink: /auctions/
+@@ -109,46 +119,52 @@ permalink: /auctions/
    function path(pts) { return pts.map(function (p, i) { return (i ? "L" : "M") + p[0].toFixed(1) + "," + p[1].toFixed(1); }).join(""); }
    function dot(c, x, y, r, klass, tip) { var d = el("circle", { cx: x, cy: y, r: r, class: klass }, c.svg); el("title", {}, d).textContent = tip; }
  
@@ -930,16 +936,27 @@ index aa62fd8..aba568e 100644
    })();
  
 -  // Chart 2: long run
-+  // Chart 2: long run. Monthly averages 1992-2008, then every sale from 2009, placed by date
-+  // (by sale number where the date is not saved: about one sale a week).
++  // Chart 2: long run, one point a month. 1992-2008 monthly figures; from 2009 the average of each month's sales,
++  // weighted by kg sold. Sales without a saved date are put in a month by sale number: sale 1 on the first
++  // Monday of January, then one sale a week (how the Mombasa auction runs).
    (function () {
 -    var t = function (m) { return +m.slice(0, 4) + (+m.slice(5, 7) - 1) / 12; };
 -    var vs = wb.map(function (r) { return r.v; });
 -    var mx = wb.reduce(function (a, r) { return r.v > a.v ? r : a; }), mn = wb.reduce(function (a, r) { return r.v < a.v ? r : a; });
 -    var x0 = t(wb[0].m), x1 = t(wl.m);
-+    var tSale = function (s) { return s.date ? s.year + (Date.parse(s.date) - Date.UTC(s.year, 0, 1)) / (365.25 * 864e5) : s.year + (s.sale - 0.5) / 52; };
-+    var pts = monthly.map(function (r) { return { t: +r.m.slice(0, 4) + (+r.m.slice(5, 7) - 0.5) / 12, v: r.v, lab: mlabel(r.m) + " (monthly)" }; })
-+      .concat(allSales.map(function (s) { return { t: tSale(s), v: s.avg, lab: saleLabel(s) }; }));
++    var saleMonth = function (s) {
++      if (s.date) return s.date.slice(0, 7);
++      var j = Date.UTC(s.year, 0, 1), fm = j + ((8 - new Date(j).getUTCDay()) % 7) * 864e5;
++      return new Date(fm + (s.sale - 1) * 7 * 864e5).toISOString().slice(0, 7);
++    };
++    var byM = {};
++    allSales.filter(function (s) { return s.year >= 2009; }).forEach(function (s) {
++      var m = saleMonth(s), o = byM[m] || (byM[m] = { w: 0, k: 0, n: 0, sum: 0 });
++      o.n++; o.sum += s.avg; if (s.kg) { o.w += s.avg * s.kg; o.k += s.kg; }
++    });
++    var pts = monthly.map(function (r) { return { m: r.m, v: r.v }; })
++      .concat(Object.keys(byM).sort().map(function (m) { var o = byM[m]; return { m: m, v: o.k ? o.w / o.k : o.sum / o.n }; }))
++      .map(function (r) { return { t: +r.m.slice(0, 4) + (+r.m.slice(5, 7) - 0.5) / 12, v: r.v, lab: mlabel(r.m) }; });
 +    if (pts.length < 2) return;
 +    var vs = pts.map(function (p) { return p.v; });
 +    var mx = pts.reduce(function (a, p) { return p.v > a.v ? p : a; }), mn = pts.reduce(function (a, p) { return p.v < a.v ? p : a; });
@@ -954,16 +971,16 @@ index aa62fd8..aba568e 100644
 -      dot(c, c.X(t(a[0].m)), c.Y(a[0].v), 3.5, "pt", a[1]);
 -      el("text", { x: c.X(t(a[0].m)), y: c.Y(a[0].v) + a[2], class: "tick strong", "text-anchor": "middle" }, c.svg).textContent = a[1];
 +    el("path", { d: path(pts.map(function (p) { return [c.X(p.t), c.Y(p.v)]; })), class: "line-long" }, c.svg);
-+    [[mx, "High " + f2(mx.v) + ", " + mx.lab.replace(" (monthly)", ""), -8], [mn, "Low " + f2(mn.v) + ", " + mn.lab.replace(" (monthly)", ""), 16]].forEach(function (a) {
++    [[mx, "High " + f2(mx.v) + ", " + mx.lab, -8], [mn, "Low " + f2(mn.v) + ", " + mn.lab, 16]].forEach(function (a) {
 +      dot(c, c.X(a[0].t), c.Y(a[0].v), 3.5, "pt", a[1]);
 +      el("text", { x: Math.min(Math.max(c.X(a[0].t), 110), CW - 110), y: c.Y(a[0].v) + a[2], class: "tick strong", "text-anchor": "middle" }, c.svg).textContent = a[1];
      });
 -    dot(c, c.X(x1), c.Y(wl.v), 4.5, "pt pt-last", mlabel(wl.m) + ": " + f2(wl.v));
-+    dot(c, c.X(x1), c.Y(lp.v), 4.5, "pt pt-last", lp.lab + ": " + f2(lp.v));
++    dot(c, c.X(x1), c.Y(lp.v), 4.5, "pt pt-last", lp.lab + " average: " + f2(lp.v));
    })();
  
    // Tables
-@@ -156,9 +161,10 @@ permalink: /auctions/
+@@ -156,9 +172,10 @@ permalink: /auctions/
  
    var months = {};
    ys.forEach(function (s) { var k = s.date.slice(0, 7); (months[k] = months[k] || []).push(s); });
@@ -976,7 +993,7 @@ index aa62fd8..aba568e 100644
    }));
  
    table("t-sales", ["Sale", "Date", "Average", "Week on week", "CTC", "Orthodox", "Sold"], ys.slice().reverse().map(function (s) {
-@@ -166,16 +172,27 @@ permalink: /auctions/
+@@ -166,16 +183,27 @@ permalink: /auctions/
      return [s.sale, dlabel(s.date), "<b>" + f2(s.avg) + "</b>", p ? "<span class='" + cls(s.avg - p.avg) + "'>" + cents(s.avg - p.avg) + "</span>" : "", s.ctc ? f2(s.ctc) : "", s.orth ? f2(s.orth) : "–", kg(s.kg)];
    }));
  
