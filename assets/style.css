@@ -91,11 +91,26 @@ a { color:inherit; }
   .with-rail .signup-end { display:none; }          /* an issue's own box: the column shows one on wide screens */
 }
 @media (max-width:899px) { .with-rail.is-post .side-rail { display:none; } }  /* phones: an issue ends with its own box */
+.signup-form > * { min-width:0; }   /* keeps the email field inside the box at any width */
 .signup-wide { margin:8px 0 0; }
+/* Auctions: a small box beside the page title on wide screens; under the dashboard on phones */
+.auctions-head { display:grid; grid-template-columns:minmax(0, 1fr); gap:24px; align-items:start; }
+.auctions-head > .signup-small { display:none; }
+@media (min-width:760px) {
+  .auctions-head { grid-template-columns:minmax(0, 1fr) 250px; }
+  .auctions-head > .signup-small { display:block; }
+  .signup-phone-only { display:none !important; }
+}
+.signup.signup-small { padding:12px 14px 14px; }
+.signup.signup-small p { font-size:14px; line-height:1.45; margin:0 0 10px; }
+.signup.signup-small .signup-form { flex-direction:column; gap:6px; }
+.signup.signup-small input { flex:0 0 auto; padding:8px 10px; font-size:15px; }
+.signup.signup-small button { padding:9px 14px; }
+.signup.signup-small .fine { font-size:11px; }
 @media (min-width:700px) { .signup-wide { display:grid; grid-template-columns:1fr 1.2fr; gap:6px 24px; align-items:center; } .signup-wide .fine, .signup-wide h2 { grid-column:1 / -1; } }
 .signup p { margin:0 0 12px; font-size:16px; line-height:1.5; }
 .signup-form { display:flex; gap:8px; flex-wrap:wrap; }
-.signup input { flex:1 1 180px; padding:10px 12px; border:1px solid var(--ink); border-radius:0; background:var(--paper); color:var(--ink); font:16px var(--sans); }
+.signup input { flex:1 1 180px; min-width:0; width:100%; padding:10px 12px; border:1px solid var(--ink); border-radius:0; background:var(--paper); color:var(--ink); font:16px var(--sans); }
 .signup button { padding:10px 18px; border:0; border-radius:0; background:var(--ink); color:var(--paper); font:800 13px var(--sans); letter-spacing:.08em; text-transform:uppercase; cursor:pointer; }
 .fine { font-size:12px; color:var(--muted); margin:10px 0 0 !important; }
 
