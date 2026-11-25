@@ -48,7 +48,7 @@ index 4b95bbd..fca60e0 100644
 +.prod-kyear { margin-bottom: 12px; }
 diff --git a/production.html b/production.html
 new file mode 100644
-index 0000000..11f83f7
+index 0000000..8c6c6de
 --- /dev/null
 +++ b/production.html
 @@ -0,0 +1,202 @@
@@ -104,7 +104,7 @@ index 0000000..11f83f7
 +    <h2 class="label rule">Data and sources</h2>
 +    <p><strong>Made tea</strong> is tea after processing, as it is sold. It is the figure the tea trade uses. Fresh green leaf weighs about four to five times as much.</p>
 +    <p><strong>1961 to 2020:</strong> national production as reported to the United Nations, for every country that grows tea commercially. Countries that have since split or merged are shown as they were reported, such as the USSR to 1991.</p>
-+    <p><strong>2021 on:</strong> Kenya from the Tea Board of Kenya, and the other largest producers from industry statistics. They can differ a little in method from the earlier figures. Other countries are added as their national figures are gathered.</p>
++    <p><strong>2021 on:</strong> Kenya, India and Sri Lanka from their national tea boards, and the other largest producers from industry statistics. They can differ a little in method from the earlier figures. Other countries are added as their national figures are gathered.</p>
 +    <p><strong>Area harvested</strong> is the land under tea that was picked that year.</p>
 +    <p class="fine muted">Production 1961 to 2020 and area: FAO, FAOSTAT, CC BY 4.0. Figures are as published by each source. Spot an error? Just reply to any issue.</p>
 +  </section>

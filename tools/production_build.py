@@ -4,6 +4,7 @@ Made tea is processed tea as sold (the figure the trade uses). Sources, in order
   1961-2020  FAO's former "Tea" item (made tea), fao_tea_made_1961_2020.csv
   2019-2024  Tea Board of Kenya annual totals for Kenya (replace FAO for Kenya)
   2021-2024  International Tea Committee figures for the seven largest producers
+  2021-2025  national tea boards where published (national_calendar_mkg.csv: India, Sri Lanka), over ITC
 FAO's current "Tea leaves" series switched to green leaf from 1991, so it is kept separately in
 _data/tea_production_fao.csv and is not mixed in here.
 Run: python3 -I tools/production_build.py
@@ -44,6 +45,9 @@ with open(os.path.join(RAW, 'itc_2020_2024_mkg.csv'), encoding='utf-8') as f:
         if r[0] in ('Others', 'World'): continue   # world totals differ in basis from FAO's; not spliced
         for y, v in zip(years, r[1:]):
             if y >= 2021: put(r[0], y, float(v) * 1000, 'itc')
+
+for r in csv.DictReader(open(os.path.join(RAW, 'national_calendar_mkg.csv'), encoding='utf-8')):
+    put(r['country'], int(r['year']), float(r['million_kg']) * 1000, r['source'])   # national boards win over ITC
 
 for r in csv.DictReader(open(os.path.join(RAW, 'tbk_kenya_annual_kg.csv'))):
     put('Kenya', int(r['year']), int(r['total']) / 1000, 'tbk')
