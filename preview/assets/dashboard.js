@@ -75,7 +75,7 @@
     (data.eatta || []).forEach(function (e) {
       var r = get(+e.year, +e.sale);
       r.src = "eatta"; r.date = e.auction_date || "";
-      r.all = { p: num(e.avg_usd_kg), kg: num(e.sold_kg) };
+      r.all = { p: num(e.avg_usd_kg), kg: num(e.sold_kg), off: num(e.offered_kg) };
       r.ctc = { p: num(e.ctc_avg_usd_kg), kg: num(e.ctc_sold_kg) };
       r.orthodox = { p: num(e.orthodox_avg_usd_kg), kg: num(e.orthodox_sold_kg) };
     });
@@ -87,11 +87,14 @@
     (data.highlights || []).forEach(function (h) { highlights[key(+h.year, +h.sale)] = h; });
   }
   // Figures for the chosen tea: price and kg sold from the main source, offered and lots from Combrok.
+  // EATTA first for kg sold and offered, wherever it has the figure (bars, share sold, totals); Combrok only where EATTA's is missing.
   function pick(r, tea) {
     tea = tea || st.tea;
-    var m = r[tea] || {}, cb = r.cb[tea] || {};
-    var abs = cb.off && cb.kg != null ? cb.kg / cb.off : null;
-    return { p: m.p != null ? m.p : null, kg: m.kg || null, off: cb.off || null, cbKg: cb.kg, abs: abs, lo: cb.lo, ls: cb.ls };
+    var m = r[tea] || {}, cb = r.cb[tea] || {}, ea = r.src === "eatta";
+    var sold = ea && m.kg != null ? m.kg : cb.kg;
+    var off = ea && m.off ? m.off : cb.off;
+    var abs = off && sold != null ? Math.min(1, sold / off) : null;
+    return { p: m.p != null ? m.p : null, kg: m.kg || null, off: off || null, cbKg: sold, abs: abs, lo: cb.lo, ls: cb.ls };
   }
   function provisional(r) {
     if (!r.date || r.src !== "eatta") return false;
@@ -338,7 +341,6 @@
       var sold = v.off && v.cbKg != null ? v.cbKg : v.kg;
       html += tipRow("k-sold", "Sold", sold ? kgFull(sold) + " kg" : "None");
       if (v.abs != null) html += tipRow("", "Share sold", pct(v.abs));
-      if (v.off && r.src === "eatta" && v.kg && v.cbKg != null && Math.abs(v.kg - v.cbKg) / v.kg > 0.005) html += '<div class="dash-tip-note">EATTA reports ' + kgFull(v.kg) + " kg sold</div>";
       showTip(evt, html);
     };
     hit.addEventListener("pointermove", move);
