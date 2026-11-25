@@ -114,4 +114,4 @@ GitHub stays the source of truth. Every push to `main` also triggers `.github/wo
 A built copy of the magazine redesign lives in `preview/` and is served at
 https://chaiweekly.co.ke/preview/. It is not linked from the live site, is hidden from
 search engines and shows a "preview" bar. Rebuild it from the redesign's commit or branch with
-`tools/build_preview.sh <commit-or-branch>`. Delete `preview/` once the redesign goes live.
+`tools/build_preview.sh <commit-or-branch>` (currently built from 2761d7d plus tools/preview-patches/). Delete `preview/` once the redesign goes live.

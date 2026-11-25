@@ -665,3 +665,17 @@ p { margin: 0 0 1em; }
 .dash-notes .dash-badge { margin: 0 4px 0 0; }
 @media (max-width: 899px) { .dash-charts, .dash-lower { grid-template-columns: 1fr; } }
 @media (max-width: 559px) { .dash-controls { padding: 14px 16px; gap: 12px; } .dash-field { flex: 1 1 40%; } .dash-field select { min-width: 0; width: 100%; } .dash-field:nth-child(n+4) { flex-basis: 100%; } }
+
+/* Production page */
+.prod .chart .hit { fill: transparent; }
+.prod .chart .hit:hover { fill: var(--gold); }
+.prod .chart .prod-bar { fill: var(--green-3); }
+.prod .chart .prod-bar.last { fill: var(--green); }
+.prod .chart .prod-prev-pt { fill: var(--gold); }
+.prod .chart .line-long.prod-area { stroke: var(--green); stroke-width: 2; }
+.prod .chart .dash-line-prev { fill: none; stroke: var(--gold); stroke-width: 2; stroke-dasharray: 5 4; stroke-linejoin: round; }
+.prod-charts { grid-template-columns: 1fr 1fr; margin-bottom: 12px; }
+.prod .dash-legend { margin-bottom: 8px; }
+@media (max-width: 760px) { .prod-charts { grid-template-columns: 1fr; } }
+.prod .up { color: var(--up); } .prod .down { color: var(--down); }
+.prod .dash-legend i.k-bar { height: 10px; border: 0; background: var(--green-3); border-radius: 2px; width: 10px; }
