@@ -313,3 +313,6 @@ a { color:inherit; }
 @media (max-width: 899px) { .dash-charts, .dash-lower { grid-template-columns: 1fr; } }
 @media (max-width: 559px) { .dash-controls { padding: 14px 16px; gap: 12px; } .dash-field { flex: 1 1 40%; } .dash-field select { min-width: 0; width: 100%; } .dash-field:nth-child(n+4) { flex-basis: 100%; } }
 .dash .dash-panel-h, .dash .dash-hl-h { color: var(--ink); font-weight: 700; }
+
+.wx-dn small { display: block; font-size: .7rem; font-weight: normal; color: #666; white-space: nowrap; }
+.wx-wk { margin: .5rem 0 .2rem; font-size: .75rem; color: #666; }
