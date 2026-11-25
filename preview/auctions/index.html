@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   <section>
     <h2 class="label rule">The long view, 1992 to today</h2>
-    <p class="chart-note">Mombasa tea price, US$ per kg, not adjusted for inflation: the monthly average from 1992 to 2008, then the average at every sale from 2009.</p>
+    <p class="chart-note">Mombasa tea price, US$ per kg, not adjusted for inflation: the monthly average, 1992 to today.</p>
     <figure class="chart" id="chart-long" role="img" aria-label="Mombasa tea price since 1992"></figure>
   </section>
 
@@ -204,12 +204,23 @@ document.addEventListener("DOMContentLoaded", function () {
     ys.forEach(function (s, i) { dot(c, pts[i][0], pts[i][1], s === last ? 4.5 : 2.6, "pt" + (s === last ? " pt-last" : ""), "Sale " + s.sale + ", " + dlabel(s.date) + ": " + f2(s.avg) + " · " + kg(s.kg)); });
   })();
 
-  // Chart 2: long run. Monthly averages 1992-2008, then every sale from 2009, placed by date
-  // (by sale number where the date is not saved: about one sale a week).
+  // Chart 2: long run, one point a month. 1992-2008 monthly figures; from 2009 the average of each month's sales,
+  // weighted by kg sold. Sales without a saved date are put in a month by sale number: sale 1 on the first
+  // Monday of January, then one sale a week (how the Mombasa auction runs).
   (function () {
-    var tSale = function (s) { return s.date ? s.year + (Date.parse(s.date) - Date.UTC(s.year, 0, 1)) / (365.25 * 864e5) : s.year + (s.sale - 0.5) / 52; };
-    var pts = monthly.map(function (r) { return { t: +r.m.slice(0, 4) + (+r.m.slice(5, 7) - 0.5) / 12, v: r.v, lab: mlabel(r.m) + " (monthly)" }; })
-      .concat(allSales.map(function (s) { return { t: tSale(s), v: s.avg, lab: saleLabel(s) }; }));
+    var saleMonth = function (s) {
+      if (s.date) return s.date.slice(0, 7);
+      var j = Date.UTC(s.year, 0, 1), fm = j + ((8 - new Date(j).getUTCDay()) % 7) * 864e5;
+      return new Date(fm + (s.sale - 1) * 7 * 864e5).toISOString().slice(0, 7);
+    };
+    var byM = {};
+    allSales.filter(function (s) { return s.year >= 2009; }).forEach(function (s) {
+      var m = saleMonth(s), o = byM[m] || (byM[m] = { w: 0, k: 0, n: 0, sum: 0 });
+      o.n++; o.sum += s.avg; if (s.kg) { o.w += s.avg * s.kg; o.k += s.kg; }
+    });
+    var pts = monthly.map(function (r) { return { m: r.m, v: r.v }; })
+      .concat(Object.keys(byM).sort().map(function (m) { var o = byM[m]; return { m: m, v: o.k ? o.w / o.k : o.sum / o.n }; }))
+      .map(function (r) { return { t: +r.m.slice(0, 4) + (+r.m.slice(5, 7) - 0.5) / 12, v: r.v, lab: mlabel(r.m) }; });
     if (pts.length < 2) return;
     var vs = pts.map(function (p) { return p.v; });
     var mx = pts.reduce(function (a, p) { return p.v > a.v ? p : a; }), mn = pts.reduce(function (a, p) { return p.v < a.v ? p : a; });
@@ -219,11 +230,11 @@ document.addEventListener("DOMContentLoaded", function () {
     for (var y = Math.ceil(x0 / step) * step; y <= x1; y += step) el("text", { x: c.X(y), y: 290, class: "tick", "text-anchor": "middle" }, c.svg).textContent = y;
     el("rect", { x: c.X(yr), y: 18, width: Math.max(2, c.X(x1) - c.X(yr)), height: 300 - 48, class: "band" }, c.svg);
     el("path", { d: path(pts.map(function (p) { return [c.X(p.t), c.Y(p.v)]; })), class: "line-long" }, c.svg);
-    [[mx, "High " + f2(mx.v) + ", " + mx.lab.replace(" (monthly)", ""), -8], [mn, "Low " + f2(mn.v) + ", " + mn.lab.replace(" (monthly)", ""), 16]].forEach(function (a) {
+    [[mx, "High " + f2(mx.v) + ", " + mx.lab, -8], [mn, "Low " + f2(mn.v) + ", " + mn.lab, 16]].forEach(function (a) {
       dot(c, c.X(a[0].t), c.Y(a[0].v), 3.5, "pt", a[1]);
       el("text", { x: Math.min(Math.max(c.X(a[0].t), 110), CW - 110), y: c.Y(a[0].v) + a[2], class: "tick strong", "text-anchor": "middle" }, c.svg).textContent = a[1];
     });
-    dot(c, c.X(x1), c.Y(lp.v), 4.5, "pt pt-last", lp.lab + ": " + f2(lp.v));
+    dot(c, c.X(x1), c.Y(lp.v), 4.5, "pt pt-last", lp.lab + " average: " + f2(lp.v));
   })();
 
   // Tables
