@@ -12,7 +12,7 @@ layout: default
     {% include market-panel.html %}
   </div>
   <aside class="rail">
-    {% include signup.html %}
+    {% include signup.html id="home" %}
     {% capture poster %}{% include ad.html slot="home" %}{% endcapture %}
     {% assign poster_on = poster | strip | size %}
     {{ poster }}

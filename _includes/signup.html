@@ -1,12 +1,13 @@
-<section class="signup">
+{%- assign sid = include.id | default: "main" -%}
+<section class="signup{% if include.class %} {{ include.class }}{% endif %}">
   <h2 class="label">Subscribe, free</h2>
   <p>The week in tea, in your inbox every Wednesday. Free, and you can unsubscribe any time.</p>
   {% if site.listmonk_url != "" and site.listmonk_list_uuid != "" %}
   <form action="{{ site.listmonk_url }}/subscription/form" method="post" class="signup-form">
     <input type="hidden" name="l" value="{{ site.listmonk_list_uuid }}">
     <input type="hidden" name="next" value="{{ '/subscribe/thanks/' | absolute_url }}">
-    <label for="lm-email" class="sr">Email address</label>
-    <input type="email" name="email" id="lm-email" placeholder="Your email" required>
+    <label for="lm-email-{{ sid }}" class="sr">Email address</label>
+    <input type="email" name="email" id="lm-email-{{ sid }}" placeholder="Your email" required>
     {%- comment -%} Hidden trap for spam robots: people never see or fill it. {%- endcomment %}
     <input type="text" name="nonce" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
     <button type="submit">Subscribe</button>
@@ -14,8 +15,8 @@
   <p class="fine">We'll send one email to confirm your address. Nothing else until you click it.</p>
   {% else %}
   <form class="signup-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Coming soon';">
-    <label for="ph-email" class="sr">Email address</label>
-    <input type="email" id="ph-email" placeholder="Your email" required>
+    <label for="ph-email-{{ sid }}" class="sr">Email address</label>
+    <input type="email" id="ph-email-{{ sid }}" placeholder="Your email" required>
     <button type="submit">Subscribe</button>
   </form>
   <p class="fine">Sign-up opens soon.</p>

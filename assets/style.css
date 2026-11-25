@@ -80,6 +80,20 @@ a { color:inherit; }
 /* Signup */
 .signup { background:var(--box); border-top:2px solid var(--rule); padding:16px 18px 18px; }
 .story + .signup { max-width:720px; margin:24px auto 0; }
+
+/* Right-hand column with the Subscribe box on every page (except the front page and full-width pages) */
+.with-rail { display:grid; grid-template-columns:minmax(0, 1fr); }
+.side-rail { padding:8px 0 28px; }
+@media (min-width:900px) {
+  .with-rail { grid-template-columns:minmax(0, 1fr) 300px; gap:32px; }
+  .with-rail > main { min-width:0; }
+  .side-rail { border-left:1px solid var(--hair); padding:32px 0 28px 28px; }
+  .side-rail .signup { position:sticky; top:16px; }
+  .with-rail .signup-end { display:none; }          /* an issue's own box: the column shows one on wide screens */
+}
+@media (max-width:899px) { .with-rail.is-post .side-rail { display:none; } }  /* phones: an issue ends with its own box */
+.signup-wide { margin:8px 0 0; }
+@media (min-width:700px) { .signup-wide { display:grid; grid-template-columns:1fr 1.2fr; gap:6px 24px; align-items:center; } .signup-wide .fine, .signup-wide h2 { grid-column:1 / -1; } }
 .signup p { margin:0 0 12px; font-size:16px; line-height:1.5; }
 .signup-form { display:flex; gap:8px; flex-wrap:wrap; }
 .signup input { flex:1 1 180px; padding:10px 12px; border:1px solid var(--ink); border-radius:0; background:var(--paper); color:var(--ink); font:16px var(--sans); }
