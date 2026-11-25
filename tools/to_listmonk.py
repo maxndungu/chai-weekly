@@ -8,7 +8,7 @@ Usage:
 
 Optional:
   LISTMONK_CAMPAIGN_ID=2   update that existing draft instead of making a new one (e.g. after a design change)
-  LISTMONK_FROM=...        sender, if not listmonk's default
+  LISTMONK_FROM=...        sender (default: Chai Weekly <newsletter@chaiweekly.co.ke>)
   EMAIL_HTML_OUT=file      also save the email as a local HTML file (for previews)
   LISTMONK_DRY_RUN=1       do not contact listmonk at all (with EMAIL_HTML_OUT, for previews)
 
@@ -280,8 +280,8 @@ payload = {
 template_id = sync_template()
 if template_id:
     payload["template_id"] = template_id
-if os.environ.get("LISTMONK_FROM"):
-    payload["from_email"] = os.environ["LISTMONK_FROM"]
+# Always name the sender, so inboxes show "Chai Weekly" and not the mailbox name ("newsletter").
+payload["from_email"] = os.environ.get("LISTMONK_FROM") or "Chai Weekly <newsletter@chaiweekly.co.ke>"
 
 # A campaign is always a draft until a person presses Start in listmonk; we never ask it to send.
 cid = os.environ.get("LISTMONK_CAMPAIGN_ID", "").strip()
