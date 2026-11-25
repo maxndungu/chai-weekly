@@ -432,56 +432,72 @@
   }
 
 
-  /* ---------- the long view: World Bank monthly Mombasa price since 1992 ---------- */
+  /* ---------- the long view since 1992: monthly averages to 2008, then every sale from 2009 ---------- */
   var wb = [], longSpan = "all";
+  var mname = function (m) { return MON[+m.slice(5, 7) - 1] + " " + m.slice(0, 4); };
+  // Points placed in time: months mid-month; sales by date, or by sale number (about one a week) where no date is saved.
+  function longPts() {
+    var out = wb.filter(function (d) { return d.m < "2009"; }).map(function (d) {
+      return { t: +d.m.slice(0, 4) + (+d.m.slice(5, 7) - 0.5) / 12, v: d.v, y: +d.m.slice(0, 4), k: "m" + d.m.slice(5), lab: mname(d.m), kind: "Monthly average" };
+    });
+    years.forEach(function (y) {
+      if (y < 2009) return;
+      byYear[y].forEach(function (r) {
+        if (r.all.p == null) return;
+        var t = r.date ? y + (dateOf(r.date).getTime() - Date.UTC(y, 0, 1)) / (365.25 * 864e5) : y + (r.n - 0.5) / 52;
+        out.push({ t: t, v: r.all.p, y: y, k: "s" + r.n, lab: label(r), kind: "Sale average" });
+      });
+    });
+    return out.sort(function (a, b) { return a.t - b.t; });
+  }
   function longChart() {
     var box = $("dash-long");
     if (!box) return;
-    if (!wb.length) { box.hidden = true; return; }
+    var every = longPts();
+    if (every.length < 2) { box.hidden = true; return; }
     box.hidden = false;
-    var lastYr = +wb[wb.length - 1].m.slice(0, 4);
-    var pts = longSpan === "all" ? wb : wb.filter(function (d) { return +d.m.slice(0, 4) > lastYr - +longSpan; });
+    var lastYr = every[every.length - 1].y;
+    var pts = longSpan === "all" ? every : every.filter(function (d) { return d.y > lastYr - +longSpan; });
     each("[data-span]", function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-span") === longSpan ? "true" : "false"); });
     var first = pts[0], last = pts[pts.length - 1];
     var hi = pts.reduce(function (a, d) { return d.v > a.v ? d : a; }), lo = pts.reduce(function (a, d) { return d.v < a.v ? d : a; });
-    var mname = function (m) { return MON[+m.slice(5, 7) - 1] + " " + m.slice(0, 4); };
     $("dash-long-stats").innerHTML =
-      "<span><b>" + usd(last.v) + "</b> latest, " + mname(last.m) + "</span>" +
-      "<span><b>" + usd(first.v) + "</b> at the start, " + mname(first.m) + "</span>" +
-      "<span><b>" + usd(hi.v) + "</b> highest, " + mname(hi.m) + "</span>" +
-      "<span><b>" + usd(lo.v) + "</b> lowest, " + mname(lo.m) + "</span>";
+      "<span><b>" + usd(last.v) + "</b> latest, " + last.lab + "</span>" +
+      "<span><b>" + usd(first.v) + "</b> at the start, " + first.lab + "</span>" +
+      "<span><b>" + usd(hi.v) + "</b> highest, " + hi.lab + "</span>" +
+      "<span><b>" + usd(lo.v) + "</b> lowest, " + lo.lab + "</span>";
     var fig = $("dash-long-chart"), f = frame(fig, fig.clientWidth < 520 ? 220 : 280), P = f.P;
     var vs = pts.map(function (d) { return d.v; });
     var ticks = niceTicks(Math.min.apply(0, vs) - 0.05, Math.max.apply(0, vs) + 0.05, 5), y0 = ticks[0], y1 = ticks[ticks.length - 1];
-    var n = pts.length, plotW = f.W - P.l - P.r;
-    var X = function (i) { return P.l + i / Math.max(1, n - 1) * plotW; };
+    var n = pts.length, plotW = f.W - P.l - P.r, t0 = first.t, t1 = Math.max(last.t, t0 + 0.01);
+    var X = function (t) { return P.l + (t - t0) / (t1 - t0) * plotW; };
     var Y = function (v) { return f.H - P.b - (v - y0) / (y1 - y0) * (f.H - P.t - P.b); };
     ticks.forEach(function (v) {
       el("line", { x1: P.l, x2: f.W - P.r, y1: Y(v), y2: Y(v), "class": "grid" }, f.svg);
       el("text", { x: P.l - 8, y: Y(v) + 4, "class": "tick", "text-anchor": "end" }, f.svg).textContent = "$" + v.toFixed(2);
     });
-    var span = +last.m.slice(0, 4) - +first.m.slice(0, 4), every = span > 24 ? 5 : span > 10 ? 2 : 1;
-    pts.forEach(function (d, i) {
-      var yr = +d.m.slice(0, 4);
-      if (d.m.slice(5) !== "01" || yr % every) return;
-      var x = X(i);
-      if (x < P.l + 14 || x > f.W - P.r - 14) return;
+    var span = last.y - first.y, step = span > 24 ? 5 : span > 10 ? 2 : 1;
+    for (var yr = Math.ceil(t0); yr <= t1; yr++) {
+      if (yr % step) continue;
+      var x = X(yr);
+      if (x < P.l + 14 || x > f.W - P.r - 14) continue;
       el("line", { x1: x, x2: x, y1: f.H - P.b, y2: f.H - P.b + 4, "class": "grid" }, f.svg);
       el("text", { x: x, y: f.H - 8, "class": "tick", "text-anchor": "middle" }, f.svg).textContent = yr;
-    });
-    el("path", { d: pts.map(function (d, i) { return (i ? "L" : "M") + X(i).toFixed(1) + "," + Y(d.v).toFixed(1); }).join(""), "class": "dash-line thin" }, f.svg);
-    el("circle", { cx: X(n - 1), cy: Y(last.v), r: 4.5, "class": "dash-dot last" }, f.svg);
+    }
+    el("path", { d: pts.map(function (d, i) { return (i ? "L" : "M") + X(d.t).toFixed(1) + "," + Y(d.v).toFixed(1); }).join(""), "class": "dash-line thin" }, f.svg);
+    el("circle", { cx: X(last.t), cy: Y(last.v), r: 4.5, "class": "dash-dot last" }, f.svg);
     var cross = el("line", { y1: P.t, y2: f.H - P.b, "class": "dash-cross", visibility: "hidden" }, f.svg);
     var ring = el("circle", { r: 5, "class": "dash-ring", visibility: "hidden" }, f.svg);
     var hit = el("rect", { x: P.l, y: 0, width: plotW, height: f.H, fill: "transparent" }, f.svg);
     var move = function (evt) {
-      var b = f.svg.getBoundingClientRect(), x = (evt.clientX - b.left) * f.W / b.width;
-      var i = Math.max(0, Math.min(n - 1, Math.round((x - P.l) / plotW * (n - 1)))), d = pts[i];
-      cross.setAttribute("x1", X(i)); cross.setAttribute("x2", X(i)); cross.setAttribute("visibility", "visible");
-      ring.setAttribute("cx", X(i)); ring.setAttribute("cy", Y(d.v)); ring.setAttribute("visibility", "visible");
-      var yAgo = wb.filter(function (o) { return o.m === (+d.m.slice(0, 4) - 1) + d.m.slice(4); })[0];
-      showTip(evt, '<div class="dash-tip-h">' + mname(d.m) + "</div>" + tipRow("k-cur", "World Bank, Mombasa", usd(d.v) + "/kg") +
-        (yAgo ? '<div class="dash-tip-note">' + signed(d.v - yAgo.v, usd) + " on " + mname(yAgo.m) + "</div>" : ""));
+      var b = f.svg.getBoundingClientRect(), x = (evt.clientX - b.left) * f.W / b.width, t = t0 + (x - P.l) / plotW * (t1 - t0);
+      var i = 0; for (var j = 1; j < n; j++) if (Math.abs(pts[j].t - t) < Math.abs(pts[i].t - t)) i = j;
+      var d = pts[i];
+      cross.setAttribute("x1", X(d.t)); cross.setAttribute("x2", X(d.t)); cross.setAttribute("visibility", "visible");
+      ring.setAttribute("cx", X(d.t)); ring.setAttribute("cy", Y(d.v)); ring.setAttribute("visibility", "visible");
+      var yAgo = every.filter(function (o) { return o.y === d.y - 1 && o.k === d.k; })[0];
+      showTip(evt, '<div class="dash-tip-h">' + d.lab + "</div>" + tipRow("k-cur", d.kind, usd(d.v) + "/kg") +
+        (yAgo ? '<div class="dash-tip-note">' + signed(d.v - yAgo.v, usd) + " on " + yAgo.lab + "</div>" : ""));
     };
     hit.addEventListener("pointermove", move);
     hit.addEventListener("pointerdown", move);

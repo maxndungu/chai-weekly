@@ -8,7 +8,7 @@
   <div class="wrap">
     <div class="section-head">
       <h2 class="section-title" id="dash-h">Mombasa auction dashboard</h2>
-      <p class="section-note">Prices, volumes and the share of tea sold at every sale since 2009, with monthly prices back to 1992. Pick a year and a run of sales.</p>
+      <p class="section-note">Prices, volumes and the share of tea sold at every sale since 2009, with monthly prices from 1992 to 2008. Pick a year and a run of sales.</p>
     </div>
 
     <form class="dash-controls" aria-label="Choose the sales to show" onsubmit="return false">
@@ -79,8 +79,8 @@
     <section class="dash-long" id="dash-long" hidden aria-labelledby="dash-long-h">
       <div class="dash-long-head">
         <div>
-          <h3 class="dash-panel-h" id="dash-long-h">The long view: the Mombasa price every month since 1992</h3>
-          <p class="fine">World Bank monthly average for Mombasa tea, US$ per kg, not adjusted for inflation.</p>
+          <h3 class="dash-panel-h" id="dash-long-h">The long view: the Mombasa price since 1992</h3>
+          <p class="fine">US$ per kg, not adjusted for inflation: the monthly average from 1992 to 2008, then the average at every sale from 2009.</p>
         </div>
         <div class="chips" role="group" aria-label="Years to show">
           <button type="button" class="chip" data-span="all" aria-pressed="true">Since 1992</button>
@@ -89,14 +89,14 @@
         </div>
       </div>
       <p class="dash-long-stats" id="dash-long-stats"></p>
-      <div class="chart dash-chart" id="dash-long-chart" role="img" aria-label="Line chart of the World Bank monthly Mombasa tea price since 1992"></div>
+      <div class="chart dash-chart" id="dash-long-chart" role="img" aria-label="Line chart of the Mombasa tea price since 1992"></div>
     </section>
     {%- endunless %}
 
     <div class="dash-notes">
       <p class="fine" id="dash-provisional" hidden><span class="dash-badge">Provisional</span> EATTA adds late sales until Friday noon, Nairobi time, so the newest sale's figures can still change until then.</p>
       <p class="fine">The average for a run of sales is weighted by the kilograms sold at each sale. <strong>Share sold</strong> (absorption) is the kilograms sold as a share of the kilograms offered, both from the same source, and the offered and sold bars use the same figures. EATTA's own count of kilograms sold, used for the headline figure and the table, can differ by a few per cent from the figures behind the share sold. Orthodox tea is sold every other week, so the Orthodox view lists only the weeks it was sold. Separate orthodox figures start at sale 38 of 2025.</p>
-      <p class="fine"><strong>Sources:</strong> prices and kilograms sold from 2026 are from the <a href="https://eatta.co.ke/statistics">East African Tea Trade Association's auction statistics</a>, updated every Tuesday at 4pm and Friday at 2pm (final figures), Nairobi time.{% unless include.long == false %} The monthly price since 1992 runs a few cents above the auction's own sale averages because it is measured differently. Monthly prices since 1992: World Bank Commodity Price Data, CC BY 4.0.{% endunless %}</p>
+      <p class="fine"><strong>Sources:</strong> prices and kilograms sold from 2026 are from the <a href="https://eatta.co.ke/statistics">East African Tea Trade Association's auction statistics</a>, updated every Tuesday at 4pm and Friday at 2pm (final figures), Nairobi time.{% unless include.long == false %} Sales from 2009 to 2025 come from Chai Weekly's own weekly auction records. Monthly prices 1992 to 2008: World Bank Commodity Price Data, CC BY 4.0.{% endunless %}</p>
     </div>
     <noscript><p class="fine">The dashboard needs JavaScript. The Mombasa section below lists the latest sales.</p></noscript>
   </div>
