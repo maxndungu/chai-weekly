@@ -1,0 +1,19 @@
+country,period,period_type,made_tea_t,reported_by,where_found,note
+Uganda,2020/21,fiscal Jul-Jun,84446,MAAIF and Uganda Tea Association,MAAIF Statistical Abstract (Feb 2026) Table 11,made tea not stated; well above FAO/ITC calendar 2020 (63-66k t)
+Uganda,2021/22,fiscal Jul-Jun,84185,MAAIF and Uganda Tea Association,MAAIF Statistical Abstract (Feb 2026) Table 11,
+Uganda,2022/23,fiscal Jul-Jun,87264,MAAIF and Uganda Tea Association,MAAIF Statistical Abstract (Feb 2026) Table 11,
+Uganda,2023/24,fiscal Jul-Jun,70180,MAAIF and Uganda Tea Association,MAAIF Statistical Abstract (Feb 2026) Table 11,
+Uganda,2024/25,fiscal Jul-Jun,60463,MAAIF and Uganda Tea Association,MAAIF Statistical Abstract (Feb 2026) Table 11,
+Tanzania,2013/14,season Jul-Jun,33525,Tea Board of Tanzania,FAO IGG/Tea paper CCP:TE 16/CRS7 (2016),made tea
+Tanzania,2014/15,season Jul-Jun,36268,Tea Board of Tanzania,FAO IGG/Tea paper CCP:TE 16/CRS7 (2016),made tea
+Tanzania,2024/25,season Jul-Jun,22000,Tea Board of Tanzania,Daily News 25 Sep 2025,about; up >5% on 2023/24
+Rwanda,2023/24,season to June 2024,40003,NAEB,naeb.gov.rw About Rwanda Tea,made tea; period wording ambiguous
+Malawi,2023,calendar,43300,Tea Association of Malawi,Nation 29 May 2025,
+Malawi,2024,calendar,49700,Tea Association of Malawi,Nation 29 May 2025,conflicts with Reserve Bank 46.3m kg
+Malawi,2024,calendar,46300,Reserve Bank of Malawi,Nation 29 May 2025,conflicts with Tea Association 49.7m kg
+Japan,2024,calendar,74000,ITC (via press),Tea & Coffee Trade Journal May 2025,
+Türkiye,2024,calendar,273000,ITC (via press),SeasiaStats Sep 2026,Tea Board of India copy of ITC says 275130
+India,1950,calendar,278000,Tea Board of India,Lok Sabha answer 27 Aug 2012,decadal table
+India,1960,calendar,312000,Tea Board of India,Lok Sabha answer 27 Aug 2012,decadal table
+Tanzania,2020,calendar,28715,State of the National Economy 2022,NAO audit Mar 2024 Table 1.1,FAO made tea 2020 says 46058 - too far apart to splice
+Tanzania,2021,calendar,27510,State of the National Economy 2022,NAO audit Mar 2024 Table 1.1,another table in same report says 28715 for 2021
