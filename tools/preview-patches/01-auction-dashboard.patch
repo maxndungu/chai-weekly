@@ -1,6 +1,6 @@
 diff --git a/_includes/auction-dashboard.html b/_includes/auction-dashboard.html
 new file mode 100644
-index 0000000..f1dd43b
+index 0000000..55e27c5
 --- /dev/null
 +++ b/_includes/auction-dashboard.html
 @@ -0,0 +1,101 @@
@@ -753,7 +753,7 @@ index c8ab93a..58914d4 100644
 +@media (max-width: 899px) { .dash-charts, .dash-lower { grid-template-columns: 1fr; } }
 +@media (max-width: 559px) { .dash-controls { padding: 14px 16px; gap: 12px; } .dash-field { flex: 1 1 40%; } .dash-field select { min-width: 0; width: 100%; } .dash-field:nth-child(n+4) { flex-basis: 100%; } }
 diff --git a/auctions.html b/auctions.html
-index aa62fd8..8ee3b5d 100644
+index aa62fd8..89be083 100644
 --- a/auctions.html
 +++ b/auctions.html
 @@ -1,28 +1,26 @@
@@ -817,7 +817,7 @@ index aa62fd8..8ee3b5d 100644
    var MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
    var NS = "http://www.w3.org/2000/svg";
    var $ = function (id) { return document.getElementById(id); };
-@@ -68,28 +67,42 @@ permalink: /auctions/
+@@ -68,29 +67,40 @@ permalink: /auctions/
      return { year: +r.year, sale: +r.sale, date: r.auction_date, avg: +r.avg_usd_kg, kg: +r.sold_kg,
        ctc: r.ctc_avg_usd_kg ? +r.ctc_avg_usd_kg : null, orth: r.orthodox_avg_usd_kg ? +r.orthodox_avg_usd_kg : null };
    }).sort(function (a, b) { return a.year - b.year || a.sale - b.sale; });
@@ -854,8 +854,6 @@ index aa62fd8..8ee3b5d 100644
 -  var below = wb.filter(function (r) { return r.v < wl.v; }).length;
 -  var pct = Math.round(100 * below / wb.length);
 +  var ago = all[(yr - 1) + "-" + last.sale];
-+  var below = allSales.filter(function (s) { return s.avg < last.avg; }).length;
-+  var since = allSales.length ? allSales[0].year : yr;
  
    // Headline numbers
    var stats = [
@@ -863,12 +861,13 @@ index aa62fd8..8ee3b5d 100644
      ["Sold at that sale", kg(last.kg), prev ? "<span class='" + cls(last.kg - prev.kg) + "'>" + (last.kg >= prev.kg ? "▲ " : "▼ ") + Math.abs(Math.round(100 * (last.kg - prev.kg) / prev.kg)) + "%</span> on the week" : ""],
      [yr + " so far", f2(ytd), ys.length + " sales · " + (tkg / 1e6).toFixed(0) + "M kg · low " + f2(lo.avg) + ", high " + f2(hi.avg)],
 -    ["World Bank, " + mlabel(wl.m), f2(wl.v), (lastYear ? "<span class='" + cls(wl.v - lastYear) + "'>" + cents(wl.v - lastYear) + "</span> on a year ago · " : "") + "higher than " + pct + "% of months since " + wb[0].m.slice(0, 4)]
-+    ago ? ["Same sale a year ago", f2(ago.avg), saleLabel(ago) + " · <span class='" + cls(last.avg - ago.avg) + "'>" + cents(last.avg - ago.avg) + "</span> since · higher than " + Math.round(100 * below / allSales.length) + "% of sales since " + since]
-+        : ["Since " + since, Math.round(100 * below / allSales.length) + "%", "of sales averaged less than the latest"]
-   ];
+-  ];
++    ago ? ["Same sale a year ago", f2(ago.avg), saleLabel(ago) + " · <span class='" + cls(last.avg - ago.avg) + "'>" + cents(last.avg - ago.avg) + "</span> since"] : null
++  ].filter(Boolean);
    $("stats").innerHTML = stats.map(function (s) { return "<div class='stat'><span class='stat-label'>" + s[0] + "</span><strong>" + s[1] + "</strong><span class='stat-note'>" + s[2] + "</span></div>"; }).join("");
  
-@@ -109,46 +122,41 @@ permalink: /auctions/
+   // SVG helpers
+@@ -109,46 +119,41 @@ permalink: /auctions/
    function path(pts) { return pts.map(function (p, i) { return (i ? "L" : "M") + p[0].toFixed(1) + "," + p[1].toFixed(1); }).join(""); }
    function dot(c, x, y, r, klass, tip) { var d = el("circle", { cx: x, cy: y, r: r, class: klass }, c.svg); el("title", {}, d).textContent = tip; }
  
@@ -932,7 +931,7 @@ index aa62fd8..8ee3b5d 100644
    })();
  
    // Tables
-@@ -156,9 +164,10 @@ permalink: /auctions/
+@@ -156,9 +161,10 @@ permalink: /auctions/
  
    var months = {};
    ys.forEach(function (s) { var k = s.date.slice(0, 7); (months[k] = months[k] || []).push(s); });
@@ -945,7 +944,7 @@ index aa62fd8..8ee3b5d 100644
    }));
  
    table("t-sales", ["Sale", "Date", "Average", "Week on week", "CTC", "Orthodox", "Sold"], ys.slice().reverse().map(function (s) {
-@@ -166,16 +175,27 @@ permalink: /auctions/
+@@ -166,16 +172,27 @@ permalink: /auctions/
      return [s.sale, dlabel(s.date), "<b>" + f2(s.avg) + "</b>", p ? "<span class='" + cls(s.avg - p.avg) + "'>" + cents(s.avg - p.avg) + "</span>" : "", s.ctc ? f2(s.ctc) : "", s.orth ? f2(s.orth) : "–", kg(s.kg)];
    }));
  
