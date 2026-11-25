@@ -1,0 +1,10 @@
+{%- comment -%}
+  Right-hand column: the Subscribe box, then "Coming up in tea" (next 3 events). While a poster ad is booked
+  (_data/ads.yml, slot "home"), the poster takes the place of the events box. Used on the front page and,
+  through _layouts/default.html, beside every other page. The Events page leaves out its own events box.
+{%- endcomment -%}
+{% include signup.html id=include.id %}
+{% capture poster %}{% include ad.html slot="home" %}{% endcapture %}
+{% assign poster_on = poster | strip | size %}
+{{ poster }}
+{% unless include.no_events %}{% include events.html limit=3 hide=poster_on %}{% endunless %}

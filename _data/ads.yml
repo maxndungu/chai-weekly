@@ -3,7 +3,7 @@
 #
 # To add one:
 #   1. Put the image in assets/ads/ (e.g. assets/ads/kentea-poster.jpg). JPG or PNG under 500 KB.
-#        home:   a tall poster, 600 x 900 px (portrait 2:3), shown in the front page side column
+#        home:   a tall poster, 600 x 900 px (portrait 2:3), shown in the right-hand column of every page, in place of "Coming up in tea"
 #        issue:  a wide banner, 1200 x 400 px (3:1), shown after the auction prices in each issue and email
 #        auctions: no image, a one-line "Prices brought to you by" credit on the Auctions page
 #   2. Copy the example below, remove the "# " at the start of each line, and fill it in.

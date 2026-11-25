@@ -40,7 +40,7 @@
     {% if page.layout == 'post' %}{% include masthead.html compact=true %}{% else %}{% include masthead.html %}{% endif %}
     {%- comment -%}
       Every page except the front page (which has its own right-hand column) gets a right-hand column with the
-      Subscribe box. Pages that need the full width (e.g. Auctions) set "rail: false" and place the box themselves.
+      Subscribe box and, under it, "Coming up in tea" (or the poster ad while one is booked). Pages that need the full width (e.g. Auctions) set "rail: false" and place the box themselves.
       On phones the column drops below the page; on an issue it is hidden there, because the issue already ends with one.
     {%- endcomment -%}
     {%- assign show_rail = true -%}
@@ -48,7 +48,7 @@
     {% if show_rail %}
     <div class="with-rail{% if page.layout == 'post' %} is-post{% endif %}">
       <main>{{ content }}</main>
-      <aside class="side-rail" aria-label="Subscribe">{% include signup.html id="rail" %}</aside>
+      <aside class="side-rail" aria-label="Subscribe and coming up">{% if page.url == "/events/" %}{% include rail.html id="rail" no_events=true %}{% else %}{% include rail.html id="rail" %}{% endif %}</aside>
     </div>
     {% else %}
     <main>{{ content }}</main>
