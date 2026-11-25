@@ -6,13 +6,18 @@ permalink: /auctions/
 rail: false
 ---
 <article class="analysis">
-  <p class="kicker">Markets · Auction analysis</p>
-  <h1 class="headline">The Mombasa tea auction, sale by sale</h1>
-  <p class="deck">The Mombasa auction from 1992 to today: prices, volumes and the share of tea sold at every sale since 2009, monthly prices from 1992 to 2008, and how each year compares with the last.</p>
+  <div class="auctions-head">
+    <div>
+      <p class="kicker">Markets · Auction analysis</p>
+      <h1 class="headline">The Mombasa tea auction, sale by sale</h1>
+      <p class="deck">The Mombasa auction from 1992 to today: prices, volumes and the share of tea sold at every sale since 2009, monthly prices from 1992 to 2008, and how each year compares with the last.</p>
+    </div>
+    {% include signup.html id="auctions-side" class="signup-small" %}
+  </div>
   <div class="stat-row" id="stats" aria-live="polite"></div>
   {% include ad.html slot="auctions" %}
   {% include auction-dashboard.html long=false %}
-  {% include signup.html id="auctions" class="signup-wide" %}
+  {% include signup.html id="auctions" class="signup-wide signup-phone-only" %}
   <script defer src="{{ '/assets/dashboard.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
 
   <section>
