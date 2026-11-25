@@ -11,6 +11,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
+      - run: pip install -q markdown==3.7 PyYAML==6.0.2
       - name: Collector and email scripts
         run: python -m unittest discover -s tests -v
       - uses: ruby/setup-ruby@v1

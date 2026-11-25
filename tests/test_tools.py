@@ -144,42 +144,98 @@ class EattaCsv(unittest.TestCase):
 
 
 class Listmonk(unittest.TestCase):
-    def test_site_links_become_full_addresses(self):
+    POST = textwrap.dedent("""\
+        ---
+        title: "Test issue"
+        issue: 3
+        deck: "Deck"
+        snapshot:
+          - { label: "Mombasa (Sale 47)", value: "$2.39/kg", note: "up 5c" }
+        stories:
+          - { section: "Markets", anchor: "the-auction", headline: "Best price" }
+        ---
+        See the [Auction analysis]({{ '/auctions/' | relative_url }}) and [weather]({{ "/weather/" | relative_url }}). Stray {{ braces }}.
+
+        ## The auction
+
+        | Auction | Average |
+        |---|---|
+        | Mombasa | US$2.39/kg |
+        {: .auction-table}
+
+        *Sources: [EATTA](https://eatta.co.ke/statistics)*
+
+        {% include ad.html slot="issue" %}
+        """)
+
+    def run_tool(self, extra_env=None, templates=b'{"data": []}', template_status=200):
         tmp = pathlib.Path(tempfile.mkdtemp())
         post = tmp / "2026-11-18-issue-003.md"
-        post.write_text(textwrap.dedent("""\
-            ---
-            title: "Test issue"
-            issue: 3
-            deck: "Deck"
-            ---
-            See the [Auction analysis]({{ '/auctions/' | relative_url }}) and [weather]({{ "/weather/" | relative_url }}). Stray {{ braces }}.
-
-            {% include ad.html slot="issue" %}
-            """))
-        out = tmp / "payload.json"
+        post.write_text(self.POST)
+        out = tmp / "calls.json"
         (tmp / "sitecustomize.py").write_text(textwrap.dedent(f"""\
-            import io, json, urllib.request
+            import io, json, urllib.request, urllib.error
+            calls = []
             def fake(req, timeout=None):
-                open({str(out)!r}, "w").write(json.dumps({{"url": req.full_url, "auth": req.get_header("Authorization"), "payload": json.loads(req.data)}}))
+                calls.append({{"method": req.get_method(), "url": req.full_url, "auth": req.get_header("Authorization"),
+                              "payload": json.loads(req.data) if req.data else None}})
+                open({str(out)!r}, "w").write(json.dumps(calls))
+                if "/api/templates" in req.full_url:
+                    if {template_status} != 200:
+                        raise urllib.error.HTTPError(req.full_url, {template_status}, "no", {{}}, io.BytesIO(b""))
+                    if req.get_method() == "GET":
+                        return io.BytesIO({templates!r})
+                    return io.BytesIO(b'{{"data": {{"id": 9}}}}')
                 return io.BytesIO(b'{{"data": {{"id": 7, "status": "draft"}}}}')
             urllib.request.urlopen = fake
             """))
         env = {**os.environ, "PYTHONPATH": str(tmp), "SITE_URL": "https://example.org/chai-weekly", "LISTMONK_URL": "https://list.example.org/",
-               "LISTMONK_LIST_ID": "3", "LISTMONK_API_USER": "drafts", "LISTMONK_API_TOKEN": "fake"}
+               "LISTMONK_LIST_ID": "3", "LISTMONK_API_USER": "drafts", "LISTMONK_API_TOKEN": "fake", **(extra_env or {})}
         r = subprocess.run([sys.executable, str(TOOLS / "to_listmonk.py"), str(post)], cwd=ROOT, env=env, check=True, capture_output=True, text=True)
-        sent = json.loads(out.read_text())
-        body = sent["payload"]["body"]
-        self.assertIn("(https://example.org/chai-weekly/auctions/)", body)
-        self.assertIn("(https://example.org/chai-weekly/weather/)", body)
-        self.assertNotIn("{{", body)
-        self.assertNotIn("{%", body)
-        self.assertEqual(sent["url"], "https://list.example.org/api/campaigns")
-        self.assertEqual(sent["auth"], "token drafts:fake")
-        self.assertEqual(sent["payload"]["lists"], [3])
-        self.assertEqual(sent["payload"]["content_type"], "markdown")
-        self.assertNotIn("status", sent["payload"])  # listmonk creates campaigns as drafts; we never ask it to send
-        self.assertIn("/admin/campaigns/7", r.stdout)
+        return json.loads(out.read_text()), r.stdout
+
+    def test_draft_is_styled_html_with_full_links(self):
+        calls, stdout = self.run_tool()
+        camp = calls[-1]
+        self.assertEqual((camp["method"], camp["url"]), ("POST", "https://list.example.org/api/campaigns"))
+        self.assertEqual(camp["auth"], "token drafts:fake")
+        sent = camp["payload"]
+        body = sent["body"]
+        self.assertEqual(sent["content_type"], "html")
+        self.assertEqual(sent["lists"], [3])
+        self.assertEqual(sent["template_id"], 9)
+        self.assertNotIn("status", sent)  # listmonk creates campaigns as drafts; we never ask it to send
+        self.assertIn("https://example.org/chai-weekly/auctions/?utm_source=newsletter", body)
+        self.assertIn("https://example.org/chai-weekly/weather/?utm_source=newsletter", body)
+        self.assertIn("issues/2026/11/18/issue-003/?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=issue-3#the-auction", body)
+        self.assertIn("Chai Weekly</a>", body)            # nameplate
+        self.assertIn("In this edition", body)            # contents box
+        self.assertIn("Mombasa (Sale 47)", body)          # ticker
+        self.assertRegex(body, r'<table style="width:100%;[^"]*border-collapse')  # styled auction table
+        self.assertRegex(body, r'<h2 style="[^"]*text-transform:uppercase')
+        self.assertNotIn("{{", body + sent["altbody"])
+        self.assertNotIn("{%", body + sent["altbody"])
+        self.assertIn("/admin/campaigns/7", stdout)
+
+    def test_template_is_kept_in_step_with_the_repo(self):
+        calls, _ = self.run_tool()
+        self.assertEqual([c["method"] for c in calls if "/api/templates" in c["url"]], ["GET", "POST"])
+        tpl = calls[1]["payload"]
+        self.assertIn('{{ template "content" . }}', tpl["body"])
+        self.assertIn("{{ UnsubscribeURL }}", tpl["body"])
+        calls, _ = self.run_tool(templates=b'{"data": [{"id": 4, "name": "Chai Weekly newspaper"}]}')
+        self.assertEqual(calls[1]["method"] + " " + calls[1]["url"], "PUT https://list.example.org/api/templates/4")
+        self.assertEqual(calls[-1]["payload"]["template_id"], 4)
+
+    def test_no_template_permission_still_makes_draft(self):
+        calls, _ = self.run_tool(template_status=403)
+        self.assertNotIn("template_id", calls[-1]["payload"])
+        self.assertEqual(calls[-1]["method"], "POST")
+
+    def test_redo_updates_existing_draft(self):
+        calls, stdout = self.run_tool({"LISTMONK_CAMPAIGN_ID": "2"})
+        self.assertEqual((calls[-1]["method"], calls[-1]["url"]), ("PUT", "https://list.example.org/api/campaigns/2"))
+        self.assertIn("updated", stdout)
 
 
 if __name__ == "__main__":

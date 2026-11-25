@@ -156,7 +156,8 @@ Open the new list and note two things: its **number** (e.g. `#3`, shown as ID) a
 ## 6. A key for the weekly email drafts (5 minutes)
 
 1. **Users > User roles > + New**: name it `Drafts`. Tick the permissions for
-   **campaigns** (get and manage) and **lists** (get). Save.
+   **campaigns** (get and manage), **lists** (get) and **templates** (get and manage). Save.
+   (Templates lets each draft use the Chai Weekly newspaper design.)
 2. **Users > + New**: type **API**, name `drafts`, role `Drafts`. Save, then copy the token it shows
    (it is shown once).
 3. In GitHub: **maxndungu/chai-weekly > Settings > Secrets and variables > Actions > New repository secret**:

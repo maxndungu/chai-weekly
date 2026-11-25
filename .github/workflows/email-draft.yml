@@ -3,6 +3,8 @@
 # Needs two repo secrets from listmonk (Admin > Users > API user): LISTMONK_API_USER and LISTMONK_API_TOKEN.
 # The list's address and number come from _config.yml (listmonk_url, listmonk_list_id). Skips quietly until both are set.
 # To redo a draft by hand: Actions > Email draft > Run workflow, and give the issue file (e.g. _posts/2026-11-18-issue-003.md).
+# To refresh a draft that already exists in listmonk (e.g. after a design change), also give its campaign number.
+# The email's look lives in tools/to_listmonk.py and tools/email/listmonk-template.html.
 name: Email draft
 on:
   push:
@@ -13,6 +15,9 @@ on:
       post:
         description: "Issue file to turn into a draft, e.g. _posts/2026-11-18-issue-003.md"
         required: true
+      campaign:
+        description: "Optional: number of an existing listmonk draft to update instead of making a new one (e.g. 2)"
+        required: false
 jobs:
   draft:
     runs-on: ubuntu-latest
@@ -22,11 +27,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q markdown==3.7 PyYAML==6.0.2
       - name: Create listmonk draft for each new issue
         if: env.LISTMONK_API_TOKEN != ''
         env:
           BEFORE: ${{ github.event.before }}
           POST: ${{ inputs.post }}
+          LISTMONK_CAMPAIGN_ID: ${{ inputs.campaign }}
         run: |
           cfg() { python3 -c "import re,sys;c=open('_config.yml').read();m=re.search(r'^'+sys.argv[1]+r':\s*\"?([^\"\n#]*)',c,re.M);print(m[1].strip() if m else '')" "$1"; }
           SITE_URL=$(cfg canonical_url); [ -n "$SITE_URL" ] || SITE_URL="$(cfg url)$(cfg baseurl)"
