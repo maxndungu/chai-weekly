@@ -22,7 +22,7 @@ tools/DRAFT_PROMPT.md   the prompt for Claude to draft each issue
 
 ## Weekly routine (about 15 minutes of your time)
 
-**Automatic (current setup):** at 06:00 Nairobi every Wednesday the "Gather sources" job collects the news. At about 07:15 a scheduled Claude session drafts the issue by following `tools/AUTODRAFT.md` and opens a pull request titled "Issue #N draft". Review it (read the reviewer notes, check the figures, edit on GitHub if needed) and **merge** to publish. Close the pull request instead to skip a week.
+**Automatic (current setup):** early every Wednesday (00:41 Nairobi, with a second try at 05:17 if GitHub has not started the first) the "Gather sources" job collects the news. GitHub can start scheduled jobs hours late, so the draft session starts a news-only run itself if the file is still missing. At about 07:15 a scheduled Claude session drafts the issue by following `tools/AUTODRAFT.md` and opens a pull request titled "Issue #N draft". Review it (read the reviewer notes, check the figures, edit on GitHub if needed) and **merge** to publish. Close the pull request instead to skip a week.
 
 **By hand (fallback):**
 

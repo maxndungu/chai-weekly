@@ -2,18 +2,30 @@
 # Nairobi time (Maxwell's choice, 2026-11-24): the EATTA sales go to _data/mombasa_eatta_sales.csv and Combrok's per-sale figures
 # (kg and lots offered, for the share sold) to _data/mombasa_combrok_sales.csv. EATTA keeps adding late sales until
 # Friday noon, so Tuesday's figures for the newest sale are provisional and Friday's run saves the final ones.
-# Every Wednesday 06:00 Nairobi time, collect the week's tea news into sources/ for the draft, with EATTA's figures
-# and the Combrok cross-check as text for the reviewer notes. The Wednesday run does not change the auction data files.
+# Every Wednesday, collect the week's tea news into sources/ for the draft, with EATTA's figures and the Combrok
+# cross-check as text for the reviewer notes. The Wednesday runs do not change the auction data files.
+#
+# Scheduled times (GitHub cron is UTC): GitHub starts scheduled runs late when it is busy, by up to 8 hours on
+# this repo (the Wednesday 06:00 run started at 14:14 Nairobi on 18 Nov and had not started by 10:00 on 25 Nov),
+# and busy times are worst on the hour. So the times sit off the hour, the Wednesday news run starts at 00:41
+# Nairobi to leave a margin before the 07:15 draft, and a second run at 05:17 fills in if the first has not run yet
+# (it does nothing if today's sources file is already there). The draft session can also start a news-only run
+# by hand (tools/AUTODRAFT.md, step 2). The job runs on Nairobi time, so files are named by Nairobi's date.
 name: Gather sources
 on:
   schedule:
-    - cron: "0 13 * * 2"  # Tuesday 16:00 Nairobi: auction data only (EATTA and Combrok files)
-    - cron: "0 11 * * 5"  # Friday 14:00 Nairobi: auction data only, final figures
-    - cron: "0 3 * * 3"   # Wednesday 06:00 Nairobi: news, weather, auction text for the draft
+    - cron: "13 13 * * 2"  # Tuesday 16:13 Nairobi: auction data only (EATTA and Combrok files)
+    - cron: "13 11 * * 5"  # Friday 14:13 Nairobi: auction data only, final figures
+    - cron: "41 21 * * 2"  # Wednesday 00:41 Nairobi: news, weather, auction text for the draft
+    - cron: "17 2 * * 3"   # Wednesday 05:17 Nairobi: the same, only if the 00:41 run has not saved today's file
   workflow_dispatch:
     inputs:
       csv_only:
         description: "Only update the auction data (EATTA and Combrok files; skip news and the sources file)"
+        type: boolean
+        default: false
+      news_only:
+        description: "Only collect the news for the draft (like the Wednesday run; leave the auction data files alone)"
         type: boolean
         default: false
 permissions:
@@ -24,11 +36,22 @@ jobs:
   gather:
     runs-on: ubuntu-latest
     env:
-      CSV_ONLY: ${{ inputs.csv_only || github.event.schedule == '0 13 * * 2' || github.event.schedule == '0 11 * * 5' }}
-      # The scheduled Wednesday run leaves the auction data files alone (they update on Tuesdays and Fridays only).
-      WEDNESDAY: ${{ github.event.schedule == '0 3 * * 3' }}
+      TZ: Africa/Nairobi
+      CSV_ONLY: ${{ inputs.csv_only || github.event.schedule == '13 13 * * 2' || github.event.schedule == '13 11 * * 5' }}
+      # The Wednesday news runs (and a news-only run by hand) leave the auction data files alone
+      # (they update on Tuesdays and Fridays only).
+      WEDNESDAY: ${{ inputs.news_only || github.event.schedule == '41 21 * * 2' || github.event.schedule == '17 2 * * 3' }}
+      BACKUP_RUN: ${{ github.event.schedule == '17 2 * * 3' }}
     steps:
       - uses: actions/checkout@v4
+      - name: Skip the 05:17 run if the 00:41 run already saved today's sources
+        if: ${{ env.BACKUP_RUN == 'true' }}
+        run: |
+          if [ -s "sources/$(date +%F).md" ]; then
+            echo "sources/$(date +%F).md is already there; nothing to do."
+            echo "CSV_ONLY=true" >> "$GITHUB_ENV"
+            echo "WEDNESDAY=true" >> "$GITHUB_ENV"
+          fi
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       # A failed step turns the run red (GitHub emails the repo owner), but the steps after it still run
