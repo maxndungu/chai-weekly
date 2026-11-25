@@ -1,0 +1,2699 @@
+country,iso3,year,made_tea_t,source
+Argentina,ARG,1961,6486,fao
+Argentina,ARG,1962,5828,fao
+Argentina,ARG,1963,11205,fao
+Argentina,ARG,1964,12519,fao
+Argentina,ARG,1965,13838,fao
+Argentina,ARG,1966,18799,fao
+Argentina,ARG,1967,17400,fao
+Argentina,ARG,1968,18600,fao
+Argentina,ARG,1969,21700,fao
+Argentina,ARG,1970,25800,fao
+Argentina,ARG,1971,29900,fao
+Argentina,ARG,1972,30500,fao
+Argentina,ARG,1973,29900,fao
+Argentina,ARG,1974,32600,fao
+Argentina,ARG,1975,38400,fao
+Argentina,ARG,1976,30900,fao
+Argentina,ARG,1977,39060,fao
+Argentina,ARG,1978,23947,fao
+Argentina,ARG,1979,29062,fao
+Argentina,ARG,1980,35572,fao
+Argentina,ARG,1981,22785,fao
+Argentina,ARG,1982,33015,fao
+Argentina,ARG,1983,40804,fao
+Argentina,ARG,1984,41478,fao
+Argentina,ARG,1985,46500,fao
+Argentina,ARG,1986,41385,fao
+Argentina,ARG,1987,45303,fao
+Argentina,ARG,1988,31806,fao
+Argentina,ARG,1989,49575,fao
+Argentina,ARG,1990,50505,fao
+Argentina,ARG,1991,46075,fao
+Argentina,ARG,1992,46408,fao
+Argentina,ARG,1993,54730,fao
+Argentina,ARG,1994,50993,fao
+Argentina,ARG,1995,51481,fao
+Argentina,ARG,1996,47064,fao
+Argentina,ARG,1997,54125,fao
+Argentina,ARG,1998,57148,fao
+Argentina,ARG,1999,55800,fao
+Argentina,ARG,2000,74256,fao
+Argentina,ARG,2001,71117,fao
+Argentina,ARG,2002,70457,fao
+Argentina,ARG,2003,69866,fao
+Argentina,ARG,2004,70389,fao
+Argentina,ARG,2005,67871,fao
+Argentina,ARG,2006,72129,fao
+Argentina,ARG,2007,76000,fao
+Argentina,ARG,2008,80142,fao
+Argentina,ARG,2009,71715,fao
+Argentina,ARG,2010,92417,fao
+Argentina,ARG,2011,92892,fao
+Argentina,ARG,2012,82813,fao
+Argentina,ARG,2013,80423,fao
+Argentina,ARG,2014,82632,fao
+Argentina,ARG,2015,82492,fao
+Argentina,ARG,2016,382618,fao
+Argentina,ARG,2017,366159,fao
+Argentina,ARG,2018,369613,fao
+Argentina,ARG,2019,375115,fao
+Argentina,ARG,2020,335225,fao
+Azerbaijan,AZE,1992,22600,fao
+Azerbaijan,AZE,1993,24000,fao
+Azerbaijan,AZE,1994,19400,fao
+Azerbaijan,AZE,1995,9410,fao
+Azerbaijan,AZE,1996,3030,fao
+Azerbaijan,AZE,1997,1634,fao
+Azerbaijan,AZE,1998,863,fao
+Azerbaijan,AZE,1999,2730,fao
+Azerbaijan,AZE,2000,1082,fao
+Azerbaijan,AZE,2001,1424,fao
+Azerbaijan,AZE,2002,1440,fao
+Azerbaijan,AZE,2003,944,fao
+Azerbaijan,AZE,2004,1048,fao
+Azerbaijan,AZE,2005,737,fao
+Azerbaijan,AZE,2006,655,fao
+Azerbaijan,AZE,2007,484,fao
+Azerbaijan,AZE,2008,323,fao
+Azerbaijan,AZE,2009,447,fao
+Azerbaijan,AZE,2010,545,fao
+Azerbaijan,AZE,2011,534,fao
+Azerbaijan,AZE,2012,568,fao
+Azerbaijan,AZE,2013,568,fao
+Azerbaijan,AZE,2014,474,fao
+Azerbaijan,AZE,2015,579,fao
+Azerbaijan,AZE,2016,1016,fao
+Azerbaijan,AZE,2017,775,fao
+Azerbaijan,AZE,2018,869,fao
+Azerbaijan,AZE,2019,929,fao
+Azerbaijan,AZE,2020,932,fao
+Bangladesh,BGD,1961,26542,fao
+Bangladesh,BGD,1962,23387,fao
+Bangladesh,BGD,1963,24599,fao
+Bangladesh,BGD,1964,28233,fao
+Bangladesh,BGD,1965,26592,fao
+Bangladesh,BGD,1966,28600,fao
+Bangladesh,BGD,1967,29300,fao
+Bangladesh,BGD,1968,28500,fao
+Bangladesh,BGD,1969,30318,fao
+Bangladesh,BGD,1970,31295,fao
+Bangladesh,BGD,1971,12007,fao
+Bangladesh,BGD,1972,24068,fao
+Bangladesh,BGD,1973,27216,fao
+Bangladesh,BGD,1974,32169,fao
+Bangladesh,BGD,1975,29388,fao
+Bangladesh,BGD,1976,34097,fao
+Bangladesh,BGD,1977,37022,fao
+Bangladesh,BGD,1978,38305,fao
+Bangladesh,BGD,1979,36610,fao
+Bangladesh,BGD,1980,39708,fao
+Bangladesh,BGD,1981,38772,fao
+Bangladesh,BGD,1982,40937,fao
+Bangladesh,BGD,1983,42202,fao
+Bangladesh,BGD,1984,37900,fao
+Bangladesh,BGD,1985,43285,fao
+Bangladesh,BGD,1986,38000,fao
+Bangladesh,BGD,1987,37595,fao
+Bangladesh,BGD,1988,40611,fao
+Bangladesh,BGD,1989,43581,fao
+Bangladesh,BGD,1990,39075,fao
+Bangladesh,BGD,1991,45012,fao
+Bangladesh,BGD,1992,45632,fao
+Bangladesh,BGD,1993,48900,fao
+Bangladesh,BGD,1994,50515,fao
+Bangladesh,BGD,1995,52000,fao
+Bangladesh,BGD,1996,47675,fao
+Bangladesh,BGD,1997,53310,fao
+Bangladesh,BGD,1998,50575,fao
+Bangladesh,BGD,1999,56000,fao
+Bangladesh,BGD,2000,46000,fao
+Bangladesh,BGD,2001,52000,fao
+Bangladesh,BGD,2002,58000,fao
+Bangladesh,BGD,2003,57500,fao
+Bangladesh,BGD,2004,57580,fao
+Bangladesh,BGD,2005,57580,fao
+Bangladesh,BGD,2006,58000,fao
+Bangladesh,BGD,2007,58500,fao
+Bangladesh,BGD,2008,59000,fao
+Bangladesh,BGD,2009,59500,fao
+Bangladesh,BGD,2010,60000,fao
+Bangladesh,BGD,2011,60500,fao
+Bangladesh,BGD,2012,62524,fao
+Bangladesh,BGD,2013,66259,fao
+Bangladesh,BGD,2014,63780,fao
+Bangladesh,BGD,2015,66101,fao
+Bangladesh,BGD,2016,64500,fao
+Bangladesh,BGD,2017,81850,fao
+Bangladesh,BGD,2018,78150,fao
+Bangladesh,BGD,2019,90685,fao
+Bangladesh,BGD,2020,89931,fao
+Bolivia,BOL,1961,100,fao
+Bolivia,BOL,1962,100,fao
+Bolivia,BOL,1963,110,fao
+Bolivia,BOL,1964,115,fao
+Bolivia,BOL,1965,120,fao
+Bolivia,BOL,1966,130,fao
+Bolivia,BOL,1967,128,fao
+Bolivia,BOL,1968,176,fao
+Bolivia,BOL,1969,225,fao
+Bolivia,BOL,1970,500,fao
+Bolivia,BOL,1971,627,fao
+Bolivia,BOL,1972,580,fao
+Bolivia,BOL,1973,570,fao
+Bolivia,BOL,1974,570,fao
+Bolivia,BOL,1975,650,fao
+Bolivia,BOL,1976,1130,fao
+Bolivia,BOL,1977,1100,fao
+Bolivia,BOL,1978,1455,fao
+Bolivia,BOL,1979,1566,fao
+Bolivia,BOL,1980,1440,fao
+Bolivia,BOL,1981,640,fao
+Bolivia,BOL,1982,480,fao
+Bolivia,BOL,1983,200,fao
+Bolivia,BOL,1984,290,fao
+Bolivia,BOL,1985,320,fao
+Bolivia,BOL,1986,335,fao
+Bolivia,BOL,1987,390,fao
+Bolivia,BOL,1988,430,fao
+Bolivia,BOL,1989,440,fao
+Bolivia,BOL,1990,500,fao
+Bolivia,BOL,1991,540,fao
+Bolivia,BOL,1992,550,fao
+Bolivia,BOL,1993,590,fao
+Bolivia,BOL,1994,675,fao
+Bolivia,BOL,1995,690,fao
+Bolivia,BOL,1996,710,fao
+Bolivia,BOL,1997,735,fao
+Bolivia,BOL,1998,735,fao
+Bolivia,BOL,1999,810,fao
+Bolivia,BOL,2000,840,fao
+Bolivia,BOL,2001,840,fao
+Bolivia,BOL,2002,850,fao
+Bolivia,BOL,2003,850,fao
+Bolivia,BOL,2004,847,fao
+Bolivia,BOL,2005,866,fao
+Bolivia,BOL,2006,872,fao
+Bolivia,BOL,2007,889,fao
+Bolivia,BOL,2008,904,fao
+Bolivia,BOL,2009,1245,fao
+Bolivia,BOL,2010,1339,fao
+Bolivia,BOL,2011,1356,fao
+Bolivia,BOL,2012,1358,fao
+Bolivia,BOL,2013,1339,fao
+Bolivia,BOL,2014,1196,fao
+Bolivia,BOL,2015,1243,fao
+Bolivia,BOL,2016,1251,fao
+Bolivia,BOL,2017,1177,fao
+Bolivia,BOL,2018,1192,fao
+Bolivia,BOL,2019,1203,fao
+Bolivia,BOL,2020,1212,fao
+Brazil,BRA,1961,5000,fao
+Brazil,BRA,1962,5044,fao
+Brazil,BRA,1963,6133,fao
+Brazil,BRA,1964,6231,fao
+Brazil,BRA,1965,6228,fao
+Brazil,BRA,1966,3365,fao
+Brazil,BRA,1967,3512,fao
+Brazil,BRA,1968,3854,fao
+Brazil,BRA,1969,4586,fao
+Brazil,BRA,1970,5848,fao
+Brazil,BRA,1971,6547,fao
+Brazil,BRA,1972,6568,fao
+Brazil,BRA,1973,6471,fao
+Brazil,BRA,1974,6445,fao
+Brazil,BRA,1975,7681,fao
+Brazil,BRA,1976,7820,fao
+Brazil,BRA,1977,7741,fao
+Brazil,BRA,1978,9196,fao
+Brazil,BRA,1979,9398,fao
+Brazil,BRA,1980,9707,fao
+Brazil,BRA,1981,10081,fao
+Brazil,BRA,1982,11272,fao
+Brazil,BRA,1983,9196,fao
+Brazil,BRA,1984,10703,fao
+Brazil,BRA,1985,10823,fao
+Brazil,BRA,1986,12130,fao
+Brazil,BRA,1987,12168,fao
+Brazil,BRA,1988,9521,fao
+Brazil,BRA,1989,9838,fao
+Brazil,BRA,1990,9813,fao
+Brazil,BRA,1991,10389,fao
+Brazil,BRA,1992,6019,fao
+Brazil,BRA,1993,10587,fao
+Brazil,BRA,1994,9807,fao
+Brazil,BRA,1995,8607,fao
+Brazil,BRA,1996,6181,fao
+Brazil,BRA,1997,6156,fao
+Brazil,BRA,1998,5807,fao
+Brazil,BRA,1999,7020,fao
+Brazil,BRA,2000,8400,fao
+Brazil,BRA,2001,8337,fao
+Brazil,BRA,2002,8687,fao
+Brazil,BRA,2003,5559,fao
+Brazil,BRA,2004,5347,fao
+Brazil,BRA,2005,4473,fao
+Brazil,BRA,2006,4052,fao
+Brazil,BRA,2007,1083,fao
+Brazil,BRA,2008,4752,fao
+Brazil,BRA,2009,4686,fao
+Brazil,BRA,2010,4278,fao
+Brazil,BRA,2011,3520,fao
+Brazil,BRA,2012,1496,fao
+Brazil,BRA,2013,763,fao
+Brazil,BRA,2014,1421,fao
+Brazil,BRA,2015,633,fao
+Brazil,BRA,2016,459,fao
+Brazil,BRA,2017,459,fao
+Brazil,BRA,2018,483,fao
+Brazil,BRA,2019,475,fao
+Brazil,BRA,2020,467,fao
+Burundi,BDI,1967,18,fao
+Burundi,BDI,1968,79,fao
+Burundi,BDI,1969,92,fao
+Burundi,BDI,1970,147,fao
+Burundi,BDI,1971,325,fao
+Burundi,BDI,1972,487,fao
+Burundi,BDI,1973,656,fao
+Burundi,BDI,1974,829,fao
+Burundi,BDI,1975,819,fao
+Burundi,BDI,1976,1278,fao
+Burundi,BDI,1977,1457,fao
+Burundi,BDI,1978,1431,fao
+Burundi,BDI,1979,1612,fao
+Burundi,BDI,1980,1454,fao
+Burundi,BDI,1981,2271,fao
+Burundi,BDI,1982,2178,fao
+Burundi,BDI,1983,2334,fao
+Burundi,BDI,1984,3445,fao
+Burundi,BDI,1985,4145,fao
+Burundi,BDI,1986,3598,fao
+Burundi,BDI,1987,4382,fao
+Burundi,BDI,1988,3721,fao
+Burundi,BDI,1989,3862,fao
+Burundi,BDI,1990,4040,fao
+Burundi,BDI,1991,5323,fao
+Burundi,BDI,1992,5952,fao
+Burundi,BDI,1993,5520,fao
+Burundi,BDI,1994,6864,fao
+Burundi,BDI,1995,6985,fao
+Burundi,BDI,1996,5648,fao
+Burundi,BDI,1997,4169,fao
+Burundi,BDI,1998,6669,fao
+Burundi,BDI,1999,6865,fao
+Burundi,BDI,2000,34060,fao
+Burundi,BDI,2001,44400,fao
+Burundi,BDI,2002,33234,fao
+Burundi,BDI,2003,35225,fao
+Burundi,BDI,2004,37523,fao
+Burundi,BDI,2005,39335,fao
+Burundi,BDI,2006,30836,fao
+Burundi,BDI,2007,33676,fao
+Burundi,BDI,2008,31787,fao
+Burundi,BDI,2009,31828,fao
+Burundi,BDI,2010,37875,fao
+Burundi,BDI,2011,40853,fao
+Burundi,BDI,2012,42147,fao
+Burundi,BDI,2013,41817,fao
+Burundi,BDI,2014,53893,fao
+Burundi,BDI,2015,53802,fao
+Burundi,BDI,2016,52701,fao
+Burundi,BDI,2017,10657,fao
+Burundi,BDI,2018,11367,fao
+Burundi,BDI,2019,11383,fao
+Burundi,BDI,2020,16337,fao
+Cameroon,CMR,1961,83,fao
+Cameroon,CMR,1962,136,fao
+Cameroon,CMR,1963,242,fao
+Cameroon,CMR,1964,341,fao
+Cameroon,CMR,1965,517,fao
+Cameroon,CMR,1966,650,fao
+Cameroon,CMR,1967,750,fao
+Cameroon,CMR,1968,1071,fao
+Cameroon,CMR,1969,978,fao
+Cameroon,CMR,1970,1028,fao
+Cameroon,CMR,1971,1110,fao
+Cameroon,CMR,1972,1296,fao
+Cameroon,CMR,1973,1471,fao
+Cameroon,CMR,1974,935,fao
+Cameroon,CMR,1975,1572,fao
+Cameroon,CMR,1976,1003,fao
+Cameroon,CMR,1977,1730,fao
+Cameroon,CMR,1978,1800,fao
+Cameroon,CMR,1979,2107,fao
+Cameroon,CMR,1980,1882,fao
+Cameroon,CMR,1981,2131,fao
+Cameroon,CMR,1982,1800,fao
+Cameroon,CMR,1983,2104,fao
+Cameroon,CMR,1984,2279,fao
+Cameroon,CMR,1985,2114,fao
+Cameroon,CMR,1986,2516,fao
+Cameroon,CMR,1987,2564,fao
+Cameroon,CMR,1988,2500,fao
+Cameroon,CMR,1989,2452,fao
+Cameroon,CMR,1990,2900,fao
+Cameroon,CMR,1991,3000,fao
+Cameroon,CMR,1992,3416,fao
+Cameroon,CMR,1993,3902,fao
+Cameroon,CMR,1994,3567,fao
+Cameroon,CMR,1995,3873,fao
+Cameroon,CMR,1996,3581,fao
+Cameroon,CMR,1997,4190,fao
+Cameroon,CMR,1998,3944,fao
+Cameroon,CMR,1999,4597,fao
+Cameroon,CMR,2000,4004,fao
+Cameroon,CMR,2001,4200,fao
+Cameroon,CMR,2002,4000,fao
+Cameroon,CMR,2003,3401,fao
+Cameroon,CMR,2004,4000,fao
+Cameroon,CMR,2005,4381,fao
+Cameroon,CMR,2006,4680,fao
+Cameroon,CMR,2007,4901,fao
+Cameroon,CMR,2008,5122,fao
+Cameroon,CMR,2009,6000,fao
+Cameroon,CMR,2010,5514,fao
+Cameroon,CMR,2011,5226,fao
+Cameroon,CMR,2012,5268,fao
+Cameroon,CMR,2013,5342,fao
+Cameroon,CMR,2014,5478,fao
+Cameroon,CMR,2015,5631,fao
+Cameroon,CMR,2016,5698,fao
+Cameroon,CMR,2017,5602,fao
+Cameroon,CMR,2018,5644,fao
+Cameroon,CMR,2019,5648,fao
+Cameroon,CMR,2020,5631,fao
+China,CHN,1961,79000,fao
+China,CHN,1962,74000,fao
+China,CHN,1963,84000,fao
+China,CHN,1964,92000,fao
+China,CHN,1965,100600,fao
+China,CHN,1966,106000,fao
+China,CHN,1967,113000,fao
+China,CHN,1968,118000,fao
+China,CHN,1969,122000,fao
+China,CHN,1970,136000,fao
+China,CHN,1971,153000,fao
+China,CHN,1972,170000,fao
+China,CHN,1973,182000,fao
+China,CHN,1974,198000,fao
+China,CHN,1975,211000,fao
+China,CHN,1976,233500,fao
+China,CHN,1977,252100,fao
+China,CHN,1978,268000,fao
+China,CHN,1979,277100,fao
+China,CHN,1980,304000,fao
+China,CHN,1981,343000,fao
+China,CHN,1982,397000,fao
+China,CHN,1983,400550,fao
+China,CHN,1984,414000,fao
+China,CHN,1985,432337,fao
+China,CHN,1986,460468,fao
+China,CHN,1987,509000,fao
+China,CHN,1988,545416,fao
+China,CHN,1989,534876,fao
+China,CHN,1990,540070,fao
+China,CHN,1991,541581,fao
+China,CHN,1992,559827,fao
+China,CHN,1993,600000,fao
+China,CHN,1994,588468,fao
+China,CHN,1995,588500,fao
+China,CHN,1996,593386,fao
+China,CHN,1997,613366,fao
+China,CHN,1998,665034,fao
+China,CHN,1999,675871,fao
+China,CHN,2000,683324,fao
+China,CHN,2001,701699,fao
+China,CHN,2002,745374,fao
+China,CHN,2003,768140,fao
+China,CHN,2004,835230,fao
+China,CHN,2005,934857,fao
+China,CHN,2006,1028000,fao
+China,CHN,2007,1165500,fao
+China,CHN,2008,1257600,fao
+China,CHN,2009,1359000,fao
+China,CHN,2010,1450000,fao
+China,CHN,2011,1623000,fao
+China,CHN,2012,1789753,fao
+China,CHN,2013,1924457,fao
+China,CHN,2014,2095570,fao
+China,CHN,2015,2277000,fao
+China,CHN,2016,2313000,fao
+China,CHN,2017,2460400,fao
+China,CHN,2018,2610400,fao
+China,CHN,2019,2777200,fao
+China,CHN,2020,2970000,fao
+China,CHN,2021,3063150,itc
+China,CHN,2022,3181040,itc
+China,CHN,2023,3339480,itc
+China,CHN,2024,3740000,itc
+Colombia,COL,1999,100,fao
+Colombia,COL,2000,72,fao
+Colombia,COL,2001,120,fao
+Colombia,COL,2002,120,fao
+Colombia,COL,2003,120,fao
+Colombia,COL,2004,120,fao
+Colombia,COL,2005,120,fao
+Colombia,COL,2006,120,fao
+Colombia,COL,2007,120,fao
+Colombia,COL,2008,120,fao
+Colombia,COL,2009,134,fao
+Colombia,COL,2010,134,fao
+Colombia,COL,2011,134,fao
+Colombia,COL,2012,134,fao
+Colombia,COL,2013,125,fao
+Colombia,COL,2014,144,fao
+Colombia,COL,2015,149,fao
+Colombia,COL,2016,149,fao
+Colombia,COL,2017,132,fao
+Colombia,COL,2018,157,fao
+Colombia,COL,2019,159,fao
+Colombia,COL,2020,157,fao
+DR Congo,COD,1961,7000,fao
+DR Congo,COD,1962,8000,fao
+DR Congo,COD,1963,8500,fao
+DR Congo,COD,1964,7000,fao
+DR Congo,COD,1965,8500,fao
+DR Congo,COD,1966,10000,fao
+DR Congo,COD,1967,5000,fao
+DR Congo,COD,1968,8000,fao
+DR Congo,COD,1969,7859,fao
+DR Congo,COD,1970,7301,fao
+DR Congo,COD,1971,7500,fao
+DR Congo,COD,1972,7600,fao
+DR Congo,COD,1973,7100,fao
+DR Congo,COD,1974,6700,fao
+DR Congo,COD,1975,6700,fao
+DR Congo,COD,1976,6800,fao
+DR Congo,COD,1977,6700,fao
+DR Congo,COD,1978,6700,fao
+DR Congo,COD,1979,6000,fao
+DR Congo,COD,1980,6100,fao
+DR Congo,COD,1981,4810,fao
+DR Congo,COD,1982,4481,fao
+DR Congo,COD,1983,4748,fao
+DR Congo,COD,1984,4955,fao
+DR Congo,COD,1985,4840,fao
+DR Congo,COD,1986,3380,fao
+DR Congo,COD,1987,2030,fao
+DR Congo,COD,1988,3100,fao
+DR Congo,COD,1989,3100,fao
+DR Congo,COD,1990,3114,fao
+DR Congo,COD,1991,3250,fao
+DR Congo,COD,1992,3120,fao
+DR Congo,COD,1993,3352,fao
+DR Congo,COD,1994,3405,fao
+DR Congo,COD,1995,3418,fao
+DR Congo,COD,1996,3431,fao
+DR Congo,COD,1997,3433,fao
+DR Congo,COD,1998,3328,fao
+DR Congo,COD,1999,2183,fao
+DR Congo,COD,2000,1879,fao
+DR Congo,COD,2001,1615,fao
+DR Congo,COD,2002,1389,fao
+DR Congo,COD,2003,1560,fao
+DR Congo,COD,2004,1560,fao
+DR Congo,COD,2005,1570,fao
+DR Congo,COD,2006,1760,fao
+DR Congo,COD,2007,1760,fao
+DR Congo,COD,2008,2220,fao
+DR Congo,COD,2009,2489,fao
+DR Congo,COD,2010,2479,fao
+DR Congo,COD,2011,3129,fao
+DR Congo,COD,2012,3533,fao
+DR Congo,COD,2013,2937,fao
+DR Congo,COD,2014,3116,fao
+DR Congo,COD,2015,3206,fao
+DR Congo,COD,2016,3293,fao
+DR Congo,COD,2017,3463,fao
+DR Congo,COD,2018,3531,fao
+DR Congo,COD,2019,2941,fao
+DR Congo,COD,2020,2749,fao
+Ecuador,ECU,1961,40,fao
+Ecuador,ECU,1962,40,fao
+Ecuador,ECU,1963,40,fao
+Ecuador,ECU,1964,45,fao
+Ecuador,ECU,1965,50,fao
+Ecuador,ECU,1966,50,fao
+Ecuador,ECU,1967,50,fao
+Ecuador,ECU,1968,100,fao
+Ecuador,ECU,1969,200,fao
+Ecuador,ECU,1970,300,fao
+Ecuador,ECU,1971,400,fao
+Ecuador,ECU,1972,600,fao
+Ecuador,ECU,1973,975,fao
+Ecuador,ECU,1974,1200,fao
+Ecuador,ECU,1975,1012,fao
+Ecuador,ECU,1976,1400,fao
+Ecuador,ECU,1977,1306,fao
+Ecuador,ECU,1978,1700,fao
+Ecuador,ECU,1979,1456,fao
+Ecuador,ECU,1980,1457,fao
+Ecuador,ECU,1981,1653,fao
+Ecuador,ECU,1982,1653,fao
+Ecuador,ECU,1983,520,fao
+Ecuador,ECU,1984,552,fao
+Ecuador,ECU,1985,857,fao
+Ecuador,ECU,1986,725,fao
+Ecuador,ECU,1987,1308,fao
+Ecuador,ECU,1988,900,fao
+Ecuador,ECU,1989,990,fao
+Ecuador,ECU,1990,2428,fao
+Ecuador,ECU,1991,2036,fao
+Ecuador,ECU,1992,1574,fao
+Ecuador,ECU,1993,1489,fao
+Ecuador,ECU,1994,1762,fao
+Ecuador,ECU,1995,1836,fao
+Ecuador,ECU,1996,2228,fao
+Ecuador,ECU,1997,1866,fao
+Ecuador,ECU,1998,1572,fao
+Ecuador,ECU,1999,1572,fao
+Ecuador,ECU,2000,1211,fao
+Ecuador,ECU,2001,1320,fao
+Ecuador,ECU,2002,815,fao
+Ecuador,ECU,2003,1086,fao
+Ecuador,ECU,2004,1166,fao
+Ecuador,ECU,2005,1855,fao
+Ecuador,ECU,2006,1870,fao
+Ecuador,ECU,2007,1925,fao
+Ecuador,ECU,2008,1950,fao
+Ecuador,ECU,2009,1877,fao
+Ecuador,ECU,2010,1512,fao
+Ecuador,ECU,2011,1468,fao
+Ecuador,ECU,2012,1423,fao
+Ecuador,ECU,2013,1394,fao
+Ecuador,ECU,2014,1387,fao
+Ecuador,ECU,2015,1355,fao
+Ecuador,ECU,2016,1335,fao
+Ecuador,ECU,2017,1359,fao
+Ecuador,ECU,2018,1350,fao
+Ecuador,ECU,2019,1348,fao
+Ecuador,ECU,2020,1352,fao
+El Salvador,SLV,1990,20,fao
+El Salvador,SLV,1991,20,fao
+El Salvador,SLV,1992,10,fao
+El Salvador,SLV,1993,20,fao
+El Salvador,SLV,1994,50,fao
+El Salvador,SLV,1995,50,fao
+El Salvador,SLV,1996,70,fao
+El Salvador,SLV,1997,130,fao
+El Salvador,SLV,1998,200,fao
+El Salvador,SLV,1999,200,fao
+El Salvador,SLV,2000,300,fao
+El Salvador,SLV,2001,350,fao
+El Salvador,SLV,2002,250,fao
+El Salvador,SLV,2003,250,fao
+El Salvador,SLV,2004,260,fao
+El Salvador,SLV,2005,270,fao
+El Salvador,SLV,2006,270,fao
+El Salvador,SLV,2007,500,fao
+El Salvador,SLV,2008,2200,fao
+El Salvador,SLV,2009,500,fao
+El Salvador,SLV,2010,450,fao
+El Salvador,SLV,2011,450,fao
+El Salvador,SLV,2012,460,fao
+El Salvador,SLV,2013,475,fao
+El Salvador,SLV,2014,641,fao
+El Salvador,SLV,2015,717,fao
+El Salvador,SLV,2016,611,fao
+El Salvador,SLV,2017,657,fao
+El Salvador,SLV,2018,662,fao
+El Salvador,SLV,2019,643,fao
+El Salvador,SLV,2020,654,fao
+Ethiopia,ETH,1993,1700,fao
+Ethiopia,ETH,1994,1800,fao
+Ethiopia,ETH,1995,1900,fao
+Ethiopia,ETH,1996,1955,fao
+Ethiopia,ETH,1997,2000,fao
+Ethiopia,ETH,1998,2700,fao
+Ethiopia,ETH,1999,3608,fao
+Ethiopia,ETH,2000,3776,fao
+Ethiopia,ETH,2001,3973,fao
+Ethiopia,ETH,2002,3900,fao
+Ethiopia,ETH,2003,4360,fao
+Ethiopia,ETH,2004,4400,fao
+Ethiopia,ETH,2005,4800,fao
+Ethiopia,ETH,2006,5344,fao
+Ethiopia,ETH,2007,5700,fao
+Ethiopia,ETH,2008,5400,fao
+Ethiopia,ETH,2009,6545,fao
+Ethiopia,ETH,2010,7586,fao
+Ethiopia,ETH,2011,8970,fao
+Ethiopia,ETH,2012,9959,fao
+Ethiopia,ETH,2013,9977,fao
+Ethiopia,ETH,2014,10198,fao
+Ethiopia,ETH,2015,10543,fao
+Ethiopia,ETH,2016,10239,fao
+Ethiopia,ETH,2017,10327,fao
+Ethiopia,ETH,2018,10370,fao
+Ethiopia,ETH,2019,10312,fao
+Ethiopia,ETH,2020,10336,fao
+"Ethiopia (with Eritrea, to 1992)",ETH_ERI,1976,15,fao
+"Ethiopia (with Eritrea, to 1992)",ETH_ERI,1977,27,fao
+"Ethiopia (with Eritrea, to 1992)",ETH_ERI,1978,38,fao
+"Ethiopia (with Eritrea, to 1992)",ETH_ERI,1979,59,fao
+"Ethiopia (with Eritrea, to 1992)",ETH_ERI,1980,81,fao
+"Ethiopia (with Eritrea, to 1992)",ETH_ERI,1981,115,fao
+"Ethiopia (with Eritrea, to 1992)",ETH_ERI,1982,162,fao
+"Ethiopia (with Eritrea, to 1992)",ETH_ERI,1983,209,fao
+"Ethiopia (with Eritrea, to 1992)",ETH_ERI,1984,256,fao
+"Ethiopia (with Eritrea, to 1992)",ETH_ERI,1985,303,fao
+"Ethiopia (with Eritrea, to 1992)",ETH_ERI,1986,350,fao
+"Ethiopia (with Eritrea, to 1992)",ETH_ERI,1987,380,fao
+"Ethiopia (with Eritrea, to 1992)",ETH_ERI,1988,397,fao
+"Ethiopia (with Eritrea, to 1992)",ETH_ERI,1989,450,fao
+"Ethiopia (with Eritrea, to 1992)",ETH_ERI,1990,500,fao
+"Ethiopia (with Eritrea, to 1992)",ETH_ERI,1991,550,fao
+"Ethiopia (with Eritrea, to 1992)",ETH_ERI,1992,600,fao
+Georgia,GEO,1992,50000,fao
+Georgia,GEO,1993,77000,fao
+Georgia,GEO,1994,61700,fao
+Georgia,GEO,1995,38500,fao
+Georgia,GEO,1996,34000,fao
+Georgia,GEO,1997,33200,fao
+Georgia,GEO,1998,47234,fao
+Georgia,GEO,1999,60330,fao
+Georgia,GEO,2000,24000,fao
+Georgia,GEO,2001,23000,fao
+Georgia,GEO,2002,24000,fao
+Georgia,GEO,2003,24457,fao
+Georgia,GEO,2004,20000,fao
+Georgia,GEO,2005,22755,fao
+Georgia,GEO,2006,6600,fao
+Georgia,GEO,2007,7500,fao
+Georgia,GEO,2008,5400,fao
+Georgia,GEO,2009,5800,fao
+Georgia,GEO,2010,3500,fao
+Georgia,GEO,2011,2900,fao
+Georgia,GEO,2012,2600,fao
+Georgia,GEO,2013,3300,fao
+Georgia,GEO,2014,1800,fao
+Georgia,GEO,2015,2100,fao
+Georgia,GEO,2016,3000,fao
+Georgia,GEO,2017,2300,fao
+Georgia,GEO,2018,1700,fao
+Georgia,GEO,2019,2000,fao
+Georgia,GEO,2020,2400,fao
+Guatemala,GTM,1972,40,fao
+Guatemala,GTM,1973,50,fao
+Guatemala,GTM,1974,60,fao
+Guatemala,GTM,1975,100,fao
+Guatemala,GTM,1976,130,fao
+Guatemala,GTM,1977,60,fao
+Guatemala,GTM,1978,70,fao
+Guatemala,GTM,1979,110,fao
+Guatemala,GTM,1980,100,fao
+Guatemala,GTM,1981,130,fao
+Guatemala,GTM,1982,100,fao
+Guatemala,GTM,1983,130,fao
+Guatemala,GTM,1984,130,fao
+Guatemala,GTM,1985,220,fao
+Guatemala,GTM,1986,330,fao
+Guatemala,GTM,1987,339,fao
+Guatemala,GTM,1988,433,fao
+Guatemala,GTM,1989,457,fao
+Guatemala,GTM,1990,460,fao
+Guatemala,GTM,1991,450,fao
+Guatemala,GTM,1992,435,fao
+Guatemala,GTM,1993,440,fao
+Guatemala,GTM,1994,434,fao
+Guatemala,GTM,1995,450,fao
+Guatemala,GTM,1996,430,fao
+Guatemala,GTM,1997,425,fao
+Guatemala,GTM,1998,431,fao
+Guatemala,GTM,1999,460,fao
+Guatemala,GTM,2000,450,fao
+Guatemala,GTM,2001,103,fao
+Guatemala,GTM,2002,143,fao
+Guatemala,GTM,2003,176,fao
+Guatemala,GTM,2004,147,fao
+Guatemala,GTM,2005,266,fao
+Guatemala,GTM,2006,281,fao
+Guatemala,GTM,2007,649,fao
+Guatemala,GTM,2008,679,fao
+Guatemala,GTM,2009,639,fao
+Guatemala,GTM,2010,628,fao
+Guatemala,GTM,2011,432,fao
+Guatemala,GTM,2012,420,fao
+Guatemala,GTM,2013,437,fao
+Guatemala,GTM,2014,526,fao
+Guatemala,GTM,2015,553,fao
+Guatemala,GTM,2016,558,fao
+Guatemala,GTM,2017,526,fao
+Guatemala,GTM,2018,546,fao
+Guatemala,GTM,2019,543,fao
+Guatemala,GTM,2020,538,fao
+India,IND,1961,354397,fao
+India,IND,1962,346736,fao
+India,IND,1963,346413,fao
+India,IND,1964,372486,fao
+India,IND,1965,366374,fao
+India,IND,1966,375983,fao
+India,IND,1967,384759,fao
+India,IND,1968,402489,fao
+India,IND,1969,393588,fao
+India,IND,1970,418517,fao
+India,IND,1971,435468,fao
+India,IND,1972,455996,fao
+India,IND,1973,471952,fao
+India,IND,1974,489475,fao
+India,IND,1975,487137,fao
+India,IND,1976,511817,fao
+India,IND,1977,556267,fao
+India,IND,1978,563846,fao
+India,IND,1979,543776,fao
+India,IND,1980,569550,fao
+India,IND,1981,559583,fao
+India,IND,1982,560732,fao
+India,IND,1983,581484,fao
+India,IND,1984,639864,fao
+India,IND,1985,656162,fao
+India,IND,1986,620803,fao
+India,IND,1987,620800,fao
+India,IND,1988,674300,fao
+India,IND,1989,701100,fao
+India,IND,1990,688100,fao
+India,IND,1991,720300,fao
+India,IND,1992,754200,fao
+India,IND,1993,703900,fao
+India,IND,1994,753000,fao
+India,IND,1995,753900,fao
+India,IND,1996,756000,fao
+India,IND,1997,780000,fao
+India,IND,1998,810000,fao
+India,IND,1999,874000,fao
+India,IND,2000,826000,fao
+India,IND,2001,847000,fao
+India,IND,2002,854000,fao
+India,IND,2003,846000,fao
+India,IND,2004,879000,fao
+India,IND,2005,907000,fao
+India,IND,2006,949000,fao
+India,IND,2007,973000,fao
+India,IND,2008,987000,fao
+India,IND,2009,972700,fao
+India,IND,2010,991182,fao
+India,IND,2011,1095460,fao
+India,IND,2012,1135070,fao
+India,IND,2013,1208780,fao
+India,IND,2014,1207310,fao
+India,IND,2015,1233140,fao
+India,IND,2016,1250490,fao
+India,IND,2017,1325050,fao
+India,IND,2018,1338630,fao
+India,IND,2019,1390080,fao
+India,IND,2020,1424662,fao
+India,IND,2021,1343060,itc
+India,IND,2022,1365230,itc
+India,IND,2023,1393660,itc
+India,IND,2024,1303530,itc
+Indonesia,IDN,1961,77100,fao
+Indonesia,IDN,1962,80400,fao
+Indonesia,IDN,1963,75600,fao
+Indonesia,IDN,1964,74400,fao
+Indonesia,IDN,1965,79800,fao
+Indonesia,IDN,1966,71700,fao
+Indonesia,IDN,1967,76020,fao
+Indonesia,IDN,1968,75574,fao
+Indonesia,IDN,1969,71570,fao
+Indonesia,IDN,1970,64166,fao
+Indonesia,IDN,1971,60922,fao
+Indonesia,IDN,1972,59924,fao
+Indonesia,IDN,1973,67584,fao
+Indonesia,IDN,1974,65017,fao
+Indonesia,IDN,1975,70089,fao
+Indonesia,IDN,1976,73765,fao
+Indonesia,IDN,1977,82928,fao
+Indonesia,IDN,1978,92110,fao
+Indonesia,IDN,1979,97217,fao
+Indonesia,IDN,1980,106175,fao
+Indonesia,IDN,1981,109135,fao
+Indonesia,IDN,1982,92732,fao
+Indonesia,IDN,1983,110317,fao
+Indonesia,IDN,1984,126443,fao
+Indonesia,IDN,1985,127464,fao
+Indonesia,IDN,1986,129481,fao
+Indonesia,IDN,1987,126096,fao
+Indonesia,IDN,1988,133800,fao
+Indonesia,IDN,1989,141374,fao
+Indonesia,IDN,1990,155919,fao
+Indonesia,IDN,1991,139520,fao
+Indonesia,IDN,1992,153701,fao
+Indonesia,IDN,1993,164994,fao
+Indonesia,IDN,1994,139222,fao
+Indonesia,IDN,1995,154013,fao
+Indonesia,IDN,1996,166256,fao
+Indonesia,IDN,1997,153600,fao
+Indonesia,IDN,1998,166800,fao
+Indonesia,IDN,1999,161000,fao
+Indonesia,IDN,2000,162586,fao
+Indonesia,IDN,2001,166867,fao
+Indonesia,IDN,2002,165194,fao
+Indonesia,IDN,2003,169818,fao
+Indonesia,IDN,2004,167136,fao
+Indonesia,IDN,2005,167276,fao
+Indonesia,IDN,2006,146858,fao
+Indonesia,IDN,2007,150623,fao
+Indonesia,IDN,2008,153971,fao
+Indonesia,IDN,2009,156901,fao
+Indonesia,IDN,2010,150342,fao
+Indonesia,IDN,2011,146603,fao
+Indonesia,IDN,2012,143413,fao
+Indonesia,IDN,2013,145855,fao
+Indonesia,IDN,2014,154369,fao
+Indonesia,IDN,2015,132615,fao
+Indonesia,IDN,2016,144015,fao
+Indonesia,IDN,2017,146251,fao
+Indonesia,IDN,2018,140237,fao
+Indonesia,IDN,2019,128724,fao
+Indonesia,IDN,2020,138323,fao
+Indonesia,IDN,2021,127000,itc
+Indonesia,IDN,2022,125100,itc
+Indonesia,IDN,2023,120800,itc
+Indonesia,IDN,2024,124970,itc
+Iran,IRN,1961,10922,fao
+Iran,IRN,1962,11934,fao
+Iran,IRN,1963,12479,fao
+Iran,IRN,1964,10450,fao
+Iran,IRN,1965,12608,fao
+Iran,IRN,1966,12000,fao
+Iran,IRN,1967,16000,fao
+Iran,IRN,1968,20000,fao
+Iran,IRN,1969,19000,fao
+Iran,IRN,1970,19500,fao
+Iran,IRN,1971,16000,fao
+Iran,IRN,1972,22000,fao
+Iran,IRN,1973,23000,fao
+Iran,IRN,1974,24000,fao
+Iran,IRN,1975,18000,fao
+Iran,IRN,1976,19800,fao
+Iran,IRN,1977,26100,fao
+Iran,IRN,1978,27000,fao
+Iran,IRN,1979,30600,fao
+Iran,IRN,1980,32200,fao
+Iran,IRN,1981,33100,fao
+Iran,IRN,1982,35265,fao
+Iran,IRN,1983,36258,fao
+Iran,IRN,1984,43372,fao
+Iran,IRN,1985,33120,fao
+Iran,IRN,1986,40532,fao
+Iran,IRN,1987,43026,fao
+Iran,IRN,1988,43268,fao
+Iran,IRN,1989,27808,fao
+Iran,IRN,1990,37091,fao
+Iran,IRN,1991,196651,fao
+Iran,IRN,1992,245338,fao
+Iran,IRN,1993,254288,fao
+Iran,IRN,1994,248228,fao
+Iran,IRN,1995,242642,fao
+Iran,IRN,1996,277188,fao
+Iran,IRN,1997,309342,fao
+Iran,IRN,1998,270443,fao
+Iran,IRN,1999,275381,fao
+Iran,IRN,2000,222653,fao
+Iran,IRN,2001,228393,fao
+Iran,IRN,2002,212538,fao
+Iran,IRN,2003,212168,fao
+Iran,IRN,2004,134179,fao
+Iran,IRN,2005,197270,fao
+Iran,IRN,2006,112803,fao
+Iran,IRN,2007,162737,fao
+Iran,IRN,2008,141160,fao
+Iran,IRN,2009,130714,fao
+Iran,IRN,2010,121041,fao
+Iran,IRN,2011,112084,fao
+Iran,IRN,2012,103890,fao
+Iran,IRN,2013,97475,fao
+Iran,IRN,2014,72277,fao
+Iran,IRN,2015,196957,fao
+Iran,IRN,2016,121771,fao
+Iran,IRN,2017,100580,fao
+Iran,IRN,2018,99245,fao
+Iran,IRN,2019,90832,fao
+Iran,IRN,2020,84683,fao
+Japan,JPN,1961,81527,fao
+Japan,JPN,1962,77608,fao
+Japan,JPN,1963,81239,fao
+Japan,JPN,1964,83427,fao
+Japan,JPN,1965,77571,fao
+Japan,JPN,1966,83290,fao
+Japan,JPN,1967,85284,fao
+Japan,JPN,1968,85112,fao
+Japan,JPN,1969,89804,fao
+Japan,JPN,1970,91398,fao
+Japan,JPN,1971,93111,fao
+Japan,JPN,1972,95072,fao
+Japan,JPN,1973,101181,fao
+Japan,JPN,1974,95238,fao
+Japan,JPN,1975,105448,fao
+Japan,JPN,1976,100097,fao
+Japan,JPN,1977,102301,fao
+Japan,JPN,1978,104738,fao
+Japan,JPN,1979,98000,fao
+Japan,JPN,1980,102300,fao
+Japan,JPN,1981,102300,fao
+Japan,JPN,1982,98500,fao
+Japan,JPN,1983,102700,fao
+Japan,JPN,1984,92500,fao
+Japan,JPN,1985,95500,fao
+Japan,JPN,1986,93600,fao
+Japan,JPN,1987,96300,fao
+Japan,JPN,1988,89800,fao
+Japan,JPN,1989,90500,fao
+Japan,JPN,1990,89900,fao
+Japan,JPN,1991,87800,fao
+Japan,JPN,1992,92100,fao
+Japan,JPN,1993,92100,fao
+Japan,JPN,1994,86300,fao
+Japan,JPN,1995,84800,fao
+Japan,JPN,1996,88600,fao
+Japan,JPN,1997,91200,fao
+Japan,JPN,1998,82600,fao
+Japan,JPN,1999,88500,fao
+Japan,JPN,2000,85000,fao
+Japan,JPN,2001,85000,fao
+Japan,JPN,2002,84000,fao
+Japan,JPN,2003,91900,fao
+Japan,JPN,2004,100700,fao
+Japan,JPN,2005,100000,fao
+Japan,JPN,2006,91800,fao
+Japan,JPN,2007,94100,fao
+Japan,JPN,2008,96500,fao
+Japan,JPN,2009,86000,fao
+Japan,JPN,2010,85000,fao
+Japan,JPN,2011,82100,fao
+Japan,JPN,2012,85900,fao
+Japan,JPN,2013,84800,fao
+Japan,JPN,2014,83600,fao
+Japan,JPN,2015,79500,fao
+Japan,JPN,2016,80200,fao
+Japan,JPN,2017,82000,fao
+Japan,JPN,2018,86300,fao
+Japan,JPN,2019,81700,fao
+Japan,JPN,2020,69800,fao
+Kenya,KEN,1961,12641,fao
+Kenya,KEN,1962,16428,fao
+Kenya,KEN,1963,18082,fao
+Kenya,KEN,1964,20241,fao
+Kenya,KEN,1965,19823,fao
+Kenya,KEN,1966,25419,fao
+Kenya,KEN,1967,22812,fao
+Kenya,KEN,1968,29764,fao
+Kenya,KEN,1969,36060,fao
+Kenya,KEN,1970,41077,fao
+Kenya,KEN,1971,36290,fao
+Kenya,KEN,1972,53322,fao
+Kenya,KEN,1973,56578,fao
+Kenya,KEN,1974,53440,fao
+Kenya,KEN,1975,56730,fao
+Kenya,KEN,1976,61984,fao
+Kenya,KEN,1977,86291,fao
+Kenya,KEN,1978,93373,fao
+Kenya,KEN,1979,99275,fao
+Kenya,KEN,1980,89893,fao
+Kenya,KEN,1981,90941,fao
+Kenya,KEN,1982,95600,fao
+Kenya,KEN,1983,119300,fao
+Kenya,KEN,1984,116200,fao
+Kenya,KEN,1985,147100,fao
+Kenya,KEN,1986,143317,fao
+Kenya,KEN,1987,155808,fao
+Kenya,KEN,1988,164030,fao
+Kenya,KEN,1989,180602,fao
+Kenya,KEN,1990,197000,fao
+Kenya,KEN,1991,203588,fao
+Kenya,KEN,1992,188070,fao
+Kenya,KEN,1993,211160,fao
+Kenya,KEN,1994,209420,fao
+Kenya,KEN,1995,244530,fao
+Kenya,KEN,1996,257160,fao
+Kenya,KEN,1997,220722,fao
+Kenya,KEN,1998,294165,fao
+Kenya,KEN,1999,248700,fao
+Kenya,KEN,2000,236286,fao
+Kenya,KEN,2001,294620,fao
+Kenya,KEN,2002,287045,fao
+Kenya,KEN,2003,293670,fao
+Kenya,KEN,2004,324600,fao
+Kenya,KEN,2005,328500,fao
+Kenya,KEN,2006,310580,fao
+Kenya,KEN,2007,369600,fao
+Kenya,KEN,2008,345800,fao
+Kenya,KEN,2009,314198,fao
+Kenya,KEN,2010,399006,fao
+Kenya,KEN,2011,377912,fao
+Kenya,KEN,2012,369400,fao
+Kenya,KEN,2013,432400,fao
+Kenya,KEN,2014,445105,fao
+Kenya,KEN,2015,399100,fao
+Kenya,KEN,2016,473000,fao
+Kenya,KEN,2017,439857,fao
+Kenya,KEN,2018,492990,fao
+Kenya,KEN,2019,458853,tbk
+Kenya,KEN,2020,569535,tbk
+Kenya,KEN,2021,537833,tbk
+Kenya,KEN,2022,535044,tbk
+Kenya,KEN,2023,570260,tbk
+Kenya,KEN,2024,598478,tbk
+Laos,LAO,1976,61,fao
+Laos,LAO,1977,65,fao
+Laos,LAO,1978,63,fao
+Laos,LAO,1979,68,fao
+Laos,LAO,1980,290,fao
+Laos,LAO,1981,110,fao
+Laos,LAO,1982,115,fao
+Laos,LAO,1983,133,fao
+Laos,LAO,1984,145,fao
+Laos,LAO,1985,480,fao
+Laos,LAO,1986,650,fao
+Laos,LAO,1987,502,fao
+Laos,LAO,1988,1371,fao
+Laos,LAO,1989,740,fao
+Laos,LAO,1990,1616,fao
+Laos,LAO,1991,1705,fao
+Laos,LAO,1992,1000,fao
+Laos,LAO,1993,1475,fao
+Laos,LAO,1994,1943,fao
+Laos,LAO,1995,764,fao
+Laos,LAO,1996,101,fao
+Laos,LAO,1997,110,fao
+Laos,LAO,1998,260,fao
+Laos,LAO,1999,350,fao
+Laos,LAO,2000,307,fao
+Laos,LAO,2001,160,fao
+Laos,LAO,2002,172,fao
+Laos,LAO,2003,225,fao
+Laos,LAO,2004,320,fao
+Laos,LAO,2005,300,fao
+Laos,LAO,2006,153,fao
+Laos,LAO,2007,260,fao
+Laos,LAO,2008,560,fao
+Laos,LAO,2009,1165,fao
+Laos,LAO,2010,2600,fao
+Laos,LAO,2011,3580,fao
+Laos,LAO,2012,3975,fao
+Laos,LAO,2013,6105,fao
+Laos,LAO,2014,7935,fao
+Laos,LAO,2015,6295,fao
+Laos,LAO,2016,7300,fao
+Laos,LAO,2017,7660,fao
+Laos,LAO,2018,8055,fao
+Laos,LAO,2019,8375,fao
+Laos,LAO,2020,9557,fao
+Madagascar,MDG,1974,30,fao
+Madagascar,MDG,1975,60,fao
+Madagascar,MDG,1976,80,fao
+Madagascar,MDG,1977,100,fao
+Madagascar,MDG,1978,120,fao
+Madagascar,MDG,1979,150,fao
+Madagascar,MDG,1980,200,fao
+Madagascar,MDG,1981,220,fao
+Madagascar,MDG,1982,220,fao
+Madagascar,MDG,1983,220,fao
+Madagascar,MDG,1984,240,fao
+Madagascar,MDG,1985,240,fao
+Madagascar,MDG,1986,250,fao
+Madagascar,MDG,1987,250,fao
+Madagascar,MDG,1988,260,fao
+Madagascar,MDG,1989,270,fao
+Madagascar,MDG,1990,280,fao
+Madagascar,MDG,1991,315,fao
+Madagascar,MDG,1992,290,fao
+Madagascar,MDG,1993,400,fao
+Madagascar,MDG,1994,300,fao
+Madagascar,MDG,1995,335,fao
+Madagascar,MDG,1996,338,fao
+Madagascar,MDG,1997,320,fao
+Madagascar,MDG,1998,312,fao
+Madagascar,MDG,1999,400,fao
+Madagascar,MDG,2000,490,fao
+Madagascar,MDG,2001,441,fao
+Madagascar,MDG,2002,516,fao
+Madagascar,MDG,2003,570,fao
+Madagascar,MDG,2004,365,fao
+Madagascar,MDG,2005,351,fao
+Madagascar,MDG,2006,353,fao
+Madagascar,MDG,2007,374,fao
+Madagascar,MDG,2008,246,fao
+Madagascar,MDG,2009,319,fao
+Madagascar,MDG,2010,382,fao
+Madagascar,MDG,2011,380,fao
+Madagascar,MDG,2012,382,fao
+Madagascar,MDG,2013,384,fao
+Madagascar,MDG,2014,386,fao
+Madagascar,MDG,2015,387,fao
+Madagascar,MDG,2016,385,fao
+Madagascar,MDG,2017,383,fao
+Madagascar,MDG,2018,381,fao
+Madagascar,MDG,2019,381,fao
+Madagascar,MDG,2020,382,fao
+Malawi,MWI,1961,14288,fao
+Malawi,MWI,1962,13336,fao
+Malawi,MWI,1963,11929,fao
+Malawi,MWI,1964,12383,fao
+Malawi,MWI,1965,12973,fao
+Malawi,MWI,1966,15377,fao
+Malawi,MWI,1967,16828,fao
+Malawi,MWI,1968,15830,fao
+Malawi,MWI,1969,16919,fao
+Malawi,MWI,1970,18733,fao
+Malawi,MWI,1971,18597,fao
+Malawi,MWI,1972,20684,fao
+Malawi,MWI,1973,23600,fao
+Malawi,MWI,1974,23405,fao
+Malawi,MWI,1975,26238,fao
+Malawi,MWI,1976,28307,fao
+Malawi,MWI,1977,31628,fao
+Malawi,MWI,1978,31690,fao
+Malawi,MWI,1979,32609,fao
+Malawi,MWI,1980,29915,fao
+Malawi,MWI,1981,31965,fao
+Malawi,MWI,1982,38484,fao
+Malawi,MWI,1983,32011,fao
+Malawi,MWI,1984,37530,fao
+Malawi,MWI,1985,39954,fao
+Malawi,MWI,1986,38973,fao
+Malawi,MWI,1987,31908,fao
+Malawi,MWI,1988,40157,fao
+Malawi,MWI,1989,39469,fao
+Malawi,MWI,1990,38921,fao
+Malawi,MWI,1991,40501,fao
+Malawi,MWI,1992,28136,fao
+Malawi,MWI,1993,39495,fao
+Malawi,MWI,1994,35141,fao
+Malawi,MWI,1995,34182,fao
+Malawi,MWI,1996,34800,fao
+Malawi,MWI,1997,29700,fao
+Malawi,MWI,1998,40362,fao
+Malawi,MWI,1999,38500,fao
+Malawi,MWI,2000,42400,fao
+Malawi,MWI,2001,36800,fao
+Malawi,MWI,2002,39200,fao
+Malawi,MWI,2003,41693,fao
+Malawi,MWI,2004,50090,fao
+Malawi,MWI,2005,38000,fao
+Malawi,MWI,2006,45009,fao
+Malawi,MWI,2007,48140,fao
+Malawi,MWI,2008,41637,fao
+Malawi,MWI,2009,52555,fao
+Malawi,MWI,2010,51589,fao
+Malawi,MWI,2011,47006,fao
+Malawi,MWI,2012,42490,fao
+Malawi,MWI,2013,46460,fao
+Malawi,MWI,2014,45480,fao
+Malawi,MWI,2015,47877,fao
+Malawi,MWI,2016,48887,fao
+Malawi,MWI,2017,47415,fao
+Malawi,MWI,2018,48060,fao
+Malawi,MWI,2019,48121,fao
+Malawi,MWI,2020,47865,fao
+Malaysia,MYS,1961,2635,fao
+Malaysia,MYS,1962,2839,fao
+Malaysia,MYS,1963,2731,fao
+Malaysia,MYS,1964,3108,fao
+Malaysia,MYS,1965,3351,fao
+Malaysia,MYS,1966,3446,fao
+Malaysia,MYS,1967,3095,fao
+Malaysia,MYS,1968,3468,fao
+Malaysia,MYS,1969,3488,fao
+Malaysia,MYS,1970,3381,fao
+Malaysia,MYS,1971,3325,fao
+Malaysia,MYS,1972,3365,fao
+Malaysia,MYS,1973,3462,fao
+Malaysia,MYS,1974,3237,fao
+Malaysia,MYS,1975,3066,fao
+Malaysia,MYS,1976,3206,fao
+Malaysia,MYS,1977,3542,fao
+Malaysia,MYS,1978,3451,fao
+Malaysia,MYS,1979,3171,fao
+Malaysia,MYS,1980,3281,fao
+Malaysia,MYS,1981,3438,fao
+Malaysia,MYS,1982,3188,fao
+Malaysia,MYS,1983,3328,fao
+Malaysia,MYS,1984,5478,fao
+Malaysia,MYS,1985,5300,fao
+Malaysia,MYS,1986,5365,fao
+Malaysia,MYS,1987,4830,fao
+Malaysia,MYS,1988,4830,fao
+Malaysia,MYS,1989,4830,fao
+Malaysia,MYS,1990,6200,fao
+Malaysia,MYS,1991,7000,fao
+Malaysia,MYS,1992,5900,fao
+Malaysia,MYS,1993,6000,fao
+Malaysia,MYS,1994,5400,fao
+Malaysia,MYS,1995,6000,fao
+Malaysia,MYS,1996,6000,fao
+Malaysia,MYS,1997,6000,fao
+Malaysia,MYS,1998,4600,fao
+Malaysia,MYS,1999,5900,fao
+Malaysia,MYS,2000,5642,fao
+Malaysia,MYS,2001,5413,fao
+Malaysia,MYS,2002,5100,fao
+Malaysia,MYS,2003,4125,fao
+Malaysia,MYS,2004,3900,fao
+Malaysia,MYS,2005,2850,fao
+Malaysia,MYS,2006,6213,fao
+Malaysia,MYS,2007,5540,fao
+Malaysia,MYS,2008,9548,fao
+Malaysia,MYS,2009,7223,fao
+Malaysia,MYS,2010,19738,fao
+Malaysia,MYS,2011,16632,fao
+Malaysia,MYS,2012,14711,fao
+Malaysia,MYS,2013,12094,fao
+Malaysia,MYS,2014,11923,fao
+Malaysia,MYS,2015,11130,fao
+Malaysia,MYS,2016,11708,fao
+Malaysia,MYS,2017,10385,fao
+Malaysia,MYS,2018,10808,fao
+Malaysia,MYS,2019,6621,fao
+Malaysia,MYS,2020,9395,fao
+Mali,MLI,1974,60,fao
+Mali,MLI,1975,80,fao
+Mali,MLI,1976,80,fao
+Mali,MLI,1977,90,fao
+Mali,MLI,1978,100,fao
+Mali,MLI,1979,110,fao
+Mali,MLI,1980,64,fao
+Mali,MLI,1981,98,fao
+Mali,MLI,1982,76,fao
+Mali,MLI,1983,80,fao
+Mali,MLI,1984,83,fao
+Mali,MLI,1985,87,fao
+Mali,MLI,1986,89,fao
+Mali,MLI,1987,55,fao
+Mali,MLI,1988,83,fao
+Mali,MLI,1989,317,fao
+Mali,MLI,1990,159,fao
+Mali,MLI,1991,92,fao
+Mali,MLI,1992,115,fao
+Mali,MLI,1993,277,fao
+Mali,MLI,1994,196,fao
+Mali,MLI,1995,202,fao
+Mali,MLI,1996,69,fao
+Mali,MLI,1997,50,fao
+Mali,MLI,1998,60,fao
+Mali,MLI,1999,85,fao
+Mali,MLI,2000,82,fao
+Mali,MLI,2001,50,fao
+Mali,MLI,2002,70,fao
+Mali,MLI,2003,90,fao
+Mali,MLI,2004,110,fao
+Mali,MLI,2005,135,fao
+Mali,MLI,2006,135,fao
+Mali,MLI,2007,135,fao
+Mali,MLI,2008,118,fao
+Mali,MLI,2009,114,fao
+Mali,MLI,2010,107,fao
+Mali,MLI,2011,103,fao
+Mali,MLI,2012,98,fao
+Mali,MLI,2013,89,fao
+Mali,MLI,2014,89,fao
+Mali,MLI,2015,88,fao
+Mali,MLI,2016,88,fao
+Mali,MLI,2017,86,fao
+Mali,MLI,2018,87,fao
+Mali,MLI,2019,87,fao
+Mali,MLI,2020,86,fao
+Mauritius,MUS,1961,1274,fao
+Mauritius,MUS,1962,1270,fao
+Mauritius,MUS,1963,1418,fao
+Mauritius,MUS,1964,1382,fao
+Mauritius,MUS,1965,1738,fao
+Mauritius,MUS,1966,1976,fao
+Mauritius,MUS,1967,2190,fao
+Mauritius,MUS,1968,2310,fao
+Mauritius,MUS,1969,3197,fao
+Mauritius,MUS,1970,3240,fao
+Mauritius,MUS,1971,4089,fao
+Mauritius,MUS,1972,4678,fao
+Mauritius,MUS,1973,4079,fao
+Mauritius,MUS,1974,3984,fao
+Mauritius,MUS,1975,3139,fao
+Mauritius,MUS,1976,4334,fao
+Mauritius,MUS,1977,4727,fao
+Mauritius,MUS,1978,5186,fao
+Mauritius,MUS,1979,5072,fao
+Mauritius,MUS,1980,4386,fao
+Mauritius,MUS,1981,5052,fao
+Mauritius,MUS,1982,5287,fao
+Mauritius,MUS,1983,6142,fao
+Mauritius,MUS,1984,8021,fao
+Mauritius,MUS,1985,8115,fao
+Mauritius,MUS,1986,7875,fao
+Mauritius,MUS,1987,7147,fao
+Mauritius,MUS,1988,6854,fao
+Mauritius,MUS,1989,5500,fao
+Mauritius,MUS,1990,5751,fao
+Mauritius,MUS,1991,5918,fao
+Mauritius,MUS,1992,5845,fao
+Mauritius,MUS,1993,5931,fao
+Mauritius,MUS,1994,5089,fao
+Mauritius,MUS,1995,3785,fao
+Mauritius,MUS,1996,2497,fao
+Mauritius,MUS,1997,1787,fao
+Mauritius,MUS,1998,1488,fao
+Mauritius,MUS,1999,1473,fao
+Mauritius,MUS,2000,1312,fao
+Mauritius,MUS,2001,1517,fao
+Mauritius,MUS,2002,1381,fao
+Mauritius,MUS,2003,1436,fao
+Mauritius,MUS,2004,1482,fao
+Mauritius,MUS,2005,1387,fao
+Mauritius,MUS,2006,1567,fao
+Mauritius,MUS,2007,1563,fao
+Mauritius,MUS,2008,1668,fao
+Mauritius,MUS,2009,1481,fao
+Mauritius,MUS,2010,1467,fao
+Mauritius,MUS,2011,1787,fao
+Mauritius,MUS,2012,1577,fao
+Mauritius,MUS,2013,1563,fao
+Mauritius,MUS,2014,1504,fao
+Mauritius,MUS,2015,1295,fao
+Mauritius,MUS,2016,1353,fao
+Mauritius,MUS,2017,1379,fao
+Mauritius,MUS,2018,1470,fao
+Mauritius,MUS,2019,1583,fao
+Mauritius,MUS,2020,1083,fao
+Montenegro,MNE,2006,100,fao
+Montenegro,MNE,2007,100,fao
+Montenegro,MNE,2008,100,fao
+Montenegro,MNE,2009,100,fao
+Montenegro,MNE,2010,100,fao
+Montenegro,MNE,2011,100,fao
+Montenegro,MNE,2012,100,fao
+Montenegro,MNE,2013,100,fao
+Montenegro,MNE,2014,100,fao
+Montenegro,MNE,2015,100,fao
+Montenegro,MNE,2016,100,fao
+Montenegro,MNE,2017,100,fao
+Montenegro,MNE,2018,100,fao
+Montenegro,MNE,2019,100,fao
+Montenegro,MNE,2020,100,fao
+Mozambique,MOZ,1961,8100,fao
+Mozambique,MOZ,1962,8100,fao
+Mozambique,MOZ,1963,8600,fao
+Mozambique,MOZ,1964,9005,fao
+Mozambique,MOZ,1965,10746,fao
+Mozambique,MOZ,1966,13983,fao
+Mozambique,MOZ,1967,14419,fao
+Mozambique,MOZ,1968,14250,fao
+Mozambique,MOZ,1969,16054,fao
+Mozambique,MOZ,1970,16972,fao
+Mozambique,MOZ,1971,16536,fao
+Mozambique,MOZ,1972,18678,fao
+Mozambique,MOZ,1973,18795,fao
+Mozambique,MOZ,1974,17639,fao
+Mozambique,MOZ,1975,13143,fao
+Mozambique,MOZ,1976,13825,fao
+Mozambique,MOZ,1977,17000,fao
+Mozambique,MOZ,1978,18069,fao
+Mozambique,MOZ,1979,18900,fao
+Mozambique,MOZ,1980,19500,fao
+Mozambique,MOZ,1981,22190,fao
+Mozambique,MOZ,1982,21000,fao
+Mozambique,MOZ,1983,15000,fao
+Mozambique,MOZ,1984,11000,fao
+Mozambique,MOZ,1985,7000,fao
+Mozambique,MOZ,1986,5000,fao
+Mozambique,MOZ,1987,3000,fao
+Mozambique,MOZ,1988,1500,fao
+Mozambique,MOZ,1989,2500,fao
+Mozambique,MOZ,1990,4000,fao
+Mozambique,MOZ,1991,4941,fao
+Mozambique,MOZ,1992,1018,fao
+Mozambique,MOZ,1993,1673,fao
+Mozambique,MOZ,1994,2000,fao
+Mozambique,MOZ,1995,976,fao
+Mozambique,MOZ,1996,1670,fao
+Mozambique,MOZ,1997,1500,fao
+Mozambique,MOZ,1998,1500,fao
+Mozambique,MOZ,1999,1600,fao
+Mozambique,MOZ,2000,10466,fao
+Mozambique,MOZ,2001,9029,fao
+Mozambique,MOZ,2002,12579,fao
+Mozambique,MOZ,2003,12690,fao
+Mozambique,MOZ,2004,15127,fao
+Mozambique,MOZ,2005,16000,fao
+Mozambique,MOZ,2006,16256,fao
+Mozambique,MOZ,2007,16256,fao
+Mozambique,MOZ,2008,16866,fao
+Mozambique,MOZ,2009,30000,fao
+Mozambique,MOZ,2010,28995,fao
+Mozambique,MOZ,2011,27000,fao
+Mozambique,MOZ,2012,22000,fao
+Mozambique,MOZ,2013,25428,fao
+Mozambique,MOZ,2014,28840,fao
+Mozambique,MOZ,2015,32000,fao
+Mozambique,MOZ,2016,32000,fao
+Mozambique,MOZ,2017,32000,fao
+Mozambique,MOZ,2018,31000,fao
+Mozambique,MOZ,2019,32000,fao
+Mozambique,MOZ,2020,33592,fao
+Myanmar,MMR,1961,5200,fao
+Myanmar,MMR,1962,5200,fao
+Myanmar,MMR,1963,5300,fao
+Myanmar,MMR,1964,8600,fao
+Myanmar,MMR,1965,10500,fao
+Myanmar,MMR,1966,11100,fao
+Myanmar,MMR,1967,11300,fao
+Myanmar,MMR,1968,10900,fao
+Myanmar,MMR,1969,10900,fao
+Myanmar,MMR,1970,10900,fao
+Myanmar,MMR,1971,11000,fao
+Myanmar,MMR,1972,11600,fao
+Myanmar,MMR,1973,14100,fao
+Myanmar,MMR,1974,14000,fao
+Myanmar,MMR,1975,14000,fao
+Myanmar,MMR,1976,14000,fao
+Myanmar,MMR,1977,14800,fao
+Myanmar,MMR,1978,14300,fao
+Myanmar,MMR,1979,12400,fao
+Myanmar,MMR,1980,12600,fao
+Myanmar,MMR,1981,12800,fao
+Myanmar,MMR,1982,13800,fao
+Myanmar,MMR,1983,19000,fao
+Myanmar,MMR,1984,14900,fao
+Myanmar,MMR,1985,15500,fao
+Myanmar,MMR,1986,15100,fao
+Myanmar,MMR,1987,14100,fao
+Myanmar,MMR,1988,14900,fao
+Myanmar,MMR,1989,14700,fao
+Myanmar,MMR,1990,14900,fao
+Myanmar,MMR,1991,47300,fao
+Myanmar,MMR,1992,50200,fao
+Myanmar,MMR,1993,53700,fao
+Myanmar,MMR,1994,51900,fao
+Myanmar,MMR,1995,52400,fao
+Myanmar,MMR,1996,54600,fao
+Myanmar,MMR,1997,65800,fao
+Myanmar,MMR,1998,60500,fao
+Myanmar,MMR,1999,61700,fao
+Myanmar,MMR,2000,63000,fao
+Myanmar,MMR,2001,67200,fao
+Myanmar,MMR,2002,69200,fao
+Myanmar,MMR,2003,73400,fao
+Myanmar,MMR,2004,75600,fao
+Myanmar,MMR,2005,79000,fao
+Myanmar,MMR,2006,83000,fao
+Myanmar,MMR,2007,87000,fao
+Myanmar,MMR,2008,90000,fao
+Myanmar,MMR,2009,92600,fao
+Myanmar,MMR,2010,94500,fao
+Myanmar,MMR,2011,92500,fao
+Myanmar,MMR,2012,94600,fao
+Myanmar,MMR,2013,96300,fao
+Myanmar,MMR,2014,98600,fao
+Myanmar,MMR,2015,100150,fao
+Myanmar,MMR,2016,102404,fao
+Myanmar,MMR,2017,104746,fao
+Myanmar,MMR,2018,143571,fao
+Myanmar,MMR,2019,132494,fao
+Myanmar,MMR,2020,126486,fao
+Nepal,NPL,1974,254,fao
+Nepal,NPL,1975,366,fao
+Nepal,NPL,1976,395,fao
+Nepal,NPL,1977,413,fao
+Nepal,NPL,1978,326,fao
+Nepal,NPL,1979,387,fao
+Nepal,NPL,1980,535,fao
+Nepal,NPL,1981,625,fao
+Nepal,NPL,1982,714,fao
+Nepal,NPL,1983,827,fao
+Nepal,NPL,1984,989,fao
+Nepal,NPL,1985,1052,fao
+Nepal,NPL,1986,1112,fao
+Nepal,NPL,1987,1290,fao
+Nepal,NPL,1988,1184,fao
+Nepal,NPL,1989,1393,fao
+Nepal,NPL,1990,1249,fao
+Nepal,NPL,1991,1476,fao
+Nepal,NPL,1992,1636,fao
+Nepal,NPL,1993,1993,fao
+Nepal,NPL,1994,2351,fao
+Nepal,NPL,1995,2457,fao
+Nepal,NPL,1996,2721,fao
+Nepal,NPL,1997,2906,fao
+Nepal,NPL,1998,3020,fao
+Nepal,NPL,1999,4493,fao
+Nepal,NPL,2000,5085,fao
+Nepal,NPL,2001,6638,fao
+Nepal,NPL,2002,7518,fao
+Nepal,NPL,2003,8198,fao
+Nepal,NPL,2004,11651,fao
+Nepal,NPL,2005,12500,fao
+Nepal,NPL,2006,13043,fao
+Nepal,NPL,2007,15168,fao
+Nepal,NPL,2008,16160,fao
+Nepal,NPL,2009,16208,fao
+Nepal,NPL,2010,16607,fao
+Nepal,NPL,2011,17438,fao
+Nepal,NPL,2012,18726,fao
+Nepal,NPL,2013,20588,fao
+Nepal,NPL,2014,21394,fao
+Nepal,NPL,2015,21394,fao
+Nepal,NPL,2016,23821,fao
+Nepal,NPL,2017,24653,fao
+Nepal,NPL,2018,24803,fao
+Nepal,NPL,2019,25206,fao
+Nepal,NPL,2020,24270,fao
+Panama,PAN,1984,73,fao
+Panama,PAN,1985,152,fao
+Panama,PAN,1986,123,fao
+Panama,PAN,1987,134,fao
+Panama,PAN,1988,162,fao
+Panama,PAN,1989,98,fao
+Panama,PAN,1990,196,fao
+Panama,PAN,1991,0,fao
+Panama,PAN,1992,0,fao
+Panama,PAN,1993,0,fao
+Panama,PAN,1994,0,fao
+Panama,PAN,1995,0,fao
+Panama,PAN,1996,0,fao
+Panama,PAN,1997,0,fao
+Panama,PAN,1998,0,fao
+Panama,PAN,1999,0,fao
+Panama,PAN,2000,0,fao
+Panama,PAN,2001,0,fao
+Panama,PAN,2002,0,fao
+Panama,PAN,2003,0,fao
+Panama,PAN,2004,0,fao
+Panama,PAN,2005,0,fao
+Panama,PAN,2006,0,fao
+Panama,PAN,2007,0,fao
+Panama,PAN,2008,0,fao
+Panama,PAN,2009,0,fao
+Panama,PAN,2010,0,fao
+Panama,PAN,2011,0,fao
+Panama,PAN,2012,0,fao
+Panama,PAN,2013,0,fao
+Panama,PAN,2014,0,fao
+Papua New Guinea,PNG,1961,10,fao
+Papua New Guinea,PNG,1962,10,fao
+Papua New Guinea,PNG,1963,10,fao
+Papua New Guinea,PNG,1964,10,fao
+Papua New Guinea,PNG,1965,15,fao
+Papua New Guinea,PNG,1966,15,fao
+Papua New Guinea,PNG,1967,39,fao
+Papua New Guinea,PNG,1968,74,fao
+Papua New Guinea,PNG,1969,330,fao
+Papua New Guinea,PNG,1970,749,fao
+Papua New Guinea,PNG,1971,1211,fao
+Papua New Guinea,PNG,1972,2195,fao
+Papua New Guinea,PNG,1973,3025,fao
+Papua New Guinea,PNG,1974,4155,fao
+Papua New Guinea,PNG,1975,4714,fao
+Papua New Guinea,PNG,1976,4984,fao
+Papua New Guinea,PNG,1977,6500,fao
+Papua New Guinea,PNG,1978,6319,fao
+Papua New Guinea,PNG,1979,8034,fao
+Papua New Guinea,PNG,1980,8361,fao
+Papua New Guinea,PNG,1981,8691,fao
+Papua New Guinea,PNG,1982,8487,fao
+Papua New Guinea,PNG,1983,10193,fao
+Papua New Guinea,PNG,1984,9845,fao
+Papua New Guinea,PNG,1985,8080,fao
+Papua New Guinea,PNG,1986,8000,fao
+Papua New Guinea,PNG,1987,8000,fao
+Papua New Guinea,PNG,1988,8000,fao
+Papua New Guinea,PNG,1989,8000,fao
+Papua New Guinea,PNG,1990,6985,fao
+Papua New Guinea,PNG,1991,8500,fao
+Papua New Guinea,PNG,1992,9000,fao
+Papua New Guinea,PNG,1993,8700,fao
+Papua New Guinea,PNG,1994,8500,fao
+Papua New Guinea,PNG,1995,4699,fao
+Papua New Guinea,PNG,1996,5113,fao
+Papua New Guinea,PNG,1997,5156,fao
+Papua New Guinea,PNG,1998,7260,fao
+Papua New Guinea,PNG,1999,6200,fao
+Papua New Guinea,PNG,2000,6200,fao
+Papua New Guinea,PNG,2001,6100,fao
+Papua New Guinea,PNG,2002,6200,fao
+Papua New Guinea,PNG,2003,6400,fao
+Papua New Guinea,PNG,2004,6500,fao
+Papua New Guinea,PNG,2005,6600,fao
+Papua New Guinea,PNG,2006,6600,fao
+Papua New Guinea,PNG,2007,6500,fao
+Papua New Guinea,PNG,2008,6000,fao
+Papua New Guinea,PNG,2009,6400,fao
+Papua New Guinea,PNG,2010,6201,fao
+Papua New Guinea,PNG,2011,5943,fao
+Papua New Guinea,PNG,2012,5905,fao
+Papua New Guinea,PNG,2013,5857,fao
+Papua New Guinea,PNG,2014,5844,fao
+Papua New Guinea,PNG,2015,5892,fao
+Papua New Guinea,PNG,2016,5840,fao
+Papua New Guinea,PNG,2017,5812,fao
+Papua New Guinea,PNG,2018,5821,fao
+Papua New Guinea,PNG,2019,5786,fao
+Papua New Guinea,PNG,2020,5753,fao
+Peru,PER,1961,1239,fao
+Peru,PER,1962,1212,fao
+Peru,PER,1963,1220,fao
+Peru,PER,1964,1290,fao
+Peru,PER,1965,1365,fao
+Peru,PER,1966,1700,fao
+Peru,PER,1967,1695,fao
+Peru,PER,1968,1875,fao
+Peru,PER,1969,2175,fao
+Peru,PER,1970,1808,fao
+Peru,PER,1971,2408,fao
+Peru,PER,1972,2581,fao
+Peru,PER,1973,2464,fao
+Peru,PER,1974,2817,fao
+Peru,PER,1975,2988,fao
+Peru,PER,1976,3179,fao
+Peru,PER,1977,2976,fao
+Peru,PER,1978,2347,fao
+Peru,PER,1979,2602,fao
+Peru,PER,1980,2112,fao
+Peru,PER,1981,2031,fao
+Peru,PER,1982,1758,fao
+Peru,PER,1983,1676,fao
+Peru,PER,1984,1610,fao
+Peru,PER,1985,1693,fao
+Peru,PER,1986,1914,fao
+Peru,PER,1987,1896,fao
+Peru,PER,1988,1827,fao
+Peru,PER,1989,1732,fao
+Peru,PER,1990,1648,fao
+Peru,PER,1991,1648,fao
+Peru,PER,1992,1394,fao
+Peru,PER,1993,1743,fao
+Peru,PER,1994,7155,fao
+Peru,PER,1995,5510,fao
+Peru,PER,1996,9403,fao
+Peru,PER,1997,10431,fao
+Peru,PER,1998,7397,fao
+Peru,PER,1999,6964,fao
+Peru,PER,2000,6259,fao
+Peru,PER,2001,6478,fao
+Peru,PER,2002,6349,fao
+Peru,PER,2003,5634,fao
+Peru,PER,2004,1548,fao
+Peru,PER,2005,4236,fao
+Peru,PER,2006,4820,fao
+Peru,PER,2007,3597,fao
+Peru,PER,2008,4009,fao
+Peru,PER,2009,3169,fao
+Peru,PER,2010,3214,fao
+Peru,PER,2011,3158,fao
+Peru,PER,2012,3434,fao
+Peru,PER,2013,4319,fao
+Peru,PER,2014,3874,fao
+Peru,PER,2015,3785,fao
+Peru,PER,2016,3307,fao
+Peru,PER,2017,2177,fao
+Peru,PER,2018,1085,fao
+Peru,PER,2019,1600,fao
+Peru,PER,2020,1646,fao
+Portugal,PRT,1961,128,fao
+Portugal,PRT,1962,250,fao
+Portugal,PRT,1963,300,fao
+Portugal,PRT,1964,300,fao
+Portugal,PRT,1965,300,fao
+Portugal,PRT,1966,350,fao
+Portugal,PRT,1967,400,fao
+Portugal,PRT,1968,500,fao
+Portugal,PRT,1969,400,fao
+Portugal,PRT,1970,300,fao
+Portugal,PRT,1971,300,fao
+Portugal,PRT,1972,400,fao
+Portugal,PRT,1973,300,fao
+Portugal,PRT,1974,300,fao
+Portugal,PRT,1975,260,fao
+Portugal,PRT,1976,242,fao
+Portugal,PRT,1977,267,fao
+Portugal,PRT,1978,318,fao
+Portugal,PRT,1979,319,fao
+Portugal,PRT,1980,225,fao
+Portugal,PRT,1981,190,fao
+Portugal,PRT,1982,169,fao
+Portugal,PRT,1983,231,fao
+Portugal,PRT,1984,182,fao
+Portugal,PRT,1985,146,fao
+Portugal,PRT,1986,199,fao
+Portugal,PRT,1987,185,fao
+Portugal,PRT,1988,189,fao
+Portugal,PRT,1989,198,fao
+Portugal,PRT,1990,184,fao
+Portugal,PRT,1991,129,fao
+Portugal,PRT,1992,69,fao
+Portugal,PRT,1993,21,fao
+Portugal,PRT,1994,40,fao
+Portugal,PRT,1995,82,fao
+Portugal,PRT,1996,63,fao
+Portugal,PRT,1997,25,fao
+Portugal,PRT,1998,24,fao
+Portugal,PRT,1999,120,fao
+Portugal,PRT,2000,102,fao
+Portugal,PRT,2001,106,fao
+Portugal,PRT,2002,105,fao
+Portugal,PRT,2003,116,fao
+Portugal,PRT,2004,125,fao
+Portugal,PRT,2005,112,fao
+Portugal,PRT,2006,115,fao
+Portugal,PRT,2007,125,fao
+Portugal,PRT,2008,125,fao
+Portugal,PRT,2009,125,fao
+Portugal,PRT,2010,120,fao
+Portugal,PRT,2011,70,fao
+Portugal,PRT,2012,57,fao
+Portugal,PRT,2013,58,fao
+Portugal,PRT,2014,62,fao
+Portugal,PRT,2015,89,fao
+Portugal,PRT,2016,84,fao
+Portugal,PRT,2017,78,fao
+Russia,RUS,1992,7240,fao
+Russia,RUS,1993,7630,fao
+Russia,RUS,1994,3960,fao
+Russia,RUS,1995,4350,fao
+Russia,RUS,1996,2380,fao
+Russia,RUS,1997,1630,fao
+Russia,RUS,1998,1480,fao
+Russia,RUS,1999,1930,fao
+Russia,RUS,2000,1520,fao
+Russia,RUS,2001,1240,fao
+Russia,RUS,2002,1290,fao
+Russia,RUS,2003,870,fao
+Russia,RUS,2004,1240,fao
+Russia,RUS,2005,1260,fao
+Russia,RUS,2006,1150,fao
+Russia,RUS,2007,630,fao
+Russia,RUS,2008,820,fao
+Russia,RUS,2009,630,fao
+Russia,RUS,2010,370,fao
+Russia,RUS,2011,267,fao
+Russia,RUS,2012,90,fao
+Russia,RUS,2013,90,fao
+Russia,RUS,2014,222,fao
+Russia,RUS,2015,246,fao
+Russia,RUS,2016,449,fao
+Russia,RUS,2017,554,fao
+Russia,RUS,2018,504,fao
+Russia,RUS,2019,298,fao
+Russia,RUS,2020,342,fao
+Rwanda,RWA,1961,160,fao
+Rwanda,RWA,1962,210,fao
+Rwanda,RWA,1963,300,fao
+Rwanda,RWA,1964,320,fao
+Rwanda,RWA,1965,340,fao
+Rwanda,RWA,1966,348,fao
+Rwanda,RWA,1967,430,fao
+Rwanda,RWA,1968,830,fao
+Rwanda,RWA,1969,976,fao
+Rwanda,RWA,1970,1245,fao
+Rwanda,RWA,1971,1819,fao
+Rwanda,RWA,1972,2396,fao
+Rwanda,RWA,1973,2803,fao
+Rwanda,RWA,1974,3432,fao
+Rwanda,RWA,1975,3995,fao
+Rwanda,RWA,1976,4976,fao
+Rwanda,RWA,1977,5356,fao
+Rwanda,RWA,1978,5342,fao
+Rwanda,RWA,1979,5670,fao
+Rwanda,RWA,1980,6627,fao
+Rwanda,RWA,1981,6846,fao
+Rwanda,RWA,1982,7100,fao
+Rwanda,RWA,1983,6670,fao
+Rwanda,RWA,1984,8100,fao
+Rwanda,RWA,1985,10800,fao
+Rwanda,RWA,1986,10350,fao
+Rwanda,RWA,1987,11677,fao
+Rwanda,RWA,1988,12286,fao
+Rwanda,RWA,1989,12975,fao
+Rwanda,RWA,1990,12854,fao
+Rwanda,RWA,1991,13546,fao
+Rwanda,RWA,1992,13644,fao
+Rwanda,RWA,1993,11181,fao
+Rwanda,RWA,1994,4136,fao
+Rwanda,RWA,1995,5414,fao
+Rwanda,RWA,1996,9057,fao
+Rwanda,RWA,1997,13239,fao
+Rwanda,RWA,1998,14875,fao
+Rwanda,RWA,1999,12959,fao
+Rwanda,RWA,2000,14481,fao
+Rwanda,RWA,2001,17815,fao
+Rwanda,RWA,2002,14893,fao
+Rwanda,RWA,2003,15484,fao
+Rwanda,RWA,2004,14493,fao
+Rwanda,RWA,2005,16458,fao
+Rwanda,RWA,2006,16976,fao
+Rwanda,RWA,2007,20474,fao
+Rwanda,RWA,2008,19965,fao
+Rwanda,RWA,2009,20535,fao
+Rwanda,RWA,2010,22249,fao
+Rwanda,RWA,2011,24066,fao
+Rwanda,RWA,2012,22503,fao
+Rwanda,RWA,2013,22185,fao
+Rwanda,RWA,2014,24751,fao
+Rwanda,RWA,2015,25264,fao
+Rwanda,RWA,2016,25628,fao
+Rwanda,RWA,2017,27887,fao
+Rwanda,RWA,2018,31068,fao
+Rwanda,RWA,2019,30444,fao
+Rwanda,RWA,2020,33645,fao
+Réunion,REU,1961,100,fao
+Réunion,REU,1962,100,fao
+Réunion,REU,1963,100,fao
+Réunion,REU,1964,100,fao
+Réunion,REU,1965,110,fao
+Réunion,REU,1966,110,fao
+Réunion,REU,1967,110,fao
+Réunion,REU,1968,120,fao
+Réunion,REU,1969,150,fao
+Réunion,REU,1970,195,fao
+Réunion,REU,1971,195,fao
+Réunion,REU,1972,195,fao
+Réunion,REU,1973,200,fao
+Réunion,REU,1974,200,fao
+Réunion,REU,1975,210,fao
+Réunion,REU,1976,210,fao
+Réunion,REU,1977,220,fao
+Réunion,REU,1978,220,fao
+Réunion,REU,1979,250,fao
+Réunion,REU,1980,270,fao
+Réunion,REU,1981,290,fao
+Réunion,REU,1982,290,fao
+Réunion,REU,1983,300,fao
+Réunion,REU,1984,310,fao
+Réunion,REU,1985,320,fao
+Réunion,REU,1986,330,fao
+Réunion,REU,1987,340,fao
+Réunion,REU,1988,340,fao
+Réunion,REU,1989,350,fao
+Réunion,REU,1990,359,fao
+Réunion,REU,1991,360,fao
+Réunion,REU,1992,370,fao
+Réunion,REU,1993,389,fao
+Réunion,REU,1994,403,fao
+Réunion,REU,1995,417,fao
+Réunion,REU,1996,431,fao
+Réunion,REU,1997,445,fao
+Réunion,REU,1998,460,fao
+Réunion,REU,1999,475,fao
+Réunion,REU,2000,491,fao
+Réunion,REU,2001,507,fao
+Réunion,REU,2002,524,fao
+Réunion,REU,2003,541,fao
+Réunion,REU,2004,560,fao
+Réunion,REU,2005,580,fao
+Réunion,REU,2006,601,fao
+Seychelles,SYC,1961,10,fao
+Seychelles,SYC,1962,10,fao
+Seychelles,SYC,1963,13,fao
+Seychelles,SYC,1964,13,fao
+Seychelles,SYC,1965,15,fao
+Seychelles,SYC,1966,15,fao
+Seychelles,SYC,1967,17,fao
+Seychelles,SYC,1968,19,fao
+Seychelles,SYC,1969,21,fao
+Seychelles,SYC,1970,23,fao
+Seychelles,SYC,1971,25,fao
+Seychelles,SYC,1972,27,fao
+Seychelles,SYC,1973,29,fao
+Seychelles,SYC,1974,36,fao
+Seychelles,SYC,1975,45,fao
+Seychelles,SYC,1976,45,fao
+Seychelles,SYC,1977,43,fao
+Seychelles,SYC,1978,43,fao
+Seychelles,SYC,1979,46,fao
+Seychelles,SYC,1980,42,fao
+Seychelles,SYC,1981,43,fao
+Seychelles,SYC,1982,37,fao
+Seychelles,SYC,1983,131,fao
+Seychelles,SYC,1984,86,fao
+Seychelles,SYC,1985,117,fao
+Seychelles,SYC,1986,136,fao
+Seychelles,SYC,1987,109,fao
+Seychelles,SYC,1988,106,fao
+Seychelles,SYC,1989,150,fao
+Seychelles,SYC,1990,219,fao
+Seychelles,SYC,1991,241,fao
+Seychelles,SYC,1992,224,fao
+Seychelles,SYC,1993,246,fao
+Seychelles,SYC,1994,246,fao
+Seychelles,SYC,1995,226,fao
+Seychelles,SYC,1996,223,fao
+Seychelles,SYC,1997,270,fao
+Seychelles,SYC,1998,250,fao
+Seychelles,SYC,1999,236,fao
+Seychelles,SYC,2000,246,fao
+Seychelles,SYC,2001,231,fao
+Seychelles,SYC,2002,222,fao
+Seychelles,SYC,2003,261,fao
+Seychelles,SYC,2004,214,fao
+Seychelles,SYC,2005,219,fao
+Seychelles,SYC,2006,189,fao
+Seychelles,SYC,2007,222,fao
+Seychelles,SYC,2008,137,fao
+Seychelles,SYC,2009,63,fao
+Seychelles,SYC,2010,49,fao
+Seychelles,SYC,2011,38,fao
+Seychelles,SYC,2012,28,fao
+Seychelles,SYC,2013,21,fao
+Seychelles,SYC,2014,27,fao
+Seychelles,SYC,2015,16,fao
+Seychelles,SYC,2016,17,fao
+Seychelles,SYC,2017,13,fao
+Seychelles,SYC,2018,11,fao
+Seychelles,SYC,2019,11,fao
+Seychelles,SYC,2020,9,fao
+South Africa,ZAF,1961,2000,fao
+South Africa,ZAF,1962,2000,fao
+South Africa,ZAF,1963,2000,fao
+South Africa,ZAF,1964,2000,fao
+South Africa,ZAF,1965,2000,fao
+South Africa,ZAF,1966,2000,fao
+South Africa,ZAF,1967,2000,fao
+South Africa,ZAF,1968,2000,fao
+South Africa,ZAF,1969,2000,fao
+South Africa,ZAF,1970,800,fao
+South Africa,ZAF,1971,1500,fao
+South Africa,ZAF,1972,2000,fao
+South Africa,ZAF,1973,2500,fao
+South Africa,ZAF,1974,3000,fao
+South Africa,ZAF,1975,2836,fao
+South Africa,ZAF,1976,3459,fao
+South Africa,ZAF,1977,3459,fao
+South Africa,ZAF,1978,4561,fao
+South Africa,ZAF,1979,5025,fao
+South Africa,ZAF,1980,12000,fao
+South Africa,ZAF,1981,5500,fao
+South Africa,ZAF,1982,6631,fao
+South Africa,ZAF,1983,7097,fao
+South Africa,ZAF,1984,8301,fao
+South Africa,ZAF,1985,9218,fao
+South Africa,ZAF,1986,10663,fao
+South Africa,ZAF,1987,11507,fao
+South Africa,ZAF,1988,11967,fao
+South Africa,ZAF,1989,13000,fao
+South Africa,ZAF,1990,12441,fao
+South Africa,ZAF,1991,11128,fao
+South Africa,ZAF,1992,9801,fao
+South Africa,ZAF,1993,10532,fao
+South Africa,ZAF,1994,11316,fao
+South Africa,ZAF,1995,11975,fao
+South Africa,ZAF,1996,9062,fao
+South Africa,ZAF,1997,8207,fao
+South Africa,ZAF,1998,13010,fao
+South Africa,ZAF,1999,12077,fao
+South Africa,ZAF,2000,12514,fao
+South Africa,ZAF,2001,12671,fao
+South Africa,ZAF,2002,12500,fao
+South Africa,ZAF,2003,12143,fao
+South Africa,ZAF,2004,4279,fao
+South Africa,ZAF,2005,21780,fao
+South Africa,ZAF,2006,3328,fao
+South Africa,ZAF,2007,6073,fao
+South Africa,ZAF,2008,3290,fao
+South Africa,ZAF,2009,1743,fao
+South Africa,ZAF,2010,1647,fao
+South Africa,ZAF,2011,1795,fao
+South Africa,ZAF,2012,870,fao
+South Africa,ZAF,2013,2180,fao
+South Africa,ZAF,2014,2399,fao
+South Africa,ZAF,2015,1972,fao
+South Africa,ZAF,2016,2184,fao
+South Africa,ZAF,2017,2185,fao
+South Africa,ZAF,2018,2114,fao
+South Africa,ZAF,2019,2161,fao
+South Africa,ZAF,2020,2153,fao
+South Korea,KOR,1961,50,fao
+South Korea,KOR,1962,50,fao
+South Korea,KOR,1963,50,fao
+South Korea,KOR,1964,70,fao
+South Korea,KOR,1965,70,fao
+South Korea,KOR,1966,80,fao
+South Korea,KOR,1967,80,fao
+South Korea,KOR,1968,100,fao
+South Korea,KOR,1969,150,fao
+South Korea,KOR,1970,276,fao
+South Korea,KOR,1971,270,fao
+South Korea,KOR,1972,245,fao
+South Korea,KOR,1973,168,fao
+South Korea,KOR,1974,232,fao
+South Korea,KOR,1975,200,fao
+South Korea,KOR,1976,200,fao
+South Korea,KOR,1977,200,fao
+South Korea,KOR,1978,200,fao
+South Korea,KOR,1979,200,fao
+South Korea,KOR,1980,200,fao
+South Korea,KOR,1981,200,fao
+South Korea,KOR,1982,200,fao
+South Korea,KOR,1983,300,fao
+South Korea,KOR,1984,350,fao
+South Korea,KOR,1985,400,fao
+South Korea,KOR,1986,500,fao
+South Korea,KOR,1987,500,fao
+South Korea,KOR,1988,500,fao
+South Korea,KOR,1989,400,fao
+South Korea,KOR,1990,254,fao
+South Korea,KOR,1991,726,fao
+South Korea,KOR,1992,700,fao
+South Korea,KOR,1993,698,fao
+South Korea,KOR,1994,740,fao
+South Korea,KOR,1995,699,fao
+South Korea,KOR,1996,947,fao
+South Korea,KOR,1997,1000,fao
+South Korea,KOR,1998,1470,fao
+South Korea,KOR,1999,1109,fao
+South Korea,KOR,2000,1434,fao
+South Korea,KOR,2001,1351,fao
+South Korea,KOR,2002,1477,fao
+South Korea,KOR,2003,1500,fao
+South Korea,KOR,2004,1500,fao
+South Korea,KOR,2005,1400,fao
+South Korea,KOR,2006,1400,fao
+South Korea,KOR,2007,1300,fao
+South Korea,KOR,2008,2200,fao
+South Korea,KOR,2009,2400,fao
+South Korea,KOR,2010,2289,fao
+South Korea,KOR,2011,2244,fao
+South Korea,KOR,2012,2202,fao
+South Korea,KOR,2013,2263,fao
+South Korea,KOR,2014,2427,fao
+South Korea,KOR,2015,2548,fao
+South Korea,KOR,2016,2413,fao
+South Korea,KOR,2017,2463,fao
+South Korea,KOR,2018,2474,fao
+South Korea,KOR,2019,2450,fao
+South Korea,KOR,2020,2462,fao
+Sri Lanka,LKA,1961,206488,fao
+Sri Lanka,LKA,1962,211850,fao
+Sri Lanka,LKA,1963,219798,fao
+Sri Lanka,LKA,1964,218513,fao
+Sri Lanka,LKA,1965,228236,fao
+Sri Lanka,LKA,1966,222312,fao
+Sri Lanka,LKA,1967,220742,fao
+Sri Lanka,LKA,1968,224803,fao
+Sri Lanka,LKA,1969,219639,fao
+Sri Lanka,LKA,1970,212210,fao
+Sri Lanka,LKA,1971,217773,fao
+Sri Lanka,LKA,1972,208858,fao
+Sri Lanka,LKA,1973,211285,fao
+Sri Lanka,LKA,1974,204037,fao
+Sri Lanka,LKA,1975,213928,fao
+Sri Lanka,LKA,1976,196606,fao
+Sri Lanka,LKA,1977,208572,fao
+Sri Lanka,LKA,1978,198780,fao
+Sri Lanka,LKA,1979,208417,fao
+Sri Lanka,LKA,1980,191375,fao
+Sri Lanka,LKA,1981,210148,fao
+Sri Lanka,LKA,1982,187816,fao
+Sri Lanka,LKA,1983,179287,fao
+Sri Lanka,LKA,1984,208058,fao
+Sri Lanka,LKA,1985,214094,fao
+Sri Lanka,LKA,1986,211276,fao
+Sri Lanka,LKA,1987,213327,fao
+Sri Lanka,LKA,1988,226952,fao
+Sri Lanka,LKA,1989,206987,fao
+Sri Lanka,LKA,1990,233165,fao
+Sri Lanka,LKA,1991,240747,fao
+Sri Lanka,LKA,1992,178870,fao
+Sri Lanka,LKA,1993,231871,fao
+Sri Lanka,LKA,1994,242214,fao
+Sri Lanka,LKA,1995,245961,fao
+Sri Lanka,LKA,1996,258427,fao
+Sri Lanka,LKA,1997,276861,fao
+Sri Lanka,LKA,1998,280056,fao
+Sri Lanka,LKA,1999,283760,fao
+Sri Lanka,LKA,2000,305840,fao
+Sri Lanka,LKA,2001,295090,fao
+Sri Lanka,LKA,2002,310000,fao
+Sri Lanka,LKA,2003,303230,fao
+Sri Lanka,LKA,2004,308090,fao
+Sri Lanka,LKA,2005,317200,fao
+Sri Lanka,LKA,2006,310800,fao
+Sri Lanka,LKA,2007,305220,fao
+Sri Lanka,LKA,2008,318700,fao
+Sri Lanka,LKA,2009,290000,fao
+Sri Lanka,LKA,2010,331400,fao
+Sri Lanka,LKA,2011,327500,fao
+Sri Lanka,LKA,2012,330000,fao
+Sri Lanka,LKA,2013,340230,fao
+Sri Lanka,LKA,2014,338032,fao
+Sri Lanka,LKA,2015,317967,fao
+Sri Lanka,LKA,2016,292574,fao
+Sri Lanka,LKA,2017,307720,fao
+Sri Lanka,LKA,2018,303840,fao
+Sri Lanka,LKA,2019,300120,fao
+Sri Lanka,LKA,2020,278489,fao
+Sri Lanka,LKA,2021,299340,itc
+Sri Lanka,LKA,2022,251500,itc
+Sri Lanka,LKA,2023,256040,itc
+Sri Lanka,LKA,2024,262160,itc
+Taiwan,TWN,1961,18064,fao
+Taiwan,TWN,1962,19753,fao
+Taiwan,TWN,1963,21104,fao
+Taiwan,TWN,1964,18306,fao
+Taiwan,TWN,1965,20730,fao
+Taiwan,TWN,1966,21510,fao
+Taiwan,TWN,1967,24403,fao
+Taiwan,TWN,1968,24418,fao
+Taiwan,TWN,1969,26248,fao
+Taiwan,TWN,1970,27468,fao
+Taiwan,TWN,1971,26984,fao
+Taiwan,TWN,1972,26229,fao
+Taiwan,TWN,1973,28639,fao
+Taiwan,TWN,1974,24173,fao
+Taiwan,TWN,1975,26092,fao
+Taiwan,TWN,1976,24758,fao
+Taiwan,TWN,1977,26303,fao
+Taiwan,TWN,1978,25854,fao
+Taiwan,TWN,1979,27055,fao
+Taiwan,TWN,1980,24479,fao
+Taiwan,TWN,1981,25223,fao
+Taiwan,TWN,1982,24051,fao
+Taiwan,TWN,1983,24308,fao
+Taiwan,TWN,1984,24365,fao
+Taiwan,TWN,1985,23203,fao
+Taiwan,TWN,1986,23890,fao
+Taiwan,TWN,1987,25578,fao
+Taiwan,TWN,1988,23557,fao
+Taiwan,TWN,1989,22130,fao
+Taiwan,TWN,1990,22299,fao
+Taiwan,TWN,1991,21380,fao
+Taiwan,TWN,1992,20164,fao
+Taiwan,TWN,1993,20515,fao
+Taiwan,TWN,1994,24485,fao
+Taiwan,TWN,1995,20892,fao
+Taiwan,TWN,1996,23131,fao
+Taiwan,TWN,1997,23505,fao
+Taiwan,TWN,1998,22641,fao
+Taiwan,TWN,1999,21119,fao
+Taiwan,TWN,2000,20349,fao
+Taiwan,TWN,2001,19837,fao
+Taiwan,TWN,2002,20345,fao
+Taiwan,TWN,2003,20675,fao
+Taiwan,TWN,2004,20192,fao
+Taiwan,TWN,2005,18803,fao
+Taiwan,TWN,2006,19345,fao
+Taiwan,TWN,2007,17502,fao
+Taiwan,TWN,2008,17384,fao
+Taiwan,TWN,2009,16780,fao
+Taiwan,TWN,2010,17467,fao
+Taiwan,TWN,2011,17310,fao
+Taiwan,TWN,2012,14902,fao
+Taiwan,TWN,2013,14718,fao
+Taiwan,TWN,2014,15200,fao
+Taiwan,TWN,2015,14405,fao
+Taiwan,TWN,2016,13018,fao
+Taiwan,TWN,2017,13443,fao
+Taiwan,TWN,2018,14738,fao
+Taiwan,TWN,2019,14637,fao
+Taiwan,TWN,2020,14341,fao
+Tanzania,TZA,1961,4459,fao
+Tanzania,TZA,1962,4310,fao
+Tanzania,TZA,1963,5019,fao
+Tanzania,TZA,1964,4812,fao
+Tanzania,TZA,1965,5682,fao
+Tanzania,TZA,1966,6911,fao
+Tanzania,TZA,1967,7399,fao
+Tanzania,TZA,1968,8292,fao
+Tanzania,TZA,1969,8800,fao
+Tanzania,TZA,1970,8492,fao
+Tanzania,TZA,1971,9182,fao
+Tanzania,TZA,1972,11613,fao
+Tanzania,TZA,1973,13291,fao
+Tanzania,TZA,1974,12258,fao
+Tanzania,TZA,1975,13873,fao
+Tanzania,TZA,1976,13049,fao
+Tanzania,TZA,1977,18450,fao
+Tanzania,TZA,1978,17009,fao
+Tanzania,TZA,1979,17307,fao
+Tanzania,TZA,1980,16418,fao
+Tanzania,TZA,1981,15537,fao
+Tanzania,TZA,1982,17551,fao
+Tanzania,TZA,1983,15195,fao
+Tanzania,TZA,1984,16790,fao
+Tanzania,TZA,1985,15537,fao
+Tanzania,TZA,1986,14064,fao
+Tanzania,TZA,1987,17200,fao
+Tanzania,TZA,1988,15944,fao
+Tanzania,TZA,1989,20180,fao
+Tanzania,TZA,1990,18090,fao
+Tanzania,TZA,1991,19530,fao
+Tanzania,TZA,1992,22000,fao
+Tanzania,TZA,1993,22400,fao
+Tanzania,TZA,1994,24800,fao
+Tanzania,TZA,1995,24300,fao
+Tanzania,TZA,1996,24000,fao
+Tanzania,TZA,1997,25500,fao
+Tanzania,TZA,1998,21900,fao
+Tanzania,TZA,1999,25000,fao
+Tanzania,TZA,2000,23600,fao
+Tanzania,TZA,2001,25500,fao
+Tanzania,TZA,2002,24700,fao
+Tanzania,TZA,2003,27600,fao
+Tanzania,TZA,2004,30100,fao
+Tanzania,TZA,2005,30700,fao
+Tanzania,TZA,2006,30300,fao
+Tanzania,TZA,2007,31300,fao
+Tanzania,TZA,2008,34800,fao
+Tanzania,TZA,2009,34170,fao
+Tanzania,TZA,2010,33160,fao
+Tanzania,TZA,2011,32000,fao
+Tanzania,TZA,2012,32812,fao
+Tanzania,TZA,2013,33700,fao
+Tanzania,TZA,2014,33500,fao
+Tanzania,TZA,2015,35749,fao
+Tanzania,TZA,2016,32629,fao
+Tanzania,TZA,2017,41495,fao
+Tanzania,TZA,2018,55426,fao
+Tanzania,TZA,2019,61713,fao
+Tanzania,TZA,2020,46058,fao
+Thailand,THA,1972,50,fao
+Thailand,THA,1973,100,fao
+Thailand,THA,1974,150,fao
+Thailand,THA,1975,150,fao
+Thailand,THA,1976,200,fao
+Thailand,THA,1977,400,fao
+Thailand,THA,1978,600,fao
+Thailand,THA,1979,700,fao
+Thailand,THA,1980,800,fao
+Thailand,THA,1981,1000,fao
+Thailand,THA,1982,1500,fao
+Thailand,THA,1983,2000,fao
+Thailand,THA,1984,2000,fao
+Thailand,THA,1985,3000,fao
+Thailand,THA,1986,2500,fao
+Thailand,THA,1987,3400,fao
+Thailand,THA,1988,4959,fao
+Thailand,THA,1989,5033,fao
+Thailand,THA,1990,6500,fao
+Thailand,THA,1991,8500,fao
+Thailand,THA,1992,11000,fao
+Thailand,THA,1993,13500,fao
+Thailand,THA,1994,16000,fao
+Thailand,THA,1995,18500,fao
+Thailand,THA,1996,22000,fao
+Thailand,THA,1997,25000,fao
+Thailand,THA,1998,28000,fao
+Thailand,THA,1999,30000,fao
+Thailand,THA,2000,32327,fao
+Thailand,THA,2001,33494,fao
+Thailand,THA,2002,36321,fao
+Thailand,THA,2003,43333,fao
+Thailand,THA,2004,51817,fao
+Thailand,THA,2005,51570,fao
+Thailand,THA,2006,53782,fao
+Thailand,THA,2007,57362,fao
+Thailand,THA,2008,61557,fao
+Thailand,THA,2009,63707,fao
+Thailand,THA,2010,67241,fao
+Thailand,THA,2011,73320,fao
+Thailand,THA,2012,68774,fao
+Thailand,THA,2013,68013,fao
+Thailand,THA,2014,40324,fao
+Thailand,THA,2015,49054,fao
+Thailand,THA,2016,65101,fao
+Thailand,THA,2017,78425,fao
+Thailand,THA,2018,93084,fao
+Thailand,THA,2019,96537,fao
+Thailand,THA,2020,97697,fao
+Türkiye,TUR,1961,5450,fao
+Türkiye,TUR,1962,8259,fao
+Türkiye,TUR,1963,10100,fao
+Türkiye,TUR,1964,10035,fao
+Türkiye,TUR,1965,13000,fao
+Türkiye,TUR,1966,23000,fao
+Türkiye,TUR,1967,21786,fao
+Türkiye,TUR,1968,27557,fao
+Türkiye,TUR,1969,34373,fao
+Türkiye,TUR,1970,33431,fao
+Türkiye,TUR,1971,33585,fao
+Türkiye,TUR,1972,46500,fao
+Türkiye,TUR,1973,43202,fao
+Türkiye,TUR,1974,42781,fao
+Türkiye,TUR,1975,55572,fao
+Türkiye,TUR,1976,59547,fao
+Türkiye,TUR,1977,77592,fao
+Türkiye,TUR,1978,86206,fao
+Türkiye,TUR,1979,101955,fao
+Türkiye,TUR,1980,95889,fao
+Türkiye,TUR,1981,42606,fao
+Türkiye,TUR,1982,68038,fao
+Türkiye,TUR,1983,100982,fao
+Türkiye,TUR,1984,113701,fao
+Türkiye,TUR,1985,137116,fao
+Türkiye,TUR,1986,148305,fao
+Türkiye,TUR,1987,140680,fao
+Türkiye,TUR,1988,153160,fao
+Türkiye,TUR,1989,136530,fao
+Türkiye,TUR,1990,122754,fao
+Türkiye,TUR,1991,136887,fao
+Türkiye,TUR,1992,144025,fao
+Türkiye,TUR,1993,117099,fao
+Türkiye,TUR,1994,134350,fao
+Türkiye,TUR,1995,102713,fao
+Türkiye,TUR,1996,114540,fao
+Türkiye,TUR,1997,139523,fao
+Türkiye,TUR,1998,177850,fao
+Türkiye,TUR,1999,199155,fao
+Türkiye,TUR,2000,138770,fao
+Türkiye,TUR,2001,142900,fao
+Türkiye,TUR,2002,135000,fao
+Türkiye,TUR,2003,153800,fao
+Türkiye,TUR,2004,201663,fao
+Türkiye,TUR,2005,217540,fao
+Türkiye,TUR,2006,201866,fao
+Türkiye,TUR,2007,206160,fao
+Türkiye,TUR,2008,198046,fao
+Türkiye,TUR,2009,198601,fao
+Türkiye,TUR,2010,235000,fao
+Türkiye,TUR,2011,221600,fao
+Türkiye,TUR,2012,225000,fao
+Türkiye,TUR,2013,212400,fao
+Türkiye,TUR,2014,226800,fao
+Türkiye,TUR,2015,239028,fao
+Türkiye,TUR,2016,243000,fao
+Türkiye,TUR,2017,234000,fao
+Türkiye,TUR,2018,270000,fao
+Türkiye,TUR,2019,261000,fao
+Türkiye,TUR,2020,255183,fao
+Türkiye,TUR,2021,282030,itc
+Türkiye,TUR,2022,245770,itc
+Türkiye,TUR,2023,264990,itc
+Türkiye,TUR,2024,275130,itc
+USSR (to 1991),SUN,1961,39592,fao
+USSR (to 1991),SUN,1962,43831,fao
+USSR (to 1991),SUN,1963,47922,fao
+USSR (to 1991),SUN,1964,47457,fao
+USSR (to 1991),SUN,1965,48265,fao
+USSR (to 1991),SUN,1966,58359,fao
+USSR (to 1991),SUN,1967,57477,fao
+USSR (to 1991),SUN,1968,56105,fao
+USSR (to 1991),SUN,1969,59927,fao
+USSR (to 1991),SUN,1970,66812,fao
+USSR (to 1991),SUN,1971,68649,fao
+USSR (to 1991),SUN,1972,71320,fao
+USSR (to 1991),SUN,1973,74823,fao
+USSR (to 1991),SUN,1974,80826,fao
+USSR (to 1991),SUN,1975,86314,fao
+USSR (to 1991),SUN,1976,91949,fao
+USSR (to 1991),SUN,1977,106355,fao
+USSR (to 1991),SUN,1978,111230,fao
+USSR (to 1991),SUN,1979,117600,fao
+USSR (to 1991),SUN,1980,129850,fao
+USSR (to 1991),SUN,1981,136500,fao
+USSR (to 1991),SUN,1982,140400,fao
+USSR (to 1991),SUN,1983,145500,fao
+USSR (to 1991),SUN,1984,151200,fao
+USSR (to 1991),SUN,1985,152400,fao
+USSR (to 1991),SUN,1986,146000,fao
+USSR (to 1991),SUN,1987,156000,fao
+USSR (to 1991),SUN,1988,122500,fao
+USSR (to 1991),SUN,1989,131000,fao
+USSR (to 1991),SUN,1990,135700,fao
+USSR (to 1991),SUN,1991,119700,fao
+Uganda,UGA,1961,5100,fao
+Uganda,UGA,1962,6319,fao
+Uganda,UGA,1963,6170,fao
+Uganda,UGA,1964,7615,fao
+Uganda,UGA,1965,8366,fao
+Uganda,UGA,1966,11215,fao
+Uganda,UGA,1967,11242,fao
+Uganda,UGA,1968,15163,fao
+Uganda,UGA,1969,17627,fao
+Uganda,UGA,1970,18200,fao
+Uganda,UGA,1971,18000,fao
+Uganda,UGA,1972,23400,fao
+Uganda,UGA,1973,22000,fao
+Uganda,UGA,1974,22000,fao
+Uganda,UGA,1975,18400,fao
+Uganda,UGA,1976,15400,fao
+Uganda,UGA,1977,15200,fao
+Uganda,UGA,1978,10900,fao
+Uganda,UGA,1979,1800,fao
+Uganda,UGA,1980,1500,fao
+Uganda,UGA,1981,1700,fao
+Uganda,UGA,1982,2580,fao
+Uganda,UGA,1983,3054,fao
+Uganda,UGA,1984,5214,fao
+Uganda,UGA,1985,5758,fao
+Uganda,UGA,1986,3335,fao
+Uganda,UGA,1987,3511,fao
+Uganda,UGA,1988,3512,fao
+Uganda,UGA,1989,4658,fao
+Uganda,UGA,1990,6704,fao
+Uganda,UGA,1991,8877,fao
+Uganda,UGA,1992,9504,fao
+Uganda,UGA,1993,12102,fao
+Uganda,UGA,1994,13462,fao
+Uganda,UGA,1995,12692,fao
+Uganda,UGA,1996,17418,fao
+Uganda,UGA,1997,21075,fao
+Uganda,UGA,1998,25901,fao
+Uganda,UGA,1999,24739,fao
+Uganda,UGA,2000,29236,fao
+Uganda,UGA,2001,32857,fao
+Uganda,UGA,2002,39476,fao
+Uganda,UGA,2003,36895,fao
+Uganda,UGA,2004,35706,fao
+Uganda,UGA,2005,37734,fao
+Uganda,UGA,2006,34334,fao
+Uganda,UGA,2007,44923,fao
+Uganda,UGA,2008,42808,fao
+Uganda,UGA,2009,48663,fao
+Uganda,UGA,2010,49182,fao
+Uganda,UGA,2011,35194,fao
+Uganda,UGA,2012,57939,fao
+Uganda,UGA,2013,60969,fao
+Uganda,UGA,2014,65373,fao
+Uganda,UGA,2015,58588,fao
+Uganda,UGA,2016,39299,fao
+Uganda,UGA,2017,50055,fao
+Uganda,UGA,2018,74247,fao
+Uganda,UGA,2019,60337,fao
+Uganda,UGA,2020,63411,fao
+Vietnam,VNM,1961,7500,fao
+Vietnam,VNM,1962,7500,fao
+Vietnam,VNM,1963,8000,fao
+Vietnam,VNM,1964,9000,fao
+Vietnam,VNM,1965,10600,fao
+Vietnam,VNM,1966,12000,fao
+Vietnam,VNM,1967,9000,fao
+Vietnam,VNM,1968,13500,fao
+Vietnam,VNM,1969,14000,fao
+Vietnam,VNM,1970,14700,fao
+Vietnam,VNM,1971,15500,fao
+Vietnam,VNM,1972,15000,fao
+Vietnam,VNM,1973,15000,fao
+Vietnam,VNM,1974,17000,fao
+Vietnam,VNM,1975,18000,fao
+Vietnam,VNM,1976,17251,fao
+Vietnam,VNM,1977,18299,fao
+Vietnam,VNM,1978,20040,fao
+Vietnam,VNM,1979,20297,fao
+Vietnam,VNM,1980,21014,fao
+Vietnam,VNM,1981,21178,fao
+Vietnam,VNM,1982,25378,fao
+Vietnam,VNM,1983,24609,fao
+Vietnam,VNM,1984,27428,fao
+Vietnam,VNM,1985,28222,fao
+Vietnam,VNM,1986,30006,fao
+Vietnam,VNM,1987,28990,fao
+Vietnam,VNM,1988,29743,fao
+Vietnam,VNM,1989,30218,fao
+Vietnam,VNM,1990,32247,fao
+Vietnam,VNM,1991,33100,fao
+Vietnam,VNM,1992,36200,fao
+Vietnam,VNM,1993,37700,fao
+Vietnam,VNM,1994,42000,fao
+Vietnam,VNM,1995,40200,fao
+Vietnam,VNM,1996,46800,fao
+Vietnam,VNM,1997,52200,fao
+Vietnam,VNM,1998,56600,fao
+Vietnam,VNM,1999,70300,fao
+Vietnam,VNM,2000,69900,fao
+Vietnam,VNM,2001,75700,fao
+Vietnam,VNM,2002,94200,fao
+Vietnam,VNM,2003,104300,fao
+Vietnam,VNM,2004,119500,fao
+Vietnam,VNM,2005,132525,fao
+Vietnam,VNM,2006,151000,fao
+Vietnam,VNM,2007,164000,fao
+Vietnam,VNM,2008,173500,fao
+Vietnam,VNM,2009,185700,fao
+Vietnam,VNM,2010,198466,fao
+Vietnam,VNM,2011,206600,fao
+Vietnam,VNM,2012,211500,fao
+Vietnam,VNM,2013,217700,fao
+Vietnam,VNM,2014,228360,fao
+Vietnam,VNM,2015,236000,fao
+Vietnam,VNM,2016,240000,fao
+Vietnam,VNM,2017,260000,fao
+Vietnam,VNM,2018,270000,fao
+Vietnam,VNM,2019,234052,fao
+Vietnam,VNM,2020,240493,fao
+Vietnam,VNM,2021,180000,itc
+Vietnam,VNM,2022,174000,itc
+Vietnam,VNM,2023,170000,itc
+Vietnam,VNM,2024,180400,itc
+Zambia,ZMB,1974,24,fao
+Zambia,ZMB,1975,68,fao
+Zambia,ZMB,1976,10,fao
+Zambia,ZMB,1977,82,fao
+Zambia,ZMB,1978,144,fao
+Zambia,ZMB,1979,249,fao
+Zambia,ZMB,1980,314,fao
+Zambia,ZMB,1981,363,fao
+Zambia,ZMB,1982,402,fao
+Zambia,ZMB,1983,444,fao
+Zambia,ZMB,1984,463,fao
+Zambia,ZMB,1985,375,fao
+Zambia,ZMB,1986,468,fao
+Zambia,ZMB,1987,373,fao
+Zambia,ZMB,1988,546,fao
+Zambia,ZMB,1989,550,fao
+Zambia,ZMB,1990,560,fao
+Zambia,ZMB,1991,570,fao
+Zambia,ZMB,1992,500,fao
+Zambia,ZMB,1993,530,fao
+Zambia,ZMB,1994,500,fao
+Zambia,ZMB,1995,450,fao
+Zambia,ZMB,1996,500,fao
+Zambia,ZMB,1997,550,fao
+Zambia,ZMB,1998,650,fao
+Zambia,ZMB,1999,1000,fao
+Zambia,ZMB,2000,850,fao
+Zambia,ZMB,2001,550,fao
+Zambia,ZMB,2002,750,fao
+Zambia,ZMB,2003,662,fao
+Zambia,ZMB,2004,800,fao
+Zambia,ZMB,2005,773,fao
+Zambia,ZMB,2006,750,fao
+Zambia,ZMB,2007,777,fao
+Zambia,ZMB,2008,801,fao
+Zambia,ZMB,2009,821,fao
+Zambia,ZMB,2010,843,fao
+Zambia,ZMB,2011,864,fao
+Zambia,ZMB,2012,900,fao
+Zambia,ZMB,2013,900,fao
+Zambia,ZMB,2014,909,fao
+Zambia,ZMB,2015,937,fao
+Zambia,ZMB,2016,952,fao
+Zambia,ZMB,2017,933,fao
+Zambia,ZMB,2018,941,fao
+Zambia,ZMB,2019,942,fao
+Zambia,ZMB,2020,938,fao
+Zimbabwe,ZWE,1961,1100,fao
+Zimbabwe,ZWE,1962,1300,fao
+Zimbabwe,ZWE,1963,1223,fao
+Zimbabwe,ZWE,1964,1392,fao
+Zimbabwe,ZWE,1965,1608,fao
+Zimbabwe,ZWE,1966,2268,fao
+Zimbabwe,ZWE,1967,2896,fao
+Zimbabwe,ZWE,1968,3008,fao
+Zimbabwe,ZWE,1969,3630,fao
+Zimbabwe,ZWE,1970,3945,fao
+Zimbabwe,ZWE,1971,4269,fao
+Zimbabwe,ZWE,1972,5202,fao
+Zimbabwe,ZWE,1973,4565,fao
+Zimbabwe,ZWE,1974,5893,fao
+Zimbabwe,ZWE,1975,6884,fao
+Zimbabwe,ZWE,1976,5983,fao
+Zimbabwe,ZWE,1977,6171,fao
+Zimbabwe,ZWE,1978,8630,fao
+Zimbabwe,ZWE,1979,9791,fao
+Zimbabwe,ZWE,1980,9661,fao
+Zimbabwe,ZWE,1981,9916,fao
+Zimbabwe,ZWE,1982,10602,fao
+Zimbabwe,ZWE,1983,10551,fao
+Zimbabwe,ZWE,1984,11807,fao
+Zimbabwe,ZWE,1985,14085,fao
+Zimbabwe,ZWE,1986,15679,fao
+Zimbabwe,ZWE,1987,14999,fao
+Zimbabwe,ZWE,1988,16612,fao
+Zimbabwe,ZWE,1989,17948,fao
+Zimbabwe,ZWE,1990,17000,fao
+Zimbabwe,ZWE,1991,14472,fao
+Zimbabwe,ZWE,1992,9214,fao
+Zimbabwe,ZWE,1993,14091,fao
+Zimbabwe,ZWE,1994,13437,fao
+Zimbabwe,ZWE,1995,15000,fao
+Zimbabwe,ZWE,1996,16822,fao
+Zimbabwe,ZWE,1997,17098,fao
+Zimbabwe,ZWE,1998,17500,fao
+Zimbabwe,ZWE,1999,18530,fao
+Zimbabwe,ZWE,2000,22000,fao
+Zimbabwe,ZWE,2001,22400,fao
+Zimbabwe,ZWE,2002,22439,fao
+Zimbabwe,ZWE,2003,22445,fao
+Zimbabwe,ZWE,2004,22405,fao
+Zimbabwe,ZWE,2005,22336,fao
+Zimbabwe,ZWE,2006,15864,fao
+Zimbabwe,ZWE,2007,14576,fao
+Zimbabwe,ZWE,2008,13395,fao
+Zimbabwe,ZWE,2009,12271,fao
+Zimbabwe,ZWE,2010,10938,fao
+Zimbabwe,ZWE,2011,9492,fao
+Zimbabwe,ZWE,2012,7986,fao
+Zimbabwe,ZWE,2013,6204,fao
+Zimbabwe,ZWE,2014,4717,fao
+Zimbabwe,ZWE,2015,2254,fao
+Zimbabwe,ZWE,2016,4391,fao
+Zimbabwe,ZWE,2017,3787,fao
+Zimbabwe,ZWE,2018,3478,fao
+Zimbabwe,ZWE,2019,3885,fao
+Zimbabwe,ZWE,2020,3717,fao
+World,WLD,1961,983785,fao
+World,WLD,1962,987350,fao
+World,WLD,1963,1021949,fao
+World,WLD,1964,1063199,fao
+World,WLD,1965,1092631,fao
+World,WLD,1966,1144061,fao
+World,WLD,1967,1161581,fao
+World,WLD,1968,1216441,fao
+World,WLD,1969,1238984,fao
+World,WLD,1970,1286757,fao
+World,WLD,1971,1308424,fao
+World,WLD,1972,1405269,fao
+World,WLD,1973,1465134,fao
+World,WLD,1974,1492601,fao
+World,WLD,1975,1549347,fao
+World,WLD,1976,1591872,fao
+World,WLD,1977,1771000,fao
+World,WLD,1978,1805757,fao
+World,WLD,1979,1834132,fao
+World,WLD,1980,1893527,fao
+World,WLD,1981,1885907,fao
+World,WLD,1982,1961781,fao
+World,WLD,1983,2062325,fao
+World,WLD,1984,2202636,fao
+World,WLD,1985,2307534,fao
+World,WLD,1986,2293102,fao
+World,WLD,1987,2358977,fao
+World,WLD,1988,2448034,fao
+World,WLD,1989,2472861,fao
+World,WLD,1990,2524670,fao
+World,WLD,1991,2755374,fao
+World,WLD,1992,2747611,fao
+World,WLD,1993,2880564,fao
+World,WLD,1994,2887674,fao
+World,WLD,1995,2862766,fao
+World,WLD,1996,2957706,fao
+World,WLD,1997,3063491,fao
+World,WLD,1998,3259674,fao
+World,WLD,1999,3355901,fao
+World,WLD,2000,3231082,fao
+World,WLD,2001,3358453,fao
+World,WLD,2002,3417963,fao
+World,WLD,2003,3485366,fao
+World,WLD,2004,3624609,fao
+World,WLD,2005,3874131,fao
+World,WLD,2006,3845559,fao
+World,WLD,2007,4164524,fao
+World,WLD,2008,4256470,fao
+World,WLD,2009,4300461,fao
+World,WLD,2010,4610749,fao
+World,WLD,2011,4827510,fao
+World,WLD,2012,5025690,fao
+World,WLD,2013,5309841,fao
+World,WLD,2014,5493989,fao
+World,WLD,2015,5761926,fao
+World,WLD,2016,6108836,fao
+World,WLD,2017,6299415,fao
+World,WLD,2018,6650602,fao
+World,WLD,2019,6761711,fao
+World,WLD,2020,7024042,fao

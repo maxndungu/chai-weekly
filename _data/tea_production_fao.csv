@@ -1,0 +1,2930 @@
+country,m49,year,production_t,basis,area_ha,production_flag
+Argentina,032,1961,6486,made_tea,13100,international
+Argentina,032,1962,5828,made_tea,13000,international
+Argentina,032,1963,11205,made_tea,16200,international
+Argentina,032,1964,12519,made_tea,18200,international
+Argentina,032,1965,13838,made_tea,19000,international
+Argentina,032,1966,18799,made_tea,23830,international
+Argentina,032,1967,17400,made_tea,20950,official
+Argentina,032,1968,18600,made_tea,28085,official
+Argentina,032,1969,21700,made_tea,28400,official
+Argentina,032,1970,25800,made_tea,31400,official
+Argentina,032,1971,29900,made_tea,32250,official
+Argentina,032,1972,30500,made_tea,29500,official
+Argentina,032,1973,29900,made_tea,29100,official
+Argentina,032,1974,32600,made_tea,35500,official
+Argentina,032,1975,38400,made_tea,37700,official
+Argentina,032,1976,30900,made_tea,36000,official
+Argentina,032,1977,39060,made_tea,41000,official
+Argentina,032,1978,23947,made_tea,43000,official
+Argentina,032,1979,29062,made_tea,40600,official
+Argentina,032,1980,35572,made_tea,40700,official
+Argentina,032,1981,22785,made_tea,31100,official
+Argentina,032,1982,33015,made_tea,35200,official
+Argentina,032,1983,40804,made_tea,39300,official
+Argentina,032,1984,41478,made_tea,41550,official
+Argentina,032,1985,46500,made_tea,42050,official
+Argentina,032,1986,41385,made_tea,36750,official
+Argentina,032,1987,45303,made_tea,36800,official
+Argentina,032,1988,31806,made_tea,34700,official
+Argentina,032,1989,49575,made_tea,38227,official
+Argentina,032,1990,50505,made_tea,38727,official
+Argentina,032,1991,200000,green_leaf,37192,estimated
+Argentina,032,1992,202000,green_leaf,37238,estimated
+Argentina,032,1993,238000,green_leaf,38270,estimated
+Argentina,032,1994,222000,green_leaf,37577,estimated
+Argentina,032,1995,224000,green_leaf,37364,estimated
+Argentina,032,1996,205000,green_leaf,37732,estimated
+Argentina,032,1997,235000,green_leaf,37557,estimated
+Argentina,032,1998,248000,green_leaf,37867,estimated
+Argentina,032,1999,243000,green_leaf,39600,estimated
+Argentina,032,2000,323000,green_leaf,38620,estimated
+Argentina,032,2001,309000,green_leaf,37420,estimated
+Argentina,032,2002,306000,green_leaf,36400,estimated
+Argentina,032,2003,304000,green_leaf,36380,estimated
+Argentina,032,2004,306000,green_leaf,36670,estimated
+Argentina,032,2005,295000,green_leaf,36335,estimated
+Argentina,032,2006,314000,green_leaf,38000,estimated
+Argentina,032,2007,330000,green_leaf,40000,estimated
+Argentina,032,2008,348000,green_leaf,39000,estimated
+Argentina,032,2009,312000,green_leaf,37201,estimated
+Argentina,032,2010,402000,green_leaf,37221,estimated
+Argentina,032,2011,404000,green_leaf,36989,estimated
+Argentina,032,2012,360000,green_leaf,39322,estimated
+Argentina,032,2013,350000,green_leaf,37499,estimated
+Argentina,032,2014,361000,green_leaf,38507,estimated
+Argentina,032,2015,359000,green_leaf,39600,estimated
+Argentina,032,2016,370000,green_leaf,39221,estimated
+Argentina,032,2017,354000,green_leaf,39221,estimated
+Argentina,032,2018,360000,green_leaf,39611,estimated
+Argentina,032,2019,362000,green_leaf,34130,estimated
+Argentina,032,2020,335225,green_leaf,32980,official
+Argentina,032,2021,336130,green_leaf,30100,official
+Argentina,032,2022,355144,green_leaf,30100,official
+Argentina,032,2023,344203,green_leaf,30100,official
+Argentina,032,2024,356753,green_leaf,29869,official
+Azerbaijan,031,1992,22600,green_leaf,8500,official
+Azerbaijan,031,1993,24000,green_leaf,9000,official
+Azerbaijan,031,1994,19400,green_leaf,9700,official
+Azerbaijan,031,1995,9410,green_leaf,9100,official
+Azerbaijan,031,1996,3030,green_leaf,7809,official
+Azerbaijan,031,1997,1634,green_leaf,7019,official
+Azerbaijan,031,1998,863,green_leaf,6474,official
+Azerbaijan,031,1999,2730,green_leaf,5381,official
+Azerbaijan,031,2000,1082,green_leaf,5391,official
+Azerbaijan,031,2001,1424,green_leaf,3865,official
+Azerbaijan,031,2002,1440,green_leaf,3664,official
+Azerbaijan,031,2003,944,green_leaf,3680,official
+Azerbaijan,031,2004,1048,green_leaf,3658,official
+Azerbaijan,031,2005,737,green_leaf,2915,official
+Azerbaijan,031,2006,655,green_leaf,1796,official
+Azerbaijan,031,2007,484,green_leaf,1717,official
+Azerbaijan,031,2008,323,green_leaf,1004,official
+Azerbaijan,031,2009,447,green_leaf,784,official
+Azerbaijan,031,2010,545,green_leaf,579,official
+Azerbaijan,031,2011,534,green_leaf,544,official
+Azerbaijan,031,2012,568,green_leaf,543,official
+Azerbaijan,031,2013,568,green_leaf,473,official
+Azerbaijan,031,2014,474,green_leaf,472,official
+Azerbaijan,031,2015,579,green_leaf,469,official
+Azerbaijan,031,2016,1016,green_leaf,664,official
+Azerbaijan,031,2017,775,green_leaf,642,official
+Azerbaijan,031,2018,869,green_leaf,663,official
+Azerbaijan,031,2019,929,green_leaf,631,official
+Azerbaijan,031,2020,932,green_leaf,620,official
+Azerbaijan,031,2021,1178,green_leaf,696,official
+Azerbaijan,031,2022,1001,green_leaf,823,official
+Azerbaijan,031,2023,1124,green_leaf,734,official
+Azerbaijan,031,2024,1202,green_leaf,740,imputed
+Bangladesh,050,1961,26542,made_tea,32000,official
+Bangladesh,050,1962,23387,made_tea,33000,official
+Bangladesh,050,1963,24599,made_tea,36000,official
+Bangladesh,050,1964,28233,made_tea,37000,official
+Bangladesh,050,1965,26592,made_tea,38000,official
+Bangladesh,050,1966,28600,made_tea,39765,official
+Bangladesh,050,1967,29300,made_tea,40975,official
+Bangladesh,050,1968,28500,made_tea,42443,official
+Bangladesh,050,1969,30318,made_tea,43302,official
+Bangladesh,050,1970,31295,made_tea,45604,official
+Bangladesh,050,1971,12007,made_tea,45604,official
+Bangladesh,050,1972,24068,made_tea,45604,official
+Bangladesh,050,1973,27216,made_tea,45604,official
+Bangladesh,050,1974,32169,made_tea,43162,official
+Bangladesh,050,1975,29388,made_tea,43161,official
+Bangladesh,050,1976,34097,made_tea,43099,official
+Bangladesh,050,1977,37022,made_tea,42998,official
+Bangladesh,050,1978,38305,made_tea,43183,official
+Bangladesh,050,1979,36610,made_tea,43183,official
+Bangladesh,050,1980,39708,made_tea,44091,official
+Bangladesh,050,1981,38772,made_tea,45165,official
+Bangladesh,050,1982,40937,made_tea,44543,official
+Bangladesh,050,1983,42202,made_tea,44575,official
+Bangladesh,050,1984,37900,made_tea,44553,official
+Bangladesh,050,1985,43285,made_tea,44610,official
+Bangladesh,050,1986,38000,made_tea,45700,official
+Bangladesh,050,1987,37595,made_tea,45785,official
+Bangladesh,050,1988,40611,made_tea,46424,official
+Bangladesh,050,1989,43581,made_tea,46470,official
+Bangladesh,050,1990,39075,made_tea,47418,official
+Bangladesh,050,1991,196000,green_leaf,47629,estimated
+Bangladesh,050,1992,198000,green_leaf,47657,estimated
+Bangladesh,050,1993,213000,green_leaf,47782,estimated
+Bangladesh,050,1994,220000,green_leaf,47786,estimated
+Bangladesh,050,1995,226000,green_leaf,47780,estimated
+Bangladesh,050,1996,207000,green_leaf,48015,estimated
+Bangladesh,050,1997,232000,green_leaf,48308,estimated
+Bangladesh,050,1998,220000,green_leaf,48598,estimated
+Bangladesh,050,1999,243000,green_leaf,48562,estimated
+Bangladesh,050,2000,200000,green_leaf,48600,estimated
+Bangladesh,050,2001,226000,green_leaf,48600,estimated
+Bangladesh,050,2002,252000,green_leaf,50990,estimated
+Bangladesh,050,2003,250000,green_leaf,50977,estimated
+Bangladesh,050,2004,250000,green_leaf,53215,estimated
+Bangladesh,050,2005,250000,green_leaf,53239,estimated
+Bangladesh,050,2006,252000,green_leaf,52609,estimated
+Bangladesh,050,2007,254000,green_leaf,57580,estimated
+Bangladesh,050,2008,257000,green_leaf,58005,estimated
+Bangladesh,050,2009,259000,green_leaf,59000,estimated
+Bangladesh,050,2010,261000,green_leaf,52236,estimated
+Bangladesh,050,2011,263000,green_leaf,56670,estimated
+Bangladesh,050,2012,272000,green_leaf,57900,estimated
+Bangladesh,050,2013,288000,green_leaf,58300,estimated
+Bangladesh,050,2014,277000,green_leaf,59925,estimated
+Bangladesh,050,2015,287000,green_leaf,60424,estimated
+Bangladesh,050,2016,280000,green_leaf,60059,estimated
+Bangladesh,050,2017,356000,green_leaf,53856,estimated
+Bangladesh,050,2018,340000,green_leaf,67043,estimated
+Bangladesh,050,2019,394000,green_leaf,54001,estimated
+Bangladesh,050,2020,412000,green_leaf,59364,estimated
+Bangladesh,050,2021,412000,green_leaf,54936,estimated
+Bangladesh,050,2022,426721,green_leaf,56646,official
+Bangladesh,050,2023,405252,green_leaf,57228,estimated
+Bangladesh,050,2024,437652,green_leaf,58754,estimated
+Bolivia (Plurinational State of),068,1961,100,made_tea,60,estimated
+Bolivia (Plurinational State of),068,1962,100,made_tea,60,estimated
+Bolivia (Plurinational State of),068,1963,110,made_tea,70,estimated
+Bolivia (Plurinational State of),068,1964,115,made_tea,70,estimated
+Bolivia (Plurinational State of),068,1965,120,made_tea,80,estimated
+Bolivia (Plurinational State of),068,1966,130,made_tea,80,estimated
+Bolivia (Plurinational State of),068,1967,128,made_tea,80,official
+Bolivia (Plurinational State of),068,1968,176,made_tea,110,official
+Bolivia (Plurinational State of),068,1969,225,made_tea,150,official
+Bolivia (Plurinational State of),068,1970,500,made_tea,250,official
+Bolivia (Plurinational State of),068,1971,627,made_tea,285,official
+Bolivia (Plurinational State of),068,1972,580,made_tea,290,official
+Bolivia (Plurinational State of),068,1973,570,made_tea,300,official
+Bolivia (Plurinational State of),068,1974,570,made_tea,300,official
+Bolivia (Plurinational State of),068,1975,650,made_tea,310,official
+Bolivia (Plurinational State of),068,1976,1130,made_tea,580,official
+Bolivia (Plurinational State of),068,1977,1100,made_tea,580,official
+Bolivia (Plurinational State of),068,1978,1455,made_tea,570,official
+Bolivia (Plurinational State of),068,1979,1566,made_tea,614,official
+Bolivia (Plurinational State of),068,1980,1440,made_tea,600,official
+Bolivia (Plurinational State of),068,1981,640,made_tea,400,estimated
+Bolivia (Plurinational State of),068,1982,480,made_tea,300,estimated
+Bolivia (Plurinational State of),068,1983,200,made_tea,130,international
+Bolivia (Plurinational State of),068,1984,290,made_tea,173,international
+Bolivia (Plurinational State of),068,1985,320,made_tea,189,international
+Bolivia (Plurinational State of),068,1986,335,made_tea,208,international
+Bolivia (Plurinational State of),068,1987,390,made_tea,230,international
+Bolivia (Plurinational State of),068,1988,430,made_tea,250,international
+Bolivia (Plurinational State of),068,1989,440,made_tea,270,international
+Bolivia (Plurinational State of),068,1990,500,made_tea,310,international
+Bolivia (Plurinational State of),068,1991,540,green_leaf,330,international
+Bolivia (Plurinational State of),068,1992,550,green_leaf,335,international
+Bolivia (Plurinational State of),068,1993,590,green_leaf,345,international
+Bolivia (Plurinational State of),068,1994,675,green_leaf,330,international
+Bolivia (Plurinational State of),068,1995,690,green_leaf,350,international
+Bolivia (Plurinational State of),068,1996,710,green_leaf,400,international
+Bolivia (Plurinational State of),068,1997,735,green_leaf,380,international
+Bolivia (Plurinational State of),068,1998,735,green_leaf,400,international
+Bolivia (Plurinational State of),068,1999,810,green_leaf,408,international
+Bolivia (Plurinational State of),068,2000,840,green_leaf,415,international
+Bolivia (Plurinational State of),068,2001,840,green_leaf,420,international
+Bolivia (Plurinational State of),068,2002,850,green_leaf,425,international
+Bolivia (Plurinational State of),068,2003,850,green_leaf,430,international
+Bolivia (Plurinational State of),068,2004,847,green_leaf,378,official
+Bolivia (Plurinational State of),068,2005,866,green_leaf,382,official
+Bolivia (Plurinational State of),068,2006,872,green_leaf,378,official
+Bolivia (Plurinational State of),068,2007,889,green_leaf,381,official
+Bolivia (Plurinational State of),068,2008,904,green_leaf,384,international
+Bolivia (Plurinational State of),068,2009,1245,green_leaf,265,official
+Bolivia (Plurinational State of),068,2010,1339,green_leaf,262,official
+Bolivia (Plurinational State of),068,2011,1356,green_leaf,263,official
+Bolivia (Plurinational State of),068,2012,1358,green_leaf,254,official
+Bolivia (Plurinational State of),068,2013,1339,green_leaf,269,official
+Bolivia (Plurinational State of),068,2014,1196,green_leaf,282,official
+Bolivia (Plurinational State of),068,2015,1243,green_leaf,290,official
+Bolivia (Plurinational State of),068,2016,1251,green_leaf,292,official
+Bolivia (Plurinational State of),068,2017,1177,green_leaf,272,official
+Bolivia (Plurinational State of),068,2018,1192,green_leaf,274,official
+Bolivia (Plurinational State of),068,2019,1203,green_leaf,274,official
+Bolivia (Plurinational State of),068,2020,1212,green_leaf,279,official
+Bolivia (Plurinational State of),068,2021,1209,green_leaf,279,official
+Bolivia (Plurinational State of),068,2022,1199,green_leaf,276,official
+Bolivia (Plurinational State of),068,2023,1206,green_leaf,278,official
+Bolivia (Plurinational State of),068,2024,1201,green_leaf,276,official
+Brazil,076,1961,5000,made_tea,4133,estimated
+Brazil,076,1962,5044,made_tea,4200,official
+Brazil,076,1963,6133,made_tea,4257,official
+Brazil,076,1964,6231,made_tea,4297,official
+Brazil,076,1965,6228,made_tea,4298,official
+Brazil,076,1966,3365,made_tea,4428,official
+Brazil,076,1967,3512,made_tea,4428,official
+Brazil,076,1968,3854,made_tea,4452,official
+Brazil,076,1969,4586,made_tea,4452,official
+Brazil,076,1970,5848,made_tea,4452,official
+Brazil,076,1971,6547,made_tea,4458,official
+Brazil,076,1972,6568,made_tea,4460,official
+Brazil,076,1973,6471,made_tea,4475,official
+Brazil,076,1974,6445,made_tea,4465,official
+Brazil,076,1975,7681,made_tea,5315,official
+Brazil,076,1976,7820,made_tea,5405,official
+Brazil,076,1977,7741,made_tea,5345,official
+Brazil,076,1978,9196,made_tea,4593,official
+Brazil,076,1979,9398,made_tea,4673,official
+Brazil,076,1980,9707,made_tea,4826,official
+Brazil,076,1981,10081,made_tea,5013,official
+Brazil,076,1982,11272,made_tea,5573,official
+Brazil,076,1983,9196,made_tea,5406,official
+Brazil,076,1984,10703,made_tea,5281,official
+Brazil,076,1985,10823,made_tea,5336,official
+Brazil,076,1986,12130,made_tea,5366,official
+Brazil,076,1987,12168,made_tea,5466,official
+Brazil,076,1988,9521,made_tea,5176,official
+Brazil,076,1989,9838,made_tea,5406,official
+Brazil,076,1990,9813,made_tea,5405,official
+Brazil,076,1991,44683,green_leaf,5535,official
+Brazil,076,1992,25890,green_leaf,3403,official
+Brazil,076,1993,45534,green_leaf,5787,official
+Brazil,076,1994,42182,green_leaf,4972,official
+Brazil,076,1995,37019,green_leaf,4532,official
+Brazil,076,1996,26585,green_leaf,3303,official
+Brazil,076,1997,26477,green_leaf,3286,official
+Brazil,076,1998,24977,green_leaf,3264,official
+Brazil,076,1999,30192,green_leaf,3917,official
+Brazil,076,2000,36131,green_leaf,3911,official
+Brazil,076,2001,35860,green_leaf,3842,official
+Brazil,076,2002,37364,green_leaf,3894,official
+Brazil,076,2003,23909,green_leaf,2843,official
+Brazil,076,2004,22997,green_leaf,2710,official
+Brazil,076,2005,19240,green_leaf,2520,official
+Brazil,076,2006,17430,green_leaf,2505,official
+Brazil,076,2007,4659,green_leaf,311,official
+Brazil,076,2008,20437,green_leaf,2597,official
+Brazil,076,2009,20153,green_leaf,2597,official
+Brazil,076,2010,18400,green_leaf,2399,official
+Brazil,076,2011,15140,green_leaf,2291,official
+Brazil,076,2012,6435,green_leaf,867,official
+Brazil,076,2013,3282,green_leaf,372,official
+Brazil,076,2014,6112,green_leaf,822,official
+Brazil,076,2015,2724,green_leaf,215,official
+Brazil,076,2016,1974,green_leaf,185,official
+Brazil,076,2017,1974,green_leaf,185,official
+Brazil,076,2018,2079,green_leaf,211,official
+Brazil,076,2019,2044,green_leaf,210,official
+Brazil,076,2020,2010,green_leaf,207,official
+Brazil,076,2021,2019,green_leaf,207,official
+Brazil,076,2022,2013,green_leaf,207,official
+Brazil,076,2023,2011,green_leaf,207,official
+Brazil,076,2024,2011,green_leaf,207,official
+Burundi,108,1961,0,made_tea,0,official
+Burundi,108,1962,0,made_tea,0,official
+Burundi,108,1963,0,made_tea,0,official
+Burundi,108,1964,0,made_tea,0,official
+Burundi,108,1965,0,made_tea,0,official
+Burundi,108,1966,0,made_tea,0,official
+Burundi,108,1967,18,made_tea,50,official
+Burundi,108,1968,79,made_tea,150,official
+Burundi,108,1969,92,made_tea,200,official
+Burundi,108,1970,147,made_tea,300,official
+Burundi,108,1971,325,made_tea,752,official
+Burundi,108,1972,487,made_tea,907,official
+Burundi,108,1973,656,made_tea,1064,official
+Burundi,108,1974,829,made_tea,1169,official
+Burundi,108,1975,819,made_tea,1914,official
+Burundi,108,1976,1278,made_tea,2090,official
+Burundi,108,1977,1457,made_tea,2766,official
+Burundi,108,1978,1431,made_tea,3101,official
+Burundi,108,1979,1612,made_tea,3200,official
+Burundi,108,1980,1454,made_tea,3650,official
+Burundi,108,1981,2271,made_tea,3729,official
+Burundi,108,1982,2178,made_tea,4034,official
+Burundi,108,1983,2334,made_tea,4549,official
+Burundi,108,1984,3445,made_tea,4796,official
+Burundi,108,1985,4145,made_tea,4857,official
+Burundi,108,1986,3598,made_tea,4872,official
+Burundi,108,1987,4382,made_tea,4872,official
+Burundi,108,1988,3721,made_tea,4680,official
+Burundi,108,1989,3862,made_tea,4819,official
+Burundi,108,1990,4040,made_tea,5218,official
+Burundi,108,1991,23100,green_leaf,6020,estimated
+Burundi,108,1992,26000,green_leaf,5585,estimated
+Burundi,108,1993,24000,green_leaf,6133,estimated
+Burundi,108,1994,30000,green_leaf,6613,estimated
+Burundi,108,1995,30400,green_leaf,7163,estimated
+Burundi,108,1996,24500,green_leaf,7526,estimated
+Burundi,108,1997,18000,green_leaf,7500,estimated
+Burundi,108,1998,29000,green_leaf,7500,estimated
+Burundi,108,1999,30000,green_leaf,7500,estimated
+Burundi,108,2000,34060,green_leaf,7906,official
+Burundi,108,2001,44400,green_leaf,8202,official
+Burundi,108,2002,33234,green_leaf,8487,official
+Burundi,108,2003,35225,green_leaf,8668,official
+Burundi,108,2004,37523,green_leaf,8783,official
+Burundi,108,2005,39335,green_leaf,8843,official
+Burundi,108,2006,30836,green_leaf,8213,official
+Burundi,108,2007,33676,green_leaf,8213,official
+Burundi,108,2008,31787,green_leaf,8213,official
+Burundi,108,2009,31828,green_leaf,8213,official
+Burundi,108,2010,37875,green_leaf,8213,official
+Burundi,108,2011,40853,green_leaf,8434,official
+Burundi,108,2012,42147,green_leaf,8792,official
+Burundi,108,2013,41817,green_leaf,9070,official
+Burundi,108,2014,53893,green_leaf,9180,official
+Burundi,108,2015,53802,green_leaf,10000,official
+Burundi,108,2016,52701,green_leaf,12029,official
+Burundi,108,2017,49280,green_leaf,8883,official
+Burundi,108,2018,53604,green_leaf,7772,official
+Burundi,108,2019,54043,green_leaf,8389,official
+Burundi,108,2020,54618,green_leaf,9073,official
+Burundi,108,2021,52747,green_leaf,8657,official
+Burundi,108,2022,51477,green_leaf,8202,official
+Burundi,108,2023,50145,green_leaf,7857,official
+Burundi,108,2024,52047,green_leaf,8021,imputed
+Cameroon,120,1961,83,made_tea,744,international
+Cameroon,120,1962,136,made_tea,742,international
+Cameroon,120,1963,242,made_tea,758,international
+Cameroon,120,1964,341,made_tea,760,international
+Cameroon,120,1965,517,made_tea,725,international
+Cameroon,120,1966,650,made_tea,725,international
+Cameroon,120,1967,750,made_tea,737,international
+Cameroon,120,1968,1071,made_tea,791,international
+Cameroon,120,1969,978,made_tea,789,international
+Cameroon,120,1970,1028,made_tea,730,official
+Cameroon,120,1971,1110,made_tea,737,official
+Cameroon,120,1972,1296,made_tea,747,official
+Cameroon,120,1973,1471,made_tea,747,official
+Cameroon,120,1974,935,made_tea,747,official
+Cameroon,120,1975,1572,made_tea,753,official
+Cameroon,120,1976,1003,made_tea,941,official
+Cameroon,120,1977,1730,made_tea,933,official
+Cameroon,120,1978,1800,made_tea,949,official
+Cameroon,120,1979,2107,made_tea,913,official
+Cameroon,120,1980,1882,made_tea,921,official
+Cameroon,120,1981,2131,made_tea,1233,official
+Cameroon,120,1982,1800,made_tea,979,official
+Cameroon,120,1983,2104,made_tea,955,official
+Cameroon,120,1984,2279,made_tea,1035,official
+Cameroon,120,1985,2114,made_tea,960,official
+Cameroon,120,1986,2516,made_tea,980,official
+Cameroon,120,1987,2564,made_tea,1000,official
+Cameroon,120,1988,2500,made_tea,1000,estimated
+Cameroon,120,1989,2452,made_tea,1400,official
+Cameroon,120,1990,2900,made_tea,1400,official
+Cameroon,120,1991,13100,green_leaf,1400,estimated
+Cameroon,120,1992,14900,green_leaf,1512,estimated
+Cameroon,120,1993,17100,green_leaf,1512,estimated
+Cameroon,120,1994,15500,green_leaf,1512,estimated
+Cameroon,120,1995,17000,green_leaf,1512,estimated
+Cameroon,120,1996,15600,green_leaf,1512,estimated
+Cameroon,120,1997,18200,green_leaf,1512,estimated
+Cameroon,120,1998,17100,green_leaf,1512,estimated
+Cameroon,120,1999,19900,green_leaf,1547,estimated
+Cameroon,120,2000,17200,green_leaf,1546,estimated
+Cameroon,120,2001,18200,green_leaf,1550,estimated
+Cameroon,120,2002,17300,green_leaf,1600,estimated
+Cameroon,120,2003,14700,green_leaf,1550,estimated
+Cameroon,120,2004,18413,green_leaf,1685,imputed
+Cameroon,120,2005,18698,green_leaf,1713,imputed
+Cameroon,120,2006,18962,green_leaf,1739,imputed
+Cameroon,120,2007,19238,green_leaf,1766,imputed
+Cameroon,120,2008,19506,green_leaf,1797,imputed
+Cameroon,120,2009,19780,green_leaf,1829,imputed
+Cameroon,120,2010,20050,green_leaf,1860,imputed
+Cameroon,120,2011,20322,green_leaf,1893,imputed
+Cameroon,120,2012,21003,green_leaf,1972,imputed
+Cameroon,120,2013,21287,green_leaf,2015,imputed
+Cameroon,120,2014,21640,green_leaf,2056,imputed
+Cameroon,120,2015,21963,green_leaf,2095,imputed
+Cameroon,120,2016,22281,green_leaf,2133,imputed
+Cameroon,120,2017,22597,green_leaf,2171,imputed
+Cameroon,120,2018,22912,green_leaf,2210,imputed
+Cameroon,120,2019,23227,green_leaf,2249,imputed
+Cameroon,120,2020,23418,green_leaf,2248,imputed
+Cameroon,120,2021,23900,green_leaf,2279,estimated
+Cameroon,120,2022,24300,green_leaf,2324,estimated
+Cameroon,120,2023,24600,green_leaf,2357,estimated
+Cameroon,120,2024,24684,green_leaf,2369,imputed
+"China, Taiwan Province of",158,1961,18064,made_tea,44979,official
+"China, Taiwan Province of",158,1962,19753,made_tea,36043,official
+"China, Taiwan Province of",158,1963,21104,made_tea,36308,official
+"China, Taiwan Province of",158,1964,18306,made_tea,35236,official
+"China, Taiwan Province of",158,1965,20730,made_tea,34607,official
+"China, Taiwan Province of",158,1966,21510,made_tea,34516,official
+"China, Taiwan Province of",158,1967,24403,made_tea,34495,official
+"China, Taiwan Province of",158,1968,24418,made_tea,34278,official
+"China, Taiwan Province of",158,1969,26248,made_tea,33704,official
+"China, Taiwan Province of",158,1970,27468,made_tea,33253,official
+"China, Taiwan Province of",158,1971,26984,made_tea,32957,official
+"China, Taiwan Province of",158,1972,26229,made_tea,32529,official
+"China, Taiwan Province of",158,1973,28639,made_tea,32068,official
+"China, Taiwan Province of",158,1974,24173,made_tea,31825,official
+"China, Taiwan Province of",158,1975,26092,made_tea,31449,official
+"China, Taiwan Province of",158,1976,24758,made_tea,29900,official
+"China, Taiwan Province of",158,1977,26303,made_tea,27732,official
+"China, Taiwan Province of",158,1978,25854,made_tea,27725,official
+"China, Taiwan Province of",158,1979,27055,made_tea,27259,official
+"China, Taiwan Province of",158,1980,24479,made_tea,27134,official
+"China, Taiwan Province of",158,1981,25223,made_tea,26516,official
+"China, Taiwan Province of",158,1982,24051,made_tea,25995,official
+"China, Taiwan Province of",158,1983,24308,made_tea,26341,official
+"China, Taiwan Province of",158,1984,24365,made_tea,26531,official
+"China, Taiwan Province of",158,1985,23203,made_tea,24313,official
+"China, Taiwan Province of",158,1986,23890,made_tea,24180,official
+"China, Taiwan Province of",158,1987,25578,made_tea,22663,official
+"China, Taiwan Province of",158,1988,23557,made_tea,23426,official
+"China, Taiwan Province of",158,1989,22130,made_tea,22253,official
+"China, Taiwan Province of",158,1990,22299,made_tea,22695,official
+"China, Taiwan Province of",158,1991,92500,green_leaf,22370,estimated
+"China, Taiwan Province of",158,1992,86500,green_leaf,20806,estimated
+"China, Taiwan Province of",158,1993,84500,green_leaf,21140,estimated
+"China, Taiwan Province of",158,1994,100500,green_leaf,19701,estimated
+"China, Taiwan Province of",158,1995,86000,green_leaf,19932,estimated
+"China, Taiwan Province of",158,1996,96700,green_leaf,19955,estimated
+"China, Taiwan Province of",158,1997,97400,green_leaf,19622,estimated
+"China, Taiwan Province of",158,1998,92200,green_leaf,19299,estimated
+"China, Taiwan Province of",158,1999,84000,green_leaf,19142,estimated
+"China, Taiwan Province of",158,2000,79300,green_leaf,18512,estimated
+"China, Taiwan Province of",158,2001,73500,green_leaf,17902,estimated
+"China, Taiwan Province of",158,2002,73800,green_leaf,18300,estimated
+"China, Taiwan Province of",158,2003,74100,green_leaf,18200,estimated
+"China, Taiwan Province of",158,2004,70700,green_leaf,17462,estimated
+"China, Taiwan Province of",158,2005,63200,green_leaf,17064,estimated
+"China, Taiwan Province of",158,2006,61800,green_leaf,16740,estimated
+"China, Taiwan Province of",158,2007,55700,green_leaf,15732,estimated
+"China, Taiwan Province of",158,2008,74300,green_leaf,15174,estimated
+"China, Taiwan Province of",158,2009,48900,green_leaf,14873,estimated
+"China, Taiwan Province of",158,2010,47500,green_leaf,14530,estimated
+"China, Taiwan Province of",158,2011,48800,green_leaf,14100,estimated
+"China, Taiwan Province of",158,2012,38000,green_leaf,13308,estimated
+"China, Taiwan Province of",158,2013,37700,green_leaf,11818,estimated
+"China, Taiwan Province of",158,2014,37400,green_leaf,11785,estimated
+"China, Taiwan Province of",158,2015,37400,green_leaf,11620,estimated
+"China, Taiwan Province of",158,2016,36000,green_leaf,11606,estimated
+"China, Taiwan Province of",158,2017,35900,green_leaf,11400,estimated
+"China, Taiwan Province of",158,2018,40600,green_leaf,11660,estimated
+"China, Taiwan Province of",158,2019,40700,green_leaf,11775,estimated
+"China, Taiwan Province of",158,2020,39800,green_leaf,11851,estimated
+"China, Taiwan Province of",158,2021,27400,green_leaf,11890,estimated
+"China, Taiwan Province of",158,2022,39100,green_leaf,11821,estimated
+"China, Taiwan Province of",158,2023,33000,green_leaf,11994,estimated
+"China, Taiwan Province of",158,2024,38000,green_leaf,13730,estimated
+"China, mainland",156,1961,79000,made_tea,310000,official
+"China, mainland",156,1962,74000,made_tea,315000,official
+"China, mainland",156,1963,84000,made_tea,320000,official
+"China, mainland",156,1964,92000,made_tea,330000,official
+"China, mainland",156,1965,100600,made_tea,335000,official
+"China, mainland",156,1966,106000,made_tea,340000,official
+"China, mainland",156,1967,113000,made_tea,380000,official
+"China, mainland",156,1968,118000,made_tea,410000,official
+"China, mainland",156,1969,122000,made_tea,440000,official
+"China, mainland",156,1970,136000,made_tea,486000,official
+"China, mainland",156,1971,153000,made_tea,550000,official
+"China, mainland",156,1972,170000,made_tea,600000,official
+"China, mainland",156,1973,182000,made_tea,700000,official
+"China, mainland",156,1974,198000,made_tea,800000,official
+"China, mainland",156,1975,211000,made_tea,900000,official
+"China, mainland",156,1976,233500,made_tea,962900,official
+"China, mainland",156,1977,252100,made_tea,1014100,official
+"China, mainland",156,1978,268000,made_tea,1047700,official
+"China, mainland",156,1979,277100,made_tea,1050600,official
+"China, mainland",156,1980,304000,made_tea,1041000,official
+"China, mainland",156,1981,343000,made_tea,1061000,official
+"China, mainland",156,1982,397000,made_tea,1097000,official
+"China, mainland",156,1983,400550,made_tea,1104733,official
+"China, mainland",156,1984,414000,made_tea,1077400,official
+"China, mainland",156,1985,432337,made_tea,810000,official
+"China, mainland",156,1986,460468,made_tea,795000,official
+"China, mainland",156,1987,509000,made_tea,810000,official
+"China, mainland",156,1988,545416,made_tea,820000,official
+"China, mainland",156,1989,534876,made_tea,825000,official
+"China, mainland",156,1990,540070,made_tea,820000,official
+"China, mainland",156,1991,2354700,green_leaf,829000,estimated
+"China, mainland",156,1992,2434000,green_leaf,840300,estimated
+"China, mainland",156,1993,2609000,green_leaf,879600,estimated
+"China, mainland",156,1994,2558500,green_leaf,884000,estimated
+"China, mainland",156,1995,2559000,green_leaf,868200,estimated
+"China, mainland",156,1996,2580000,green_leaf,871480,estimated
+"China, mainland",156,1997,2667000,green_leaf,868950,estimated
+"China, mainland",156,1998,2891000,green_leaf,859690,estimated
+"China, mainland",156,1999,2939000,green_leaf,909400,estimated
+"China, mainland",156,2000,2971000,green_leaf,879500,estimated
+"China, mainland",156,2001,3051000,green_leaf,887760,estimated
+"China, mainland",156,2002,3241000,green_leaf,894800,estimated
+"China, mainland",156,2003,3340000,green_leaf,925200,estimated
+"China, mainland",156,2004,3631000,green_leaf,982700,estimated
+"China, mainland",156,2005,4065000,green_leaf,1041500,estimated
+"China, mainland",156,2006,4470000,green_leaf,1100300,estimated
+"China, mainland",156,2007,5067000,green_leaf,1200850,estimated
+"China, mainland",156,2008,5468000,green_leaf,1283200,estimated
+"China, mainland",156,2009,5909000,green_leaf,1327980,estimated
+"China, mainland",156,2010,6600000,green_leaf,1426060,estimated
+"China, mainland",156,2011,7400000,green_leaf,1644660,estimated
+"China, mainland",156,2012,8100000,green_leaf,1735200,estimated
+"China, mainland",156,2013,8700000,green_leaf,1857200,estimated
+"China, mainland",156,2014,9500000,green_leaf,1984229,estimated
+"China, mainland",156,2015,10320000,green_leaf,2115800,estimated
+"China, mainland",156,2016,10480000,green_leaf,2380197,estimated
+"China, mainland",156,2017,11100000,green_leaf,2848720,estimated
+"China, mainland",156,2018,11800000,green_leaf,2985800,estimated
+"China, mainland",156,2019,12600000,green_leaf,3185311,estimated
+"China, mainland",156,2020,13200000,green_leaf,3216660,estimated
+"China, mainland",156,2021,14200000,green_leaf,2701620,estimated
+"China, mainland",156,2022,14530800,green_leaf,3392710,estimated
+"China, mainland",156,2023,15396000,green_leaf,3429950,estimated
+"China, mainland",156,2024,16260900,green_leaf,3631693,estimated
+Colombia,170,1999,100,green_leaf,50,estimated
+Colombia,170,2000,72,green_leaf,60,official
+Colombia,170,2001,120,green_leaf,60,official
+Colombia,170,2002,120,green_leaf,60,official
+Colombia,170,2003,120,green_leaf,60,official
+Colombia,170,2004,120,green_leaf,60,official
+Colombia,170,2005,120,green_leaf,60,official
+Colombia,170,2006,120,green_leaf,60,official
+Colombia,170,2007,120,green_leaf,60,official
+Colombia,170,2008,120,green_leaf,60,official
+Colombia,170,2009,134,green_leaf,55,official
+Colombia,170,2010,134,green_leaf,55,official
+Colombia,170,2011,134,green_leaf,55,official
+Colombia,170,2012,134,green_leaf,56,official
+Colombia,170,2013,125,green_leaf,52,official
+Colombia,170,2014,144,green_leaf,60,official
+Colombia,170,2015,149,green_leaf,62,official
+Colombia,170,2016,149,green_leaf,62,official
+Colombia,170,2017,132,green_leaf,55,official
+Colombia,170,2018,157,green_leaf,65,official
+Colombia,170,2019,159,green_leaf,66,official
+Colombia,170,2020,170,green_leaf,69,official
+Colombia,170,2021,223,green_leaf,89,official
+Colombia,170,2022,226,green_leaf,90,official
+Colombia,170,2023,226,green_leaf,90,official
+Colombia,170,2024,226,green_leaf,90,official
+Democratic Republic of the Congo,180,1961,7000,made_tea,8653,official
+Democratic Republic of the Congo,180,1962,8000,made_tea,10768,official
+Democratic Republic of the Congo,180,1963,8500,made_tea,10270,official
+Democratic Republic of the Congo,180,1964,7000,made_tea,7295,official
+Democratic Republic of the Congo,180,1965,8500,made_tea,8000,official
+Democratic Republic of the Congo,180,1966,10000,made_tea,8400,official
+Democratic Republic of the Congo,180,1967,5000,made_tea,7575,official
+Democratic Republic of the Congo,180,1968,8000,made_tea,8170,official
+Democratic Republic of the Congo,180,1969,7859,made_tea,8766,official
+Democratic Republic of the Congo,180,1970,7301,made_tea,10500,official
+Democratic Republic of the Congo,180,1971,7500,made_tea,10400,official
+Democratic Republic of the Congo,180,1972,7600,made_tea,10600,official
+Democratic Republic of the Congo,180,1973,7100,made_tea,10500,official
+Democratic Republic of the Congo,180,1974,6700,made_tea,10400,official
+Democratic Republic of the Congo,180,1975,6700,made_tea,10400,official
+Democratic Republic of the Congo,180,1976,6800,made_tea,10300,official
+Democratic Republic of the Congo,180,1977,6700,made_tea,10300,official
+Democratic Republic of the Congo,180,1978,6700,made_tea,10300,official
+Democratic Republic of the Congo,180,1979,6000,made_tea,10000,official
+Democratic Republic of the Congo,180,1980,6100,made_tea,10200,official
+Democratic Republic of the Congo,180,1981,4810,made_tea,10500,official
+Democratic Republic of the Congo,180,1982,4481,made_tea,10800,official
+Democratic Republic of the Congo,180,1983,4748,made_tea,11200,official
+Democratic Republic of the Congo,180,1984,4955,made_tea,11500,official
+Democratic Republic of the Congo,180,1985,4840,made_tea,11500,official
+Democratic Republic of the Congo,180,1986,3380,made_tea,7230,official
+Democratic Republic of the Congo,180,1987,2030,made_tea,8700,official
+Democratic Republic of the Congo,180,1988,3100,made_tea,8200,official
+Democratic Republic of the Congo,180,1989,3100,made_tea,9210,official
+Democratic Republic of the Congo,180,1990,3114,made_tea,8420,official
+Democratic Republic of the Congo,180,1991,3250,green_leaf,8550,official
+Democratic Republic of the Congo,180,1992,3120,green_leaf,9000,official
+Democratic Republic of the Congo,180,1993,3352,green_leaf,9000,official
+Democratic Republic of the Congo,180,1994,3405,green_leaf,6000,official
+Democratic Republic of the Congo,180,1995,3418,green_leaf,5100,official
+Democratic Republic of the Congo,180,1996,3431,green_leaf,5130,official
+Democratic Republic of the Congo,180,1997,3433,green_leaf,4975,official
+Democratic Republic of the Congo,180,1998,3328,green_leaf,4823,official
+Democratic Republic of the Congo,180,1999,2183,green_leaf,3600,official
+Democratic Republic of the Congo,180,2000,1879,green_leaf,2723,official
+Democratic Republic of the Congo,180,2001,1615,green_leaf,2341,official
+Democratic Republic of the Congo,180,2002,1389,green_leaf,2013,official
+Democratic Republic of the Congo,180,2003,1560,green_leaf,3000,official
+Democratic Republic of the Congo,180,2004,1560,green_leaf,4216,official
+Democratic Republic of the Congo,180,2005,1570,green_leaf,4243,official
+Democratic Republic of the Congo,180,2006,1760,green_leaf,4757,official
+Democratic Republic of the Congo,180,2007,1760,green_leaf,5351,official
+Democratic Republic of the Congo,180,2008,2220,green_leaf,6000,official
+Democratic Republic of the Congo,180,2009,2489,green_leaf,6730,official
+Democratic Republic of the Congo,180,2010,2479,green_leaf,7549,official
+Democratic Republic of the Congo,180,2011,3129,green_leaf,10915,official
+Democratic Republic of the Congo,180,2012,2889,green_leaf,12000,imputed
+Democratic Republic of the Congo,180,2013,1911,green_leaf,10000,imputed
+Democratic Republic of the Congo,180,2014,1656,green_leaf,10500,imputed
+Democratic Republic of the Congo,180,2015,1447,green_leaf,11000,imputed
+Democratic Republic of the Congo,180,2016,1272,green_leaf,11500,imputed
+Democratic Republic of the Congo,180,2017,1152,green_leaf,12000,imputed
+Democratic Republic of the Congo,180,2018,4407,green_leaf,39099,official
+Democratic Republic of the Congo,180,2019,4427,green_leaf,37946,official
+Democratic Republic of the Congo,180,2020,4446,green_leaf,39724,official
+Democratic Republic of the Congo,180,2021,3891,green_leaf,34285,imputed
+Democratic Republic of the Congo,180,2022,2798,green_leaf,24650,imputed
+Democratic Republic of the Congo,180,2023,2365,green_leaf,20833,imputed
+Democratic Republic of the Congo,180,2024,2014,green_leaf,33157,imputed
+Ecuador,218,1961,40,made_tea,170,estimated
+Ecuador,218,1962,40,made_tea,170,estimated
+Ecuador,218,1963,40,made_tea,170,estimated
+Ecuador,218,1964,45,made_tea,180,estimated
+Ecuador,218,1965,50,made_tea,200,estimated
+Ecuador,218,1966,50,made_tea,200,estimated
+Ecuador,218,1967,50,made_tea,200,estimated
+Ecuador,218,1968,100,made_tea,400,official
+Ecuador,218,1969,200,made_tea,700,official
+Ecuador,218,1970,300,made_tea,800,official
+Ecuador,218,1971,400,made_tea,900,official
+Ecuador,218,1972,600,made_tea,1100,official
+Ecuador,218,1973,975,made_tea,1487,official
+Ecuador,218,1974,1200,made_tea,1200,official
+Ecuador,218,1975,1012,made_tea,1420,official
+Ecuador,218,1976,1400,made_tea,1470,official
+Ecuador,218,1977,1306,made_tea,1300,official
+Ecuador,218,1978,1700,made_tea,1322,official
+Ecuador,218,1979,1456,made_tea,1340,official
+Ecuador,218,1980,1457,made_tea,1420,official
+Ecuador,218,1981,1653,made_tea,1410,official
+Ecuador,218,1982,1653,made_tea,1410,official
+Ecuador,218,1983,520,made_tea,284,official
+Ecuador,218,1984,552,made_tea,500,official
+Ecuador,218,1985,857,made_tea,600,official
+Ecuador,218,1986,725,made_tea,650,official
+Ecuador,218,1987,1308,made_tea,400,official
+Ecuador,218,1988,900,made_tea,412,official
+Ecuador,218,1989,990,made_tea,470,official
+Ecuador,218,1990,2428,made_tea,960,official
+Ecuador,218,1991,10300,green_leaf,830,estimated
+Ecuador,218,1992,8300,green_leaf,820,estimated
+Ecuador,218,1993,8000,green_leaf,850,estimated
+Ecuador,218,1994,9100,green_leaf,880,estimated
+Ecuador,218,1995,9000,green_leaf,800,estimated
+Ecuador,218,1996,10800,green_leaf,930,estimated
+Ecuador,218,1997,9300,green_leaf,927,estimated
+Ecuador,218,1998,8100,green_leaf,920,estimated
+Ecuador,218,1999,8100,green_leaf,920,estimated
+Ecuador,218,2000,6400,green_leaf,815,estimated
+Ecuador,218,2001,7000,green_leaf,845,estimated
+Ecuador,218,2002,4700,green_leaf,920,estimated
+Ecuador,218,2003,5800,green_leaf,925,estimated
+Ecuador,218,2004,6100,green_leaf,530,estimated
+Ecuador,218,2005,9100,green_leaf,870,estimated
+Ecuador,218,2006,9367,green_leaf,957,imputed
+Ecuador,218,2007,9749,green_leaf,1010,imputed
+Ecuador,218,2008,10078,green_leaf,1053,imputed
+Ecuador,218,2009,10359,green_leaf,1088,imputed
+Ecuador,218,2010,10596,green_leaf,1114,imputed
+Ecuador,218,2011,10796,green_leaf,1133,imputed
+Ecuador,218,2012,11292,green_leaf,1353,imputed
+Ecuador,218,2013,10017,green_leaf,1087,imputed
+Ecuador,218,2014,10004,green_leaf,1081,imputed
+Ecuador,218,2015,9997,green_leaf,1072,imputed
+Ecuador,218,2016,9962,green_leaf,1059,imputed
+Ecuador,218,2017,9923,green_leaf,1046,imputed
+Ecuador,218,2018,9892,green_leaf,1035,imputed
+Ecuador,218,2019,9875,green_leaf,1027,imputed
+Ecuador,218,2020,10023,green_leaf,1056,imputed
+Ecuador,218,2021,10200,green_leaf,1105,estimated
+Ecuador,218,2022,10264,green_leaf,1105,estimated
+Ecuador,218,2023,10267,green_leaf,1106,estimated
+Ecuador,218,2024,10235,green_leaf,1104,imputed
+El Salvador,222,1990,20,made_tea,10,estimated
+El Salvador,222,1991,20,green_leaf,10,estimated
+El Salvador,222,1992,10,green_leaf,5,estimated
+El Salvador,222,1993,20,green_leaf,10,estimated
+El Salvador,222,1994,50,green_leaf,25,estimated
+El Salvador,222,1995,50,green_leaf,25,estimated
+El Salvador,222,1996,70,green_leaf,35,estimated
+El Salvador,222,1997,130,green_leaf,65,estimated
+El Salvador,222,1998,200,green_leaf,100,estimated
+El Salvador,222,1999,200,green_leaf,100,estimated
+El Salvador,222,2000,300,green_leaf,150,estimated
+El Salvador,222,2001,350,green_leaf,175,estimated
+El Salvador,222,2002,250,green_leaf,125,estimated
+El Salvador,222,2003,250,green_leaf,125,estimated
+El Salvador,222,2004,260,green_leaf,130,estimated
+El Salvador,222,2005,270,green_leaf,135,estimated
+El Salvador,222,2006,270,green_leaf,135,estimated
+El Salvador,222,2007,500,green_leaf,250,estimated
+El Salvador,222,2008,2200,green_leaf,1100,estimated
+El Salvador,222,2009,500,green_leaf,250,estimated
+El Salvador,222,2010,450,green_leaf,225,estimated
+El Salvador,222,2011,450,green_leaf,225,estimated
+El Salvador,222,2012,460,green_leaf,230,estimated
+El Salvador,222,2013,475,green_leaf,250,estimated
+El Salvador,222,2014,646,green_leaf,385,imputed
+El Salvador,222,2015,718,green_leaf,362,imputed
+El Salvador,222,2016,620,green_leaf,313,imputed
+El Salvador,222,2017,693,green_leaf,356,imputed
+El Salvador,222,2018,677,green_leaf,343,estimated
+El Salvador,222,2019,663,green_leaf,337,estimated
+El Salvador,222,2020,678,green_leaf,346,estimated
+El Salvador,222,2021,673,green_leaf,342,estimated
+El Salvador,222,2022,671,green_leaf,342,estimated
+El Salvador,222,2023,674,green_leaf,343,estimated
+El Salvador,222,2024,673,green_leaf,342,estimated
+Ethiopia,231,1993,30000,green_leaf,2650,estimated
+Ethiopia,231,1994,36033,green_leaf,3240,imputed
+Ethiopia,231,1995,36348,green_leaf,3269,imputed
+Ethiopia,231,1996,36683,green_leaf,3301,imputed
+Ethiopia,231,1997,37047,green_leaf,3334,imputed
+Ethiopia,231,1998,37449,green_leaf,3372,imputed
+Ethiopia,231,1999,38207,green_leaf,3441,imputed
+Ethiopia,231,2000,39194,green_leaf,3531,imputed
+Ethiopia,231,2001,40180,green_leaf,3621,imputed
+Ethiopia,231,2002,41163,green_leaf,3711,imputed
+Ethiopia,231,2003,42144,green_leaf,3801,imputed
+Ethiopia,231,2004,43122,green_leaf,3891,imputed
+Ethiopia,231,2005,44074,green_leaf,3978,imputed
+Ethiopia,231,2006,38650,green_leaf,3489,imputed
+Ethiopia,231,2007,39425,green_leaf,3560,imputed
+Ethiopia,231,2008,40196,green_leaf,3631,imputed
+Ethiopia,231,2009,41864,green_leaf,3783,imputed
+Ethiopia,231,2010,43744,green_leaf,3955,imputed
+Ethiopia,231,2011,46070,green_leaf,4167,imputed
+Ethiopia,231,2012,48883,green_leaf,4423,imputed
+Ethiopia,231,2013,51861,green_leaf,4694,imputed
+Ethiopia,231,2014,55006,green_leaf,4980,imputed
+Ethiopia,231,2015,58313,green_leaf,5281,imputed
+Ethiopia,231,2016,61852,green_leaf,5591,official
+Ethiopia,231,2017,62262,green_leaf,5625,official
+Ethiopia,231,2018,74981,green_leaf,6952,official
+Ethiopia,231,2019,74842,green_leaf,6945,official
+Ethiopia,231,2020,75946,green_leaf,7071,official
+Ethiopia,231,2021,75948,green_leaf,7070,official
+Ethiopia,231,2022,77710,green_leaf,7215,imputed
+Ethiopia,231,2023,76535,green_leaf,7119,estimated
+Ethiopia,231,2024,76731,green_leaf,7135,estimated
+Ethiopia PDR,230,1961,0,made_tea,0,official
+Ethiopia PDR,230,1962,0,made_tea,0,official
+Ethiopia PDR,230,1963,0,made_tea,0,official
+Ethiopia PDR,230,1964,0,made_tea,0,official
+Ethiopia PDR,230,1965,0,made_tea,0,official
+Ethiopia PDR,230,1966,0,made_tea,0,official
+Ethiopia PDR,230,1967,0,made_tea,0,official
+Ethiopia PDR,230,1968,0,made_tea,0,official
+Ethiopia PDR,230,1969,0,made_tea,0,official
+Ethiopia PDR,230,1970,0,made_tea,0,official
+Ethiopia PDR,230,1971,0,made_tea,0,official
+Ethiopia PDR,230,1972,0,made_tea,0,official
+Ethiopia PDR,230,1973,0,made_tea,0,official
+Ethiopia PDR,230,1974,0,made_tea,0,official
+Ethiopia PDR,230,1975,0,made_tea,0,official
+Ethiopia PDR,230,1976,15,made_tea,42,official
+Ethiopia PDR,230,1977,27,made_tea,76,official
+Ethiopia PDR,230,1978,38,made_tea,100,official
+Ethiopia PDR,230,1979,59,made_tea,213,official
+Ethiopia PDR,230,1980,81,made_tea,227,official
+Ethiopia PDR,230,1981,115,made_tea,322,official
+Ethiopia PDR,230,1982,162,made_tea,450,estimated
+Ethiopia PDR,230,1983,209,made_tea,585,estimated
+Ethiopia PDR,230,1984,256,made_tea,720,estimated
+Ethiopia PDR,230,1985,303,made_tea,850,estimated
+Ethiopia PDR,230,1986,350,made_tea,980,estimated
+Ethiopia PDR,230,1987,380,made_tea,1000,estimated
+Ethiopia PDR,230,1988,397,made_tea,1130,official
+Ethiopia PDR,230,1989,450,made_tea,1342,estimated
+Ethiopia PDR,230,1990,500,made_tea,1500,estimated
+Ethiopia PDR,230,1991,550,green_leaf,1700,estimated
+Ethiopia PDR,230,1992,600,green_leaf,1850,estimated
+Georgia,268,1992,50000,green_leaf,58000,international
+Georgia,268,1993,77000,green_leaf,33700,estimated
+Georgia,268,1994,61700,green_leaf,51000,official
+Georgia,268,1995,38500,green_leaf,45800,official
+Georgia,268,1996,34000,green_leaf,45800,official
+Georgia,268,1997,33200,green_leaf,31600,official
+Georgia,268,1998,47234,green_leaf,27743,official
+Georgia,268,1999,60330,green_leaf,24000,official
+Georgia,268,2000,24000,green_leaf,24000,official
+Georgia,268,2001,23000,green_leaf,19213,official
+Georgia,268,2002,24000,green_leaf,19892,official
+Georgia,268,2003,24457,green_leaf,20410,official
+Georgia,268,2004,20000,green_leaf,20000,official
+Georgia,268,2005,22755,green_leaf,22800,official
+Georgia,268,2006,6600,green_leaf,6500,official
+Georgia,268,2007,7500,green_leaf,7026,official
+Georgia,268,2008,5400,green_leaf,6300,official
+Georgia,268,2009,5800,green_leaf,5692,official
+Georgia,268,2010,3500,green_leaf,3247,official
+Georgia,268,2011,2900,green_leaf,2617,official
+Georgia,268,2012,2600,green_leaf,2360,official
+Georgia,268,2013,3300,green_leaf,3013,official
+Georgia,268,2014,1800,green_leaf,1653,official
+Georgia,268,2015,2100,green_leaf,1940,official
+Georgia,268,2016,3000,green_leaf,2789,official
+Georgia,268,2017,2300,green_leaf,2172,official
+Georgia,268,2018,1700,green_leaf,1616,official
+Georgia,268,2019,2000,green_leaf,1905,official
+Georgia,268,2020,2400,green_leaf,2327,official
+Georgia,268,2021,2900,green_leaf,2785,official
+Georgia,268,2022,2500,green_leaf,2366,official
+Georgia,268,2023,2300,green_leaf,2184,official
+Georgia,268,2024,2600,green_leaf,2477,official
+Guatemala,320,1961,0,made_tea,,official
+Guatemala,320,1962,0,made_tea,,official
+Guatemala,320,1963,0,made_tea,,official
+Guatemala,320,1964,0,made_tea,,official
+Guatemala,320,1965,0,made_tea,,official
+Guatemala,320,1966,0,made_tea,,official
+Guatemala,320,1967,0,made_tea,,official
+Guatemala,320,1968,0,made_tea,,official
+Guatemala,320,1969,0,made_tea,,official
+Guatemala,320,1970,0,made_tea,,official
+Guatemala,320,1971,0,made_tea,,official
+Guatemala,320,1972,40,made_tea,,estimated
+Guatemala,320,1973,50,made_tea,,estimated
+Guatemala,320,1974,60,made_tea,,estimated
+Guatemala,320,1975,100,made_tea,,estimated
+Guatemala,320,1976,130,made_tea,,estimated
+Guatemala,320,1977,60,made_tea,,estimated
+Guatemala,320,1978,70,made_tea,,estimated
+Guatemala,320,1979,110,made_tea,,estimated
+Guatemala,320,1980,100,made_tea,,estimated
+Guatemala,320,1981,130,made_tea,,international
+Guatemala,320,1982,100,made_tea,,international
+Guatemala,320,1983,130,made_tea,,international
+Guatemala,320,1984,130,made_tea,,international
+Guatemala,320,1985,220,made_tea,250,international
+Guatemala,320,1986,330,made_tea,350,international
+Guatemala,320,1987,339,made_tea,370,official
+Guatemala,320,1988,433,made_tea,460,official
+Guatemala,320,1989,457,made_tea,500,official
+Guatemala,320,1990,460,made_tea,520,estimated
+Guatemala,320,1991,450,green_leaf,480,estimated
+Guatemala,320,1992,432,green_leaf,468,imputed
+Guatemala,320,1993,440,green_leaf,450,estimated
+Guatemala,320,1994,432,green_leaf,474,imputed
+Guatemala,320,1995,450,green_leaf,502,estimated
+Guatemala,320,1996,429,green_leaf,486,imputed
+Guatemala,320,1997,425,green_leaf,486,imputed
+Guatemala,320,1998,433,green_leaf,467,imputed
+Guatemala,320,1999,460,green_leaf,460,estimated
+Guatemala,320,2000,450,green_leaf,450,estimated
+Guatemala,320,2001,103,green_leaf,368,official
+Guatemala,320,2002,143,green_leaf,486,official
+Guatemala,320,2003,176,green_leaf,549,official
+Guatemala,320,2004,147,green_leaf,493,official
+Guatemala,320,2005,266,green_leaf,913,official
+Guatemala,320,2006,281,green_leaf,905,official
+Guatemala,320,2007,649,green_leaf,2013,official
+Guatemala,320,2008,679,green_leaf,1244,official
+Guatemala,320,2009,639,green_leaf,1244,official
+Guatemala,320,2010,628,green_leaf,1244,official
+Guatemala,320,2011,432,green_leaf,1034,official
+Guatemala,320,2012,420,green_leaf,1027,official
+Guatemala,320,2013,437,green_leaf,1076,official
+Guatemala,320,2014,526,green_leaf,1188,official
+Guatemala,320,2015,553,green_leaf,1188,official
+Guatemala,320,2016,558,green_leaf,1188,official
+Guatemala,320,2017,546,green_leaf,1145,estimated
+Guatemala,320,2018,552,green_leaf,1174,estimated
+Guatemala,320,2019,528,green_leaf,1153,imputed
+Guatemala,320,2020,542,green_leaf,1123,estimated
+Guatemala,320,2021,541,green_leaf,1150,estimated
+Guatemala,320,2022,537,green_leaf,1142,estimated
+Guatemala,320,2023,540,green_leaf,1139,estimated
+Guatemala,320,2024,539,green_leaf,1144,estimated
+India,356,1961,354397,made_tea,331229,official
+India,356,1962,346736,made_tea,332524,official
+India,356,1963,346413,made_tea,334036,official
+India,356,1964,372486,made_tea,341762,official
+India,356,1965,366374,made_tea,345256,official
+India,356,1966,375983,made_tea,347653,official
+India,356,1967,384759,made_tea,351065,official
+India,356,1968,402489,made_tea,353359,official
+India,356,1969,393588,made_tea,354133,official
+India,356,1970,418517,made_tea,356516,official
+India,356,1971,435468,made_tea,358675,official
+India,356,1972,455996,made_tea,360108,official
+India,356,1973,471952,made_tea,361663,official
+India,356,1974,489475,made_tea,363303,official
+India,356,1975,487137,made_tea,364275,official
+India,356,1976,511817,made_tea,366276,official
+India,356,1977,556267,made_tea,369184,official
+India,356,1978,563846,made_tea,373747,official
+India,356,1979,543776,made_tea,378447,official
+India,356,1980,569550,made_tea,381891,official
+India,356,1981,559583,made_tea,384242,official
+India,356,1982,560732,made_tea,394999,official
+India,356,1983,581484,made_tea,396066,official
+India,356,1984,639864,made_tea,398453,official
+India,356,1985,656162,made_tea,399929,official
+India,356,1986,620803,made_tea,411673,official
+India,356,1987,620800,made_tea,411700,official
+India,356,1988,674300,made_tea,414200,official
+India,356,1989,701100,made_tea,414300,official
+India,356,1990,688100,made_tea,415000,official
+India,356,1991,3132000,green_leaf,421000,estimated
+India,356,1992,3279000,green_leaf,444000,estimated
+India,356,1993,3060000,green_leaf,448000,estimated
+India,356,1994,3274000,green_leaf,426000,estimated
+India,356,1995,3278000,green_leaf,428000,estimated
+India,356,1996,3287000,green_leaf,427000,estimated
+India,356,1997,3391000,green_leaf,431000,estimated
+India,356,1998,3522000,green_leaf,434000,estimated
+India,356,1999,3800000,green_leaf,474000,estimated
+India,356,2000,3591000,green_leaf,490000,estimated
+India,356,2001,3683000,green_leaf,504000,estimated
+India,356,2002,3713000,green_leaf,510000,estimated
+India,356,2003,3678000,green_leaf,516000,estimated
+India,356,2004,3822000,green_leaf,520000,estimated
+India,356,2005,3943000,green_leaf,521000,estimated
+India,356,2006,4126000,green_leaf,555611,estimated
+India,356,2007,4230000,green_leaf,567020,estimated
+India,356,2008,4291000,green_leaf,578458,estimated
+India,356,2009,4229000,green_leaf,579000,estimated
+India,356,2010,4309000,green_leaf,579000,estimated
+India,356,2011,4763000,green_leaf,600000,estimated
+India,356,2012,4935000,green_leaf,605000,estimated
+India,356,2013,5256000,green_leaf,563980,estimated
+India,356,2014,5249000,green_leaf,604000,estimated
+India,356,2015,5361000,green_leaf,566660,estimated
+India,356,2016,5437000,green_leaf,577480,estimated
+India,356,2017,5761000,green_leaf,621610,estimated
+India,356,2018,5820000,green_leaf,621990,estimated
+India,356,2019,6044000,green_leaf,637223,estimated
+India,356,2020,5485000,green_leaf,572021,estimated
+India,356,2021,6090000,green_leaf,627712,estimated
+India,356,2022,6231000,green_leaf,633750,estimated
+India,356,2023,6033531,green_leaf,607373,estimated
+India,356,2024,6156031,green_leaf,613416,imputed
+Indonesia,360,1961,77100,made_tea,107000,official
+Indonesia,360,1962,80400,made_tea,107000,official
+Indonesia,360,1963,75600,made_tea,105000,official
+Indonesia,360,1964,74400,made_tea,102000,official
+Indonesia,360,1965,79800,made_tea,101000,official
+Indonesia,360,1966,71700,made_tea,94000,official
+Indonesia,360,1967,76020,made_tea,91000,official
+Indonesia,360,1968,75574,made_tea,87000,official
+Indonesia,360,1969,71570,made_tea,86000,official
+Indonesia,360,1970,64166,made_tea,89000,official
+Indonesia,360,1971,60922,made_tea,79000,official
+Indonesia,360,1972,59924,made_tea,76000,official
+Indonesia,360,1973,67584,made_tea,80000,official
+Indonesia,360,1974,65017,made_tea,84000,official
+Indonesia,360,1975,70089,made_tea,84000,official
+Indonesia,360,1976,73765,made_tea,82000,official
+Indonesia,360,1977,82928,made_tea,79079,official
+Indonesia,360,1978,92110,made_tea,81334,official
+Indonesia,360,1979,97217,made_tea,84400,official
+Indonesia,360,1980,106175,made_tea,86178,official
+Indonesia,360,1981,109135,made_tea,85023,official
+Indonesia,360,1982,92732,made_tea,86000,official
+Indonesia,360,1983,110317,made_tea,89000,official
+Indonesia,360,1984,126443,made_tea,60108,official
+Indonesia,360,1985,127464,made_tea,61854,official
+Indonesia,360,1986,129481,made_tea,97773,official
+Indonesia,360,1987,126096,made_tea,98463,official
+Indonesia,360,1988,133800,made_tea,87064,official
+Indonesia,360,1989,141374,made_tea,89935,official
+Indonesia,360,1990,155919,made_tea,94510,official
+Indonesia,360,1991,607000,green_leaf,94647,estimated
+Indonesia,360,1992,668000,green_leaf,94666,estimated
+Indonesia,360,1993,717000,green_leaf,102542,estimated
+Indonesia,360,1994,605000,green_leaf,109939,estimated
+Indonesia,360,1995,670000,green_leaf,113426,estimated
+Indonesia,360,1996,723000,green_leaf,114592,estimated
+Indonesia,360,1997,668000,green_leaf,114287,estimated
+Indonesia,360,1998,725000,green_leaf,109745,estimated
+Indonesia,360,1999,700000,green_leaf,110000,estimated
+Indonesia,360,2000,707000,green_leaf,121200,estimated
+Indonesia,360,2001,726000,green_leaf,115416,estimated
+Indonesia,360,2002,718000,green_leaf,115803,estimated
+Indonesia,360,2003,738000,green_leaf,116200,estimated
+Indonesia,360,2004,727000,green_leaf,116200,estimated
+Indonesia,360,2005,727000,green_leaf,142847,estimated
+Indonesia,360,2006,639000,green_leaf,111055,estimated
+Indonesia,360,2007,655000,green_leaf,133734,estimated
+Indonesia,360,2008,669000,green_leaf,127712,estimated
+Indonesia,360,2009,682000,green_leaf,123506,estimated
+Indonesia,360,2010,654000,green_leaf,124573,estimated
+Indonesia,360,2011,637000,green_leaf,122458,estimated
+Indonesia,360,2012,624000,green_leaf,121607,estimated
+Indonesia,360,2013,634000,green_leaf,122494,estimated
+Indonesia,360,2014,671000,green_leaf,118889,estimated
+Indonesia,360,2015,577000,green_leaf,114891,estimated
+Indonesia,360,2016,626000,green_leaf,117268,estimated
+Indonesia,360,2017,636000,green_leaf,113307,estimated
+Indonesia,360,2018,610000,green_leaf,109938,estimated
+Indonesia,360,2019,560000,green_leaf,111270,estimated
+Indonesia,360,2020,626000,green_leaf,112308,estimated
+Indonesia,360,2021,663000,green_leaf,102078,estimated
+Indonesia,360,2022,658000,green_leaf,101281,estimated
+Indonesia,360,2023,613000,green_leaf,97561,estimated
+Indonesia,360,2024,658000,green_leaf,103605,estimated
+Iran (Islamic Republic of),364,1961,10922,made_tea,19979,official
+Iran (Islamic Republic of),364,1962,11934,made_tea,19979,official
+Iran (Islamic Republic of),364,1963,12479,made_tea,21154,official
+Iran (Islamic Republic of),364,1964,10450,made_tea,23256,official
+Iran (Islamic Republic of),364,1965,12608,made_tea,25079,official
+Iran (Islamic Republic of),364,1966,12000,made_tea,25500,official
+Iran (Islamic Republic of),364,1967,16000,made_tea,27200,official
+Iran (Islamic Republic of),364,1968,20000,made_tea,27400,official
+Iran (Islamic Republic of),364,1969,19000,made_tea,27000,official
+Iran (Islamic Republic of),364,1970,19500,made_tea,27000,official
+Iran (Islamic Republic of),364,1971,16000,made_tea,20210,official
+Iran (Islamic Republic of),364,1972,22000,made_tea,24600,official
+Iran (Islamic Republic of),364,1973,23000,made_tea,27000,official
+Iran (Islamic Republic of),364,1974,24000,made_tea,27000,official
+Iran (Islamic Republic of),364,1975,18000,made_tea,20000,official
+Iran (Islamic Republic of),364,1976,19800,made_tea,27000,official
+Iran (Islamic Republic of),364,1977,26100,made_tea,26000,official
+Iran (Islamic Republic of),364,1978,27000,made_tea,27000,official
+Iran (Islamic Republic of),364,1979,30600,made_tea,26000,official
+Iran (Islamic Republic of),364,1980,32200,made_tea,31000,official
+Iran (Islamic Republic of),364,1981,33100,made_tea,32000,official
+Iran (Islamic Republic of),364,1982,35265,made_tea,30000,official
+Iran (Islamic Republic of),364,1983,36258,made_tea,34718,official
+Iran (Islamic Republic of),364,1984,43372,made_tea,30726,official
+Iran (Islamic Republic of),364,1985,33120,made_tea,31516,official
+Iran (Islamic Republic of),364,1986,40532,made_tea,34516,official
+Iran (Islamic Republic of),364,1987,43026,made_tea,32016,official
+Iran (Islamic Republic of),364,1988,43268,made_tea,32016,official
+Iran (Islamic Republic of),364,1989,27808,made_tea,32016,official
+Iran (Islamic Republic of),364,1990,37091,made_tea,31959,official
+Iran (Islamic Republic of),364,1991,248234,green_leaf,31959,imputed
+Iran (Islamic Republic of),364,1992,245338,green_leaf,31559,official
+Iran (Islamic Republic of),364,1993,254288,green_leaf,31513,official
+Iran (Islamic Republic of),364,1994,248228,green_leaf,32545,official
+Iran (Islamic Republic of),364,1995,242642,green_leaf,34384,official
+Iran (Islamic Republic of),364,1996,277188,green_leaf,34642,official
+Iran (Islamic Republic of),364,1997,309342,green_leaf,34650,official
+Iran (Islamic Republic of),364,1998,270443,green_leaf,34640,official
+Iran (Islamic Republic of),364,1999,275381,green_leaf,33755,official
+Iran (Islamic Republic of),364,2000,222652,green_leaf,31058,official
+Iran (Islamic Republic of),364,2001,228393,green_leaf,31455,official
+Iran (Islamic Republic of),364,2002,212538,green_leaf,31484,official
+Iran (Islamic Republic of),364,2003,212168,green_leaf,31486,official
+Iran (Islamic Republic of),364,2004,134179,green_leaf,31458,official
+Iran (Islamic Republic of),364,2005,197270,green_leaf,32067,official
+Iran (Islamic Republic of),364,2006,112802,green_leaf,18024,official
+Iran (Islamic Republic of),364,2007,162737,green_leaf,26600,official
+Iran (Islamic Republic of),364,2008,141160,green_leaf,24109,official
+Iran (Islamic Republic of),364,2009,130714,green_leaf,20141,official
+Iran (Islamic Republic of),364,2010,121041,green_leaf,29464,official
+Iran (Islamic Republic of),364,2011,112084,green_leaf,27284,official
+Iran (Islamic Republic of),364,2012,103890,green_leaf,27062,official
+Iran (Islamic Republic of),364,2013,97475,green_leaf,26899,official
+Iran (Islamic Republic of),364,2014,72277,green_leaf,18620,official
+Iran (Islamic Republic of),364,2015,196957,green_leaf,18620,official
+Iran (Islamic Republic of),364,2016,123662,green_leaf,18147,imputed
+Iran (Islamic Republic of),364,2017,100580,green_leaf,15848,official
+Iran (Islamic Republic of),364,2018,99245,green_leaf,16390,official
+Iran (Islamic Republic of),364,2019,90832,green_leaf,16229,official
+Iran (Islamic Republic of),364,2020,94075,green_leaf,15706,imputed
+Iran (Islamic Republic of),364,2021,113899,green_leaf,16512,official
+Iran (Islamic Republic of),364,2022,93479,green_leaf,16512,official
+Iran (Islamic Republic of),364,2023,81285,green_leaf,14238,imputed
+Iran (Islamic Republic of),364,2024,79997,green_leaf,13263,imputed
+Japan,392,1961,81527,made_tea,48900,official
+Japan,392,1962,77608,made_tea,49200,official
+Japan,392,1963,81239,made_tea,49000,official
+Japan,392,1964,83427,made_tea,48800,official
+Japan,392,1965,77571,made_tea,48600,official
+Japan,392,1966,83290,made_tea,48500,official
+Japan,392,1967,85284,made_tea,48600,official
+Japan,392,1968,85112,made_tea,49000,official
+Japan,392,1969,89804,made_tea,49800,official
+Japan,392,1970,91398,made_tea,51700,official
+Japan,392,1971,93111,made_tea,54000,official
+Japan,392,1972,95072,made_tea,55600,official
+Japan,392,1973,101181,made_tea,57300,official
+Japan,392,1974,95238,made_tea,58400,official
+Japan,392,1975,105448,made_tea,59200,official
+Japan,392,1976,100097,made_tea,59600,official
+Japan,392,1977,102301,made_tea,59700,official
+Japan,392,1978,104738,made_tea,60000,official
+Japan,392,1979,98000,made_tea,60700,official
+Japan,392,1980,102300,made_tea,61000,official
+Japan,392,1981,102300,made_tea,61000,official
+Japan,392,1982,98500,made_tea,61000,official
+Japan,392,1983,102700,made_tea,61000,official
+Japan,392,1984,92500,made_tea,60800,official
+Japan,392,1985,95500,made_tea,60600,official
+Japan,392,1986,93600,made_tea,60200,official
+Japan,392,1987,96300,made_tea,59900,official
+Japan,392,1988,89800,made_tea,59600,official
+Japan,392,1989,90500,made_tea,59000,official
+Japan,392,1990,89900,made_tea,58500,official
+Japan,392,1991,382000,green_leaf,57600,estimated
+Japan,392,1992,400000,green_leaf,56700,estimated
+Japan,392,1993,400000,green_leaf,55700,estimated
+Japan,392,1994,375000,green_leaf,54500,estimated
+Japan,392,1995,369000,green_leaf,53700,estimated
+Japan,392,1996,385000,green_leaf,52700,estimated
+Japan,392,1997,397000,green_leaf,51800,estimated
+Japan,392,1998,359000,green_leaf,51200,estimated
+Japan,392,1999,385000,green_leaf,50700,estimated
+Japan,392,2000,370000,green_leaf,50400,estimated
+Japan,392,2001,370000,green_leaf,50100,estimated
+Japan,392,2002,365000,green_leaf,44800,estimated
+Japan,392,2003,400000,green_leaf,49500,estimated
+Japan,392,2004,438000,green_leaf,49100,estimated
+Japan,392,2005,435000,green_leaf,48700,estimated
+Japan,392,2006,399000,green_leaf,48500,estimated
+Japan,392,2007,409000,green_leaf,48200,estimated
+Japan,392,2008,420000,green_leaf,48000,estimated
+Japan,392,2009,374000,green_leaf,47300,estimated
+Japan,392,2010,370000,green_leaf,46800,estimated
+Japan,392,2011,357000,green_leaf,46200,estimated
+Japan,392,2012,373000,green_leaf,45900,estimated
+Japan,392,2013,369000,green_leaf,45400,estimated
+Japan,392,2014,363000,green_leaf,44800,estimated
+Japan,392,2015,346000,green_leaf,44000,estimated
+Japan,392,2016,349000,green_leaf,43100,estimated
+Japan,392,2017,357000,green_leaf,42400,estimated
+Japan,392,2018,383600,green_leaf,41500,official
+Japan,392,2019,357400,green_leaf,40600,official
+Japan,392,2020,328800,green_leaf,39100,official
+Japan,392,2021,332200,green_leaf,38000,official
+Japan,392,2022,331100,green_leaf,36900,official
+Japan,392,2023,320000,green_leaf,36000,official
+Japan,392,2024,319300,green_leaf,35100,official
+Kenya,404,1961,12641,made_tea,17756,official
+Kenya,404,1962,16428,made_tea,19893,official
+Kenya,404,1963,18082,made_tea,21448,official
+Kenya,404,1964,20241,made_tea,23062,official
+Kenya,404,1965,19823,made_tea,24756,official
+Kenya,404,1966,25419,made_tea,27340,official
+Kenya,404,1967,22812,made_tea,30078,official
+Kenya,404,1968,29764,made_tea,33562,official
+Kenya,404,1969,36060,made_tea,36524,official
+Kenya,404,1970,41077,made_tea,40278,official
+Kenya,404,1971,36290,made_tea,43400,official
+Kenya,404,1972,53322,made_tea,49763,official
+Kenya,404,1973,56578,made_tea,54818,official
+Kenya,404,1974,53440,made_tea,58419,official
+Kenya,404,1975,56730,made_tea,61542,official
+Kenya,404,1976,61984,made_tea,65957,official
+Kenya,404,1977,86291,made_tea,68392,official
+Kenya,404,1978,93373,made_tea,72048,official
+Kenya,404,1979,99275,made_tea,74300,official
+Kenya,404,1980,89893,made_tea,76541,official
+Kenya,404,1981,90941,made_tea,78896,official
+Kenya,404,1982,95600,made_tea,81082,official
+Kenya,404,1983,119300,made_tea,82142,official
+Kenya,404,1984,116200,made_tea,83350,official
+Kenya,404,1985,147100,made_tea,83719,official
+Kenya,404,1986,143317,made_tea,84400,official
+Kenya,404,1987,155808,made_tea,85400,official
+Kenya,404,1988,164030,made_tea,86800,official
+Kenya,404,1989,180602,made_tea,87473,official
+Kenya,404,1990,197000,made_tea,96981,official
+Kenya,404,1991,885000,green_leaf,100626,estimated
+Kenya,404,1992,818000,green_leaf,101845,estimated
+Kenya,404,1993,918000,green_leaf,104860,estimated
+Kenya,404,1994,911000,green_leaf,110221,estimated
+Kenya,404,1995,1063000,green_leaf,112556,estimated
+Kenya,404,1996,1118000,green_leaf,113680,estimated
+Kenya,404,1997,960000,green_leaf,113892,estimated
+Kenya,404,1998,1279000,green_leaf,118650,estimated
+Kenya,404,1999,1081000,green_leaf,118540,estimated
+Kenya,404,2000,1027000,green_leaf,120390,estimated
+Kenya,404,2001,1281000,green_leaf,124290,estimated
+Kenya,404,2002,1248000,green_leaf,131450,estimated
+Kenya,404,2003,1277000,green_leaf,131450,estimated
+Kenya,404,2004,1411000,green_leaf,136700,estimated
+Kenya,404,2005,1428000,green_leaf,141300,estimated
+Kenya,404,2006,1350000,green_leaf,147080,estimated
+Kenya,404,2007,1607000,green_leaf,149190,estimated
+Kenya,404,2008,1503000,green_leaf,157700,estimated
+Kenya,404,2009,1366000,green_leaf,158294,estimated
+Kenya,404,2010,1735000,green_leaf,171916,estimated
+Kenya,404,2011,1643000,green_leaf,187855,estimated
+Kenya,404,2012,1606000,green_leaf,190600,estimated
+Kenya,404,2013,1880000,green_leaf,198600,estimated
+Kenya,404,2014,1935000,green_leaf,203006,estimated
+Kenya,404,2015,1735000,green_leaf,209400,estimated
+Kenya,404,2016,2057000,green_leaf,218500,estimated
+Kenya,404,2017,1912000,green_leaf,232700,estimated
+Kenya,404,2018,2143000,green_leaf,236200,estimated
+Kenya,404,2019,1995000,green_leaf,269400,estimated
+Kenya,404,2020,3050000,green_leaf,269400,estimated
+Kenya,404,2021,2430900,green_leaf,219000,official
+Kenya,404,2022,2418200,green_leaf,225800,official
+Kenya,404,2023,2577800,green_leaf,227800,official
+Kenya,404,2024,2687200,green_leaf,228400,official
+Lao People's Democratic Republic,418,1961,0,made_tea,0,official
+Lao People's Democratic Republic,418,1962,0,made_tea,0,official
+Lao People's Democratic Republic,418,1963,0,made_tea,0,official
+Lao People's Democratic Republic,418,1964,0,made_tea,0,official
+Lao People's Democratic Republic,418,1965,0,made_tea,0,official
+Lao People's Democratic Republic,418,1966,0,made_tea,0,official
+Lao People's Democratic Republic,418,1967,0,made_tea,0,official
+Lao People's Democratic Republic,418,1968,0,made_tea,0,official
+Lao People's Democratic Republic,418,1969,0,made_tea,0,official
+Lao People's Democratic Republic,418,1970,0,made_tea,0,official
+Lao People's Democratic Republic,418,1971,0,made_tea,0,official
+Lao People's Democratic Republic,418,1972,0,made_tea,0,official
+Lao People's Democratic Republic,418,1973,0,made_tea,0,official
+Lao People's Democratic Republic,418,1974,0,made_tea,0,official
+Lao People's Democratic Republic,418,1975,0,made_tea,0,official
+Lao People's Democratic Republic,418,1976,61,made_tea,62,official
+Lao People's Democratic Republic,418,1977,65,made_tea,70,estimated
+Lao People's Democratic Republic,418,1978,63,made_tea,73,estimated
+Lao People's Democratic Republic,418,1979,68,made_tea,78,estimated
+Lao People's Democratic Republic,418,1980,290,made_tea,82,official
+Lao People's Democratic Republic,418,1981,110,made_tea,114,official
+Lao People's Democratic Republic,418,1982,115,made_tea,120,official
+Lao People's Democratic Republic,418,1983,133,made_tea,160,official
+Lao People's Democratic Republic,418,1984,145,made_tea,165,official
+Lao People's Democratic Republic,418,1985,480,made_tea,130,official
+Lao People's Democratic Republic,418,1986,650,made_tea,160,official
+Lao People's Democratic Republic,418,1987,502,made_tea,190,official
+Lao People's Democratic Republic,418,1988,1371,made_tea,320,official
+Lao People's Democratic Republic,418,1989,740,made_tea,425,official
+Lao People's Democratic Republic,418,1990,1616,made_tea,383,official
+Lao People's Democratic Republic,418,1991,1705,green_leaf,404,official
+Lao People's Democratic Republic,418,1992,1000,green_leaf,609,official
+Lao People's Democratic Republic,418,1993,1475,green_leaf,2280,official
+Lao People's Democratic Republic,418,1994,1943,green_leaf,1965,official
+Lao People's Democratic Republic,418,1995,764,green_leaf,574,official
+Lao People's Democratic Republic,418,1996,101,green_leaf,395,official
+Lao People's Democratic Republic,418,1997,110,green_leaf,395,official
+Lao People's Democratic Republic,418,1998,260,green_leaf,910,official
+Lao People's Democratic Republic,418,1999,350,green_leaf,930,official
+Lao People's Democratic Republic,418,2000,307,green_leaf,560,official
+Lao People's Democratic Republic,418,2001,160,green_leaf,440,official
+Lao People's Democratic Republic,418,2002,172,green_leaf,345,official
+Lao People's Democratic Republic,418,2003,225,green_leaf,506,official
+Lao People's Democratic Republic,418,2004,320,green_leaf,910,official
+Lao People's Democratic Republic,418,2005,300,green_leaf,825,official
+Lao People's Democratic Republic,418,2006,153,green_leaf,490,international
+Lao People's Democratic Republic,418,2007,260,green_leaf,740,international
+Lao People's Democratic Republic,418,2008,560,green_leaf,1250,international
+Lao People's Democratic Republic,418,2009,1165,green_leaf,2145,official
+Lao People's Democratic Republic,418,2010,2600,green_leaf,2415,official
+Lao People's Democratic Republic,418,2011,3580,green_leaf,2715,official
+Lao People's Democratic Republic,418,2012,3975,green_leaf,2705,official
+Lao People's Democratic Republic,418,2013,6105,green_leaf,3440,official
+Lao People's Democratic Republic,418,2014,7935,green_leaf,3990,official
+Lao People's Democratic Republic,418,2015,6295,green_leaf,4180,official
+Lao People's Democratic Republic,418,2016,7300,green_leaf,4200,official
+Lao People's Democratic Republic,418,2017,7660,green_leaf,3990,official
+Lao People's Democratic Republic,418,2018,8055,green_leaf,4195,official
+Lao People's Democratic Republic,418,2019,15900,green_leaf,4410,official
+Lao People's Democratic Republic,418,2020,15410,green_leaf,4971,imputed
+Lao People's Democratic Republic,418,2021,15913,green_leaf,5932,imputed
+Lao People's Democratic Republic,418,2022,16800,green_leaf,7640,official
+Lao People's Democratic Republic,418,2023,17192,green_leaf,7651,official
+Lao People's Democratic Republic,418,2024,18400,green_leaf,7735,official
+Madagascar,450,1961,0,made_tea,0,official
+Madagascar,450,1962,0,made_tea,0,official
+Madagascar,450,1963,0,made_tea,0,official
+Madagascar,450,1964,0,made_tea,0,official
+Madagascar,450,1965,0,made_tea,0,official
+Madagascar,450,1966,0,made_tea,0,official
+Madagascar,450,1967,0,made_tea,0,official
+Madagascar,450,1968,0,made_tea,0,official
+Madagascar,450,1969,0,made_tea,0,official
+Madagascar,450,1970,0,made_tea,0,official
+Madagascar,450,1971,0,made_tea,0,official
+Madagascar,450,1972,0,made_tea,0,official
+Madagascar,450,1973,0,made_tea,0,official
+Madagascar,450,1974,30,made_tea,17,estimated
+Madagascar,450,1975,60,made_tea,30,estimated
+Madagascar,450,1976,80,made_tea,45,estimated
+Madagascar,450,1977,100,made_tea,60,estimated
+Madagascar,450,1978,120,made_tea,70,estimated
+Madagascar,450,1979,150,made_tea,90,estimated
+Madagascar,450,1980,200,made_tea,110,estimated
+Madagascar,450,1981,220,made_tea,120,estimated
+Madagascar,450,1982,220,made_tea,120,estimated
+Madagascar,450,1983,220,made_tea,120,estimated
+Madagascar,450,1984,240,made_tea,130,estimated
+Madagascar,450,1985,240,made_tea,130,estimated
+Madagascar,450,1986,250,made_tea,140,estimated
+Madagascar,450,1987,250,made_tea,140,estimated
+Madagascar,450,1988,260,made_tea,145,estimated
+Madagascar,450,1989,270,made_tea,150,estimated
+Madagascar,450,1990,280,made_tea,160,estimated
+Madagascar,450,1991,333,green_leaf,187,imputed
+Madagascar,450,1992,290,green_leaf,165,estimated
+Madagascar,450,1993,400,green_leaf,220,estimated
+Madagascar,450,1994,300,green_leaf,170,estimated
+Madagascar,450,1995,337,green_leaf,188,imputed
+Madagascar,450,1996,340,green_leaf,190,imputed
+Madagascar,450,1997,320,green_leaf,180,estimated
+Madagascar,450,1998,312,green_leaf,175,official
+Madagascar,450,1999,400,green_leaf,220,estimated
+Madagascar,450,2000,490,green_leaf,241,official
+Madagascar,450,2001,441,green_leaf,241,official
+Madagascar,450,2002,516,green_leaf,335,official
+Madagascar,450,2003,570,green_leaf,335,official
+Madagascar,450,2004,365,green_leaf,335,official
+Madagascar,450,2005,351,green_leaf,340,official
+Madagascar,450,2006,353,green_leaf,340,official
+Madagascar,450,2007,374,green_leaf,345,official
+Madagascar,450,2008,246,green_leaf,345,official
+Madagascar,450,2009,309,green_leaf,501,imputed
+Madagascar,450,2010,381,green_leaf,592,imputed
+Madagascar,450,2011,380,green_leaf,710,imputed
+Madagascar,450,2012,382,green_leaf,860,imputed
+Madagascar,450,2013,383,green_leaf,1015,imputed
+Madagascar,450,2014,384,green_leaf,1031,imputed
+Madagascar,450,2015,385,green_leaf,1047,imputed
+Madagascar,450,2016,386,green_leaf,1063,imputed
+Madagascar,450,2017,390,green_leaf,1047,imputed
+Madagascar,450,2018,392,green_leaf,1052,imputed
+Madagascar,450,2019,393,green_leaf,1054,imputed
+Madagascar,450,2020,393,green_leaf,1051,imputed
+Madagascar,450,2021,393,green_leaf,1052,imputed
+Madagascar,450,2022,394,green_leaf,1052,imputed
+Madagascar,450,2023,395,green_leaf,1052,imputed
+Madagascar,450,2024,397,green_leaf,1052,imputed
+Malawi,454,1961,14288,made_tea,11000,official
+Malawi,454,1962,13336,made_tea,12507,official
+Malawi,454,1963,11929,made_tea,12804,official
+Malawi,454,1964,12383,made_tea,13230,official
+Malawi,454,1965,12973,made_tea,13643,official
+Malawi,454,1966,15377,made_tea,13000,official
+Malawi,454,1967,16828,made_tea,13500,official
+Malawi,454,1968,15830,made_tea,14000,official
+Malawi,454,1969,16919,made_tea,15000,official
+Malawi,454,1970,18733,made_tea,14300,official
+Malawi,454,1971,18597,made_tea,14500,official
+Malawi,454,1972,20684,made_tea,14800,official
+Malawi,454,1973,23600,made_tea,15200,official
+Malawi,454,1974,23405,made_tea,16500,official
+Malawi,454,1975,26238,made_tea,16000,official
+Malawi,454,1976,28307,made_tea,17200,official
+Malawi,454,1977,31628,made_tea,17300,official
+Malawi,454,1978,31690,made_tea,17700,official
+Malawi,454,1979,32609,made_tea,17500,official
+Malawi,454,1980,29915,made_tea,17500,official
+Malawi,454,1981,31965,made_tea,17500,official
+Malawi,454,1982,38484,made_tea,17500,official
+Malawi,454,1983,32011,made_tea,17000,official
+Malawi,454,1984,37530,made_tea,17800,official
+Malawi,454,1985,39954,made_tea,18000,official
+Malawi,454,1986,38973,made_tea,18000,official
+Malawi,454,1987,31908,made_tea,18400,official
+Malawi,454,1988,40157,made_tea,18600,official
+Malawi,454,1989,39469,made_tea,18400,official
+Malawi,454,1990,38921,made_tea,18500,official
+Malawi,454,1991,176000,green_leaf,22853,estimated
+Malawi,454,1992,122000,green_leaf,18300,estimated
+Malawi,454,1993,172000,green_leaf,18500,estimated
+Malawi,454,1994,153000,green_leaf,18800,estimated
+Malawi,454,1995,149000,green_leaf,18344,estimated
+Malawi,454,1996,151000,green_leaf,18800,estimated
+Malawi,454,1997,129000,green_leaf,18800,estimated
+Malawi,454,1998,175000,green_leaf,18800,estimated
+Malawi,454,1999,167000,green_leaf,21565,estimated
+Malawi,454,2000,184000,green_leaf,18162,estimated
+Malawi,454,2001,160000,green_leaf,18800,estimated
+Malawi,454,2002,170000,green_leaf,18800,estimated
+Malawi,454,2003,181000,green_leaf,18694,estimated
+Malawi,454,2004,218000,green_leaf,18694,estimated
+Malawi,454,2005,165000,green_leaf,18000,estimated
+Malawi,454,2006,196000,green_leaf,19000,estimated
+Malawi,454,2007,209000,green_leaf,19500,estimated
+Malawi,454,2008,181000,green_leaf,17131,estimated
+Malawi,454,2009,229000,green_leaf,21404,estimated
+Malawi,454,2010,224000,green_leaf,20829,estimated
+Malawi,454,2011,204000,green_leaf,18739,estimated
+Malawi,454,2012,185000,green_leaf,16774,estimated
+Malawi,454,2013,202000,green_leaf,18094,estimated
+Malawi,454,2014,198000,green_leaf,17515,estimated
+Malawi,454,2015,172000,green_leaf,15033,estimated
+Malawi,454,2016,188000,green_leaf,16234,estimated
+Malawi,454,2017,198000,green_leaf,17014,estimated
+Malawi,454,2018,220000,green_leaf,18594,estimated
+Malawi,454,2019,210000,green_leaf,17522,estimated
+Malawi,454,2020,253800,green_leaf,20975,estimated
+Malawi,454,2021,242500,green_leaf,19753,estimated
+Malawi,454,2022,268000,green_leaf,21893,estimated
+Malawi,454,2023,247735,green_leaf,20063,imputed
+Malawi,454,2024,247670,green_leaf,19883,imputed
+Malaysia,458,1961,2635,made_tea,3521,official
+Malaysia,458,1962,2839,made_tea,3495,official
+Malaysia,458,1963,2731,made_tea,3507,official
+Malaysia,458,1964,3108,made_tea,3449,official
+Malaysia,458,1965,3351,made_tea,3427,official
+Malaysia,458,1966,3446,made_tea,3912,official
+Malaysia,458,1967,3095,made_tea,3330,official
+Malaysia,458,1968,3468,made_tea,3096,official
+Malaysia,458,1969,3488,made_tea,3416,official
+Malaysia,458,1970,3381,made_tea,3218,official
+Malaysia,458,1971,3325,made_tea,3338,official
+Malaysia,458,1972,3365,made_tea,2986,official
+Malaysia,458,1973,3462,made_tea,2977,official
+Malaysia,458,1974,3237,made_tea,2870,official
+Malaysia,458,1975,3066,made_tea,2815,official
+Malaysia,458,1976,3206,made_tea,2762,official
+Malaysia,458,1977,3542,made_tea,2734,official
+Malaysia,458,1978,3451,made_tea,2777,official
+Malaysia,458,1979,3171,made_tea,2560,official
+Malaysia,458,1980,3281,made_tea,2428,official
+Malaysia,458,1981,3438,made_tea,2457,official
+Malaysia,458,1982,3188,made_tea,2566,official
+Malaysia,458,1983,3328,made_tea,2555,official
+Malaysia,458,1984,5478,made_tea,3239,official
+Malaysia,458,1985,5300,made_tea,3200,estimated
+Malaysia,458,1986,5365,made_tea,3218,official
+Malaysia,458,1987,4830,made_tea,3355,official
+Malaysia,458,1988,4830,made_tea,3474,official
+Malaysia,458,1989,4830,made_tea,3265,official
+Malaysia,458,1990,6200,made_tea,3270,official
+Malaysia,458,1991,7000,green_leaf,3306,official
+Malaysia,458,1992,5900,green_leaf,2893,official
+Malaysia,458,1993,6000,green_leaf,2923,estimated
+Malaysia,458,1994,5400,green_leaf,2697,estimated
+Malaysia,458,1995,6000,green_leaf,2946,estimated
+Malaysia,458,1996,6000,green_leaf,2944,estimated
+Malaysia,458,1997,6000,green_leaf,2902,estimated
+Malaysia,458,1998,4600,green_leaf,2300,estimated
+Malaysia,458,1999,5900,green_leaf,2927,estimated
+Malaysia,458,2000,5642,green_leaf,3003,international
+Malaysia,458,2001,5413,green_leaf,3500,international
+Malaysia,458,2002,5100,green_leaf,3400,international
+Malaysia,458,2003,4125,green_leaf,3500,international
+Malaysia,458,2004,3900,green_leaf,3500,official
+Malaysia,458,2005,2850,green_leaf,3500,official
+Malaysia,458,2006,6213,green_leaf,3320,official
+Malaysia,458,2007,5540,green_leaf,2780,official
+Malaysia,458,2008,9548,green_leaf,1990,official
+Malaysia,458,2009,7223,green_leaf,1519,official
+Malaysia,458,2010,19738,green_leaf,2459,official
+Malaysia,458,2011,16632,green_leaf,2459,official
+Malaysia,458,2012,14711,green_leaf,2380,official
+Malaysia,458,2013,12094,green_leaf,2299,official
+Malaysia,458,2014,11923,green_leaf,2304,official
+Malaysia,458,2015,11130,green_leaf,1890,official
+Malaysia,458,2016,11708,green_leaf,2003,official
+Malaysia,458,2017,10385,green_leaf,1845,official
+Malaysia,458,2018,10808,green_leaf,2083,official
+Malaysia,458,2019,6621,green_leaf,1440,official
+Malaysia,458,2020,9395,green_leaf,1869,official
+Malaysia,458,2021,7227,green_leaf,2220,official
+Malaysia,458,2022,15883,green_leaf,1966,official
+Malaysia,458,2023,15868,green_leaf,1836,official
+Malaysia,458,2024,14667,green_leaf,1764,official
+Mali,466,1961,0,made_tea,0,official
+Mali,466,1962,0,made_tea,0,official
+Mali,466,1963,0,made_tea,0,official
+Mali,466,1964,0,made_tea,0,official
+Mali,466,1965,0,made_tea,0,official
+Mali,466,1966,0,made_tea,0,official
+Mali,466,1967,0,made_tea,0,official
+Mali,466,1968,0,made_tea,0,official
+Mali,466,1969,0,made_tea,0,official
+Mali,466,1970,0,made_tea,0,official
+Mali,466,1971,0,made_tea,0,official
+Mali,466,1972,0,made_tea,0,official
+Mali,466,1973,0,made_tea,0,official
+Mali,466,1974,60,made_tea,120,estimated
+Mali,466,1975,80,made_tea,160,official
+Mali,466,1976,80,made_tea,160,estimated
+Mali,466,1977,90,made_tea,170,estimated
+Mali,466,1978,100,made_tea,180,estimated
+Mali,466,1979,110,made_tea,190,official
+Mali,466,1980,64,made_tea,195,official
+Mali,466,1981,98,made_tea,200,official
+Mali,466,1982,76,made_tea,210,official
+Mali,466,1983,80,made_tea,200,official
+Mali,466,1984,83,made_tea,200,official
+Mali,466,1985,87,made_tea,200,official
+Mali,466,1986,89,made_tea,200,official
+Mali,466,1987,55,made_tea,200,official
+Mali,466,1988,83,made_tea,200,official
+Mali,466,1989,317,made_tea,200,official
+Mali,466,1990,159,made_tea,225,official
+Mali,466,1991,92,green_leaf,130,official
+Mali,466,1992,115,green_leaf,150,official
+Mali,466,1993,277,green_leaf,350,official
+Mali,466,1994,196,green_leaf,250,official
+Mali,466,1995,202,green_leaf,300,official
+Mali,466,1996,69,green_leaf,100,official
+Mali,466,1997,50,green_leaf,90,official
+Mali,466,1998,60,green_leaf,90,official
+Mali,466,1999,76,green_leaf,100,imputed
+Mali,466,2000,75,green_leaf,86,imputed
+Mali,466,2001,50,green_leaf,48,estimated
+Mali,466,2002,70,green_leaf,61,estimated
+Mali,466,2003,90,green_leaf,69,estimated
+Mali,466,2004,110,green_leaf,79,estimated
+Mali,466,2005,135,green_leaf,90,official
+Mali,466,2006,135,green_leaf,90,official
+Mali,466,2007,135,green_leaf,90,official
+Mali,466,2008,122,green_leaf,84,imputed
+Mali,466,2009,119,green_leaf,86,imputed
+Mali,466,2010,109,green_leaf,86,imputed
+Mali,466,2011,104,green_leaf,88,imputed
+Mali,466,2012,99,green_leaf,90,imputed
+Mali,466,2013,89,green_leaf,89,official
+Mali,466,2014,89,green_leaf,89,official
+Mali,466,2015,89,green_leaf,90,imputed
+Mali,466,2016,96,green_leaf,92,imputed
+Mali,466,2017,91,green_leaf,86,imputed
+Mali,466,2018,92,green_leaf,89,estimated
+Mali,466,2019,93,green_leaf,86,estimated
+Mali,466,2020,88,green_leaf,87,imputed
+Mali,466,2021,91,green_leaf,88,estimated
+Mali,466,2022,91,green_leaf,87,estimated
+Mali,466,2023,90,green_leaf,87,estimated
+Mali,466,2024,91,green_leaf,87,estimated
+Mauritius,480,1961,1274,made_tea,1056,official
+Mauritius,480,1962,1270,made_tea,1219,official
+Mauritius,480,1963,1418,made_tea,1300,official
+Mauritius,480,1964,1382,made_tea,2144,official
+Mauritius,480,1965,1738,made_tea,1893,official
+Mauritius,480,1966,1976,made_tea,2183,official
+Mauritius,480,1967,2190,made_tea,2416,official
+Mauritius,480,1968,2310,made_tea,2624,official
+Mauritius,480,1969,3197,made_tea,2943,official
+Mauritius,480,1970,3240,made_tea,3416,official
+Mauritius,480,1971,4089,made_tea,3639,official
+Mauritius,480,1972,4678,made_tea,3617,official
+Mauritius,480,1973,4079,made_tea,3648,official
+Mauritius,480,1974,3984,made_tea,4010,official
+Mauritius,480,1975,3139,made_tea,4840,official
+Mauritius,480,1976,4334,made_tea,4200,official
+Mauritius,480,1977,4727,made_tea,5831,official
+Mauritius,480,1978,5186,made_tea,5844,official
+Mauritius,480,1979,5072,made_tea,4136,official
+Mauritius,480,1980,4386,made_tea,3915,official
+Mauritius,480,1981,5052,made_tea,3953,official
+Mauritius,480,1982,5287,made_tea,3799,official
+Mauritius,480,1983,6142,made_tea,3899,official
+Mauritius,480,1984,8021,made_tea,3954,official
+Mauritius,480,1985,8115,made_tea,3950,official
+Mauritius,480,1986,7875,made_tea,3776,official
+Mauritius,480,1987,7147,made_tea,3661,official
+Mauritius,480,1988,6854,made_tea,3385,official
+Mauritius,480,1989,5500,made_tea,3071,official
+Mauritius,480,1990,5751,made_tea,2905,official
+Mauritius,480,1991,31150,green_leaf,2870,estimated
+Mauritius,480,1992,30770,green_leaf,3135,estimated
+Mauritius,480,1993,31220,green_leaf,3151,estimated
+Mauritius,480,1994,26790,green_leaf,3028,estimated
+Mauritius,480,1995,19920,green_leaf,2077,estimated
+Mauritius,480,1996,13140,green_leaf,1108,estimated
+Mauritius,480,1997,9400,green_leaf,767,estimated
+Mauritius,480,1998,7830,green_leaf,688,estimated
+Mauritius,480,1999,7750,green_leaf,671,estimated
+Mauritius,480,2000,6900,green_leaf,670,estimated
+Mauritius,480,2001,7990,green_leaf,660,estimated
+Mauritius,480,2002,7270,green_leaf,680,estimated
+Mauritius,480,2003,7560,green_leaf,681,estimated
+Mauritius,480,2004,7800,green_leaf,674,estimated
+Mauritius,480,2005,7300,green_leaf,670,estimated
+Mauritius,480,2006,8250,green_leaf,688,estimated
+Mauritius,480,2007,8230,green_leaf,709,estimated
+Mauritius,480,2008,8780,green_leaf,702,estimated
+Mauritius,480,2009,7800,green_leaf,713,estimated
+Mauritius,480,2010,7720,green_leaf,698,estimated
+Mauritius,480,2011,9400,green_leaf,651,estimated
+Mauritius,480,2012,8300,green_leaf,669,estimated
+Mauritius,480,2013,8230,green_leaf,672,estimated
+Mauritius,480,2014,7920,green_leaf,672,estimated
+Mauritius,480,2015,6820,green_leaf,574,estimated
+Mauritius,480,2016,7301,green_leaf,622,official
+Mauritius,480,2017,7309,green_leaf,622,official
+Mauritius,480,2018,8056,green_leaf,656,official
+Mauritius,480,2019,8329,green_leaf,656,official
+Mauritius,480,2020,5105,green_leaf,667,official
+Mauritius,480,2021,5034,green_leaf,685,official
+Mauritius,480,2022,6351,green_leaf,659,official
+Mauritius,480,2023,6762,green_leaf,627,official
+Mauritius,480,2024,6018,green_leaf,623,official
+Montenegro,499,2006,100,green_leaf,125,estimated
+Montenegro,499,2007,100,green_leaf,125,estimated
+Montenegro,499,2008,100,green_leaf,125,estimated
+Montenegro,499,2009,100,green_leaf,125,estimated
+Montenegro,499,2010,100,green_leaf,125,estimated
+Montenegro,499,2011,100,green_leaf,125,estimated
+Montenegro,499,2012,100,green_leaf,125,estimated
+Montenegro,499,2013,100,green_leaf,125,estimated
+Montenegro,499,2014,100,green_leaf,125,estimated
+Montenegro,499,2015,100,green_leaf,125,imputed
+Montenegro,499,2016,100,green_leaf,125,imputed
+Montenegro,499,2017,100,green_leaf,125,imputed
+Montenegro,499,2018,100,green_leaf,125,imputed
+Montenegro,499,2019,100,green_leaf,125,imputed
+Montenegro,499,2020,100,green_leaf,125,imputed
+Montenegro,499,2021,100,green_leaf,124,imputed
+Montenegro,499,2022,100,green_leaf,124,imputed
+Montenegro,499,2023,100,green_leaf,124,imputed
+Montenegro,499,2024,100,green_leaf,124,imputed
+Mozambique,508,1961,8100,made_tea,13000,official
+Mozambique,508,1962,8100,made_tea,13000,official
+Mozambique,508,1963,8600,made_tea,13000,official
+Mozambique,508,1964,9005,made_tea,13000,official
+Mozambique,508,1965,10746,made_tea,13000,official
+Mozambique,508,1966,13983,made_tea,15000,official
+Mozambique,508,1967,14419,made_tea,15000,official
+Mozambique,508,1968,14250,made_tea,15000,official
+Mozambique,508,1969,16054,made_tea,17000,official
+Mozambique,508,1970,16972,made_tea,18000,official
+Mozambique,508,1971,16536,made_tea,17500,international
+Mozambique,508,1972,18678,made_tea,19000,international
+Mozambique,508,1973,18795,made_tea,19000,official
+Mozambique,508,1974,17639,made_tea,18000,official
+Mozambique,508,1975,13143,made_tea,14000,official
+Mozambique,508,1976,13825,made_tea,14000,international
+Mozambique,508,1977,17000,made_tea,18000,international
+Mozambique,508,1978,18069,made_tea,19000,international
+Mozambique,508,1979,18900,made_tea,19039,official
+Mozambique,508,1980,19500,made_tea,19000,international
+Mozambique,508,1981,22190,made_tea,19000,international
+Mozambique,508,1982,21000,made_tea,19000,international
+Mozambique,508,1983,15000,made_tea,19000,international
+Mozambique,508,1984,11000,made_tea,13000,international
+Mozambique,508,1985,7000,made_tea,9000,international
+Mozambique,508,1986,5000,made_tea,7000,international
+Mozambique,508,1987,3000,made_tea,5000,international
+Mozambique,508,1988,1500,made_tea,5000,international
+Mozambique,508,1989,2500,made_tea,5000,estimated
+Mozambique,508,1990,4000,made_tea,5800,official
+Mozambique,508,1991,4941,green_leaf,6400,official
+Mozambique,508,1992,4000,green_leaf,2000,estimated
+Mozambique,508,1993,7000,green_leaf,4024,estimated
+Mozambique,508,1994,9000,green_leaf,5131,estimated
+Mozambique,508,1995,4000,green_leaf,2000,estimated
+Mozambique,508,1996,7000,green_leaf,4035,estimated
+Mozambique,508,1997,7000,green_leaf,4054,estimated
+Mozambique,508,1998,7000,green_leaf,4065,estimated
+Mozambique,508,1999,8000,green_leaf,4647,estimated
+Mozambique,508,2000,10466,green_leaf,5631,official
+Mozambique,508,2001,9029,green_leaf,5300,official
+Mozambique,508,2002,12579,green_leaf,7200,official
+Mozambique,508,2003,12690,green_leaf,7394,official
+Mozambique,508,2004,15127,green_leaf,8300,official
+Mozambique,508,2005,16000,green_leaf,8400,official
+Mozambique,508,2006,16256,green_leaf,9256,official
+Mozambique,508,2007,16256,green_leaf,9356,official
+Mozambique,508,2008,16866,green_leaf,8500,official
+Mozambique,508,2009,30000,green_leaf,17600,official
+Mozambique,508,2010,28995,green_leaf,17958,official
+Mozambique,508,2011,27000,green_leaf,16997,official
+Mozambique,508,2012,22000,green_leaf,12530,official
+Mozambique,508,2013,25428,green_leaf,27000,official
+Mozambique,508,2014,28840,green_leaf,31579,official
+Mozambique,508,2015,32000,green_leaf,33500,official
+Mozambique,508,2016,32000,green_leaf,33500,official
+Mozambique,508,2017,32000,green_leaf,32478,international
+Mozambique,508,2018,31000,green_leaf,27641,official
+Mozambique,508,2019,32000,green_leaf,27838,official
+Mozambique,508,2020,4876,green_leaf,4227,official
+Mozambique,508,2021,4850,green_leaf,4042,official
+Mozambique,508,2022,5119,green_leaf,4048,official
+Mozambique,508,2023,6801,green_leaf,5868,official
+Mozambique,508,2024,8129,green_leaf,7228,imputed
+Myanmar,104,1961,5200,made_tea,48000,estimated
+Myanmar,104,1962,5200,made_tea,48200,estimated
+Myanmar,104,1963,5300,made_tea,48600,official
+Myanmar,104,1964,8600,made_tea,40900,official
+Myanmar,104,1965,10500,made_tea,46500,official
+Myanmar,104,1966,11100,made_tea,46100,official
+Myanmar,104,1967,11300,made_tea,47100,official
+Myanmar,104,1968,10900,made_tea,47800,official
+Myanmar,104,1969,10900,made_tea,47800,official
+Myanmar,104,1970,10900,made_tea,47800,official
+Myanmar,104,1971,11000,made_tea,48200,official
+Myanmar,104,1972,11600,made_tea,49800,official
+Myanmar,104,1973,14100,made_tea,50200,official
+Myanmar,104,1974,14000,made_tea,50600,official
+Myanmar,104,1975,14000,made_tea,50600,official
+Myanmar,104,1976,14000,made_tea,50600,official
+Myanmar,104,1977,14800,made_tea,51000,official
+Myanmar,104,1978,14300,made_tea,51400,official
+Myanmar,104,1979,12400,made_tea,51000,official
+Myanmar,104,1980,12600,made_tea,52000,estimated
+Myanmar,104,1981,12800,made_tea,52200,official
+Myanmar,104,1982,13800,made_tea,52600,official
+Myanmar,104,1983,19000,made_tea,53000,official
+Myanmar,104,1984,14900,made_tea,53400,official
+Myanmar,104,1985,15500,made_tea,54200,official
+Myanmar,104,1986,15100,made_tea,55000,official
+Myanmar,104,1987,14100,made_tea,55400,official
+Myanmar,104,1988,14900,made_tea,57500,official
+Myanmar,104,1989,14700,made_tea,57500,official
+Myanmar,104,1990,14900,made_tea,57100,official
+Myanmar,104,1991,47300,green_leaf,57870,official
+Myanmar,104,1992,50200,green_leaf,58275,official
+Myanmar,104,1993,53700,green_leaf,58275,official
+Myanmar,104,1994,51900,green_leaf,59489,official
+Myanmar,104,1995,52400,green_leaf,59894,official
+Myanmar,104,1996,54600,green_leaf,61108,official
+Myanmar,104,1997,65800,green_leaf,67987,official
+Myanmar,104,1998,60500,green_leaf,62726,official
+Myanmar,104,1999,61700,green_leaf,66773,official
+Myanmar,104,2000,63000,green_leaf,67178,official
+Myanmar,104,2001,67200,green_leaf,68797,official
+Myanmar,104,2002,69200,green_leaf,70820,official
+Myanmar,104,2003,73400,green_leaf,71629,official
+Myanmar,104,2004,75600,green_leaf,72439,official
+Myanmar,104,2005,79000,green_leaf,74058,official
+Myanmar,104,2006,83000,green_leaf,76081,official
+Myanmar,104,2007,87000,green_leaf,76890,official
+Myanmar,104,2008,90000,green_leaf,78104,official
+Myanmar,104,2009,92600,green_leaf,78914,official
+Myanmar,104,2010,94500,green_leaf,79318,official
+Myanmar,104,2011,92500,green_leaf,78509,official
+Myanmar,104,2012,94600,green_leaf,80128,official
+Myanmar,104,2013,96300,green_leaf,81747,official
+Myanmar,104,2014,98600,green_leaf,83770,official
+Myanmar,104,2015,100150,green_leaf,83753,official
+Myanmar,104,2016,102404,green_leaf,86219,official
+Myanmar,104,2017,104746,green_leaf,88808,official
+Myanmar,104,2018,143571,green_leaf,89324,official
+Myanmar,104,2019,132494,green_leaf,89874,official
+Myanmar,104,2020,112404,green_leaf,90496,official
+Myanmar,104,2021,99199,green_leaf,91100,official
+Myanmar,104,2022,108477,green_leaf,92266,official
+Myanmar,104,2023,118523,green_leaf,93223,imputed
+Myanmar,104,2024,121765,green_leaf,95223,imputed
+Nepal,524,1961,0,made_tea,0,official
+Nepal,524,1962,0,made_tea,0,official
+Nepal,524,1963,0,made_tea,0,official
+Nepal,524,1964,0,made_tea,0,official
+Nepal,524,1965,0,made_tea,0,official
+Nepal,524,1966,0,made_tea,0,official
+Nepal,524,1967,0,made_tea,0,official
+Nepal,524,1968,0,made_tea,0,official
+Nepal,524,1969,0,made_tea,0,official
+Nepal,524,1970,0,made_tea,0,official
+Nepal,524,1971,0,made_tea,0,official
+Nepal,524,1972,0,made_tea,0,official
+Nepal,524,1973,0,made_tea,0,official
+Nepal,524,1974,254,made_tea,160,official
+Nepal,524,1975,366,made_tea,230,official
+Nepal,524,1976,395,made_tea,250,official
+Nepal,524,1977,413,made_tea,260,official
+Nepal,524,1978,326,made_tea,200,official
+Nepal,524,1979,387,made_tea,240,official
+Nepal,524,1980,535,made_tea,350,official
+Nepal,524,1981,625,made_tea,390,official
+Nepal,524,1982,714,made_tea,450,official
+Nepal,524,1983,827,made_tea,520,official
+Nepal,524,1984,989,made_tea,620,official
+Nepal,524,1985,1052,made_tea,660,official
+Nepal,524,1986,1112,made_tea,700,official
+Nepal,524,1987,1290,made_tea,800,official
+Nepal,524,1988,1184,made_tea,750,official
+Nepal,524,1989,1393,made_tea,870,official
+Nepal,524,1990,1249,made_tea,889,official
+Nepal,524,1991,6000,green_leaf,3000,estimated
+Nepal,524,1992,7000,green_leaf,3533,estimated
+Nepal,524,1993,9000,green_leaf,4448,estimated
+Nepal,524,1994,10000,green_leaf,4838,estimated
+Nepal,524,1995,11000,green_leaf,5209,estimated
+Nepal,524,1996,12000,green_leaf,5696,estimated
+Nepal,524,1997,13000,green_leaf,5950,estimated
+Nepal,524,1998,13000,green_leaf,6000,estimated
+Nepal,524,1999,20000,green_leaf,8000,estimated
+Nepal,524,2000,22000,green_leaf,8700,estimated
+Nepal,524,2001,29000,green_leaf,11997,estimated
+Nepal,524,2002,33000,green_leaf,12365,estimated
+Nepal,524,2003,36000,green_leaf,12643,estimated
+Nepal,524,2004,51000,green_leaf,15012,estimated
+Nepal,524,2005,54000,green_leaf,16000,estimated
+Nepal,524,2006,57000,green_leaf,16012,estimated
+Nepal,524,2007,66000,green_leaf,16420,estimated
+Nepal,524,2008,70000,green_leaf,17500,estimated
+Nepal,524,2009,70000,green_leaf,16718,estimated
+Nepal,524,2010,72000,green_leaf,17127,estimated
+Nepal,524,2011,76000,green_leaf,17451,estimated
+Nepal,524,2012,81000,green_leaf,18149,estimated
+Nepal,524,2013,90000,green_leaf,19036,estimated
+Nepal,524,2014,93000,green_leaf,19271,estimated
+Nepal,524,2015,93000,green_leaf,19271,estimated
+Nepal,524,2016,104000,green_leaf,20747,estimated
+Nepal,524,2017,107000,green_leaf,28522,estimated
+Nepal,524,2018,108000,green_leaf,28595,estimated
+Nepal,524,2019,110000,green_leaf,28732,estimated
+Nepal,524,2020,119600,green_leaf,16901,estimated
+Nepal,524,2021,118300,green_leaf,16017,estimated
+Nepal,524,2022,128000,green_leaf,18700,estimated
+Nepal,524,2023,129177,green_leaf,20230,imputed
+Nepal,524,2024,135399,green_leaf,20760,imputed
+Panama,591,1961,0,made_tea,,official
+Panama,591,1962,0,made_tea,,official
+Panama,591,1963,0,made_tea,,official
+Panama,591,1964,0,made_tea,,official
+Panama,591,1965,0,made_tea,,official
+Panama,591,1966,0,made_tea,,official
+Panama,591,1967,0,made_tea,,official
+Panama,591,1968,0,made_tea,,official
+Panama,591,1969,0,made_tea,,official
+Panama,591,1970,0,made_tea,,official
+Panama,591,1971,0,made_tea,,official
+Panama,591,1972,0,made_tea,,official
+Panama,591,1973,0,made_tea,,official
+Panama,591,1974,0,made_tea,,official
+Panama,591,1975,0,made_tea,,official
+Panama,591,1976,0,made_tea,,official
+Panama,591,1977,0,made_tea,,official
+Panama,591,1978,0,made_tea,,official
+Panama,591,1979,0,made_tea,,official
+Panama,591,1980,0,made_tea,,official
+Panama,591,1981,0,made_tea,,official
+Panama,591,1982,0,made_tea,,official
+Panama,591,1983,0,made_tea,,official
+Panama,591,1984,73,made_tea,,official
+Panama,591,1985,152,made_tea,200,official
+Panama,591,1986,123,made_tea,170,official
+Panama,591,1987,134,made_tea,180,official
+Panama,591,1988,162,made_tea,200,official
+Panama,591,1989,98,made_tea,120,official
+Panama,591,1990,196,made_tea,210,official
+Panama,591,1991,0,green_leaf,0,official
+Panama,591,1992,0,green_leaf,0,official
+Panama,591,1993,0,green_leaf,0,official
+Panama,591,1994,0,green_leaf,0,official
+Panama,591,1995,0,green_leaf,0,official
+Panama,591,1996,0,green_leaf,0,official
+Panama,591,1997,0,green_leaf,0,official
+Panama,591,1998,0,green_leaf,0,official
+Panama,591,1999,0,green_leaf,0,official
+Panama,591,2000,0,green_leaf,0,official
+Panama,591,2001,0,green_leaf,0,official
+Panama,591,2002,0,green_leaf,0,official
+Panama,591,2003,0,green_leaf,0,official
+Panama,591,2004,0,green_leaf,0,official
+Panama,591,2005,0,green_leaf,0,official
+Panama,591,2006,0,green_leaf,0,official
+Panama,591,2007,0,green_leaf,0,official
+Panama,591,2008,0,green_leaf,0,official
+Panama,591,2009,0,green_leaf,0,official
+Panama,591,2010,0,green_leaf,0,official
+Panama,591,2011,0,green_leaf,0,official
+Panama,591,2012,0,green_leaf,0,official
+Panama,591,2013,0,green_leaf,0,official
+Panama,591,2014,0,green_leaf,0,official
+Papua New Guinea,598,1961,10,made_tea,20,official
+Papua New Guinea,598,1962,10,made_tea,20,official
+Papua New Guinea,598,1963,10,made_tea,20,official
+Papua New Guinea,598,1964,10,made_tea,20,official
+Papua New Guinea,598,1965,15,made_tea,20,official
+Papua New Guinea,598,1966,15,made_tea,20,official
+Papua New Guinea,598,1967,39,made_tea,100,official
+Papua New Guinea,598,1968,74,made_tea,200,official
+Papua New Guinea,598,1969,330,made_tea,826,official
+Papua New Guinea,598,1970,749,made_tea,1342,official
+Papua New Guinea,598,1971,1211,made_tea,2100,official
+Papua New Guinea,598,1972,2195,made_tea,2171,official
+Papua New Guinea,598,1973,3025,made_tea,2969,official
+Papua New Guinea,598,1974,4155,made_tea,3118,official
+Papua New Guinea,598,1975,4714,made_tea,3500,official
+Papua New Guinea,598,1976,4984,made_tea,3746,official
+Papua New Guinea,598,1977,6500,made_tea,3800,official
+Papua New Guinea,598,1978,6319,made_tea,3800,official
+Papua New Guinea,598,1979,8034,made_tea,3800,official
+Papua New Guinea,598,1980,8361,made_tea,3800,official
+Papua New Guinea,598,1981,8691,made_tea,2661,official
+Papua New Guinea,598,1982,8487,made_tea,2614,official
+Papua New Guinea,598,1983,10193,made_tea,3096,official
+Papua New Guinea,598,1984,9845,made_tea,3085,official
+Papua New Guinea,598,1985,8080,made_tea,3600,official
+Papua New Guinea,598,1986,8000,made_tea,3900,official
+Papua New Guinea,598,1987,8000,made_tea,3900,official
+Papua New Guinea,598,1988,8000,made_tea,3900,official
+Papua New Guinea,598,1989,8000,made_tea,3900,estimated
+Papua New Guinea,598,1990,6985,made_tea,4100,estimated
+Papua New Guinea,598,1991,24576,green_leaf,2831,imputed
+Papua New Guinea,598,1992,25762,green_leaf,2958,imputed
+Papua New Guinea,598,1993,26103,green_leaf,2987,imputed
+Papua New Guinea,598,1994,24126,green_leaf,2759,imputed
+Papua New Guinea,598,1995,24600,green_leaf,2854,estimated
+Papua New Guinea,598,1996,31500,green_leaf,4000,estimated
+Papua New Guinea,598,1997,28900,green_leaf,3000,estimated
+Papua New Guinea,598,1998,38100,green_leaf,4000,estimated
+Papua New Guinea,598,1999,35100,green_leaf,4000,estimated
+Papua New Guinea,598,2000,35400,green_leaf,4000,estimated
+Papua New Guinea,598,2001,35300,green_leaf,3800,estimated
+Papua New Guinea,598,2002,32100,green_leaf,3700,estimated
+Papua New Guinea,598,2003,34400,green_leaf,3700,estimated
+Papua New Guinea,598,2004,36300,green_leaf,3700,estimated
+Papua New Guinea,598,2005,35600,green_leaf,3800,estimated
+Papua New Guinea,598,2006,35200,green_leaf,4000,estimated
+Papua New Guinea,598,2007,34700,green_leaf,3844,estimated
+Papua New Guinea,598,2008,32000,green_leaf,3565,estimated
+Papua New Guinea,598,2009,34000,green_leaf,3806,estimated
+Papua New Guinea,598,2010,33849,green_leaf,3725,imputed
+Papua New Guinea,598,2011,34666,green_leaf,3797,imputed
+Papua New Guinea,598,2012,33747,green_leaf,3707,imputed
+Papua New Guinea,598,2013,33626,green_leaf,3691,imputed
+Papua New Guinea,598,2014,33505,green_leaf,3675,imputed
+Papua New Guinea,598,2015,33689,green_leaf,3693,imputed
+Papua New Guinea,598,2016,33528,green_leaf,3673,imputed
+Papua New Guinea,598,2017,32863,green_leaf,3598,imputed
+Papua New Guinea,598,2018,32381,green_leaf,3542,imputed
+Papua New Guinea,598,2019,31942,green_leaf,3492,imputed
+Papua New Guinea,598,2020,31045,green_leaf,3392,imputed
+Papua New Guinea,598,2021,29700,green_leaf,3242,estimated
+Papua New Guinea,598,2022,31000,green_leaf,3392,estimated
+Papua New Guinea,598,2023,32000,green_leaf,3501,estimated
+Papua New Guinea,598,2024,32399,green_leaf,3543,imputed
+Peru,604,1961,1239,made_tea,2030,official
+Peru,604,1962,1212,made_tea,2100,official
+Peru,604,1963,1220,made_tea,2220,official
+Peru,604,1964,1290,made_tea,2340,official
+Peru,604,1965,1365,made_tea,2470,official
+Peru,604,1966,1700,made_tea,2480,official
+Peru,604,1967,1695,made_tea,2460,official
+Peru,604,1968,1875,made_tea,2710,official
+Peru,604,1969,2175,made_tea,2779,official
+Peru,604,1970,1808,made_tea,2836,official
+Peru,604,1971,2408,made_tea,3236,official
+Peru,604,1972,2581,made_tea,3170,official
+Peru,604,1973,2464,made_tea,3175,official
+Peru,604,1974,2817,made_tea,3447,official
+Peru,604,1975,2988,made_tea,3651,official
+Peru,604,1976,3179,made_tea,3960,official
+Peru,604,1977,2976,made_tea,3630,official
+Peru,604,1978,2347,made_tea,3140,official
+Peru,604,1979,2602,made_tea,3295,official
+Peru,604,1980,2112,made_tea,2945,official
+Peru,604,1981,2031,made_tea,2795,official
+Peru,604,1982,1758,made_tea,2735,official
+Peru,604,1983,1676,made_tea,2604,official
+Peru,604,1984,1610,made_tea,2485,official
+Peru,604,1985,1693,made_tea,3385,official
+Peru,604,1986,1914,made_tea,3385,official
+Peru,604,1987,1896,made_tea,3500,official
+Peru,604,1988,1827,made_tea,3500,official
+Peru,604,1989,1732,made_tea,2420,official
+Peru,604,1990,1648,made_tea,2350,official
+Peru,604,1991,1648,green_leaf,2360,official
+Peru,604,1992,1394,green_leaf,2200,official
+Peru,604,1993,1743,green_leaf,2104,official
+Peru,604,1994,7155,green_leaf,2170,official
+Peru,604,1995,5510,green_leaf,2262,official
+Peru,604,1996,9403,green_leaf,2323,official
+Peru,604,1997,10431,green_leaf,2358,official
+Peru,604,1998,7397,green_leaf,2528,official
+Peru,604,1999,6964,green_leaf,2500,official
+Peru,604,2000,6259,green_leaf,2541,official
+Peru,604,2001,6478,green_leaf,2285,official
+Peru,604,2002,6349,green_leaf,2289,official
+Peru,604,2003,5634,green_leaf,2288,official
+Peru,604,2004,1548,green_leaf,2264,official
+Peru,604,2005,4236,green_leaf,2214,official
+Peru,604,2006,4820,green_leaf,2195,official
+Peru,604,2007,3597,green_leaf,2108,official
+Peru,604,2008,4009,green_leaf,2209,official
+Peru,604,2009,3169,green_leaf,2215,official
+Peru,604,2010,3214,green_leaf,2216,official
+Peru,604,2011,3158,green_leaf,2228,official
+Peru,604,2012,3434,green_leaf,2237,official
+Peru,604,2013,4319,green_leaf,2229,official
+Peru,604,2014,3874,green_leaf,2231,official
+Peru,604,2015,3785,green_leaf,2139,official
+Peru,604,2016,3307,green_leaf,2080,official
+Peru,604,2017,2177,green_leaf,1578,official
+Peru,604,2018,1085,green_leaf,1776,official
+Peru,604,2019,1600,green_leaf,2040,official
+Peru,604,2020,1645,green_leaf,2051,official
+Peru,604,2021,1781,green_leaf,2029,official
+Peru,604,2022,1838,green_leaf,2035,official
+Peru,604,2023,1944,green_leaf,2033,official
+Peru,604,2024,2030,green_leaf,2047,official
+Portugal,620,1961,128,made_tea,200,official
+Portugal,620,1962,250,made_tea,450,estimated
+Portugal,620,1963,300,made_tea,500,estimated
+Portugal,620,1964,300,made_tea,500,estimated
+Portugal,620,1965,300,made_tea,500,estimated
+Portugal,620,1966,350,made_tea,530,estimated
+Portugal,620,1967,400,made_tea,600,official
+Portugal,620,1968,500,made_tea,750,official
+Portugal,620,1969,400,made_tea,600,official
+Portugal,620,1970,300,made_tea,450,official
+Portugal,620,1971,300,made_tea,450,official
+Portugal,620,1972,400,made_tea,600,official
+Portugal,620,1973,300,made_tea,450,official
+Portugal,620,1974,300,made_tea,450,official
+Portugal,620,1975,260,made_tea,390,official
+Portugal,620,1976,242,made_tea,360,official
+Portugal,620,1977,267,made_tea,400,official
+Portugal,620,1978,318,made_tea,480,official
+Portugal,620,1979,319,made_tea,480,official
+Portugal,620,1980,225,made_tea,340,official
+Portugal,620,1981,190,made_tea,285,official
+Portugal,620,1982,169,made_tea,250,official
+Portugal,620,1983,231,made_tea,350,official
+Portugal,620,1984,182,made_tea,270,official
+Portugal,620,1985,146,made_tea,220,official
+Portugal,620,1986,199,made_tea,300,official
+Portugal,620,1987,185,made_tea,280,official
+Portugal,620,1988,189,made_tea,280,official
+Portugal,620,1989,198,made_tea,300,official
+Portugal,620,1990,184,made_tea,280,official
+Portugal,620,1991,129,green_leaf,190,official
+Portugal,620,1992,69,green_leaf,100,official
+Portugal,620,1993,21,green_leaf,30,official
+Portugal,620,1994,40,green_leaf,60,estimated
+Portugal,620,1995,82,green_leaf,124,official
+Portugal,620,1996,63,green_leaf,95,official
+Portugal,620,1997,25,green_leaf,41,official
+Portugal,620,1998,24,green_leaf,41,official
+Portugal,620,1999,120,green_leaf,40,estimated
+Portugal,620,2000,102,green_leaf,40,imputed
+Portugal,620,2001,106,green_leaf,40,imputed
+Portugal,620,2002,105,green_leaf,35,estimated
+Portugal,620,2003,116,green_leaf,36,official
+Portugal,620,2004,125,green_leaf,36,official
+Portugal,620,2005,112,green_leaf,36,official
+Portugal,620,2006,115,green_leaf,40,estimated
+Portugal,620,2007,125,green_leaf,40,estimated
+Portugal,620,2008,125,green_leaf,36,estimated
+Portugal,620,2009,125,green_leaf,34,estimated
+Portugal,620,2010,120,green_leaf,33,imputed
+Portugal,620,2011,70,green_leaf,18,imputed
+Portugal,620,2012,57,green_leaf,15,imputed
+Portugal,620,2013,58,green_leaf,14,imputed
+Portugal,620,2014,62,green_leaf,15,estimated
+Portugal,620,2015,89,green_leaf,21,estimated
+Portugal,620,2016,84,green_leaf,19,estimated
+Portugal,620,2017,78,green_leaf,18,estimated
+Republic of Korea,410,1961,50,made_tea,55,estimated
+Republic of Korea,410,1962,50,made_tea,55,estimated
+Republic of Korea,410,1963,50,made_tea,55,estimated
+Republic of Korea,410,1964,70,made_tea,80,estimated
+Republic of Korea,410,1965,70,made_tea,80,estimated
+Republic of Korea,410,1966,80,made_tea,90,estimated
+Republic of Korea,410,1967,80,made_tea,90,estimated
+Republic of Korea,410,1968,100,made_tea,110,estimated
+Republic of Korea,410,1969,150,made_tea,160,estimated
+Republic of Korea,410,1970,276,made_tea,295,official
+Republic of Korea,410,1971,270,made_tea,290,official
+Republic of Korea,410,1972,245,made_tea,260,official
+Republic of Korea,410,1973,168,made_tea,180,official
+Republic of Korea,410,1974,232,made_tea,250,official
+Republic of Korea,410,1975,200,made_tea,220,international
+Republic of Korea,410,1976,200,made_tea,220,international
+Republic of Korea,410,1977,200,made_tea,220,international
+Republic of Korea,410,1978,200,made_tea,220,international
+Republic of Korea,410,1979,200,made_tea,220,estimated
+Republic of Korea,410,1980,200,made_tea,220,estimated
+Republic of Korea,410,1981,200,made_tea,220,estimated
+Republic of Korea,410,1982,200,made_tea,220,estimated
+Republic of Korea,410,1983,300,made_tea,330,estimated
+Republic of Korea,410,1984,350,made_tea,390,estimated
+Republic of Korea,410,1985,400,made_tea,440,estimated
+Republic of Korea,410,1986,500,made_tea,550,estimated
+Republic of Korea,410,1987,500,made_tea,550,estimated
+Republic of Korea,410,1988,500,made_tea,550,estimated
+Republic of Korea,410,1989,400,made_tea,436,estimated
+Republic of Korea,410,1990,254,made_tea,262,official
+Republic of Korea,410,1991,3400,green_leaf,507,estimated
+Republic of Korea,410,1992,3128,green_leaf,601,imputed
+Republic of Korea,410,1993,3368,green_leaf,653,imputed
+Republic of Korea,410,1994,3525,green_leaf,695,imputed
+Republic of Korea,410,1995,3300,green_leaf,715,estimated
+Republic of Korea,410,1996,4100,green_leaf,829,estimated
+Republic of Korea,410,1997,4400,green_leaf,900,estimated
+Republic of Korea,410,1998,6500,green_leaf,1128,estimated
+Republic of Korea,410,1999,4900,green_leaf,1431,estimated
+Republic of Korea,410,2000,6200,green_leaf,1179,estimated
+Republic of Korea,410,2001,6400,green_leaf,1825,estimated
+Republic of Korea,410,2002,7400,green_leaf,1391,estimated
+Republic of Korea,410,2003,7464,green_leaf,1477,imputed
+Republic of Korea,410,2004,7928,green_leaf,1555,imputed
+Republic of Korea,410,2005,8420,green_leaf,1637,imputed
+Republic of Korea,410,2006,8899,green_leaf,1716,imputed
+Republic of Korea,410,2007,9387,green_leaf,1795,imputed
+Republic of Korea,410,2008,9870,green_leaf,1867,imputed
+Republic of Korea,410,2009,10356,green_leaf,1933,imputed
+Republic of Korea,410,2010,10841,green_leaf,1997,imputed
+Republic of Korea,410,2011,11472,green_leaf,1992,imputed
+Republic of Korea,410,2012,11451,green_leaf,2192,imputed
+Republic of Korea,410,2013,11823,green_leaf,2247,imputed
+Republic of Korea,410,2014,11790,green_leaf,2229,imputed
+Republic of Korea,410,2015,12205,green_leaf,2296,imputed
+Republic of Korea,410,2016,12703,green_leaf,2377,imputed
+Republic of Korea,410,2017,13227,green_leaf,2463,imputed
+Republic of Korea,410,2018,13762,green_leaf,2550,imputed
+Republic of Korea,410,2019,14304,green_leaf,2637,imputed
+Republic of Korea,410,2020,14890,green_leaf,2766,imputed
+Republic of Korea,410,2021,15329,green_leaf,2837,imputed
+Republic of Korea,410,2022,15500,green_leaf,2856,estimated
+Republic of Korea,410,2023,16000,green_leaf,2939,estimated
+Republic of Korea,410,2024,18400,green_leaf,3370,estimated
+Russian Federation,643,1992,7240,green_leaf,7000,official
+Russian Federation,643,1993,7630,green_leaf,7000,official
+Russian Federation,643,1994,3960,green_leaf,3500,official
+Russian Federation,643,1995,4350,green_leaf,4000,official
+Russian Federation,643,1996,2380,green_leaf,2000,official
+Russian Federation,643,1997,1630,green_leaf,1600,official
+Russian Federation,643,1998,1480,green_leaf,1500,official
+Russian Federation,643,1999,1930,green_leaf,1500,official
+Russian Federation,643,2000,1520,green_leaf,1500,official
+Russian Federation,643,2001,1240,green_leaf,1500,official
+Russian Federation,643,2002,1290,green_leaf,1500,official
+Russian Federation,643,2003,870,green_leaf,1500,official
+Russian Federation,643,2004,1240,green_leaf,1400,official
+Russian Federation,643,2005,1260,green_leaf,1400,official
+Russian Federation,643,2006,1150,green_leaf,1400,official
+Russian Federation,643,2007,630,green_leaf,1400,official
+Russian Federation,643,2008,820,green_leaf,1421,official
+Russian Federation,643,2009,630,green_leaf,1345,official
+Russian Federation,643,2010,370,green_leaf,1400,official
+Russian Federation,643,2011,267,green_leaf,1026,official
+Russian Federation,643,2012,90,green_leaf,292,official
+Russian Federation,643,2013,90,green_leaf,456,official
+Russian Federation,643,2014,222,green_leaf,479,official
+Russian Federation,643,2015,246,green_leaf,515,official
+Russian Federation,643,2016,449,green_leaf,750,official
+Russian Federation,643,2017,554,green_leaf,590,official
+Russian Federation,643,2018,504,green_leaf,594,official
+Russian Federation,643,2019,298,green_leaf,504,official
+Russian Federation,643,2020,342,green_leaf,488,official
+Russian Federation,643,2021,229,green_leaf,360,official
+Russian Federation,643,2022,81,green_leaf,274,official
+Russian Federation,643,2023,67,green_leaf,237,imputed
+Russian Federation,643,2024,132,green_leaf,254,imputed
+Rwanda,646,1961,160,made_tea,320,official
+Rwanda,646,1962,210,made_tea,320,official
+Rwanda,646,1963,300,made_tea,450,official
+Rwanda,646,1964,320,made_tea,500,official
+Rwanda,646,1965,340,made_tea,620,official
+Rwanda,646,1966,348,made_tea,680,official
+Rwanda,646,1967,430,made_tea,830,official
+Rwanda,646,1968,830,made_tea,1280,official
+Rwanda,646,1969,976,made_tea,1477,official
+Rwanda,646,1970,1245,made_tea,1573,official
+Rwanda,646,1971,1819,made_tea,2144,official
+Rwanda,646,1972,2396,made_tea,2530,official
+Rwanda,646,1973,2803,made_tea,2733,official
+Rwanda,646,1974,3432,made_tea,3208,official
+Rwanda,646,1975,3995,made_tea,3459,official
+Rwanda,646,1976,4976,made_tea,3909,official
+Rwanda,646,1977,5356,made_tea,5084,official
+Rwanda,646,1978,5342,made_tea,5934,official
+Rwanda,646,1979,5670,made_tea,6583,official
+Rwanda,646,1980,6627,made_tea,8900,official
+Rwanda,646,1981,6846,made_tea,9200,official
+Rwanda,646,1982,7100,made_tea,9500,official
+Rwanda,646,1983,6670,made_tea,7835,official
+Rwanda,646,1984,8100,made_tea,9500,estimated
+Rwanda,646,1985,10800,made_tea,12700,estimated
+Rwanda,646,1986,10350,made_tea,10900,official
+Rwanda,646,1987,11677,made_tea,11500,official
+Rwanda,646,1988,12286,made_tea,11700,official
+Rwanda,646,1989,12975,made_tea,11900,official
+Rwanda,646,1990,12854,made_tea,12300,official
+Rwanda,646,1991,59000,green_leaf,12000,estimated
+Rwanda,646,1992,59000,green_leaf,12566,estimated
+Rwanda,646,1993,49000,green_leaf,10000,estimated
+Rwanda,646,1994,18000,green_leaf,4000,estimated
+Rwanda,646,1995,24000,green_leaf,5535,estimated
+Rwanda,646,1996,39000,green_leaf,11000,estimated
+Rwanda,646,1997,58000,green_leaf,10414,estimated
+Rwanda,646,1998,65000,green_leaf,11000,estimated
+Rwanda,646,1999,56000,green_leaf,10032,estimated
+Rwanda,646,2000,63000,green_leaf,12300,estimated
+Rwanda,646,2001,77000,green_leaf,12825,estimated
+Rwanda,646,2002,65000,green_leaf,12500,estimated
+Rwanda,646,2003,67000,green_leaf,12500,estimated
+Rwanda,646,2004,63000,green_leaf,11700,estimated
+Rwanda,646,2005,72000,green_leaf,13280,estimated
+Rwanda,646,2006,74000,green_leaf,11750,estimated
+Rwanda,646,2007,89000,green_leaf,11674,estimated
+Rwanda,646,2008,87000,green_leaf,11895,estimated
+Rwanda,646,2009,89000,green_leaf,12500,estimated
+Rwanda,646,2010,97000,green_leaf,13549,estimated
+Rwanda,646,2011,105000,green_leaf,15065,estimated
+Rwanda,646,2012,98000,green_leaf,15383,estimated
+Rwanda,646,2013,96000,green_leaf,15620,estimated
+Rwanda,646,2014,108000,green_leaf,17220,estimated
+Rwanda,646,2015,110000,green_leaf,17188,estimated
+Rwanda,646,2016,111000,green_leaf,17221,estimated
+Rwanda,646,2017,121000,green_leaf,18509,estimated
+Rwanda,646,2018,135000,green_leaf,20466,estimated
+Rwanda,646,2019,134378,green_leaf,21249,official
+Rwanda,646,2020,140005,green_leaf,23197,official
+Rwanda,646,2021,149627,green_leaf,26309,official
+Rwanda,646,2022,160420,green_leaf,32800,official
+Rwanda,646,2023,158499,green_leaf,33430,official
+Rwanda,646,2024,160592,green_leaf,35050,official
+Réunion,638,1961,100,made_tea,80,estimated
+Réunion,638,1962,100,made_tea,80,estimated
+Réunion,638,1963,100,made_tea,80,estimated
+Réunion,638,1964,100,made_tea,80,estimated
+Réunion,638,1965,110,made_tea,90,estimated
+Réunion,638,1966,110,made_tea,90,estimated
+Réunion,638,1967,110,made_tea,90,estimated
+Réunion,638,1968,120,made_tea,100,estimated
+Réunion,638,1969,150,made_tea,120,estimated
+Réunion,638,1970,195,made_tea,150,official
+Réunion,638,1971,195,made_tea,150,official
+Réunion,638,1972,195,made_tea,150,official
+Réunion,638,1973,200,made_tea,150,estimated
+Réunion,638,1974,200,made_tea,160,estimated
+Réunion,638,1975,210,made_tea,160,estimated
+Réunion,638,1976,210,made_tea,160,estimated
+Réunion,638,1977,220,made_tea,160,estimated
+Réunion,638,1978,220,made_tea,160,estimated
+Réunion,638,1979,250,made_tea,200,estimated
+Réunion,638,1980,270,made_tea,210,estimated
+Réunion,638,1981,290,made_tea,220,estimated
+Réunion,638,1982,290,made_tea,220,estimated
+Réunion,638,1983,300,made_tea,230,estimated
+Réunion,638,1984,310,made_tea,230,estimated
+Réunion,638,1985,320,made_tea,240,estimated
+Réunion,638,1986,330,made_tea,250,estimated
+Réunion,638,1987,340,made_tea,260,estimated
+Réunion,638,1988,340,made_tea,260,estimated
+Réunion,638,1989,350,made_tea,260,estimated
+Réunion,638,1990,359,made_tea,270,estimated
+Réunion,638,1991,360,green_leaf,280,estimated
+Réunion,638,1992,370,green_leaf,290,estimated
+Réunion,638,1993,389,green_leaf,299,imputed
+Réunion,638,1994,403,green_leaf,309,imputed
+Réunion,638,1995,417,green_leaf,319,imputed
+Réunion,638,1996,431,green_leaf,329,imputed
+Réunion,638,1997,445,green_leaf,340,imputed
+Réunion,638,1998,460,green_leaf,350,imputed
+Réunion,638,1999,475,green_leaf,361,imputed
+Réunion,638,2000,491,green_leaf,373,imputed
+Réunion,638,2001,507,green_leaf,384,imputed
+Réunion,638,2002,524,green_leaf,396,imputed
+Réunion,638,2003,541,green_leaf,409,imputed
+Réunion,638,2004,560,green_leaf,421,imputed
+Réunion,638,2005,580,green_leaf,434,imputed
+Réunion,638,2006,601,green_leaf,447,imputed
+Seychelles,690,1961,10,made_tea,30,estimated
+Seychelles,690,1962,10,made_tea,30,estimated
+Seychelles,690,1963,13,made_tea,35,estimated
+Seychelles,690,1964,13,made_tea,35,estimated
+Seychelles,690,1965,15,made_tea,40,estimated
+Seychelles,690,1966,15,made_tea,40,estimated
+Seychelles,690,1967,17,made_tea,45,estimated
+Seychelles,690,1968,19,made_tea,45,estimated
+Seychelles,690,1969,21,made_tea,50,estimated
+Seychelles,690,1970,23,made_tea,50,estimated
+Seychelles,690,1971,25,made_tea,55,estimated
+Seychelles,690,1972,27,made_tea,55,estimated
+Seychelles,690,1973,29,made_tea,60,official
+Seychelles,690,1974,36,made_tea,80,official
+Seychelles,690,1975,45,made_tea,100,official
+Seychelles,690,1976,45,made_tea,100,official
+Seychelles,690,1977,43,made_tea,95,official
+Seychelles,690,1978,43,made_tea,95,official
+Seychelles,690,1979,46,made_tea,100,official
+Seychelles,690,1980,42,made_tea,95,official
+Seychelles,690,1981,43,made_tea,95,official
+Seychelles,690,1982,37,made_tea,98,official
+Seychelles,690,1983,131,made_tea,272,official
+Seychelles,690,1984,86,made_tea,272,official
+Seychelles,690,1985,117,made_tea,272,official
+Seychelles,690,1986,136,made_tea,272,official
+Seychelles,690,1987,109,made_tea,270,official
+Seychelles,690,1988,106,made_tea,270,official
+Seychelles,690,1989,150,made_tea,280,official
+Seychelles,690,1990,219,made_tea,400,official
+Seychelles,690,1991,241,green_leaf,430,official
+Seychelles,690,1992,224,green_leaf,420,official
+Seychelles,690,1993,246,green_leaf,450,official
+Seychelles,690,1994,246,green_leaf,456,official
+Seychelles,690,1995,226,green_leaf,440,official
+Seychelles,690,1996,223,green_leaf,416,official
+Seychelles,690,1997,270,green_leaf,470,official
+Seychelles,690,1998,250,green_leaf,450,official
+Seychelles,690,1999,236,green_leaf,440,official
+Seychelles,690,2000,246,green_leaf,450,official
+Seychelles,690,2001,231,green_leaf,435,official
+Seychelles,690,2002,222,green_leaf,422,official
+Seychelles,690,2003,261,green_leaf,500,official
+Seychelles,690,2004,214,green_leaf,450,official
+Seychelles,690,2005,219,green_leaf,444,official
+Seychelles,690,2006,189,green_leaf,390,official
+Seychelles,690,2007,222,green_leaf,460,official
+Seychelles,690,2008,137,green_leaf,290,official
+Seychelles,690,2009,63,green_leaf,135,official
+Seychelles,690,2010,49,green_leaf,104,official
+Seychelles,690,2011,38,green_leaf,80,official
+Seychelles,690,2012,28,green_leaf,59,official
+Seychelles,690,2013,21,green_leaf,44,official
+Seychelles,690,2014,27,green_leaf,57,official
+Seychelles,690,2015,16,green_leaf,34,official
+Seychelles,690,2016,17,green_leaf,37,official
+Seychelles,690,2017,13,green_leaf,28,official
+Seychelles,690,2018,3,green_leaf,7,official
+Seychelles,690,2019,10,green_leaf,22,official
+Seychelles,690,2020,9,green_leaf,20,official
+Seychelles,690,2021,4,green_leaf,9,official
+Seychelles,690,2022,7,green_leaf,15,official
+Seychelles,690,2023,0,green_leaf,0,official
+Seychelles,690,2024,0,green_leaf,0,estimated
+Sierra Leone,694,2023,4831,green_leaf,644,official
+Sierra Leone,694,2024,4800,green_leaf,640,estimated
+South Africa,710,1961,2000,made_tea,1100,estimated
+South Africa,710,1962,2000,made_tea,1100,estimated
+South Africa,710,1963,2000,made_tea,1100,estimated
+South Africa,710,1964,2000,made_tea,1100,estimated
+South Africa,710,1965,2000,made_tea,1100,estimated
+South Africa,710,1966,2000,made_tea,1100,international
+South Africa,710,1967,2000,made_tea,1400,international
+South Africa,710,1968,2000,made_tea,1500,international
+South Africa,710,1969,2000,made_tea,1900,international
+South Africa,710,1970,800,made_tea,2400,international
+South Africa,710,1971,1500,made_tea,2400,international
+South Africa,710,1972,2000,made_tea,2400,international
+South Africa,710,1973,2500,made_tea,3000,international
+South Africa,710,1974,3000,made_tea,3000,international
+South Africa,710,1975,2836,made_tea,3500,international
+South Africa,710,1976,3459,made_tea,3500,official
+South Africa,710,1977,3459,made_tea,4000,official
+South Africa,710,1978,4561,made_tea,4500,official
+South Africa,710,1979,5025,made_tea,5000,official
+South Africa,710,1980,12000,made_tea,6000,official
+South Africa,710,1981,5500,made_tea,5000,estimated
+South Africa,710,1982,6631,made_tea,5000,official
+South Africa,710,1983,7097,made_tea,5300,official
+South Africa,710,1984,8301,made_tea,6000,official
+South Africa,710,1985,9218,made_tea,6100,official
+South Africa,710,1986,10663,made_tea,6273,international
+South Africa,710,1987,11507,made_tea,6237,international
+South Africa,710,1988,11967,made_tea,6534,international
+South Africa,710,1989,13000,made_tea,6721,official
+South Africa,710,1990,12441,made_tea,6326,official
+South Africa,710,1991,11128,green_leaf,6721,official
+South Africa,710,1992,9801,green_leaf,6164,official
+South Africa,710,1993,10532,green_leaf,6164,official
+South Africa,710,1994,11316,green_leaf,6130,official
+South Africa,710,1995,11975,green_leaf,6307,official
+South Africa,710,1996,9062,green_leaf,6327,international
+South Africa,710,1997,8207,green_leaf,6657,international
+South Africa,710,1998,13010,green_leaf,6700,official
+South Africa,710,1999,12077,green_leaf,6677,official
+South Africa,710,2000,12514,green_leaf,6861,official
+South Africa,710,2001,12671,green_leaf,6864,official
+South Africa,710,2002,12500,green_leaf,6200,estimated
+South Africa,710,2003,12143,green_leaf,5300,official
+South Africa,710,2004,4279,green_leaf,2200,official
+South Africa,710,2005,21780,green_leaf,5800,official
+South Africa,710,2006,3328,green_leaf,1486,official
+South Africa,710,2007,6333,green_leaf,2874,imputed
+South Africa,710,2008,3290,green_leaf,1515,official
+South Africa,710,2009,1743,green_leaf,1500,official
+South Africa,710,2010,1647,green_leaf,777,official
+South Africa,710,2011,1795,green_leaf,856,official
+South Africa,710,2012,870,green_leaf,419,official
+South Africa,710,2013,2171,green_leaf,1047,imputed
+South Africa,710,2014,1990,green_leaf,962,imputed
+South Africa,710,2015,1858,green_leaf,901,imputed
+South Africa,710,2016,1716,green_leaf,834,imputed
+South Africa,710,2017,1854,green_leaf,899,estimated
+South Africa,710,2018,1809,green_leaf,878,estimated
+South Africa,710,2019,1793,green_leaf,870,estimated
+South Africa,710,2020,1819,green_leaf,882,estimated
+South Africa,710,2021,1807,green_leaf,877,estimated
+South Africa,710,2022,1750,green_leaf,835,imputed
+South Africa,710,2023,1831,green_leaf,872,imputed
+South Africa,710,2024,1796,green_leaf,907,estimated
+Sri Lanka,144,1961,206488,made_tea,237713,official
+Sri Lanka,144,1962,211850,made_tea,239217,official
+Sri Lanka,144,1963,219798,made_tea,237702,official
+Sri Lanka,144,1964,218513,made_tea,239569,official
+Sri Lanka,144,1965,228236,made_tea,240508,official
+Sri Lanka,144,1966,222312,made_tea,241373,official
+Sri Lanka,144,1967,220742,made_tea,242331,official
+Sri Lanka,144,1968,224803,made_tea,241796,official
+Sri Lanka,144,1969,219639,made_tea,241401,official
+Sri Lanka,144,1970,212210,made_tea,241799,official
+Sri Lanka,144,1971,217773,made_tea,241667,official
+Sri Lanka,144,1972,208858,made_tea,241855,official
+Sri Lanka,144,1973,211285,made_tea,242298,official
+Sri Lanka,144,1974,204037,made_tea,242193,official
+Sri Lanka,144,1975,213928,made_tea,241880,official
+Sri Lanka,144,1976,196606,made_tea,240581,official
+Sri Lanka,144,1977,208572,made_tea,242012,official
+Sri Lanka,144,1978,198780,made_tea,242899,official
+Sri Lanka,144,1979,208417,made_tea,244099,official
+Sri Lanka,144,1980,191375,made_tea,244710,official
+Sri Lanka,144,1981,210148,made_tea,244918,official
+Sri Lanka,144,1982,187816,made_tea,242141,official
+Sri Lanka,144,1983,179287,made_tea,242130,official
+Sri Lanka,144,1984,208058,made_tea,227874,official
+Sri Lanka,144,1985,214094,made_tea,231650,official
+Sri Lanka,144,1986,211276,made_tea,222905,official
+Sri Lanka,144,1987,213327,made_tea,221498,official
+Sri Lanka,144,1988,226952,made_tea,221683,official
+Sri Lanka,144,1989,206987,made_tea,222110,official
+Sri Lanka,144,1990,233165,made_tea,221758,official
+Sri Lanka,144,1991,1047000,green_leaf,221691,estimated
+Sri Lanka,144,1992,778000,green_leaf,221836,estimated
+Sri Lanka,144,1993,1008000,green_leaf,197230,estimated
+Sri Lanka,144,1994,1053000,green_leaf,187309,estimated
+Sri Lanka,144,1995,1069000,green_leaf,188970,estimated
+Sri Lanka,144,1996,1124000,green_leaf,187563,estimated
+Sri Lanka,144,1997,1204000,green_leaf,190473,estimated
+Sri Lanka,144,1998,1218000,green_leaf,188970,estimated
+Sri Lanka,144,1999,1234000,green_leaf,195460,estimated
+Sri Lanka,144,2000,1330000,green_leaf,188970,estimated
+Sri Lanka,144,2001,1283000,green_leaf,188970,estimated
+Sri Lanka,144,2002,1348000,green_leaf,210620,estimated
+Sri Lanka,144,2003,1318000,green_leaf,210620,estimated
+Sri Lanka,144,2004,1340000,green_leaf,212720,estimated
+Sri Lanka,144,2005,1379000,green_leaf,212720,estimated
+Sri Lanka,144,2006,1351000,green_leaf,212720,estimated
+Sri Lanka,144,2007,1327000,green_leaf,212720,estimated
+Sri Lanka,144,2008,1386000,green_leaf,221969,estimated
+Sri Lanka,144,2009,1261000,green_leaf,221969,estimated
+Sri Lanka,144,2010,1760000,green_leaf,221969,estimated
+Sri Lanka,144,2011,1750000,green_leaf,221969,estimated
+Sri Lanka,144,2012,1765000,green_leaf,221969,estimated
+Sri Lanka,144,2013,1810000,green_leaf,221969,estimated
+Sri Lanka,144,2014,1810000,green_leaf,221969,estimated
+Sri Lanka,144,2015,1760000,green_leaf,233124,estimated
+Sri Lanka,144,2016,1570000,green_leaf,216515,estimated
+Sri Lanka,144,2017,1630000,green_leaf,202540,estimated
+Sri Lanka,144,2018,1500000,green_leaf,202540,estimated
+Sri Lanka,144,2019,1490000,green_leaf,264688,estimated
+Sri Lanka,144,2020,1500000,green_leaf,266354,estimated
+Sri Lanka,144,2021,1800000,green_leaf,266509,estimated
+Sri Lanka,144,2022,1400000,green_leaf,267187,estimated
+Sri Lanka,144,2023,1495646,green_leaf,268829,imputed
+Sri Lanka,144,2024,1514024,green_leaf,268829,imputed
+Thailand,764,1961,0,made_tea,0,official
+Thailand,764,1962,0,made_tea,0,official
+Thailand,764,1963,0,made_tea,0,official
+Thailand,764,1964,0,made_tea,0,official
+Thailand,764,1965,0,made_tea,0,official
+Thailand,764,1966,0,made_tea,0,official
+Thailand,764,1967,0,made_tea,0,official
+Thailand,764,1968,0,made_tea,0,official
+Thailand,764,1969,0,made_tea,0,official
+Thailand,764,1970,0,made_tea,0,official
+Thailand,764,1971,0,made_tea,0,official
+Thailand,764,1972,50,made_tea,500,estimated
+Thailand,764,1973,100,made_tea,900,estimated
+Thailand,764,1974,150,made_tea,1300,estimated
+Thailand,764,1975,150,made_tea,1300,estimated
+Thailand,764,1976,200,made_tea,1700,estimated
+Thailand,764,1977,400,made_tea,3200,estimated
+Thailand,764,1978,600,made_tea,4600,estimated
+Thailand,764,1979,700,made_tea,5200,estimated
+Thailand,764,1980,800,made_tea,5700,estimated
+Thailand,764,1981,1000,made_tea,7000,estimated
+Thailand,764,1982,1500,made_tea,10400,international
+Thailand,764,1983,2000,made_tea,11200,international
+Thailand,764,1984,2000,made_tea,11800,estimated
+Thailand,764,1985,3000,made_tea,11400,official
+Thailand,764,1986,2500,made_tea,10000,international
+Thailand,764,1987,3400,made_tea,9500,estimated
+Thailand,764,1988,4959,made_tea,11000,official
+Thailand,764,1989,5033,made_tea,10500,official
+Thailand,764,1990,6500,made_tea,9500,estimated
+Thailand,764,1991,8500,green_leaf,1700,estimated
+Thailand,764,1992,11000,green_leaf,2375,estimated
+Thailand,764,1993,13500,green_leaf,2910,estimated
+Thailand,764,1994,16000,green_leaf,3443,estimated
+Thailand,764,1995,18500,green_leaf,3975,estimated
+Thailand,764,1996,22000,green_leaf,4718,estimated
+Thailand,764,1997,25000,green_leaf,5216,estimated
+Thailand,764,1998,28000,green_leaf,5874,estimated
+Thailand,764,1999,30000,green_leaf,6330,estimated
+Thailand,764,2000,32327,green_leaf,6058,official
+Thailand,764,2001,33494,green_leaf,6501,official
+Thailand,764,2002,36321,green_leaf,8602,official
+Thailand,764,2003,43333,green_leaf,10769,official
+Thailand,764,2004,51817,green_leaf,14992,official
+Thailand,764,2005,51570,green_leaf,15289,official
+Thailand,764,2006,53782,green_leaf,16024,official
+Thailand,764,2007,57362,green_leaf,16958,official
+Thailand,764,2008,61557,green_leaf,18138,official
+Thailand,764,2009,63707,green_leaf,18635,official
+Thailand,764,2010,67241,green_leaf,19459,official
+Thailand,764,2011,73320,green_leaf,20214,official
+Thailand,764,2012,71733,green_leaf,14640,imputed
+Thailand,764,2013,68013,green_leaf,7941,official
+Thailand,764,2014,40324,green_leaf,8315,official
+Thailand,764,2015,49054,green_leaf,6651,official
+Thailand,764,2016,64734,green_leaf,11450,imputed
+Thailand,764,2017,79393,green_leaf,15008,imputed
+Thailand,764,2018,93084,green_leaf,17973,official
+Thailand,764,2019,96537,green_leaf,19460,official
+Thailand,764,2020,103420,green_leaf,20317,official
+Thailand,764,2021,103420,green_leaf,20554,official
+Thailand,764,2022,106457,green_leaf,21123,official
+Thailand,764,2023,106347,green_leaf,21243,official
+Thailand,764,2024,106643,green_leaf,21394,official
+Türkiye,792,1961,5450,made_tea,14976,official
+Türkiye,792,1962,8259,made_tea,15950,official
+Türkiye,792,1963,10100,made_tea,17543,official
+Türkiye,792,1964,10035,made_tea,19028,official
+Türkiye,792,1965,13000,made_tea,19593,official
+Türkiye,792,1966,23000,made_tea,21720,official
+Türkiye,792,1967,21786,made_tea,23472,official
+Türkiye,792,1968,27557,made_tea,26120,official
+Türkiye,792,1969,34373,made_tea,27309,official
+Türkiye,792,1970,33431,made_tea,25978,official
+Türkiye,792,1971,33585,made_tea,28351,official
+Türkiye,792,1972,46500,made_tea,28782,official
+Türkiye,792,1973,43202,made_tea,40487,official
+Türkiye,792,1974,42781,made_tea,40567,official
+Türkiye,792,1975,55572,made_tea,50288,official
+Türkiye,792,1976,59547,made_tea,52005,official
+Türkiye,792,1977,77592,made_tea,52353,official
+Türkiye,792,1978,86206,made_tea,52855,official
+Türkiye,792,1979,101955,made_tea,53601,official
+Türkiye,792,1980,95889,made_tea,53811,official
+Türkiye,792,1981,42606,made_tea,53167,official
+Türkiye,792,1982,68038,made_tea,64499,official
+Türkiye,792,1983,100982,made_tea,64603,official
+Türkiye,792,1984,113701,made_tea,64361,official
+Türkiye,792,1985,137116,made_tea,66947,official
+Türkiye,792,1986,148305,made_tea,83470,official
+Türkiye,792,1987,140680,made_tea,80698,official
+Türkiye,792,1988,153160,made_tea,86288,official
+Türkiye,792,1989,136530,made_tea,89525,official
+Türkiye,792,1990,122754,made_tea,90575,official
+Türkiye,792,1991,682858,green_leaf,88639,official
+Türkiye,792,1992,724383,green_leaf,89345,official
+Türkiye,792,1993,578500,green_leaf,89330,official
+Türkiye,792,1994,654000,green_leaf,76791,official
+Türkiye,792,1995,523465,green_leaf,76609,official
+Türkiye,792,1996,600000,green_leaf,76743,official
+Türkiye,792,1997,752000,green_leaf,76755,official
+Türkiye,792,1998,978589,green_leaf,76752,official
+Türkiye,792,1999,1095532,green_leaf,76749,official
+Türkiye,792,2000,758038,green_leaf,76750,official
+Türkiye,792,2001,824946,green_leaf,76653,official
+Türkiye,792,2002,791700,green_leaf,76645,official
+Türkiye,792,2003,869000,green_leaf,76640,official
+Türkiye,792,2004,1105000,green_leaf,76632,official
+Türkiye,792,2005,1192004,green_leaf,76625,official
+Türkiye,792,2006,1121206,green_leaf,76614,official
+Türkiye,792,2007,1145321,green_leaf,76581,official
+Türkiye,792,2008,1100257,green_leaf,75826,official
+Türkiye,792,2009,1103340,green_leaf,75851,official
+Türkiye,792,2010,1305566,green_leaf,75864,official
+Türkiye,792,2011,1231141,green_leaf,75890,official
+Türkiye,792,2012,1250000,green_leaf,75857,official
+Türkiye,792,2013,1180000,green_leaf,76425,official
+Türkiye,792,2014,1266311,green_leaf,76049,official
+Türkiye,792,2015,1327934,green_leaf,76207,official
+Türkiye,792,2016,1350000,green_leaf,76361,official
+Türkiye,792,2017,1300000,green_leaf,82108,official
+Türkiye,792,2018,1480534,green_leaf,78133,official
+Türkiye,792,2019,1407448,green_leaf,78569,official
+Türkiye,792,2020,1450556,green_leaf,78681,official
+Türkiye,792,2021,1453964,green_leaf,78900,official
+Türkiye,792,2022,1269546,green_leaf,79129,official
+Türkiye,792,2023,1356556,green_leaf,79198,official
+Türkiye,792,2024,1414000,green_leaf,81010,official
+USSR,810,1961,39592,made_tea,63000,official
+USSR,810,1962,43831,made_tea,66000,official
+USSR,810,1963,47922,made_tea,67800,official
+USSR,810,1964,47457,made_tea,69800,official
+USSR,810,1965,48265,made_tea,71000,official
+USSR,810,1966,58359,made_tea,71300,official
+USSR,810,1967,57477,made_tea,71700,official
+USSR,810,1968,56105,made_tea,72200,official
+USSR,810,1969,59927,made_tea,72500,official
+USSR,810,1970,66812,made_tea,74400,official
+USSR,810,1971,68649,made_tea,75500,official
+USSR,810,1972,71320,made_tea,74700,official
+USSR,810,1973,74823,made_tea,73900,official
+USSR,810,1974,80826,made_tea,75500,official
+USSR,810,1975,86314,made_tea,76000,official
+USSR,810,1976,91949,made_tea,76800,official
+USSR,810,1977,106355,made_tea,76800,official
+USSR,810,1978,111230,made_tea,77400,official
+USSR,810,1979,117600,made_tea,78700,official
+USSR,810,1980,129850,made_tea,78800,official
+USSR,810,1981,136500,made_tea,78200,official
+USSR,810,1982,140400,made_tea,78700,official
+USSR,810,1983,145500,made_tea,79600,official
+USSR,810,1984,151200,made_tea,80700,official
+USSR,810,1985,152400,made_tea,82300,official
+USSR,810,1986,146000,made_tea,82600,official
+USSR,810,1987,156000,made_tea,82500,official
+USSR,810,1988,122500,made_tea,79800,official
+USSR,810,1989,131000,made_tea,79900,official
+USSR,810,1990,135700,made_tea,77300,official
+USSR,810,1991,119700,green_leaf,76600,estimated
+Uganda,800,1961,5100,made_tea,5500,official
+Uganda,800,1962,6319,made_tea,5700,official
+Uganda,800,1963,6170,made_tea,6300,official
+Uganda,800,1964,7615,made_tea,7150,official
+Uganda,800,1965,8366,made_tea,7300,official
+Uganda,800,1966,11215,made_tea,8000,official
+Uganda,800,1967,11242,made_tea,8000,official
+Uganda,800,1968,15163,made_tea,10000,official
+Uganda,800,1969,17627,made_tea,10000,official
+Uganda,800,1970,18200,made_tea,10300,official
+Uganda,800,1971,18000,made_tea,15000,official
+Uganda,800,1972,23400,made_tea,14600,official
+Uganda,800,1973,22000,made_tea,16400,official
+Uganda,800,1974,22000,made_tea,16300,official
+Uganda,800,1975,18400,made_tea,17500,official
+Uganda,800,1976,15400,made_tea,18000,official
+Uganda,800,1977,15200,made_tea,16800,official
+Uganda,800,1978,10900,made_tea,18300,official
+Uganda,800,1979,1800,made_tea,4000,official
+Uganda,800,1980,1500,made_tea,3000,official
+Uganda,800,1981,1700,made_tea,4000,official
+Uganda,800,1982,2580,made_tea,5000,official
+Uganda,800,1983,3054,made_tea,6000,official
+Uganda,800,1984,5214,made_tea,8000,official
+Uganda,800,1985,5758,made_tea,9000,official
+Uganda,800,1986,3335,made_tea,7000,official
+Uganda,800,1987,3511,made_tea,7200,official
+Uganda,800,1988,3512,made_tea,7200,official
+Uganda,800,1989,4658,made_tea,8000,official
+Uganda,800,1990,6704,made_tea,11000,official
+Uganda,800,1991,39000,green_leaf,7800,estimated
+Uganda,800,1992,41000,green_leaf,8218,estimated
+Uganda,800,1993,53000,green_leaf,10657,estimated
+Uganda,800,1994,59000,green_leaf,11897,estimated
+Uganda,800,1995,55000,green_leaf,11183,estimated
+Uganda,800,1996,76000,green_leaf,15439,estimated
+Uganda,800,1997,92000,green_leaf,20500,estimated
+Uganda,800,1998,113000,green_leaf,20000,estimated
+Uganda,800,1999,108000,green_leaf,15213,estimated
+Uganda,800,2000,127000,green_leaf,15701,estimated
+Uganda,800,2001,143000,green_leaf,15761,estimated
+Uganda,800,2002,172000,green_leaf,22000,estimated
+Uganda,800,2003,160000,green_leaf,20000,estimated
+Uganda,800,2004,155000,green_leaf,19180,estimated
+Uganda,800,2005,164000,green_leaf,20100,estimated
+Uganda,800,2006,149000,green_leaf,19100,estimated
+Uganda,800,2007,195000,green_leaf,22000,estimated
+Uganda,800,2008,186000,green_leaf,21000,estimated
+Uganda,800,2009,212000,green_leaf,25000,estimated
+Uganda,800,2010,214000,green_leaf,25000,estimated
+Uganda,800,2011,153000,green_leaf,17738,estimated
+Uganda,800,2012,252000,green_leaf,28953,estimated
+Uganda,800,2013,265000,green_leaf,30197,estimated
+Uganda,800,2014,284000,green_leaf,32097,estimated
+Uganda,800,2015,255000,green_leaf,28583,estimated
+Uganda,800,2016,234000,green_leaf,26000,estimated
+Uganda,800,2017,218000,green_leaf,24368,estimated
+Uganda,800,2018,323000,green_leaf,36520,estimated
+Uganda,800,2019,262000,green_leaf,29233,estimated
+Uganda,800,2020,390000,green_leaf,42785,estimated
+Uganda,800,2021,437000,green_leaf,47000,estimated
+Uganda,800,2022,406000,green_leaf,45000,estimated
+Uganda,800,2023,393436,green_leaf,44047,imputed
+Uganda,800,2024,414945,green_leaf,44765,imputed
+United Republic of Tanzania,834,1961,4459,made_tea,5500,official
+United Republic of Tanzania,834,1962,4310,made_tea,6500,official
+United Republic of Tanzania,834,1963,5019,made_tea,6500,official
+United Republic of Tanzania,834,1964,4812,made_tea,6500,official
+United Republic of Tanzania,834,1965,5682,made_tea,7000,official
+United Republic of Tanzania,834,1966,6911,made_tea,7500,official
+United Republic of Tanzania,834,1967,7399,made_tea,8000,official
+United Republic of Tanzania,834,1968,8292,made_tea,8000,official
+United Republic of Tanzania,834,1969,8800,made_tea,9000,official
+United Republic of Tanzania,834,1970,8492,made_tea,10000,official
+United Republic of Tanzania,834,1971,9182,made_tea,10500,official
+United Republic of Tanzania,834,1972,11613,made_tea,10800,official
+United Republic of Tanzania,834,1973,13291,made_tea,11200,official
+United Republic of Tanzania,834,1974,12258,made_tea,11700,official
+United Republic of Tanzania,834,1975,13873,made_tea,12400,official
+United Republic of Tanzania,834,1976,13049,made_tea,15100,official
+United Republic of Tanzania,834,1977,18450,made_tea,17100,official
+United Republic of Tanzania,834,1978,17009,made_tea,17500,official
+United Republic of Tanzania,834,1979,17307,made_tea,18000,official
+United Republic of Tanzania,834,1980,16418,made_tea,15000,official
+United Republic of Tanzania,834,1981,15537,made_tea,13000,official
+United Republic of Tanzania,834,1982,17551,made_tea,8980,official
+United Republic of Tanzania,834,1983,15195,made_tea,8980,official
+United Republic of Tanzania,834,1984,16790,made_tea,9180,official
+United Republic of Tanzania,834,1985,15537,made_tea,9180,official
+United Republic of Tanzania,834,1986,14064,made_tea,12640,official
+United Republic of Tanzania,834,1987,17200,made_tea,12570,official
+United Republic of Tanzania,834,1988,15944,made_tea,12570,official
+United Republic of Tanzania,834,1989,20180,made_tea,12570,official
+United Republic of Tanzania,834,1990,18090,made_tea,12570,official
+United Republic of Tanzania,834,1991,85000,green_leaf,18700,estimated
+United Republic of Tanzania,834,1992,96000,green_leaf,18081,estimated
+United Republic of Tanzania,834,1993,97000,green_leaf,17678,estimated
+United Republic of Tanzania,834,1994,108000,green_leaf,18800,estimated
+United Republic of Tanzania,834,1995,106000,green_leaf,18500,estimated
+United Republic of Tanzania,834,1996,104000,green_leaf,17828,estimated
+United Republic of Tanzania,834,1997,111000,green_leaf,19000,estimated
+United Republic of Tanzania,834,1998,95000,green_leaf,18500,estimated
+United Republic of Tanzania,834,1999,109000,green_leaf,19000,estimated
+United Republic of Tanzania,834,2000,103000,green_leaf,16600,estimated
+United Republic of Tanzania,834,2001,111000,green_leaf,17851,estimated
+United Republic of Tanzania,834,2002,107000,green_leaf,16980,estimated
+United Republic of Tanzania,834,2003,120000,green_leaf,20000,estimated
+United Republic of Tanzania,834,2004,131000,green_leaf,19703,estimated
+United Republic of Tanzania,834,2005,133000,green_leaf,18658,estimated
+United Republic of Tanzania,834,2006,132000,green_leaf,17607,estimated
+United Republic of Tanzania,834,2007,136000,green_leaf,17414,estimated
+United Republic of Tanzania,834,2008,151000,green_leaf,18441,estimated
+United Republic of Tanzania,834,2009,149000,green_leaf,17024,estimated
+United Republic of Tanzania,834,2010,144000,green_leaf,11410,estimated
+United Republic of Tanzania,834,2011,139000,green_leaf,16667,estimated
+United Republic of Tanzania,834,2012,143000,green_leaf,18232,estimated
+United Republic of Tanzania,834,2013,147000,green_leaf,21407,estimated
+United Republic of Tanzania,834,2014,146000,green_leaf,21338,estimated
+United Republic of Tanzania,834,2015,155000,green_leaf,22509,estimated
+United Republic of Tanzania,834,2016,142000,green_leaf,18994,estimated
+United Republic of Tanzania,834,2017,117000,green_leaf,15110,estimated
+United Republic of Tanzania,834,2018,148000,green_leaf,19380,estimated
+United Republic of Tanzania,834,2019,162000,green_leaf,21234,estimated
+United Republic of Tanzania,834,2020,125000,green_leaf,16181,estimated
+United Republic of Tanzania,834,2021,140000,green_leaf,18113,estimated
+United Republic of Tanzania,834,2022,145000,green_leaf,19230,estimated
+United Republic of Tanzania,834,2023,120000,green_leaf,15963,estimated
+United Republic of Tanzania,834,2024,128783,green_leaf,17185,imputed
+Viet Nam,704,1961,7500,made_tea,19100,official
+Viet Nam,704,1962,7500,made_tea,21000,international
+Viet Nam,704,1963,8000,made_tea,21000,estimated
+Viet Nam,704,1964,9000,made_tea,22000,estimated
+Viet Nam,704,1965,10600,made_tea,26300,official
+Viet Nam,704,1966,12000,made_tea,22400,official
+Viet Nam,704,1967,9000,made_tea,23000,estimated
+Viet Nam,704,1968,13500,made_tea,25000,estimated
+Viet Nam,704,1969,14000,made_tea,27000,estimated
+Viet Nam,704,1970,14700,made_tea,29200,official
+Viet Nam,704,1971,15500,made_tea,31300,official
+Viet Nam,704,1972,15000,made_tea,33000,estimated
+Viet Nam,704,1973,15000,made_tea,35000,estimated
+Viet Nam,704,1974,17000,made_tea,36000,estimated
+Viet Nam,704,1975,18000,made_tea,38800,official
+Viet Nam,704,1976,17251,made_tea,25900,official
+Viet Nam,704,1977,18299,made_tea,31700,official
+Viet Nam,704,1978,20040,made_tea,33800,official
+Viet Nam,704,1979,20297,made_tea,34380,official
+Viet Nam,704,1980,21014,made_tea,34690,official
+Viet Nam,704,1981,21178,made_tea,36000,official
+Viet Nam,704,1982,25378,made_tea,38920,official
+Viet Nam,704,1983,24609,made_tea,39700,official
+Viet Nam,704,1984,27428,made_tea,41600,official
+Viet Nam,704,1985,28222,made_tea,41600,official
+Viet Nam,704,1986,30006,made_tea,44200,official
+Viet Nam,704,1987,28990,made_tea,43540,official
+Viet Nam,704,1988,29743,made_tea,43400,official
+Viet Nam,704,1989,30218,made_tea,43100,official
+Viet Nam,704,1990,32247,made_tea,44400,official
+Viet Nam,704,1991,142400,green_leaf,45800,estimated
+Viet Nam,704,1992,155700,green_leaf,50000,estimated
+Viet Nam,704,1993,162200,green_leaf,49200,estimated
+Viet Nam,704,1994,180600,green_leaf,51700,estimated
+Viet Nam,704,1995,172900,green_leaf,52100,estimated
+Viet Nam,704,1996,201300,green_leaf,60200,estimated
+Viet Nam,704,1997,224500,green_leaf,63900,estimated
+Viet Nam,704,1998,243400,green_leaf,66879,estimated
+Viet Nam,704,1999,302400,green_leaf,69500,estimated
+Viet Nam,704,2000,300600,green_leaf,70300,estimated
+Viet Nam,704,2001,325600,green_leaf,74400,estimated
+Viet Nam,704,2002,405200,green_leaf,77200,estimated
+Viet Nam,704,2003,448600,green_leaf,86100,official
+Viet Nam,704,2004,513800,green_leaf,92400,official
+Viet Nam,704,2005,570000,green_leaf,97700,official
+Viet Nam,704,2006,648900,green_leaf,102100,official
+Viet Nam,704,2007,705900,green_leaf,107400,official
+Viet Nam,704,2008,746200,green_leaf,108800,official
+Viet Nam,704,2009,771000,green_leaf,111400,official
+Viet Nam,704,2010,834600,green_leaf,113200,official
+Viet Nam,704,2011,879079,green_leaf,114399,official
+Viet Nam,704,2012,909729,green_leaf,114433,official
+Viet Nam,704,2013,936424,green_leaf,114827,official
+Viet Nam,704,2014,982210,green_leaf,115436,official
+Viet Nam,704,2015,1012916,green_leaf,117822,official
+Viet Nam,704,2016,1033767,green_leaf,118824,official
+Viet Nam,704,2017,1121066,green_leaf,123188,official
+Viet Nam,704,2018,1081166,green_leaf,116633,official
+Viet Nam,704,2019,1017619,green_leaf,107878,official
+Viet Nam,704,2020,1064993,green_leaf,109620,official
+Viet Nam,704,2021,1091073,green_leaf,111196,official
+Viet Nam,704,2022,1116750,green_leaf,112215,official
+Viet Nam,704,2023,1125065,green_leaf,112164,official
+Viet Nam,704,2024,1154510,green_leaf,113037,official
+Zambia,894,1961,0,made_tea,0,official
+Zambia,894,1962,0,made_tea,0,official
+Zambia,894,1963,0,made_tea,0,official
+Zambia,894,1964,0,made_tea,0,official
+Zambia,894,1965,0,made_tea,0,official
+Zambia,894,1966,0,made_tea,0,official
+Zambia,894,1967,0,made_tea,0,official
+Zambia,894,1968,0,made_tea,0,official
+Zambia,894,1969,0,made_tea,0,official
+Zambia,894,1970,0,made_tea,0,official
+Zambia,894,1971,0,made_tea,0,official
+Zambia,894,1972,0,made_tea,0,official
+Zambia,894,1973,0,made_tea,0,official
+Zambia,894,1974,24,made_tea,20,official
+Zambia,894,1975,68,made_tea,60,official
+Zambia,894,1976,10,made_tea,10,official
+Zambia,894,1977,82,made_tea,75,official
+Zambia,894,1978,144,made_tea,130,official
+Zambia,894,1979,249,made_tea,230,official
+Zambia,894,1980,314,made_tea,300,official
+Zambia,894,1981,363,made_tea,320,official
+Zambia,894,1982,402,made_tea,360,official
+Zambia,894,1983,444,made_tea,390,official
+Zambia,894,1984,463,made_tea,410,official
+Zambia,894,1985,375,made_tea,350,official
+Zambia,894,1986,468,made_tea,410,official
+Zambia,894,1987,373,made_tea,350,official
+Zambia,894,1988,546,made_tea,450,official
+Zambia,894,1989,550,made_tea,450,international
+Zambia,894,1990,560,made_tea,460,estimated
+Zambia,894,1991,570,green_leaf,470,estimated
+Zambia,894,1992,500,green_leaf,440,estimated
+Zambia,894,1993,530,green_leaf,450,estimated
+Zambia,894,1994,500,green_leaf,440,estimated
+Zambia,894,1995,450,green_leaf,400,estimated
+Zambia,894,1996,500,green_leaf,440,estimated
+Zambia,894,1997,550,green_leaf,450,estimated
+Zambia,894,1998,650,green_leaf,460,estimated
+Zambia,894,1999,1000,green_leaf,750,estimated
+Zambia,894,2000,850,green_leaf,650,estimated
+Zambia,894,2001,550,green_leaf,500,estimated
+Zambia,894,2002,750,green_leaf,600,estimated
+Zambia,894,2003,659,green_leaf,500,imputed
+Zambia,894,2004,800,green_leaf,550,estimated
+Zambia,894,2005,774,green_leaf,555,imputed
+Zambia,894,2006,750,green_leaf,500,estimated
+Zambia,894,2007,781,green_leaf,549,imputed
+Zambia,894,2008,802,green_leaf,566,imputed
+Zambia,894,2009,822,green_leaf,582,imputed
+Zambia,894,2010,842,green_leaf,598,imputed
+Zambia,894,2011,862,green_leaf,614,imputed
+Zambia,894,2012,900,green_leaf,650,estimated
+Zambia,894,2013,900,green_leaf,650,estimated
+Zambia,894,2014,911,green_leaf,647,imputed
+Zambia,894,2015,931,green_leaf,657,imputed
+Zambia,894,2016,921,green_leaf,654,imputed
+Zambia,894,2017,941,green_leaf,662,imputed
+Zambia,894,2018,965,green_leaf,673,imputed
+Zambia,894,2019,985,green_leaf,684,imputed
+Zambia,894,2020,964,green_leaf,694,estimated
+Zambia,894,2021,971,green_leaf,684,estimated
+Zambia,894,2022,973,green_leaf,687,estimated
+Zambia,894,2023,970,green_leaf,688,estimated
+Zambia,894,2024,971,green_leaf,687,estimated
+Zimbabwe,716,1961,1100,made_tea,1222,official
+Zimbabwe,716,1962,1300,made_tea,1344,official
+Zimbabwe,716,1963,1223,made_tea,1829,official
+Zimbabwe,716,1964,1392,made_tea,2153,official
+Zimbabwe,716,1965,1608,made_tea,2590,official
+Zimbabwe,716,1966,2268,made_tea,2000,official
+Zimbabwe,716,1967,2896,made_tea,2500,international
+Zimbabwe,716,1968,3008,made_tea,2300,official
+Zimbabwe,716,1969,3630,made_tea,3000,international
+Zimbabwe,716,1970,3945,made_tea,3000,official
+Zimbabwe,716,1971,4269,made_tea,3200,official
+Zimbabwe,716,1972,5202,made_tea,3500,official
+Zimbabwe,716,1973,4565,made_tea,3500,official
+Zimbabwe,716,1974,5893,made_tea,3800,official
+Zimbabwe,716,1975,6884,made_tea,3800,official
+Zimbabwe,716,1976,5983,made_tea,4000,official
+Zimbabwe,716,1977,6171,made_tea,4100,official
+Zimbabwe,716,1978,8630,made_tea,4200,official
+Zimbabwe,716,1979,9791,made_tea,4000,official
+Zimbabwe,716,1980,9661,made_tea,4000,official
+Zimbabwe,716,1981,9916,made_tea,4100,official
+Zimbabwe,716,1982,10602,made_tea,4300,official
+Zimbabwe,716,1983,10551,made_tea,4300,official
+Zimbabwe,716,1984,11807,made_tea,4300,official
+Zimbabwe,716,1985,14085,made_tea,4472,official
+Zimbabwe,716,1986,15679,made_tea,5100,international
+Zimbabwe,716,1987,14999,made_tea,4574,official
+Zimbabwe,716,1988,16612,made_tea,4691,international
+Zimbabwe,716,1989,17948,made_tea,4758,official
+Zimbabwe,716,1990,17000,made_tea,4960,official
+Zimbabwe,716,1991,63000,green_leaf,5046,estimated
+Zimbabwe,716,1992,40000,green_leaf,4426,estimated
+Zimbabwe,716,1993,61000,green_leaf,4700,estimated
+Zimbabwe,716,1994,58000,green_leaf,4726,estimated
+Zimbabwe,716,1995,65000,green_leaf,5236,estimated
+Zimbabwe,716,1996,73000,green_leaf,5820,estimated
+Zimbabwe,716,1997,74000,green_leaf,5844,estimated
+Zimbabwe,716,1998,76000,green_leaf,5400,estimated
+Zimbabwe,716,1999,81000,green_leaf,6263,estimated
+Zimbabwe,716,2000,96000,green_leaf,7374,estimated
+Zimbabwe,716,2001,97000,green_leaf,7404,estimated
+Zimbabwe,716,2002,98000,green_leaf,7434,estimated
+Zimbabwe,716,2003,98000,green_leaf,7390,estimated
+Zimbabwe,716,2004,97000,green_leaf,7272,estimated
+Zimbabwe,716,2005,97000,green_leaf,7000,estimated
+Zimbabwe,716,2006,69000,green_leaf,5034,estimated
+Zimbabwe,716,2007,63000,green_leaf,4583,estimated
+Zimbabwe,716,2008,61000,green_leaf,4424,estimated
+Zimbabwe,716,2009,61000,green_leaf,4410,estimated
+Zimbabwe,716,2010,61000,green_leaf,4397,estimated
+Zimbabwe,716,2011,62000,green_leaf,4456,estimated
+Zimbabwe,716,2012,64000,green_leaf,4587,estimated
+Zimbabwe,716,2013,59000,green_leaf,4216,estimated
+Zimbabwe,716,2014,59000,green_leaf,4200,estimated
+Zimbabwe,716,2015,61000,green_leaf,4318,estimated
+Zimbabwe,716,2016,66000,green_leaf,4651,estimated
+Zimbabwe,716,2017,67000,green_leaf,4713,estimated
+Zimbabwe,716,2018,68000,green_leaf,4744,estimated
+Zimbabwe,716,2019,66000,green_leaf,7567,estimated
+Zimbabwe,716,2020,80000,green_leaf,7582,estimated
+Zimbabwe,716,2021,74000,green_leaf,7462,estimated
+Zimbabwe,716,2022,71000,green_leaf,5951,estimated
+Zimbabwe,716,2023,66576,green_leaf,5662,imputed
+Zimbabwe,716,2024,54274,green_leaf,4868,imputed
