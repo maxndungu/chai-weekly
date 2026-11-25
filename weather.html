@@ -20,6 +20,9 @@ permalink: /weather/
   var areas = JSON.parse(document.getElementById('wx-areas').textContent);
   var status = document.getElementById('wx-status'), box = document.getElementById('wx-groups');
   var DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function day(iso, plus) { var d = new Date(iso + 'T12:00:00'); d.setDate(d.getDate() + (plus || 0)); return d; }
+  function dm(d) { return d.getDate() + ' ' + MONTHS[d.getMonth()]; }
   function sum(a) { return Math.round(a.reduce(function (s, x) { return s + (x || 0); }, 0) * 10) / 10; }
   function flags(rain, tmin) {
     var f = [], mx = Math.max.apply(null, rain.map(function (x) { return x || 0; })), mn = Math.min.apply(null, tmin.filter(function (x) { return x != null; }));
@@ -32,13 +35,15 @@ permalink: /weather/
   function card(a, x) {
     var top = Math.max(20, Math.max.apply(null, x.days.map(function (d) { return d.rain; })));
     var bars = x.days.map(function (d) {
-      var h = Math.round(d.rain / top * 88), day = DAYS[new Date(d.date + 'T12:00:00').getDay()];
+      var h = Math.round(d.rain / top * 88), dt = day(d.date);
       return '<div class="wx-day" title="' + d.date + ': ' + d.rain + ' mm, ' + d.tmin + '–' + d.tmax + '°C"><span class="wx-mm">' + (d.rain >= 1 ? Math.round(d.rain) : '') +
-        '</span><span class="wx-bar"><i style="height:' + h + '%"></i></span><span class="wx-dn">' + day + '</span><span class="wx-t">' + Math.round(d.tmax) + '°<br><em>' + Math.round(d.tmin) + '°</em></span></div>';
+        '</span><span class="wx-bar"><i style="height:' + h + '%"></i></span><span class="wx-dn">' + DAYS[dt.getDay()] + '<small>' + dm(dt) + '</small></span><span class="wx-t">' + Math.round(d.tmax) + '°<br><em>' + Math.round(d.tmin) + '°</em></span></div>';
     }).join('');
     var fl = x.flags.map(function (f) { return '<span class="wx-flag ' + f[0] + '">' + f[1] + '</span>'; }).join(' ') || '<span class="wx-ok">Nothing unusual</span>';
-    return '<section class="wx-card"><h3>' + esc(a.name) + '</h3><div class="wx-nums"><div><b>' + x.past + ' mm</b><span>rain, last 7 days</span></div><div><b>' + x.next + ' mm</b><span>forecast, next 7 days</span></div></div>' +
-      '<div class="wx-week">' + bars + '</div><p class="wx-flags">' + fl + '</p></section>';
+    var first = x.days[0].date, last = x.days[x.days.length - 1].date;
+    var past = dm(day(first, -7)) + '–' + dm(day(first, -1)), next = dm(day(first)) + '–' + dm(day(last));
+    return '<section class="wx-card"><h3>' + esc(a.name) + '</h3><div class="wx-nums"><div><b>' + x.past + ' mm</b><span>rain, past 7 days<br>' + past + '</span></div><div><b>' + x.next + ' mm</b><span>forecast, next 7 days<br>' + next + '</span></div></div>' +
+      '<p class="wx-wk">Forecast, day by day (rain in mm, high and low °C)</p><div class="wx-week">' + bars + '</div><p class="wx-flags">' + fl + '</p></section>';
   }
   function render(rows, note) {
     var groups = [], html = '';
