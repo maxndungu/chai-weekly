@@ -24,7 +24,7 @@
   var tkg = ys.reduce(function (a, s) { return a + s.kg; }, 0), avg = ys.reduce(function (a, s) { return a + s.v * s.kg; }, 0) / tkg;
   var hi = Math.max.apply(0, ys.map(function (s) { return s.v; })), lo = Math.min.apply(0, ys.map(function (s) { return s.v; }));
   var tiles = [
-    ["Sale " + last.n + " · " + dl(last.d) + (live(last.d) ? " <span class='live-tag'>in progress</span>" : ""), f2(last.v), ch((last.v - prev.v) * 100, "¢") + " on the week"],
+    ["Sale " + last.n + " · " + dl(last.d) + (live(last.d) ? " <span class='live-tag'>in progress</span>" : ""), f2(last.v), ch((last.v - prev.v) * 100, "¢") + " on the week" + (live(last.d) && window.chaiUpdated && window.chaiUpdated() ? "<br>" + window.chaiUpdated() : "")],
     ["Sold", (last.kg / 1e6).toFixed(2) + "M kg", ch(100 * (last.kg - prev.kg) / prev.kg, "%") + " on the week"],
     [last.y + " so far", f2(avg), "low " + f2(lo) + " · high " + f2(hi) + (last.v >= hi ? " · <b>year's high</b>" : "")]
   ];

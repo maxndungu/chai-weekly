@@ -414,6 +414,7 @@
     });
     $("dash-provisional").hidden = !rows.some(function (r) { return provisional(r) && !inProgress(r); });
     $("dash-live").hidden = !rows.some(inProgress);
+    var upd = $("dash-live-upd"); if (upd) upd.textContent = window.chaiUpdated && window.chaiUpdated() ? window.chaiUpdated() + "." : "";
   }
 
   /* The same run of sales in every year we hold. */

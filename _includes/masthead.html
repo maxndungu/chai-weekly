@@ -1,4 +1,17 @@
 {% assign pubs = site.posts | where_exp: "p", "p.preview != true" %}{% assign latest = pubs.first | default: site.posts.first %}
+<script>
+// When the site's figures were last updated (the build time), and a short Nairobi-time label for it,
+// shown next to an "in progress" sale: e.g. "Updated Mon 23 Nov, 2:13 pm".
+window.CHAI_UPDATED = {{ site.time | date: "%s" }}000;
+window.chaiUpdated = function () {
+  try {
+    var d = new Date(window.CHAI_UPDATED);
+    var p = {}; new Intl.DateTimeFormat("en-GB", { timeZone: "Africa/Nairobi", weekday: "short", day: "numeric", month: "short", hour: "numeric", minute: "2-digit", hour12: true })
+      .formatToParts(d).forEach(function (x) { p[x.type] = x.value; });
+    return "Updated " + p.weekday + " " + p.day + " " + p.month + ", " + p.hour + ":" + p.minute + " " + String(p.dayPeriod || "").toLowerCase();
+  } catch (e) { return ""; }
+};
+</script>
 <header class="masthead {% if include.compact %}compact{% endif %}">
   <div class="strip">
     <span>Vol. I · No. {{ latest.issue | default: pubs.size }}</span>
@@ -45,7 +58,7 @@
   (function () {
     var m = document.querySelector(".ticker .ticker-prov[data-sale-date]"); if (!m) return;
     var t = Date.parse(m.getAttribute("data-sale-date") + "T00:00:00Z"), w = new Date(t).getUTCDay();
-    if (Date.now() < t + ((2 - w + 7) % 7) * 864e5 + 14.5 * 36e5) { m.textContent = "in progress"; m.className += " live"; }
+    if (Date.now() < t + ((2 - w + 7) % 7) * 864e5 + 14.5 * 36e5) { m.textContent = "in progress"; m.className += " live"; var u = window.chaiUpdated(); if (u) m.insertAdjacentHTML("afterend", ' <i class="ticker-upd">' + u + "</i>"); }
   })();
   </script>
   {% endif %}

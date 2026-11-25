@@ -99,7 +99,7 @@ permalink: /auctions/
   // Headline numbers. A sale is "in progress" from its auction date until Tuesday 17:30 Nairobi (EATTA updates as it runs).
   var live = function (d) { var t = Date.parse(d + "T00:00:00Z"), w = new Date(t).getUTCDay(); return Date.now() < t + ((2 - w + 7) % 7) * 864e5 + 14.5 * 36e5; };
   var stats = [
-    ["Latest sale" + (live(last.date) ? " <span class='live-tag'>in progress</span>" : ""), f2(last.avg), "Sale " + last.sale + ", " + dlabel(last.date) + (prev ? " · <span class='" + cls(last.avg - prev.avg) + "'>" + cents(last.avg - prev.avg) + "</span> on the week" : "")],
+    ["Latest sale" + (live(last.date) ? " <span class='live-tag'>in progress</span>" : ""), f2(last.avg), "Sale " + last.sale + ", " + dlabel(last.date) + (prev ? " · <span class='" + cls(last.avg - prev.avg) + "'>" + cents(last.avg - prev.avg) + "</span> on the week" : "") + (live(last.date) && window.chaiUpdated && window.chaiUpdated() ? "<br>" + window.chaiUpdated() : "")],
     ["Sold at that sale", kg(last.kg), prev ? "<span class='" + cls(last.kg - prev.kg) + "'>" + (last.kg >= prev.kg ? "▲ " : "▼ ") + Math.abs(Math.round(100 * (last.kg - prev.kg) / prev.kg)) + "%</span> on the week" : ""],
     [yr + " so far", f2(ytd), ys.length + " sales · " + (tkg / 1e6).toFixed(0) + "M kg · low " + f2(lo.avg) + ", high " + f2(hi.avg)],
     ago ? ["A year ago", f2(ago.avg), saleLabel(ago) + " · <span class='" + cls(last.avg - ago.avg) + "'>" + cents(last.avg - ago.avg) + "</span> since"] : null
