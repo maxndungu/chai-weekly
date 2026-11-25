@@ -80,7 +80,20 @@ docker compose ps
 
 You should see `chai-listmonk` and `listmonk-db`, both "Up" (the first start takes about a minute).
 
-**d. Tell Caddy about the list.** Put your Caddyfile path from step a in the first line, then paste:
+**d. Tell Caddy about the list.**
+
+On Maxwell's VPS the kazora Caddyfile already reads every `*.caddy` file in
+`/opt/kazora/deploy/server/sites`, so the list gets its own file there and the main Caddyfile is not edited:
+
+```sh
+cp ~/chai-list/caddy-site-block.txt /opt/kazora/deploy/server/sites/chai-list.caddy
+docker exec kazora-caddy-1 wget -qO- http://chai-listmonk:9000/health; echo
+docker exec kazora-caddy-1 caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile 2>&1 | tail -2
+docker exec kazora-caddy-1 caddy reload --config /etc/caddy/Caddyfile --adapter caddyfile   # only if it said "Valid configuration"
+```
+
+On a server whose Caddyfile has no `import .../sites/*.caddy` line, add the block to the Caddyfile itself.
+Put your Caddyfile path from step a in the first line, then paste:
 
 ```sh
 CADDYFILE=/the/path/from/step/a/Caddyfile
