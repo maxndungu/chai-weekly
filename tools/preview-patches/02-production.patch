@@ -24,10 +24,10 @@ index caac793..9c697de 100644
  - { title: Origins, url: /origins/ }
  - { title: Culture, url: /culture/ }
 diff --git a/assets/style.css b/assets/style.css
-index 4b95bbd..a8cce8e 100644
+index 4b95bbd..fca60e0 100644
 --- a/assets/style.css
 +++ b/assets/style.css
-@@ -665,3 +665,17 @@ p { margin: 0 0 1em; }
+@@ -665,3 +665,18 @@ p { margin: 0 0 1em; }
  .dash-notes .dash-badge { margin: 0 4px 0 0; }
  @media (max-width: 899px) { .dash-charts, .dash-lower { grid-template-columns: 1fr; } }
  @media (max-width: 559px) { .dash-controls { padding: 14px 16px; gap: 12px; } .dash-field { flex: 1 1 40%; } .dash-field select { min-width: 0; width: 100%; } .dash-field:nth-child(n+4) { flex-basis: 100%; } }
@@ -45,12 +45,13 @@ index 4b95bbd..a8cce8e 100644
 +@media (max-width: 760px) { .prod-charts { grid-template-columns: 1fr; } }
 +.prod .up { color: var(--up); } .prod .down { color: var(--down); }
 +.prod .dash-legend i.k-bar { height: 10px; border: 0; background: var(--green-3); border-radius: 2px; width: 10px; }
++.prod-kyear { margin-bottom: 12px; }
 diff --git a/production.html b/production.html
 new file mode 100644
-index 0000000..56a7a29
+index 0000000..11f83f7
 --- /dev/null
 +++ b/production.html
-@@ -0,0 +1,195 @@
+@@ -0,0 +1,202 @@
 +---
 +layout: default
 +title: Tea production
@@ -72,6 +73,9 @@ index 0000000..56a7a29
 +
 +  <section>
 +    <h2 class="label rule">Kenya, month by month</h2>
++    <form class="dash-controls prod-kyear" onsubmit="return false" aria-label="Choose a year">
++      <label class="dash-field"><span>Year</span><select id="p-kyear"></select></label>
++    </form>
 +    <p class="chart-note" id="p-kmonth-note">Made tea, million kg a month.</p>
 +    <div class="dash-legend" id="p-kmonth-legend"></div>
 +    <figure class="chart" id="p-kmonth" role="img" aria-label="Kenya monthly tea production, this year against last year"></figure>
@@ -190,15 +194,16 @@ index 0000000..56a7a29
 +    dot(c, c.X(wl), c.Y(w[wl]), 4.5, "pt pt-last", "World, " + wl + ": " + num(world[wl].t) + " t");
 +  })();
 +
-+  // Kenya monthly bars: this year, with last year as a dashed line
-+  (function () {
++  // Kenya monthly bars: the chosen year, with the year before as a dashed line
++  function kenyaMonths(ty) {
++    var ly = ty - 1, mMax = Math.max.apply(0, Object.keys(km[ty]).map(Number)), latest = ty === kys[kys.length - 1];
 +    var W = wide("p-kmonth"), H = 280, pad = { l: 40, r: 14, t: 14, b: 30 };
 +    var all = [].concat.apply([], [ty, ly].map(function (y) { return Object.keys(km[y] || {}).map(function (m) { return km[y][m] / 1e6; }); }));
 +    var c = chart($("p-kmonth"), W, H, pad, [0, 12], Math.max.apply(0, all), function (v) { return v.toFixed(0); });
 +    var bw = (W - pad.l - pad.r) / 12;
 +    MON.forEach(function (n, i) { el("text", { x: c.X(i + 0.5), y: H - 8, class: "tick", "text-anchor": "middle" }, c.svg).textContent = W < 600 ? n.charAt(0) : n; });
 +    Object.keys(km[ty]).forEach(function (m) {
-+      var v = km[ty][m] / 1e6, r = el("rect", { x: c.X(m - 1) + bw * 0.18, width: bw * 0.64, y: c.Y(v), height: c.Y(0) - c.Y(v), class: "prod-bar" + (+m === mMax ? " last" : "") }, c.svg);
++      var v = km[ty][m] / 1e6, r = el("rect", { x: c.X(m - 1) + bw * 0.18, width: bw * 0.64, y: c.Y(v), height: c.Y(0) - c.Y(v), class: "prod-bar" + (latest && +m === mMax ? " last" : "") }, c.svg);
 +      el("title", {}, r).textContent = MON[m - 1] + " " + ty + ": " + v.toFixed(1) + "M kg" + (km[ly] && km[ly][m] ? " · " + ly + ": " + (km[ly][m] / 1e6).toFixed(1) + "M kg" : "");
 +    });
 +    var lm = Object.keys(km[ly] || {}).map(Number).sort(function (a, b) { return a - b; }), run = [];
@@ -208,9 +213,12 @@ index 0000000..56a7a29
 +      dot(c, c.X(m - 0.5), c.Y(km[ly][m] / 1e6), 3, "prod-prev-pt", MON[m - 1] + " " + ly + ": " + (km[ly][m] / 1e6).toFixed(1) + "M kg");
 +    });
 +    $("p-kmonth-legend").innerHTML = "<span><i class='k-bar'></i>" + ty + "</span><span><i class='k-prev'></i>" + ly + "</span>";
-+    var gaps = [ty, ly].map(function (y) { var miss = []; for (var m = 1; m <= (y === ty ? mMax : 12); m++) if (!(km[y] || {})[m]) miss.push(MON[m - 1]); return miss.length ? miss.join(", ") + " " + y : ""; }).filter(Boolean);
-+    $("p-kmonth-note").textContent = "Made tea, million kg a month." + (gaps.length ? " Not yet available: " + gaps.join("; ") + "." : "");
-+  })();
++    var gaps = [ty, ly].map(function (y) { var miss = []; if (!km[y]) return ""; for (var m = 1; m <= (y === ty && latest ? mMax : 12); m++) if (!(km[y] || {})[m]) miss.push(MON[m - 1]); return miss.length ? miss.join(", ") + " " + y : ""; }).filter(Boolean);
++    $("p-kmonth-note").textContent = "Made tea, million kg a month." + (gaps.length ? " Not available: " + gaps.join("; ") + "." : "");
++  }
++  $("p-kyear").innerHTML = kys.slice().reverse().map(function (y) { return "<option>" + y + "</option>"; }).join("");
++  $("p-kyear").addEventListener("change", function () { $("p-kmonth").innerHTML = ""; kenyaMonths(+this.value); });
++  kenyaMonths(kys[kys.length - 1]);
 +
 +  // Country picker
 +  var names = Object.keys(by).filter(function (c) { return c !== "World"; }).sort(function (a, b) { return a.localeCompare(b); });
