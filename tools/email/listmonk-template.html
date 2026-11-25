@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<title>{{ .Campaign.Subject }}</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@600;800&family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; padding:0; background:#fbfaf6; -webkit-text-size-adjust:100%; }
+  a { color:#1f5d34; }
+  table { border-spacing:0; }
+  img { border:0; max-width:100%; height:auto; }
+  @media (max-width:620px) {
+    .cw-pad { padding-left:16px !important; padding-right:16px !important; }
+    .cw-nameplate { font-size:46px !important; }
+    .cw-headline { font-size:28px !important; }
+    .cw-strip td { display:block !important; text-align:center !important; padding:2px 0 !important; }
+  }
+</style>
+</head>
+<body style="margin:0; padding:0; background:#fbfaf6;">
+<!-- Chai Weekly newspaper email. The issue itself (masthead, story, tables) comes from tools/to_listmonk.py;
+     this frame adds the page, the footer and the unsubscribe link. Kept in the repo: tools/email/listmonk-template.html -->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#fbfaf6" style="background:#fbfaf6;">
+  <tr>
+    <td align="center" style="padding:12px 0 32px;">
+      <table role="presentation" width="640" cellpadding="0" cellspacing="0" style="width:100%; max-width:640px;">
+        <tr>
+          <td class="cw-pad" style="padding:0 24px; font-family:'Source Serif 4', Georgia, 'Times New Roman', serif; font-size:17px; line-height:1.6; color:#121212; text-align:left;">
+{{ template "content" . }}
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:36px; border-top:3px double #1d1d1d;">
+              <tr>
+                <td align="center" style="padding:18px 0 0; font-family:'Libre Franklin', Helvetica, Arial, sans-serif; font-size:12px; line-height:1.6; color:#6e6a62;">
+                  <div style="font-family:'Playfair Display', Georgia, serif; font-weight:900; font-size:24px; color:#121212; margin-bottom:2px;">Chai Weekly</div>
+                  <div style="font-family:'Source Serif 4', Georgia, serif; font-style:italic; font-size:14px; color:#3d3b37; margin-bottom:12px;">Tea news from East Africa and the world, every week</div>
+                  <div style="margin-bottom:10px;">
+                    <a href="https://chaiweekly.co.ke/?utm_source=newsletter&amp;utm_medium=email" style="color:#1f5d34; font-weight:600; text-decoration:none;">chaiweekly.co.ke</a>
+                    &nbsp;·&nbsp; <a href="https://chaiweekly.co.ke/auctions/?utm_source=newsletter&amp;utm_medium=email" style="color:#1f5d34; font-weight:600; text-decoration:none;">Auctions</a>
+                    &nbsp;·&nbsp; <a href="https://chaiweekly.co.ke/submit/?utm_source=newsletter&amp;utm_medium=email" style="color:#1f5d34; font-weight:600; text-decoration:none;">Send a story</a>
+                  </div>
+                  <div>You are getting this email because you subscribed to Chai Weekly at chaiweekly.co.ke.<br>
+                    <a href="{{ UnsubscribeURL }}" style="color:#6e6a62;">Unsubscribe</a> &nbsp;·&nbsp; <a href="{{ MessageURL }}" style="color:#6e6a62;">View in your browser</a></div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+{{ TrackView }}
+</body>
+</html>

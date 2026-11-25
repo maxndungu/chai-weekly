@@ -101,7 +101,7 @@ GitHub stays the source of truth. Every push to `main` also triggers `.github/wo
 ## Email list, unsubscribe and tracking
 
 - **Subscribe box + sending:** our own [listmonk](https://listmonk.app) at https://list.chaiweekly.co.ke (free, on the VPS; set-up in `deploy/listmonk/SETUP.md`). Readers confirm by email (double opt-in), then land on `/subscribe/thanks/`. Emails go out through the newsletter@chaiweekly.co.ke StackMail mailbox (about 2,000 recipients a day). Import your own list under Subscribers > Import (only people who agreed to receive it). listmonk puts an unsubscribe link in every email.
-- **Email drafts:** add repo secrets `LISTMONK_API_USER` and `LISTMONK_API_TOKEN`. Each time an issue is merged, `.github/workflows/email-draft.yml` runs `tools/to_listmonk.py`, which creates a listmonk campaign *draft* (never sends). Open listmonk > Campaigns, check it, press Start.
+- **Email drafts:** add repo secrets `LISTMONK_API_USER` and `LISTMONK_API_TOKEN`. Each time an issue is merged, `.github/workflows/email-draft.yml` runs `tools/to_listmonk.py`, which creates a listmonk campaign *draft* (never sends) styled like the newspaper site (design: `tools/email/listmonk-template.html` plus the masthead and styles in `tools/to_listmonk.py`). Open listmonk > Campaigns, check it, press Start.
 - **Opens and clicks:** listmonk counts these for free (Campaigns > Analytics).
 - **Site visits (free):** sign up at [GoatCounter](https://www.goatcounter.com) and set `goatcounter_code`. Links in the email carry `utm_source=newsletter`, so visits from the email show as campaign "newsletter"; shared links show by referring site (WhatsApp, Facebook, X...).
 

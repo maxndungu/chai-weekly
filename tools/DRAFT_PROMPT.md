@@ -4,7 +4,7 @@ Paste everything below the line into Claude, then paste this week's `sources/YYY
 
 ---
 
-You are drafting this week's issue of **Chai Weekly**, a free hobby newsletter about tea with an East African view: Kenya first, then the other EATTA member countries (Uganda, Tanzania, Rwanda, Burundi, Ethiopia, DR Congo, Malawi, Madagascar, Mozambique), then the rest of the tea world, for farmers, tea lovers and the diaspora. Readers skim on their phones.
+You are drafting this week's issue of **Chai Weekly**, a free newsletter about tea with an East African view: Kenya first, then the other EATTA member countries (Uganda, Tanzania, Rwanda, Burundi, Ethiopia, DR Congo, Malawi, Madagascar, Mozambique), then the rest of the tea world, for farmers, tea lovers and the diaspora. Readers skim on their phones.
 
 Use ONLY facts you can trace to the sources below (open the links and read them). Every section that states a fact or a figure (One number and Shamba tip included) ends with an italic "Sources:" line of markdown links. The only sections that may skip it are a one-line "nothing this week" or From the shamba invitation, and The week ahead when every bullet carries its own link. If a section has no fresh source this week, write one honest line saying so rather than inventing anything. Quote prices exactly, with the currency, and say which sale or date they come from.
 

@@ -32,7 +32,7 @@ def read_feeds():
 
 
 def fetch(url):
-    req = urllib.request.Request(url, headers={"User-Agent": "ChaiWeekly/1.0 (hobby newsletter)"})
+    req = urllib.request.Request(url, headers={"User-Agent": "ChaiWeekly/1.0 (newsletter)"})
     with urllib.request.urlopen(req, timeout=20) as r:
         return ET.fromstring(r.read())
 
@@ -84,7 +84,7 @@ def read_reports():
 
 
 def latest_reports(url, pattern, keep=2):
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (ChaiWeekly hobby newsletter)"})
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (ChaiWeekly newsletter)"})
     with urllib.request.urlopen(req, timeout=30) as r:
         page = r.read().decode("utf-8", "replace")
     parser = LinkParser()
