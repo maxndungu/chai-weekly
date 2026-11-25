@@ -1,6 +1,6 @@
 diff --git a/_includes/auction-dashboard.html b/_includes/auction-dashboard.html
 new file mode 100644
-index 0000000..55e27c5
+index 0000000..799030f
 --- /dev/null
 +++ b/_includes/auction-dashboard.html
 @@ -0,0 +1,101 @@
@@ -97,7 +97,7 @@ index 0000000..55e27c5
 +    </section>
 +
 +    <div class="dash-notes">
-+      <p class="fine" id="dash-provisional" hidden><span class="dash-badge">Provisional</span> EATTA adds late sales until Friday noon, Nairobi time, so the newest sale's figures can still change until then.</p>
++      <p class="fine" id="dash-provisional" hidden><b class="dash-prov">*</b> Provisional: EATTA adds late sales until Friday noon, Nairobi time, so the newest sale's figures can still change until then.</p>
 +      <p class="fine">The average for a run of sales is weighted by the kilograms sold at each sale. <strong>Share sold</strong> (absorption) is the kilograms sold as a share of the kilograms offered, both from the same source, and the offered and sold bars use the same figures. EATTA's own count of kilograms sold, used for the headline figure and the table, can differ by a few per cent from the figures behind the share sold. Orthodox tea is sold every other week, so the Orthodox view lists only the weeks it was sold. Separate orthodox figures start at sale 38 of 2025.</p>
 +      <p class="fine"><strong>Sources:</strong> prices and kilograms sold from 2026 are from the <a href="https://eatta.co.ke/statistics">East African Tea Trade Association's auction statistics</a>, updated every Tuesday at 4pm and Friday at 2pm (final figures), Nairobi time. Sales from 2009 to 2025 come from Chai Weekly's own weekly auction records. Monthly prices 1992 to 2008: World Bank Commodity Price Data, CC BY 4.0.</p>
 +    </div>
@@ -107,7 +107,7 @@ index 0000000..55e27c5
 +</section>
 diff --git a/assets/dashboard.js b/assets/dashboard.js
 new file mode 100644
-index 0000000..cc93892
+index 0000000..40f5aee
 --- /dev/null
 +++ b/assets/dashboard.js
 @@ -0,0 +1,545 @@
@@ -461,9 +461,9 @@ index 0000000..cc93892
 +
 +  /* ---------- tables ---------- */
 +  var COLS = [
-+    { k: "sale", h: "Sale" }, { k: "date", h: "Date" }, { k: "p", h: "Average US$/kg" }, { k: "ch", h: "Change" },
-+    { k: "off", h: "Offered (kg)" }, { k: "kg", h: "Sold (kg)" }, { k: "abs", h: "Share sold" },
-+    { k: "prev", h: "Avg, same sale last year", prev: true }, { k: "prevAbs", h: "Share sold last year", prev: true }
++    { k: "sale", h: "Sale" }, { k: "date", h: "Date" }, { k: "p", h: "Avg.<br>US$/kg" }, { k: "ch", h: "Change" },
++    { k: "off", h: "Offered<br>(kg)" }, { k: "kg", h: "Sold<br>(kg)" }, { k: "abs", h: "Share<br>sold" },
++    { k: "prev", h: "Avg. same<br>sale last yr", prev: true }, { k: "prevAbs", h: "Share sold<br>last yr", prev: true }
 +  ];
 +  function salesTable(rows) {
 +    var hasPrev = rows.some(function (r) { return lastYear(r.n); }), hasOff = rows.some(function (r) { return pick(r).off; });
@@ -485,11 +485,11 @@ index 0000000..cc93892
 +    $("dash-caption").textContent = TEA[st.tea] + ", " + st.year + ", sales " + st.from + " to " + st.to;
 +    t.tHead.innerHTML = "<tr>" + cols.map(function (c) {
 +      var s = st.sort === c.k ? (st.dir > 0 ? "ascending" : "descending") : "none";
-+      return '<th scope="col" aria-sort="' + s + '"><button type="button" class="dash-sort" data-k="' + c.k + '">' + c.h + '<span class="dash-arrow" aria-hidden="true">' + (s === "ascending" ? "▲" : s === "descending" ? "▼" : "") + "</span></button></th>";
++      return '<th scope="col" aria-sort="' + s + '"><button type="button" class="dash-sort" data-k="' + c.k + '">' + '<span class="dash-h">' + c.h + "</span>" + '<span class="dash-arrow" aria-hidden="true">' + (s === "ascending" ? "▲" : s === "descending" ? "▼" : "") + "</span></button></th>";
 +    }).join("") + "</tr>";
 +    t.tBodies[0].innerHTML = !data.length ? '<tr><td colspan="' + cols.length + '" class="muted">' + noneText("No " + TEA[st.tea] + " sales in this run") + "</td></tr>" : data.map(function (d) {
 +      var cells = {
-+        sale: String(d.sale) + (provisional(d.r) ? ' <span class="dash-badge">Provisional</span>' : ""),
++        sale: String(d.sale) + (provisional(d.r) ? '<sup class="dash-prov" title="Provisional: can change until Friday noon">*</sup>' : ""),
 +        date: d.date ? dShort(d.date) : "",
 +        p: d.p != null ? usd(d.p) : '<span class="muted">' + missing(d.r) + "</span>",
 +        ch: d.ch == null ? "" : '<span class="' + (d.ch > 0 ? "up" : d.ch < 0 ? "down" : "") + '">' + signed(d.ch, function (v) { return v.toFixed(2); }) + "</span>",
@@ -668,10 +668,10 @@ index 0000000..c56b638
 +---
 +{"eatta": {{ site.data.mombasa_eatta_sales | jsonify }}, "combrok": {{ site.data.mombasa_combrok_sales | jsonify }}, "highlights": {{ site.data.mombasa_combrok_highlights | jsonify }}, "history": {{ site.data.mombasa_history_sales | jsonify }}, "worldbank": {{ site.data.worldbank_tea_mombasa_monthly | jsonify }}}
 diff --git a/assets/style.css b/assets/style.css
-index c8ab93a..58914d4 100644
+index c8ab93a..d4c0b37 100644
 --- a/assets/style.css
 +++ b/assets/style.css
-@@ -578,3 +578,80 @@ p { margin: 0 0 1em; }
+@@ -578,3 +578,87 @@ p { margin: 0 0 1em; }
  .cover-media figcaption { top: 0; bottom: auto; max-width: 60%; }
  .cover-media figcaption .credit, .hero-media figcaption .credit { color: var(--on-green-2); }
  @media (max-width: 819px) { .cover-media figcaption { max-width: 100%; } }
@@ -746,6 +746,13 @@ index c8ab93a..58914d4 100644
 +.dash-arrow { font-size: 9px; color: var(--gold-ink); min-width: 9px; }
 +.dash-table .up { color: var(--up); } .dash-table .down { color: var(--down); }
 +.dash-table .muted { color: var(--muted); }
++/* Fits without sideways scrolling on a desktop: headers wrap onto two lines, cells are tighter. */
++#dash-table th, #dash-table td { padding-left: 6px; padding-right: 6px; }
++#dash-table th:first-child, #dash-table td:first-child { padding-left: 0; }
++#dash-table th { vertical-align: bottom; line-height: 1.25; }
++#dash-table .dash-sort { align-items: flex-end; }
++.dash-h { display: inline-block; }
++.dash-prov { color: var(--gold-ink); font-weight: 700; margin-left: 2px; }
 +.dash-badge { display: inline-block; margin-left: 6px; padding: 1px 6px; font: 600 10px/1.5 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--gold-ink); border: 1px solid var(--gold); vertical-align: 1px; }
 +.dash-notes { margin-top: 20px; max-width: 820px; }
 +.dash-notes .fine { margin: 0 0 8px; }

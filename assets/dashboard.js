@@ -348,9 +348,9 @@
 
   /* ---------- tables ---------- */
   var COLS = [
-    { k: "sale", h: "Sale" }, { k: "date", h: "Date" }, { k: "p", h: "Average US$/kg" }, { k: "ch", h: "Change" },
-    { k: "off", h: "Offered (kg)" }, { k: "kg", h: "Sold (kg)" }, { k: "abs", h: "Share sold" },
-    { k: "prev", h: "Avg, same sale last year", prev: true }, { k: "prevAbs", h: "Share sold last year", prev: true }
+    { k: "sale", h: "Sale" }, { k: "date", h: "Date" }, { k: "p", h: "Avg.<br>US$/kg" }, { k: "ch", h: "Change" },
+    { k: "off", h: "Offered<br>(kg)" }, { k: "kg", h: "Sold<br>(kg)" }, { k: "abs", h: "Share<br>sold" },
+    { k: "prev", h: "Avg. same<br>sale last yr", prev: true }, { k: "prevAbs", h: "Share sold<br>last yr", prev: true }
   ];
   function salesTable(rows) {
     var hasPrev = rows.some(function (r) { return lastYear(r.n); }), hasOff = rows.some(function (r) { return pick(r).off; });
@@ -372,11 +372,11 @@
     $("dash-caption").textContent = TEA[st.tea] + ", " + st.year + ", sales " + st.from + " to " + st.to;
     t.tHead.innerHTML = "<tr>" + cols.map(function (c) {
       var s = st.sort === c.k ? (st.dir > 0 ? "ascending" : "descending") : "none";
-      return '<th scope="col" aria-sort="' + s + '"><button type="button" class="dash-sort" data-k="' + c.k + '">' + c.h + '<span class="dash-arrow" aria-hidden="true">' + (s === "ascending" ? "▲" : s === "descending" ? "▼" : "") + "</span></button></th>";
+      return '<th scope="col" aria-sort="' + s + '"><button type="button" class="dash-sort" data-k="' + c.k + '">' + '<span class="dash-h">' + c.h + "</span>" + '<span class="dash-arrow" aria-hidden="true">' + (s === "ascending" ? "▲" : s === "descending" ? "▼" : "") + "</span></button></th>";
     }).join("") + "</tr>";
     t.tBodies[0].innerHTML = !data.length ? '<tr><td colspan="' + cols.length + '" class="muted">' + noneText("No " + TEA[st.tea] + " sales in this run") + "</td></tr>" : data.map(function (d) {
       var cells = {
-        sale: String(d.sale) + (provisional(d.r) ? ' <span class="dash-badge">Provisional</span>' : ""),
+        sale: String(d.sale) + (provisional(d.r) ? '<sup class="dash-prov" title="Provisional: can change until Friday noon">*</sup>' : ""),
         date: d.date ? dShort(d.date) : "",
         p: d.p != null ? usd(d.p) : '<span class="muted">' + missing(d.r) + "</span>",
         ch: d.ch == null ? "" : '<span class="' + (d.ch > 0 ? "up" : d.ch < 0 ? "down" : "") + '">' + signed(d.ch, function (v) { return v.toFixed(2); }) + "</span>",
