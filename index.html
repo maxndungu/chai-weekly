@@ -12,11 +12,7 @@ layout: default
     {% include market-panel.html %}
   </div>
   <aside class="rail">
-    {% include signup.html %}
-    {% capture poster %}{% include ad.html slot="home" %}{% endcapture %}
-    {% assign poster_on = poster | strip | size %}
-    {{ poster }}
-    {% include events.html limit=3 hide=poster_on %}
+    {% include rail.html id="home" %}
   </aside>
 </section>
 {% if lead.stories %}

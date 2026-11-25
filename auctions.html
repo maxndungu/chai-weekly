@@ -3,6 +3,7 @@ layout: default
 title: Auction analysis
 description: The Mombasa tea auction from 1992 to today. Prices, volumes and the share of tea sold at every sale since 2009, monthly prices from 1992 to 2008, and year-on-year changes.
 permalink: /auctions/
+rail: false
 ---
 <article class="analysis">
   <p class="kicker">Markets · Auction analysis</p>
@@ -11,6 +12,7 @@ permalink: /auctions/
   <div class="stat-row" id="stats" aria-live="polite"></div>
   {% include ad.html slot="auctions" %}
   {% include auction-dashboard.html long=false %}
+  {% include signup.html id="auctions" class="signup-wide" %}
   <script defer src="{{ '/assets/dashboard.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
 
   <section>
