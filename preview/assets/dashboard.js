@@ -304,8 +304,12 @@
     var fig = $("dash-kg"), f = frame(fig, fig.clientWidth < 520 ? 210 : 250), P = f.P;
     var xs = rows.map(function (r) { return pick(r); });
     var hasOff = xs.some(function (x) { return x.off; });
-    legend("dash-kg-legend", hasOff, [["k-off", "Offered"], ["k-sold", "Sold"]]);
-    var max = Math.max.apply(0, xs.map(function (x) { return Math.max(x.kg || 0, x.off || 0); }).concat([0]));
+    // Last year's same sale: kg sold, drawn over the bars when "compare with last year" is on.
+    var pv = rows.map(function (r) { var o = lastYear(r.n), x = o ? pick(o) : null; return x ? (x.cbKg != null ? x.cbKg : x.kg) || null : null; });
+    var hasPv = pv.some(function (v) { return v != null; });
+    legend("dash-kg-legend", hasOff || hasPv, (hasOff ? [["k-off", "Offered"]] : []).concat([["k-sold", "Sold"]],
+      hasPv ? [["k-prev", "Sold, same sale " + (st.year - 1)]] : []));
+    var max = Math.max.apply(0, xs.map(function (x) { return Math.max(x.kg || 0, x.off || 0); }).concat(pv.map(function (v) { return v || 0; }), [0]));
     if (!max) return empty(f, noneText("No " + TEA[st.tea] + " sold in these sales"));
     var U = max < 1e6 ? 1e3 : 1e6;
     $("dash-kg-u").textContent = U === 1e3 ? "thousand kg" : "million kg";
@@ -330,6 +334,11 @@
       if (sold) g.push(bar(i, Math.min(sold, x.off || sold), "dash-bar" + (provisional(rows[i]) ? " prov" : "")));
       return g;
     });
+    if (hasPv) {
+      var d = "", pen = false;
+      pv.forEach(function (v, i) { if (v == null) { pen = false; return; } d += (pen ? "L" : "M") + X(i).toFixed(1) + "," + Y(v).toFixed(1); pen = true; });
+      el("path", { d: d, "class": "dash-line-prev" }, f.svg);
+    }
     var hit = el("rect", { x: P.l, y: 0, width: plotW, height: f.H, fill: "transparent" }, f.svg), on = -1;
     var mark = function (i, add) { (groups[i] || []).forEach(function (b) { b.classList[add ? "add" : "remove"]("on"); }); };
     var move = function (evt) {
@@ -341,6 +350,7 @@
       var sold = v.off && v.cbKg != null ? v.cbKg : v.kg;
       html += tipRow("k-sold", "Sold", sold ? kgFull(sold) + " kg" : "None");
       if (v.abs != null) html += tipRow("", "Share sold", pct(v.abs));
+      if (hasPv) html += tipRow("k-prev", "Sold " + (st.year - 1), pv[i] ? kgFull(pv[i]) + " kg" : "No sale " + r.n);
       showTip(evt, html);
     };
     hit.addEventListener("pointermove", move);
