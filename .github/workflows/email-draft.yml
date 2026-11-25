@@ -1,6 +1,7 @@
-# When a new issue is published (merged to main), create a Buttondown email DRAFT of it.
-# Nothing is sent: open Buttondown, check the draft and press Send.
-# Needs repo secret BUTTONDOWN_API_KEY (Buttondown > Settings > API). Skips quietly without it.
+# When a new issue is published (merged to main), create an email DRAFT of it in our own mailing list (listmonk).
+# Nothing is sent: open https://list.chaiweekly.co.ke/admin > Campaigns, check the draft and press Start.
+# Needs two repo secrets from listmonk (Admin > Users > API user): LISTMONK_API_USER and LISTMONK_API_TOKEN.
+# The list's address and number come from _config.yml (listmonk_url, listmonk_list_id). Skips quietly until both are set.
 # To redo a draft by hand: Actions > Email draft > Run workflow, and give the issue file (e.g. _posts/2026-11-18-issue-003.md).
 name: Email draft
 on:
@@ -16,18 +17,23 @@ jobs:
   draft:
     runs-on: ubuntu-latest
     env:
-      BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+      LISTMONK_API_USER: ${{ secrets.LISTMONK_API_USER }}
+      LISTMONK_API_TOKEN: ${{ secrets.LISTMONK_API_TOKEN }}
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
-      - name: Create Buttondown draft for each new issue
-        if: env.BUTTONDOWN_API_KEY != ''
+      - name: Create listmonk draft for each new issue
+        if: env.LISTMONK_API_TOKEN != ''
         env:
           BEFORE: ${{ github.event.before }}
           POST: ${{ inputs.post }}
         run: |
-          SITE_URL=$(python3 -c "import re;c=open('_config.yml').read();g=lambda k:(re.search(r'^'+k+r':\s*\"?([^\"\n]*)',c,re.M) or [0,''])[1];print((g('canonical_url') or g('url')+g('baseurl')).rstrip('/'))")
-          export SITE_URL
+          cfg() { python3 -c "import re,sys;c=open('_config.yml').read();m=re.search(r'^'+sys.argv[1]+r':\s*\"?([^\"\n#]*)',c,re.M);print(m[1].strip() if m else '')" "$1"; }
+          SITE_URL=$(cfg canonical_url); [ -n "$SITE_URL" ] || SITE_URL="$(cfg url)$(cfg baseurl)"
+          export SITE_URL="${SITE_URL%/}" LISTMONK_URL=$(cfg listmonk_url) LISTMONK_LIST_ID=$(cfg listmonk_list_id)
+          if [ -z "$LISTMONK_URL" ] || [ -z "$LISTMONK_LIST_ID" ]; then
+            echo "listmonk_url or listmonk_list_id is empty in _config.yml: no draft made."; exit 0
+          fi
           if [ -n "$POST" ]; then
             files="$POST"
           else
@@ -35,4 +41,4 @@ jobs:
             git cat-file -e "$BEFORE^{commit}" 2>/dev/null || BEFORE=HEAD~1
             files=$(git diff --name-only --diff-filter=A "$BEFORE" HEAD -- _posts)
           fi
-          for f in $files; do python3 tools/to_buttondown.py "$f"; done
+          for f in $files; do python3 tools/to_listmonk.py "$f"; done

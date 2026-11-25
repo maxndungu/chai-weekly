@@ -1,0 +1,62 @@
+# Chai Weekly mailing list (listmonk) for the VPS. Steps in SETUP.md next to this file.
+# Runs two things: the list itself and its own database (separate from any other app's database).
+# The web address list.chaiweekly.co.ke and its HTTPS certificate come from the Caddy that already
+# runs on the VPS: the list joins that Caddy's Docker network (PROXY_NETWORK in .env), and Caddy
+# forwards visitors to the container named chai-listmonk on port 9000. See SETUP.md step 3.
+# Passwords live in a file called .env on the VPS only (copy env.example). Never commit .env.
+
+x-db: &db
+  POSTGRES_USER: listmonk
+  POSTGRES_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}
+  POSTGRES_DB: listmonk
+
+services:
+  app:
+    image: listmonk/listmonk:v6.2.0
+    container_name: chai-listmonk   # the name Caddy uses to reach the list
+    restart: unless-stopped
+    depends_on:
+      listmonk-db: { condition: service_healthy }
+    # Installs the database on first start, applies upgrades after a new version, then runs.
+    command: [sh, -c, "./listmonk --install --idempotent --yes --config '' && ./listmonk --upgrade --yes --config '' && ./listmonk --config ''"]
+    environment:
+      LISTMONK_app__address: 0.0.0.0:9000
+      LISTMONK_db__user: listmonk
+      LISTMONK_db__password: ${DB_PASSWORD}
+      LISTMONK_db__database: listmonk
+      LISTMONK_db__host: listmonk-db   # not "db": another app's database may answer to that name
+      LISTMONK_db__port: 5432
+      LISTMONK_db__ssl_mode: disable
+      LISTMONK_db__max_open: 25
+      LISTMONK_db__max_idle: 25
+      LISTMONK_db__max_lifetime: 300s
+      TZ: Africa/Nairobi
+      # Your own login for the list's admin pages, created on the very first start.
+      LISTMONK_ADMIN_USER: ${ADMIN_USER:-}
+      LISTMONK_ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+    volumes:
+      - ./uploads:/listmonk/uploads
+    networks: [list, proxy]
+
+  # Only on the private "list" network, so no other app can reach it.
+  listmonk-db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment: *db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U listmonk"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+    volumes:
+      - list-data:/var/lib/postgresql/data
+    networks: [list]
+
+networks:
+  list:
+  proxy:
+    external: true
+    name: ${PROXY_NETWORK:?Set PROXY_NETWORK in .env to the network of the Caddy already on the VPS}
+
+volumes:
+  list-data:

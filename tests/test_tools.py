@@ -143,7 +143,7 @@ class EattaCsv(unittest.TestCase):
             self.run_main({}, nov)
 
 
-class Buttondown(unittest.TestCase):
+class Listmonk(unittest.TestCase):
     def test_site_links_become_full_addresses(self):
         tmp = pathlib.Path(tempfile.mkdtemp())
         post = tmp / "2026-11-18-issue-003.md"
@@ -153,7 +153,7 @@ class Buttondown(unittest.TestCase):
             issue: 3
             deck: "Deck"
             ---
-            See the [Auction analysis]({{ '/auctions/' | relative_url }}) and [weather]({{ "/weather/" | relative_url }}).
+            See the [Auction analysis]({{ '/auctions/' | relative_url }}) and [weather]({{ "/weather/" | relative_url }}). Stray {{ braces }}.
 
             {% include ad.html slot="issue" %}
             """))
@@ -161,18 +161,25 @@ class Buttondown(unittest.TestCase):
         (tmp / "sitecustomize.py").write_text(textwrap.dedent(f"""\
             import io, json, urllib.request
             def fake(req, timeout=None):
-                open({str(out)!r}, "w").write(req.data.decode())
-                return io.BytesIO(b'{{"id": "test"}}')
+                open({str(out)!r}, "w").write(json.dumps({{"url": req.full_url, "auth": req.get_header("Authorization"), "payload": json.loads(req.data)}}))
+                return io.BytesIO(b'{{"data": {{"id": 7, "status": "draft"}}}}')
             urllib.request.urlopen = fake
             """))
-        env = {**os.environ, "PYTHONPATH": str(tmp), "SITE_URL": "https://example.org/chai-weekly", "BUTTONDOWN_API_KEY": "fake"}
-        subprocess.run([sys.executable, str(TOOLS / "to_buttondown.py"), str(post)], cwd=ROOT, env=env, check=True, capture_output=True)
-        body = json.loads(out.read_text())["body"]
+        env = {**os.environ, "PYTHONPATH": str(tmp), "SITE_URL": "https://example.org/chai-weekly", "LISTMONK_URL": "https://list.example.org/",
+               "LISTMONK_LIST_ID": "3", "LISTMONK_API_USER": "drafts", "LISTMONK_API_TOKEN": "fake"}
+        r = subprocess.run([sys.executable, str(TOOLS / "to_listmonk.py"), str(post)], cwd=ROOT, env=env, check=True, capture_output=True, text=True)
+        sent = json.loads(out.read_text())
+        body = sent["payload"]["body"]
         self.assertIn("(https://example.org/chai-weekly/auctions/)", body)
         self.assertIn("(https://example.org/chai-weekly/weather/)", body)
         self.assertNotIn("{{", body)
         self.assertNotIn("{%", body)
-        self.assertEqual(json.loads(out.read_text())["status"], "draft")
+        self.assertEqual(sent["url"], "https://list.example.org/api/campaigns")
+        self.assertEqual(sent["auth"], "token drafts:fake")
+        self.assertEqual(sent["payload"]["lists"], [3])
+        self.assertEqual(sent["payload"]["content_type"], "markdown")
+        self.assertNotIn("status", sent["payload"])  # listmonk creates campaigns as drafts; we never ask it to send
+        self.assertIn("/admin/campaigns/7", r.stdout)
 
 
 if __name__ == "__main__":
