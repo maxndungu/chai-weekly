@@ -250,13 +250,13 @@
     if (show) l.innerHTML = items.map(function (it) { return '<span><i class="' + it[0] + '"></i>' + it[1] + "</span>"; }).join("");
   }
 
-  /* A line chart of one figure per sale, with last year's same sale dashed. */
+  /* A line chart of one figure per sale, with the same sale last year dashed. */
   function lineChart(id, legendId, rows, valueOf, fmtAxis, fmtTip, emptyText, minPad) {
     var fig = $(id), f = frame(fig, fig.clientWidth < 520 ? 220 : 260), P = f.P;
     var cur = rows.map(valueOf);
     var prev = rows.map(function (r) { var o = lastYear(r.n); return o ? valueOf(o) : null; });
     var hasPrev = prev.some(function (v) { return v != null; });
-    legend(legendId, hasPrev, [["k-cur", String(st.year)], ["k-prev", (st.year - 1) + ", same sale"]]);
+    legend(legendId, hasPrev, [["k-cur", String(st.year)], ["k-prev", String(st.year - 1)]]);
     var all = cur.concat(prev).filter(function (v) { return v != null; });
     if (!all.length) return empty(f, emptyText);
     var lo = Math.min.apply(0, all), hi = Math.max.apply(0, all), pad = Math.max((hi - lo) * 0.12, minPad);
@@ -308,7 +308,7 @@
     var pv = rows.map(function (r) { var o = lastYear(r.n), x = o ? pick(o) : null; return x ? (x.cbKg != null ? x.cbKg : x.kg) || null : null; });
     var hasPv = pv.some(function (v) { return v != null; });
     legend("dash-kg-legend", hasOff || hasPv, (hasOff ? [["k-off", "Offered"]] : []).concat([["k-sold", "Sold"]],
-      hasPv ? [["k-prev", "Sold, same sale " + (st.year - 1)]] : []));
+      hasPv ? [["k-prev", "Sold " + (st.year - 1)]] : []));
     var max = Math.max.apply(0, xs.map(function (x) { return Math.max(x.kg || 0, x.off || 0); }).concat(pv.map(function (v) { return v || 0; }), [0]));
     if (!max) return empty(f, noneText("No " + TEA[st.tea] + " sold in these sales"));
     var U = max < 1e6 ? 1e3 : 1e6;
@@ -362,7 +362,7 @@
   var COLS = [
     { k: "sale", h: "Sale" }, { k: "date", h: "Date" }, { k: "p", h: "Avg.<br>US$/kg" }, { k: "ch", h: "Change" },
     { k: "off", h: "Offered<br>(kg)" }, { k: "kg", h: "Sold<br>(kg)" }, { k: "abs", h: "Share<br>sold" },
-    { k: "prev", h: "Avg. same<br>sale last yr", prev: true }, { k: "prevAbs", h: "Share sold<br>last yr", prev: true }
+    { k: "prev", h: "Avg.<br>last yr", prev: true }, { k: "prevAbs", h: "Share sold<br>last yr", prev: true }
   ];
   function salesTable(rows) {
     var hasPrev = rows.some(function (r) { return lastYear(r.n); }), hasOff = rows.some(function (r) { return pick(r).off; });

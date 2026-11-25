@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ["Latest sale", f2(last.avg), "Sale " + last.sale + ", " + dlabel(last.date) + (prev ? " · <span class='" + cls(last.avg - prev.avg) + "'>" + cents(last.avg - prev.avg) + "</span> on the week" : "")],
     ["Sold at that sale", kg(last.kg), prev ? "<span class='" + cls(last.kg - prev.kg) + "'>" + (last.kg >= prev.kg ? "▲ " : "▼ ") + Math.abs(Math.round(100 * (last.kg - prev.kg) / prev.kg)) + "%</span> on the week" : ""],
     [yr + " so far", f2(ytd), ys.length + " sales · " + (tkg / 1e6).toFixed(0) + "M kg · low " + f2(lo.avg) + ", high " + f2(hi.avg)],
-    ago ? ["Same sale a year ago", f2(ago.avg), saleLabel(ago) + " · <span class='" + cls(last.avg - ago.avg) + "'>" + cents(last.avg - ago.avg) + "</span> since"] : null
+    ago ? ["A year ago", f2(ago.avg), saleLabel(ago) + " · <span class='" + cls(last.avg - ago.avg) + "'>" + cents(last.avg - ago.avg) + "</span> since"] : null
   ].filter(Boolean);
   $("stats").innerHTML = stats.map(function (s) { return "<div class='stat'><span class='stat-label'>" + s[0] + "</span><strong>" + s[1] + "</strong><span class='stat-note'>" + s[2] + "</span></div>"; }).join("");
 
