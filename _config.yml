@@ -6,8 +6,8 @@ description: "A free weekly tea newspaper from East Africa. Every Wednesday: tea
 # used by the Subscribe box. listmonk_list_id: the list's number (shown as #3 etc.), used for email drafts.
 # The Subscribe box stays in "opens soon" mode until listmonk_list_uuid is filled in.
 listmonk_url: "https://list.chaiweekly.co.ke"
-listmonk_list_uuid: ""
-listmonk_list_id: ""
+listmonk_list_uuid: "9e6279b1-e0e0-4257-b93d-1cdc2bf9d4a1"
+listmonk_list_id: "3"
 permalink: /issues/:year/:month/:day/:title/
 markdown: kramdown
 plugins: [jekyll-sitemap]
