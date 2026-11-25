@@ -36,25 +36,30 @@ The SPF record you already have for StackMail stays as it is.
 
 ## 3. Install on the VPS (15 minutes)
 
-Log in to the VPS (for example `ssh root@YOUR-VPS-IP`) and paste these lines one block at a time.
+Your VPS already runs Caddy (the `kazora-caddy-1` container) for your other app, and it owns the
+web ports. The list runs next to it with its own separate database, and that same Caddy gives
+list.chaiweekly.co.ke its address and certificate. Nothing of kazora's is changed except one
+short block added at the end of its Caddyfile.
 
-**a. Check nothing else is using the web ports.** If this prints anything, stop and send me the output:
+Log in to the VPS as root and paste each block, one at a time.
+
+**a. Find the Caddy network and Caddyfile.**
 
 ```sh
-sudo ss -tlnp | grep -E ':80 |:443 '
+docker inspect kazora-caddy-1 --format '{{range $k, $v := .NetworkSettings.Networks}}NETWORK: {{$k}}{{"\n"}}{{end}}'
+docker inspect kazora-caddy-1 --format '{{range .Mounts}}{{.Source}}  ->  {{.Destination}}{{"\n"}}{{end}}'
 ```
 
-**b. Install Docker** (skip if `docker --version` already works):
+Write down:
+- the name after `NETWORK:` (for example `kazora_default`);
+- the line that ends in `-> /etc/caddy/Caddyfile`. The part before the arrow is the Caddyfile on the VPS.
+  (If you only see `-> /etc/caddy`, the Caddyfile is the folder before the arrow plus `/Caddyfile`.)
 
-```sh
-curl -fsSL https://get.docker.com | sudo sh
-```
-
-**c. Get the files and set your passwords:**
+**b. Get the list's files and make the password file:**
 
 ```sh
 mkdir -p ~/chai-list && cd ~/chai-list
-for f in docker-compose.yml Caddyfile env.example backup.sh; do
+for f in docker-compose.yml caddy-site-block.txt env.example backup.sh; do
   curl -fsSLO "https://raw.githubusercontent.com/maxndungu/chai-weekly/main/deploy/listmonk/$f"
 done
 chmod +x backup.sh
@@ -63,20 +68,41 @@ sed -i "s/^DB_PASSWORD=.*/DB_PASSWORD=$(openssl rand -hex 24)/" .env
 nano .env
 ```
 
-In `nano`, change `ADMIN_PASSWORD` to your own password, then press
-Ctrl+O, Enter, Ctrl+X.
+In `nano`: change `ADMIN_PASSWORD` to your own password, and `PROXY_NETWORK` to the network name
+from step a. Save with Ctrl+O, Enter, then Ctrl+X.
 
-**d. Start it:**
+**c. Start the list:**
 
 ```sh
 docker compose up -d
+docker compose ps
 ```
 
-Wait a minute, then open **https://list.chaiweekly.co.ke/admin** and log in with the
-`ADMIN_USER` and `ADMIN_PASSWORD` from `.env`. (If the page doesn't load, the DNS record from
-step 2 may need up to an hour.)
+You should see `chai-listmonk` and `listmonk-db`, both "Up" (the first start takes about a minute).
 
-**e. Nightly backup of the subscriber list:** run `crontab -e` and add this line:
+**d. Tell Caddy about the list.** Put your Caddyfile path from step a in the first line, then paste:
+
+```sh
+CADDYFILE=/the/path/from/step/a/Caddyfile
+cp "$CADDYFILE" "$CADDYFILE.before-list"
+cat ~/chai-list/caddy-site-block.txt >> "$CADDYFILE"
+docker exec kazora-caddy-1 caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
+```
+
+If the last line ends with "Valid configuration", reload Caddy. Kazora keeps running:
+
+```sh
+docker exec kazora-caddy-1 caddy reload --config /etc/caddy/Caddyfile --adapter caddyfile
+```
+
+If it shows an error instead, put the old file back with `cp "$CADDYFILE.before-list" "$CADDYFILE"`
+and send me the error. Kazora is unaffected because nothing was reloaded.
+
+**e. Open the list.** Go to **https://list.chaiweekly.co.ke/admin** and log in with `ADMIN_USER` and
+`ADMIN_PASSWORD` from `.env`. If the page doesn't load yet, the DNS record from step 2 may need
+up to an hour. Caddy gets the certificate on its own once the DNS record works.
+
+**f. Nightly backup of the subscriber list:** run `crontab -e` and add this line at the bottom:
 
 ```
 30 2 * * * cd ~/chai-list && ./backup.sh
@@ -141,6 +167,6 @@ to have each of them confirm first).
 
 ## If something goes wrong
 
-- Restart: `cd ~/chai-list && docker compose restart`
+- Restart the list: `cd ~/chai-list && docker compose restart`
 - See what it says: `cd ~/chai-list && docker compose logs --tail 50 app`
 - Update to a newer listmonk: change the version in `docker-compose.yml`, then `docker compose pull && docker compose up -d`

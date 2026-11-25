@@ -1,6 +1,8 @@
 # Chai Weekly mailing list (listmonk) for the VPS. Steps in SETUP.md next to this file.
-# Runs three things: the list itself, its database, and Caddy, which gives
-# list.chaiweekly.co.ke a free HTTPS certificate and renews it on its own.
+# Runs two things: the list itself and its own database (separate from any other app's database).
+# The web address list.chaiweekly.co.ke and its HTTPS certificate come from the Caddy that already
+# runs on the VPS: the list joins that Caddy's Docker network (PROXY_NETWORK in .env), and Caddy
+# forwards visitors to the container named chai-listmonk on port 9000. See SETUP.md step 3.
 # Passwords live in a file called .env on the VPS only (copy env.example). Never commit .env.
 
 x-db: &db
@@ -11,9 +13,10 @@ x-db: &db
 services:
   app:
     image: listmonk/listmonk:v6.2.0
+    container_name: chai-listmonk   # the name Caddy uses to reach the list
     restart: unless-stopped
     depends_on:
-      db: { condition: service_healthy }
+      listmonk-db: { condition: service_healthy }
     # Installs the database on first start, applies upgrades after a new version, then runs.
     command: [sh, -c, "./listmonk --install --idempotent --yes --config '' && ./listmonk --upgrade --yes --config '' && ./listmonk --config ''"]
     environment:
@@ -21,7 +24,7 @@ services:
       LISTMONK_db__user: listmonk
       LISTMONK_db__password: ${DB_PASSWORD}
       LISTMONK_db__database: listmonk
-      LISTMONK_db__host: db
+      LISTMONK_db__host: listmonk-db   # not "db": another app's database may answer to that name
       LISTMONK_db__port: 5432
       LISTMONK_db__ssl_mode: disable
       LISTMONK_db__max_open: 25
@@ -33,9 +36,10 @@ services:
       LISTMONK_ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
     volumes:
       - ./uploads:/listmonk/uploads
-    networks: [list]
+    networks: [list, proxy]
 
-  db:
+  # Only on the private "list" network, so no other app can reach it.
+  listmonk-db:
     image: postgres:17-alpine
     restart: unless-stopped
     environment: *db
@@ -48,21 +52,11 @@ services:
       - list-data:/var/lib/postgresql/data
     networks: [list]
 
-  caddy:
-    image: caddy:2.11
-    restart: unless-stopped
-    depends_on: [app]
-    ports: ["80:80", "443:443"]
-    environment:
-      LIST_DOMAIN: ${LIST_DOMAIN:-list.chaiweekly.co.ke}
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - caddy-data:/data
-    networks: [list]
-
 networks:
   list:
+  proxy:
+    external: true
+    name: ${PROXY_NETWORK:?Set PROXY_NETWORK in .env to the network of the Caddy already on the VPS}
 
 volumes:
   list-data:
-  caddy-data:

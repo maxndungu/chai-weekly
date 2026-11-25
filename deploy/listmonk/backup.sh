@@ -4,6 +4,6 @@
 set -e
 cd "$(dirname "$0")"
 mkdir -p backups
-docker compose exec -T db pg_dump -U listmonk listmonk | gzip > "backups/listmonk-$(date +%F).sql.gz"
+docker compose exec -T listmonk-db pg_dump -U listmonk listmonk | gzip > "backups/listmonk-$(date +%F).sql.gz"
 ls -1t backups/listmonk-*.sql.gz | tail -n +31 | xargs -r rm --
 echo "Backup saved: backups/listmonk-$(date +%F).sql.gz"

@@ -1,0 +1,6 @@
+
+# Chai Weekly mailing list (listmonk). Added to the Caddyfile of the Caddy already running on the VPS.
+list.chaiweekly.co.ke {
+	encode gzip
+	reverse_proxy chai-listmonk:9000
+}
