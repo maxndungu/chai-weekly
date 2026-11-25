@@ -2,6 +2,9 @@
 # Nairobi time (Maxwell's choice, 2026-11-24): the EATTA sales go to _data/mombasa_eatta_sales.csv and Combrok's per-sale figures
 # (kg and lots offered, for the share sold) to _data/mombasa_combrok_sales.csv. EATTA keeps adding late sales until
 # Friday noon, so Tuesday's figures for the newest sale are provisional and Friday's run saves the final ones.
+# Combrok posts offered weights later in the week, so a Wednesday 12:13 run (Maxwell, 2026-11-25) rechecks them and
+# EATTA's sold figures, with a 17:13 retry if the newest sale still has no offered figure. Keep this schedule
+# internal: don't mention it on the site, in the newsletter or in the dashboard notes.
 # Every Wednesday, collect the week's tea news into sources/ for the draft, with EATTA's figures and the Combrok
 # cross-check as text for the reviewer notes. The Wednesday runs do not change the auction data files.
 #
@@ -16,6 +19,8 @@ on:
   schedule:
     - cron: "13 13 * * 2"  # Tuesday 16:13 Nairobi: auction data only (EATTA and Combrok files)
     - cron: "13 11 * * 5"  # Friday 14:13 Nairobi: auction data only, final figures
+    - cron: "13 9 * * 3"   # Wednesday 12:13 Nairobi: auction data only (recheck Combrok offered, EATTA sold)
+    - cron: "13 14 * * 3"  # Wednesday 17:13 Nairobi: the same, only if the newest sale still has no offered figure
     - cron: "41 21 * * 2"  # Wednesday 00:41 Nairobi: news, weather, auction text for the draft
     - cron: "17 2 * * 3"   # Wednesday 05:17 Nairobi: the same, only if the 00:41 run has not saved today's file
   workflow_dispatch:
@@ -37,13 +42,29 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TZ: Africa/Nairobi
-      CSV_ONLY: ${{ inputs.csv_only || github.event.schedule == '13 13 * * 2' || github.event.schedule == '13 11 * * 5' }}
+      CSV_ONLY: ${{ inputs.csv_only || github.event.schedule == '13 13 * * 2' || github.event.schedule == '13 11 * * 5' || github.event.schedule == '13 9 * * 3' || github.event.schedule == '13 14 * * 3' }}
       # The Wednesday news runs (and a news-only run by hand) leave the auction data files alone
       # (they update on Tuesdays and Fridays only).
       WEDNESDAY: ${{ inputs.news_only || github.event.schedule == '41 21 * * 2' || github.event.schedule == '17 2 * * 3' }}
       BACKUP_RUN: ${{ github.event.schedule == '17 2 * * 3' }}
+      OFFERED_RETRY: ${{ github.event.schedule == '13 14 * * 3' }}
     steps:
       - uses: actions/checkout@v4
+      - name: Skip the 17:13 run if the 12:13 run already saved offered kg for the newest sale
+        if: ${{ env.OFFERED_RETRY == 'true' }}
+        run: |
+          if python - <<'PY'
+          import csv, sys
+          e = list(csv.DictReader(open("_data/mombasa_eatta_sales.csv")))
+          last = max(e, key=lambda r: (int(r["year"]), int(r["sale"])))
+          c = [r for r in csv.DictReader(open("_data/mombasa_combrok_sales.csv"))
+               if r["year"] == last["year"] and r["sale"] == last["sale"] and r["ctc_offered_kg"]]
+          sys.exit(0 if c else 1)
+          PY
+          then
+            echo "Offered kg for the newest sale is already saved; nothing to do."
+            echo "SKIP_ALL=true" >> "$GITHUB_ENV"
+          fi
       - name: Skip the 05:17 run if the 00:41 run already saved today's sources
         if: ${{ env.BACKUP_RUN == 'true' }}
         run: |
@@ -65,11 +86,11 @@ jobs:
         if: ${{ !cancelled() && env.CSV_ONLY != 'true' && steps.news.outputs.kept != '1' }}
         run: python tools/weather.py >> "sources/$(date +%F).md"
       - name: Save every EATTA sale to _data/mombasa_eatta_sales.csv
-        if: ${{ !cancelled() && env.WEDNESDAY != 'true' }}
+        if: ${{ !cancelled() && env.WEDNESDAY != 'true' && env.SKIP_ALL != 'true' }}
         run: |
           python tools/eatta_csv.py || { echo "::error::EATTA CSV update failed; check https://eatta.co.ke/statistics"; exit 1; }
       - name: Save Combrok's per-sale figures (offered, sold, lots, grade averages) for the dashboard
-        if: ${{ !cancelled() && env.WEDNESDAY != 'true' }}
+        if: ${{ !cancelled() && env.WEDNESDAY != 'true' && env.SKIP_ALL != 'true' }}
         run: |
           python tools/combrok_csv.py || echo "::warning::Combrok figures not updated; the dashboard keeps last week's offered and absorption figures"
       - uses: actions/setup-node@v4
