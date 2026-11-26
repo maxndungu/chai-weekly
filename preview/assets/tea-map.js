@@ -97,13 +97,69 @@
   }
   var listeners = [];
   function set(patch, opts) {
+    var lastYear = st.year;
     for (var k in patch) st[k] = patch[k];
+    if (patch.year != null && patch.year !== lastYear) sound.year();
     writeHash();
     listeners.forEach(function (fn) { fn(opts || {}); });
   }
-  function pickCountry(iso, opts) { if (!meta[iso]) return; set({ country: iso, region: meta[iso].region }, opts); }
+  function pickCountry(iso, opts) { if (!meta[iso]) return; if (opts && opts.fromMap) sound.tap(); set({ country: iso, region: meta[iso].region }, opts); }
   function pickRegion(rid) { set({ region: rid, country: null }); }
   function pickWorld() { set({ region: null, country: null }); }
+
+  /* ---------- sound: off until the reader turns it on ----------
+     Play sounds each year as a note: the higher the note, the more tea the chosen country, region or world
+     had that year (against its own lowest and highest years). A year with no figure stays silent.
+     Taps on buttons, countries and blocks make a soft click. All made in the browser; no sound files. */
+  var sound = (function () {
+    var ctx = null, master = null, on = false, lastNote = 0;
+    var SCALE = [0, 2, 4, 7, 9]; // a five-note scale, so any run of notes sounds settled
+    function start() {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return false;
+      if (!ctx) { ctx = new AC(); master = ctx.createGain(); master.gain.value = 0.22; master.connect(ctx.destination); }
+      if (ctx.state === "suspended") ctx.resume();
+      return true;
+    }
+    function voice(freq, when, len, vol, type) {
+      var o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = type || "sine"; o.frequency.value = freq;
+      g.gain.setValueAtTime(0.0001, when);
+      g.gain.exponentialRampToValueAtTime(vol, when + 0.008);
+      g.gain.exponentialRampToValueAtTime(0.0001, when + len);
+      o.connect(g); g.connect(master); o.start(when); o.stop(when + len + 0.05);
+    }
+    // A soft wooden note: the tone plus a quieter one an octave up that dies away faster
+    function note(freq) { var t = ctx.currentTime + 0.01; voice(freq, t, 0.55, 0.5); voice(freq * 2, t, 0.18, 0.12, "triangle"); }
+    function focusSeries() {
+      if (st.country) return by[st.country] || {};
+      var out = {};
+      wYears.forEach(function (y) { var v = st.region ? regionTotal(st.region, y) : world[y]; if (v) out[y] = v; });
+      return out;
+    }
+    return {
+      toggle: function () { on = !on && start(); if (on) this.tap(); return on; },
+      tap: function () { if (!on || document.hidden) return; var t = ctx.currentTime + 0.005; voice(1320, t, 0.05, 0.18, "triangle"); },
+      year: function () {
+        if (!on || document.hidden) return;
+        var now = Date.now(); if (now - lastNote < 70) return; lastNote = now;
+        var d = focusSeries(), v = d[st.year];
+        if (!v) return;
+        var vals = Object.keys(d).map(function (y) { return d[y]; }), lo = Math.min.apply(0, vals), hi = Math.max.apply(0, vals);
+        var f = hi > lo ? (Math.log(v) - Math.log(lo)) / (Math.log(hi) - Math.log(lo)) : 0.5;
+        var step = Math.round(f * (SCALE.length * 3)), oct = Math.floor(step / SCALE.length), semi = 12 * oct + SCALE[step % SCALE.length];
+        note(147 * Math.pow(2, semi / 12));
+      }
+    };
+  })();
+  $("tm-sound").addEventListener("click", function () {
+    var on = sound.toggle();
+    this.setAttribute("aria-pressed", on ? "true" : "false");
+    this.innerHTML = on ? "🔊 Sound on" : "🔈 Sound off";
+    $("tm-sound-note").hidden = !on;
+  });
+  // A click for every button tapped on the page (the sound button clicks for itself)
+  root.addEventListener("click", function (e) { var b = e.target.closest("button"); if (b && b.id !== "tm-sound") sound.tap(); });
 
   /* ---------- breadcrumbs ---------- */
   function crumbs() {

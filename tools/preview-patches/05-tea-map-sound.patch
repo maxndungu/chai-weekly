@@ -1,0 +1,104 @@
+diff --git a/assets/style.css b/assets/style.css
+index bca5867..c4f1d2c 100644
+--- a/assets/style.css
++++ b/assets/style.css
+@@ -746,3 +746,6 @@ p { margin: 0 0 1em; }
+ .tm-group:focus-visible, .tm-tile:focus-visible, .tmap-list button:focus-visible, .tmap-crumbs button:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
+ @media (max-width: 760px) { .tmap-grid { grid-template-columns: 1fr; } .tmap-stats:has(.stat:nth-child(3):last-child) { grid-template-columns: repeat(2, 1fr); } }
+ @media (prefers-reduced-motion: reduce) { .tm-group, .tm-tile, .tm-c { transition: none; } }
++.tmap-sound { min-width: 118px; align-self: flex-start; }
++@media (max-width: 559px) { .tmap-controls > .dash-field { flex: 1 1 100%; } }
++.tmap-sound-note { margin: 8px 0 0; }
+diff --git a/assets/tea-map.js b/assets/tea-map.js
+index 944bee3..136d823 100644
+--- a/assets/tea-map.js
++++ b/assets/tea-map.js
+@@ -97,14 +97,70 @@
+   }
+   var listeners = [];
+   function set(patch, opts) {
++    var lastYear = st.year;
+     for (var k in patch) st[k] = patch[k];
++    if (patch.year != null && patch.year !== lastYear) sound.year();
+     writeHash();
+     listeners.forEach(function (fn) { fn(opts || {}); });
+   }
+-  function pickCountry(iso, opts) { if (!meta[iso]) return; set({ country: iso, region: meta[iso].region }, opts); }
++  function pickCountry(iso, opts) { if (!meta[iso]) return; if (opts && opts.fromMap) sound.tap(); set({ country: iso, region: meta[iso].region }, opts); }
+   function pickRegion(rid) { set({ region: rid, country: null }); }
+   function pickWorld() { set({ region: null, country: null }); }
+ 
++  /* ---------- sound: off until the reader turns it on ----------
++     Play sounds each year as a note: the higher the note, the more tea the chosen country, region or world
++     had that year (against its own lowest and highest years). A year with no figure stays silent.
++     Taps on buttons, countries and blocks make a soft click. All made in the browser; no sound files. */
++  var sound = (function () {
++    var ctx = null, master = null, on = false, lastNote = 0;
++    var SCALE = [0, 2, 4, 7, 9]; // a five-note scale, so any run of notes sounds settled
++    function start() {
++      var AC = window.AudioContext || window.webkitAudioContext;
++      if (!AC) return false;
++      if (!ctx) { ctx = new AC(); master = ctx.createGain(); master.gain.value = 0.22; master.connect(ctx.destination); }
++      if (ctx.state === "suspended") ctx.resume();
++      return true;
++    }
++    function voice(freq, when, len, vol, type) {
++      var o = ctx.createOscillator(), g = ctx.createGain();
++      o.type = type || "sine"; o.frequency.value = freq;
++      g.gain.setValueAtTime(0.0001, when);
++      g.gain.exponentialRampToValueAtTime(vol, when + 0.008);
++      g.gain.exponentialRampToValueAtTime(0.0001, when + len);
++      o.connect(g); g.connect(master); o.start(when); o.stop(when + len + 0.05);
++    }
++    // A soft wooden note: the tone plus a quieter one an octave up that dies away faster
++    function note(freq) { var t = ctx.currentTime + 0.01; voice(freq, t, 0.55, 0.5); voice(freq * 2, t, 0.18, 0.12, "triangle"); }
++    function focusSeries() {
++      if (st.country) return by[st.country] || {};
++      var out = {};
++      wYears.forEach(function (y) { var v = st.region ? regionTotal(st.region, y) : world[y]; if (v) out[y] = v; });
++      return out;
++    }
++    return {
++      toggle: function () { on = !on && start(); if (on) this.tap(); return on; },
++      tap: function () { if (!on || document.hidden) return; var t = ctx.currentTime + 0.005; voice(1320, t, 0.05, 0.18, "triangle"); },
++      year: function () {
++        if (!on || document.hidden) return;
++        var now = Date.now(); if (now - lastNote < 70) return; lastNote = now;
++        var d = focusSeries(), v = d[st.year];
++        if (!v) return;
++        var vals = Object.keys(d).map(function (y) { return d[y]; }), lo = Math.min.apply(0, vals), hi = Math.max.apply(0, vals);
++        var f = hi > lo ? (Math.log(v) - Math.log(lo)) / (Math.log(hi) - Math.log(lo)) : 0.5;
++        var step = Math.round(f * (SCALE.length * 3)), oct = Math.floor(step / SCALE.length), semi = 12 * oct + SCALE[step % SCALE.length];
++        note(147 * Math.pow(2, semi / 12));
++      }
++    };
++  })();
++  $("tm-sound").addEventListener("click", function () {
++    var on = sound.toggle();
++    this.setAttribute("aria-pressed", on ? "true" : "false");
++    this.innerHTML = on ? "🔊 Sound on" : "🔈 Sound off";
++    $("tm-sound-note").hidden = !on;
++  });
++  // A click for every button tapped on the page (the sound button clicks for itself)
++  root.addEventListener("click", function (e) { var b = e.target.closest("button"); if (b && b.id !== "tm-sound") sound.tap(); });
++
+   /* ---------- breadcrumbs ---------- */
+   function crumbs() {
+     var parts = ["<button type='button' data-go='world'" + (!st.region ? " aria-current='page'" : "") + ">World</button>"];
+diff --git a/tea-map.html b/tea-map.html
+index 5cf1ac8..941ba82 100644
+--- a/tea-map.html
++++ b/tea-map.html
+@@ -33,7 +33,12 @@ permalink: /tea-map/
+         <button type="button" class="chip" data-view="globe" aria-pressed="false">Globe</button>
+       </div>
+     </div>
++    <div class="dash-field">
++      <span>Sound</span>
++      <button type="button" class="chip tmap-sound" id="tm-sound" aria-pressed="false">🔈 Sound off</button>
++    </div>
+   </form>
++  <p class="fine muted tmap-sound-note" id="tm-sound-note" hidden>Press Play to hear the years: the higher the note, the more tea that year. Tap a country or region first to hear its own story. A year with no figure is silent.</p>
+ 
+   <nav class="tmap-crumbs" id="tm-crumbs" aria-label="Where you are on the map"></nav>
+ 

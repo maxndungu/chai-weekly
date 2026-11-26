@@ -746,3 +746,6 @@ p { margin: 0 0 1em; }
 .tm-group:focus-visible, .tm-tile:focus-visible, .tmap-list button:focus-visible, .tmap-crumbs button:focus-visible { outline: 2px solid var(--gold); outline-offset: 1px; }
 @media (max-width: 760px) { .tmap-grid { grid-template-columns: 1fr; } .tmap-stats:has(.stat:nth-child(3):last-child) { grid-template-columns: repeat(2, 1fr); } }
 @media (prefers-reduced-motion: reduce) { .tm-group, .tm-tile, .tm-c { transition: none; } }
+.tmap-sound { min-width: 118px; align-self: flex-start; }
+@media (max-width: 559px) { .tmap-controls > .dash-field { flex: 1 1 100%; } }
+.tmap-sound-note { margin: 8px 0 0; }
