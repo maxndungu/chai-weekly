@@ -1,0 +1,419 @@
+diff --git a/assets/data/tea-trade.json b/assets/data/tea-trade.json
+new file mode 100644
+index 0000000..5cf6e2a
+--- /dev/null
++++ b/assets/data/tea-trade.json
+@@ -0,0 +1,4 @@
++---
++layout: null
++---
++{{ site.data.tea_trade_series | jsonify }}
+diff --git a/assets/style.css b/assets/style.css
+index edbbfd0..bca5867 100644
+--- a/assets/style.css
++++ b/assets/style.css
+@@ -673,6 +673,9 @@ p { margin: 0 0 1em; }
+ .prod .chart .prod-bar.last { fill: var(--green); }
+ .prod .chart .prod-prev-pt { fill: var(--gold); }
+ .prod .chart .line-long.prod-area { stroke: var(--green); stroke-width: 2; }
++.prod .chart .line-long.prod-cons { stroke: #79A68D; stroke-width: 2.4; }
++.dash-legend i.k-cons { border-top: 3px solid #79A68D; }
++.prod-trade-key { margin: 2px 0 0; font-size: 12px; }
+ .prod .chart .dash-line-prev { fill: none; stroke: var(--gold); stroke-width: 2; stroke-dasharray: 5 4; stroke-linejoin: round; }
+ .prod-charts { grid-template-columns: 1fr 1fr; margin-bottom: 12px; }
+ .prod .dash-legend { margin-bottom: 8px; }
+diff --git a/assets/tea-map.js b/assets/tea-map.js
+index f2b8973..944bee3 100644
+--- a/assets/tea-map.js
++++ b/assets/tea-map.js
+@@ -15,12 +15,21 @@
+   var change = function (a, b) { var p = Math.round(100 * (a - b) / b); return "<span class='" + (p > 0 ? "up" : p < 0 ? "down" : "") + "'>" + (p > 0 ? "▲ " : p < 0 ? "▼ " : "▬ ") + Math.abs(p) + "%</span>"; };
+ 
+   /* ---------- data ---------- */
+-  var by = {}, names = {}, world = {};
++  // One set of figures per measure; by, world and the words on the page follow the measure chosen.
++  var M = { production: { by: {}, world: {} } }, names = {};
+   D.production.forEach(function (r) {
+     var t = +r.made_tea_t; if (!(t > 0)) return;
+-    if (r.iso3 === "WLD") { world[+r.year] = t; return; }
+-    (by[r.iso3] = by[r.iso3] || {})[+r.year] = t; names[r.iso3] = r.country;
++    if (r.iso3 === "WLD") { M.production.world[+r.year] = t; return; }
++    (M.production.by[r.iso3] = M.production.by[r.iso3] || {})[+r.year] = t; names[r.iso3] = r.country;
+   });
++  var by = M.production.by, world = M.production.world;
++  var WORDS = {
++    production: { past: "grew", what: "Made tea", legend: "Made tea a year", of: "of the world's tea", count: "Countries growing tea", since: "Production", none: "No tea figure" },
++    exports: { past: "exported", what: "Exported", legend: "Tea exported a year", of: "of the world's tea exports", count: "Countries exporting tea", since: "Exports", none: "No export figure" },
++    imports: { past: "imported", what: "Imported", legend: "Tea imported a year", of: "of the world's tea imports", count: "Countries importing tea", since: "Imports", none: "No import figure" },
++    consumption: { past: "drank", what: "Drunk", legend: "Tea drunk a year", of: "of the world's tea drinking", count: "Countries with a figure", since: "Tea drunk", none: "No figure" }
++  };
++  var words = function () { return WORDS[st.measure]; };
+   var FAONAME = { "United Republic of Tanzania": "Tanzania", "Democratic Republic of the Congo": "DR Congo", "Ethiopia PDR": "Ethiopia (with Eritrea, to 1992)",
+     "Viet Nam": "Vietnam", "Iran (Islamic Republic of)": "Iran", "Lao People's Democratic Republic": "Laos", "Republic of Korea": "South Korea",
+     "China, mainland": "China", "China, Taiwan Province of": "Taiwan", "Russian Federation": "Russia", "Bolivia (Plurinational State of)": "Bolivia", "USSR": "USSR (to 1991)" };
+@@ -66,21 +75,24 @@
+   var colour = function (t) { if (!t) return LAND; var i = 0; while (i < BINS.length && t >= BINS[i]) i++; return RAMP[i]; };
+   var darkFill = function (t) { return t >= 5e4; };
+   var binLabel = ["Under 1,000 t", "1,000 to 10,000", "10,000 to 50,000", "50,000 to 200,000", "200,000 to 1M", "1M t and over"];
+-  $("tm-legend").innerHTML = "<span class='tmap-legend-h'>Made tea a year</span>" + RAMP.map(function (c, i) { return "<span><i class='k-sw' style='background:" + c + "'></i>" + binLabel[i] + "</span>"; }).join("") +
+-    "<span><i class='k-sw' style='background:" + LAND + "'></i>No tea figure</span>";
++  function legend() {
++    $("tm-legend").innerHTML = "<span class='tmap-legend-h'>" + words().legend + "</span>" + RAMP.map(function (c, i) { return "<span><i class='k-sw' style='background:" + c + "'></i>" + binLabel[i] + "</span>"; }).join("") +
++      "<span><i class='k-sw' style='background:" + LAND + "'></i>" + words().none + "</span>";
++  }
+ 
+   /* ---------- state ---------- */
+-  var st = { year: Y1, view: "map", region: null, country: null };
++  var st = { year: Y1, view: "map", region: null, country: null, measure: "production" };
+   (function readHash() {
+     var h = {}; location.hash.slice(1).split("&").forEach(function (p) { var kv = p.split("="); if (kv[1]) h[kv[0]] = decodeURIComponent(kv[1]); });
+     if (h.y && +h.y >= Y0 && +h.y <= Y1) st.year = +h.y;
+     if (h.c && meta[h.c.toUpperCase()]) { st.country = h.c.toUpperCase(); st.region = meta[st.country].region; }
+     else if (h.r && regionById[h.r]) st.region = h.r;
+     if (h.v === "globe") st.view = "globe";
++    if (WORDS[h.m]) st.wantMeasure = h.m;   // applied once the trade figures arrive
+   })();
+   function writeHash() {
+     var p = []; if (st.country) p.push("c=" + st.country); else if (st.region) p.push("r=" + st.region);
+-    if (st.year !== Y1) p.push("y=" + st.year); if (st.view === "globe") p.push("v=globe");
++    if (st.year !== Y1) p.push("y=" + st.year); if (st.view === "globe") p.push("v=globe"); if (st.measure !== "production") p.push("m=" + st.measure);
+     try { history.replaceState(null, "", p.length ? "#" + p.join("&") : location.pathname + location.search); } catch (e) {}
+   }
+   var listeners = [];
+@@ -124,7 +136,7 @@
+   var tip = $("tm-tip"), stage = root.querySelector(".tmap-stage");
+   function tipHtml(iso) {
+     var v = val(iso, st.year), n = names[iso] || iso;
+-    return "<b>" + esc(n) + "</b>" + (v ? tonnes(v) + " in " + st.year + "<br><span>" + share(v, world[st.year]) + " of the world's tea</span>" : "<span>No tea figure for " + st.year + "</span>");
++    return "<b>" + esc(n) + "</b>" + (v ? tonnes(v) + " in " + st.year + "<br><span>" + share(v, world[st.year]) + " " + words().of + "</span>" : "<span>" + words().none + " for " + st.year + "</span>");
+   }
+   function showTip(e, html) {
+     var r = stage.getBoundingClientRect();
+@@ -169,7 +181,7 @@
+     sphere = gMap.append("path").datum({ type: "Sphere" }).attr("class", "tm-sphere").attr("fill", st.view === "globe" ? "url(#tm-ocean)" : "none");
+     grat = gMap.append("path").datum(graticule).attr("class", "tm-grat");
+     paths = gMap.append("g").selectAll("path").data(shapes).join("path").attr("class", "tm-c")
+-      .on("pointermove", function (e, d) { var o = owner(d.id, st.year); if (o) showTip(e, tipHtml(o.iso3)); else showTip(e, "<b>" + esc(d.properties.name) + "</b><span>No tea figures</span>"); })
++      .on("pointermove", function (e, d) { var o = owner(d.id, st.year); if (o) showTip(e, tipHtml(o.iso3)); else showTip(e, "<b>" + esc(d.properties.name) + "</b><span>" + words().none + "</span>"); })
+       .on("pointerleave", hideTip)
+       .on("click", function (e, d) { var o = owner(d.id, st.year); if (o) { hideTip(); pickCountry(o.iso3, { fromMap: true }); } });
+     var dotList = Object.keys(meta).filter(function (k) { return meta[k].dot; }).map(function (k) { return meta[k]; });
+@@ -309,6 +321,7 @@
+     });
+     hit.addEventListener("pointerleave", function () { guide.setAttribute("visibility", "hidden"); hot.setAttribute("visibility", "hidden"); lab.hidden = true; });
+   }
++  var unit = function () { return st.measure === "production" ? "Tonnes of made tea" : "Tonnes"; };
+   var axisT = function (v) { return v >= 1e6 ? (v / 1e6).toFixed(v % 1e6 ? 1 : 0) + "M" : v >= 1e3 ? Math.round(v / 1e3) + "k" : Math.round(v); };
+ 
+   /* ---------- auction series ---------- */
+@@ -339,8 +352,8 @@
+       var rg = regionById[st.region], rt = regionTotal(st.region, y), prs = producers(st.region, y);
+       var series = {}; wYears.forEach(function (yy) { var v = regionTotal(st.region, yy); if (v) series[yy] = v; });
+       pbox.innerHTML = "<p class='eyebrow'>Region</p><h2 class='tmap-panel-h'>" + esc(rg.name) + "</h2>" +
+-        stats([["Made tea, " + y, tonnes(rt), rt && series[y - 10] ? change(rt, series[y - 10]) + " in ten years" : ""], ["Share of world, " + y, share(rt, wt), ""], ["Countries growing tea", prs.length, "with figures for " + y]]) +
+-        "<div class='tmap-grid'><figure class='dash-panel'><figcaption><span class='dash-panel-h'>" + esc(rg.name) + " since " + Y0 + "</span><span class='dash-panel-u'>Tonnes of made tea</span></figcaption><div class='chart tm-chart' id='tm-c1'></div></figure>" +
++        stats([[words().what + ", " + y, tonnes(rt), rt && series[y - 10] ? change(rt, series[y - 10]) + " in ten years" : ""], ["Share of world, " + y, share(rt, wt), ""], [words().count, prs.length, "with figures for " + y]]) +
++        "<div class='tmap-grid'><figure class='dash-panel'><figcaption><span class='dash-panel-h'>" + esc(rg.name) + " since " + Y0 + "</span><span class='dash-panel-u'>" + unit() + "</span></figcaption><div class='chart tm-chart' id='tm-c1'></div></figure>" +
+         "<div><p class='dash-panel-u tmap-list-h'>Countries, " + y + "</p><ul class='tmap-list'>" + rg.countries.filter(function (c) { return by[c.iso3]; }).map(function (c) {
+           var v = val(c.iso3, y); return "<li><button type='button' data-iso='" + c.iso3 + "'><span>" + esc(names[c.iso3]) + "</span><b>" + (v ? tonnes(v) : "–") + "</b></button></li>";
+         }).join("") + "</ul></div></div>";
+@@ -348,9 +361,9 @@
+       return;
+     }
+     var ea = regionTotal("eastern-africa", y), n = Object.keys(by).filter(function (k) { return val(k, y); }).length;
+-    pbox.innerHTML = "<p class='eyebrow'>The world</p><h2 class='tmap-panel-h'>The world's tea in " + y + "</h2>" +
+-      stats([["World, " + y, tonnes(wt), world[y - 10] ? change(wt, world[y - 10]) + " in ten years" : ""], ["Eastern Africa", share(ea, wt), "of the world's tea"], ["Countries growing tea", n, "with figures for " + y]]) +
+-      "<div class='tmap-grid'><figure class='dash-panel'><figcaption><span class='dash-panel-h'>World production since " + Y0 + "</span><span class='dash-panel-u'>Tonnes of made tea</span></figcaption><div class='chart tm-chart' id='tm-c1'></div></figure>" +
++    pbox.innerHTML = "<p class='eyebrow'>The world</p><h2 class='tmap-panel-h'>" + (st.measure === "production" ? "The world's tea in " : "The world's tea trade in ") + y + "</h2>" +
++      stats([["World, " + y, wt ? tonnes(wt) : "–", wt && world[y - 10] ? change(wt, world[y - 10]) + " in ten years" : ""], ["Eastern Africa", wt ? share(ea, wt) : "–", words().of], [words().count, n, "with figures for " + y]]) +
++      "<div class='tmap-grid'><figure class='dash-panel'><figcaption><span class='dash-panel-h'>World " + words().since.toLowerCase() + " since " + Y0 + "</span><span class='dash-panel-u'>" + unit() + "</span></figcaption><div class='chart tm-chart' id='tm-c1'></div></figure>" +
+       "<div><p class='dash-panel-u tmap-list-h'>Regions, " + y + "</p><ul class='tmap-list'>" + regions.map(function (rg) {
+         var v = regionTotal(rg.id, y); return "<li><button type='button' data-region='" + rg.id + "'><span>" + esc(rg.name) + "</span><b>" + (v ? tonnes(v) : "–") + "</b></button></li>";
+       }).join("") + "</ul></div></div>";
+@@ -361,11 +374,12 @@
+     var ys = Object.keys(d).map(Number).sort(function (a, b) { return a - b; }), ly = ys[ys.length - 1];
+     var a = (area[iso] || {})[y];
+     var list = [
+-      ["Made tea, " + y, v ? tonnes(v) : "–", v && d[y - 1] ? change(v, d[y - 1]) + " on " + (y - 1) : v ? "" : "No figure for " + y],
+-      ["Share of world, " + y, v ? share(v, world[y]) : "–", ""],
+-      ["Latest, " + ly, tonnes(d[ly]), d[ly - 1] ? change(d[ly], d[ly - 1]) + " on " + (ly - 1) : ""],
+-      ["Tonnes a hectare, " + y, v && a ? (v / a).toFixed(2) : "–", a ? num(a) + " ha picked" : ""]
++      [words().what + ", " + y, v ? tonnes(v) : "–", v && d[y - 1] ? change(v, d[y - 1]) + " on " + (y - 1) : v ? "" : "No figure for " + y],
++      ["Share of world, " + y, v && world[y] ? share(v, world[y]) : "–", ""],
++      ["Latest, " + ly, ly ? tonnes(d[ly]) : "–", ly && d[ly - 1] ? change(d[ly], d[ly - 1]) + " on " + (ly - 1) : ""]
+     ];
++    if (st.measure === "production") list.push(["Tonnes a hectare, " + y, v && a ? (v / a).toFixed(2) : "–", a ? num(a) + " ha picked" : ""]);
++    else { var g = M.production.by[iso] || {}; list.push(["Grown, " + y, g[y] ? tonnes(g[y]) : "–", g[y] ? "" : M.production.by[iso] ? "No figure for " + y : "Grows no tea"]); }
+     var ms = m ? marketSeries(m) : null;
+     var second = m
+       ? "<figure class='dash-panel'><figcaption><span class='dash-panel-h'>" + esc(m.name) + "</span><span class='dash-panel-u'>US$ a kg, year average</span></figcaption>" +
+@@ -373,8 +387,8 @@
+           " <a href='" + D.base + m.page + "'>Every sale on the Auctions page</a></p>" : "<p class='muted'>Loading prices…</p>") + "</figure>"
+       : "<figure class='dash-panel'><figcaption><span class='dash-panel-h'>Area picked</span><span class='dash-panel-u'>Hectares</span></figcaption><div class='chart tm-chart' id='tm-c2'></div></figure>";
+     pbox.innerHTML = "<p class='eyebrow'>" + esc(regionById[meta[iso].region].name) + "</p><h2 class='tmap-panel-h'>" + esc(name) + "</h2>" + stats(list) +
+-      "<div class='tmap-grid'><figure class='dash-panel'><figcaption><span class='dash-panel-h'>Production since " + ys[0] + "</span><span class='dash-panel-u'>Tonnes of made tea</span></figcaption><div class='chart tm-chart' id='tm-c1'></div>" +
+-      (ly > Y1 ? "<p class='fine muted'>From " + (Y1 + 1) + ", national figures.</p>" : "") + "</figure>" + second + "</div>";
++      "<div class='tmap-grid'><figure class='dash-panel'><figcaption><span class='dash-panel-h'>" + words().since + (ys.length ? " since " + ys[0] : "") + "</span><span class='dash-panel-u'>" + unit() + "</span></figcaption><div class='chart tm-chart' id='tm-c1'></div>" +
++      (st.measure === "consumption" && iso === "KEN" ? "<p class='fine muted'>Not worked out for Kenya in most recent years: its exports include tea grown in neighbouring countries.</p>" : "") + "</figure>" + second + "</div>";
+     lineChart($("tm-c1"), d, y, axisT, function (yy, val2) { return "<b>" + yy + "</b> " + num(val2) + " t"; });
+     if (m && ms) lineChart($("tm-c2"), ms.avg, ms.avg[y] != null ? y : null, function (x) { return "$" + x.toFixed(x % 1 ? 1 : 0); }, function (yy, p) { return "<b>" + yy + (ms.current && yy === ms.last ? " so far" : "") + "</b> US$ " + p.toFixed(2) + " a kg"; });
+     else if (!m) lineChart($("tm-c2"), area[iso] || {}, y, axisT, function (yy, h) { return "<b>" + yy + "</b> " + num(h) + " ha"; });
+@@ -416,7 +430,7 @@
+         t.style.background = colour(d.value); t.classList.toggle("on-dark", darkFill(d.value));
+         t.classList.toggle("is-picked", d.iso === st.country);
+         t.innerHTML = w > 46 && hh > 24 ? "<span class='tm-tn'>" + esc(nm) + "</span>" + (hh > 42 && w > 54 ? "<span class='tm-tv'>" + sh + "</span>" : "") : "";
+-        t.title = nm + ": " + num(d.value) + " t in " + y + " (" + sh + " of the world)";
++        t.title = nm + ": " + num(d.value) + " t in " + y + " (" + sh + " " + words().of + ")";
+         t.setAttribute("aria-label", t.title);
+       } else {
+         var rgT = n.value;
+@@ -428,8 +442,8 @@
+     });
+     Object.keys(tiles).forEach(function (k) { if (!seen[k]) { tiles[k].remove(); delete tiles[k]; } });
+     $("tm-tree-note").textContent = st.region
+-      ? "Blocks are sized by each country's made tea in " + y + ", with its share of the world's tea. Tap a country for its figures, or the region's name to go back to the world."
+-      : "Each block is one country's share of the world's made tea in " + y + ". Tap a region's name to open it, then a country for its figures.";
++      ? "Blocks are sized by the tea each country " + words().past + " in " + y + ", with its share " + words().of + ". Tap a country for its figures, or the region's name to go back to the world."
++      : "Each block is one country's share " + words().of + " in " + y + ". Tap a region's name to open it, then a country for its figures.";
+   }
+   tbox.addEventListener("click", function (e) {
+     var b = e.target.closest("button"); if (!b) return;
+@@ -444,6 +458,38 @@
+   root.querySelectorAll("[data-view]").forEach(function (x) { x.setAttribute("aria-pressed", x.dataset.view === st.view ? "true" : "false"); });
+   fetch(D.world).then(function (r) { return r.json(); }).then(function (topo) {
+     shapes = topojson.feature(topo, topo.objects.countries).features.filter(function (f) { return f.id !== "010"; });
+-    drawMap(); showYear(); crumbs(); panel(); tree();
++    legend(); drawMap(); showYear(); crumbs(); panel(); tree();
++    return fetch(D.trade).then(function (r) { return r.json(); });
++  }).then(function (j) {
++    if (!j) return;
++    var REGION_NAMES = { "middle-east-north-africa": "Middle East and North Africa" };
++    ["exports", "imports", "consumption"].forEach(function (k) {
++      var m = M[k] = { by: {}, world: {} };
++      Object.keys(j[k]).forEach(function (iso) { var o = m.by[iso] = {}; j[k][iso].forEach(function (v, i) { if (v) o[j.from + i] = v; }); });
++      j.world[k].forEach(function (v, i) { if (v) m.world[j.from + i] = v; });
++    });
++    // Countries that only trade tea get a place on the map and in a region
++    Object.keys(j.places).forEach(function (iso) {
++      var p = j.places[iso]; if (!names[iso]) names[iso] = p[0];
++      if (meta[iso]) return;
++      var rid = p[2];
++      if (!regionById[rid]) { regionById[rid] = { id: rid, name: REGION_NAMES[rid] || rid, countries: [] }; regions.splice(regions.length - (regionById.other ? 1 : 0), 0, regionById[rid]); }
++      regionById[rid].countries.push({ iso3: iso });
++      meta[iso] = { iso3: iso, region: rid, ids: p[1] ? [p[1]] : [] };
++      if (p[1]) (owners[p[1]] = owners[p[1]] || []).push(meta[iso]);
++    });
++    root.querySelectorAll("[data-measure]").forEach(function (b) { b.disabled = false; });
++    if (st.wantMeasure) { useMeasure(st.wantMeasure); delete st.wantMeasure; }
++  }).catch(function () {});
++  function useMeasure(k) {
++    if (!M[k]) return;
++    by = M[k].by; world = M[k].world;
++    root.querySelectorAll("[data-measure]").forEach(function (x) { x.setAttribute("aria-pressed", x.dataset.measure === k ? "true" : "false"); });
++    if (st.country && !by[st.country] && !M.production.by[st.country]) st.country = null;
++    st.measure = k; legend(); set({ measure: k }, { quick: true });
++  }
++  root.querySelectorAll("[data-measure]").forEach(function (b) {
++    b.disabled = b.dataset.measure !== "production";
++    b.addEventListener("click", function () { if (st.measure !== b.dataset.measure) useMeasure(b.dataset.measure); });
+   });
+ })();
+diff --git a/production.html b/production.html
+index 0894cc1..8f71860 100644
+--- a/production.html
++++ b/production.html
+@@ -7,7 +7,7 @@ permalink: /production/
+ <article class="analysis wrap prod">
+   <p class="kicker"><a href="{{ '/markets/' | relative_url }}">Markets</a> · Production</p>
+   <h1 class="headline">How much tea the world makes</h1>
+-  <p class="deck">Tea production in every producing country since 1961, Eastern Africa against the rest of the world, and Kenya month by month.</p>
++  <p class="deck">Tea production in every producing country since 1961, Eastern Africa against the rest of the world, Kenya month by month, and where the tea goes: exports, imports and how much each country drinks.</p>
+   <div class="stat-row" id="p-stats" aria-live="polite"></div>
+ 
+   <section>
+@@ -17,6 +17,13 @@ permalink: /production/
+     <figure class="chart" id="p-world" role="img" aria-label="World and Eastern Africa tea production since 1961"></figure>
+   </section>
+ 
++  <section>
++    <h2 class="label rule">Where the tea goes</h2>
++    <p class="chart-note">Tea exported by the countries that grow it, and tea drunk in Eastern Africa, million tonnes a year.</p>
++    <div class="dash-legend"><span><i></i>World exports</span><span><i class="k-prev"></i>Eastern Africa exports</span><span><i class="k-cons"></i>Drunk in Eastern Africa</span></div>
++    <figure class="chart" id="p-trade" role="img" aria-label="World and Eastern Africa tea exports, and tea drunk in Eastern Africa, since 1961"><p class="muted">Loading…</p></figure>
++  </section>
++
+   <section>
+     <h2 class="label rule">Kenya, month by month</h2>
+     <form class="dash-controls prod-kyear" onsubmit="return false" aria-label="Choose a year">
+@@ -41,6 +48,15 @@ permalink: /production/
+         <figcaption><span class="dash-panel-h">Area harvested</span><span class="dash-panel-u">Hectares</span></figcaption>
+         <div class="chart" id="p-carea"></div>
+       </figure>
++      <figure class="dash-panel">
++        <figcaption><span class="dash-panel-h">Exports and imports</span><span class="dash-panel-u">Tonnes</span></figcaption>
++        <div class="dash-legend prod-trade-key"><span><i></i>Exports</span><span><i class="k-prev"></i>Imports</span></div>
++        <div class="chart" id="p-ctrade"></div>
++      </figure>
++      <figure class="dash-panel">
++        <figcaption><span class="dash-panel-h">Tea drunk</span><span class="dash-panel-u">Tonnes a year</span></figcaption>
++        <div class="chart" id="p-ccons"></div>
++      </figure>
+     </div>
+     <p class="fine muted" id="p-c-note"></p>
+     <div class="table-wrap" tabindex="0" role="region" aria-label="Year by year table for the chosen country"><table class="data-table" id="p-ctable"></table></div>
+@@ -52,7 +68,11 @@ permalink: /production/
+     <p><strong>1961 to 2015:</strong> national production as reported to the United Nations, for every country that grows tea commercially. For Iran, Malaysia, Myanmar, Thailand, Burundi and Mozambique the reported figures from 1991 to 2015 count fresh leaf rather than made tea, so those years are left out for them and taken off the world total. Countries that have since split or merged are shown as they were reported, such as the USSR to 1991.</p>
+     <p><strong>2016 on:</strong> tea industry statistics for every producing country, with national tea board figures in their place where published (Kenya, India and Sri Lanka). They can differ a little in method from the earlier figures. Figures for 2025 are provisional and may be revised.</p>
+     <p><strong>Area harvested</strong> is the land under tea that was picked that year.</p>
+-    <p class="fine muted">Production 1961 to 2015 and area: FAO, FAOSTAT, CC BY 4.0. Figures are as published by each source. Spot an error? Just reply to any issue.</p>
++    <p><strong>Exports</strong> are tea sent abroad by the countries that grow it. Tea that a country buys in and sells on (the UK, Germany or the United Arab Emirates, for example) is not counted again. Kenya's exports include tea grown elsewhere in East Africa and sold through Mombasa.</p>
++    <p><strong>Imports</strong> are tea bought in for drinking: for countries that grow no tea, imports less what they sell on; for tea-growing countries, all imports.</p>
++    <p><strong>Tea drunk</strong> is worked out as production plus imports less exports for tea-growing countries, and imports for the rest. It moves with stocks, so a single year can jump. It is left blank where it comes out below zero, as it does for Kenya in most recent years because its exports include other countries' tea.</p>
++    <p><strong>Trade, 1961 to 2015:</strong> national trade figures as reported to the United Nations. <strong>2016 on:</strong> tea industry statistics, with United Nations figures for countries they show only in groups.</p>
++    <p class="fine muted">Production and trade 1961 to 2015, and area: FAO, FAOSTAT, CC BY 4.0. Figures are as published by each source. Spot an error? Just reply to any issue.</p>
+   </section>
+   <noscript><p>The charts and tables on this page need JavaScript.</p></noscript>
+ </article>
+@@ -166,37 +186,81 @@ permalink: /production/
+   $("p-kyear").addEventListener("change", function () { $("p-kmonth").innerHTML = ""; kenyaMonths(+this.value); });
+   kenyaMonths(kys[kys.length - 1]);
+ 
+-  // Country picker
+-  var names = Object.keys(by).filter(function (c) { return c !== "World"; }).sort(function (a, b) { return a.localeCompare(b); });
+-  var eaNames = names.filter(function (c) { return EA.indexOf(c) >= 0; }), rest = names.filter(function (c) { return EA.indexOf(c) < 0; });
+-  var opt = function (c) { return "<option" + (c === "Kenya" ? " selected" : "") + ">" + c + "</option>"; };
+-  $("p-country").innerHTML = "<optgroup label='Eastern Africa'>" + eaNames.map(opt).join("") + "</optgroup><optgroup label='Rest of the world'>" + rest.map(opt).join("") + "</optgroup>";
++  // Country picker: tea-growing countries first, then (once trade figures load) the countries that only buy tea
++  var trade = {}, T = null;   // trade[name] = { x: {year: t}, m: {...}, c: {...} }
++  function picker(sel) {
++    var growers = Object.keys(by).filter(function (c) { return c !== "World"; });
++    var buyers = Object.keys(trade).filter(function (c) { return !by[c]; });
++    var abc = function (a, b) { return a.localeCompare(b); };
++    var opt = function (c) { return "<option" + (c === sel ? " selected" : "") + ">" + c + "</option>"; };
++    $("p-country").innerHTML = "<optgroup label='Eastern Africa'>" + growers.filter(function (c) { return EA.indexOf(c) >= 0; }).sort(abc).map(opt).join("") + "</optgroup>" +
++      "<optgroup label='Other tea-growing countries'>" + growers.filter(function (c) { return EA.indexOf(c) < 0; }).sort(abc).map(opt).join("") + "</optgroup>" +
++      (buyers.length ? "<optgroup label='Countries that buy tea'>" + buyers.sort(abc).map(opt).join("") + "</optgroup>" : "");
++  }
++  picker("Kenya");
+ 
+   function show(name) {
+-    var d = by[name] || {}, p = {}, a = area[name] || {};
++    var d = by[name] || {}, p = {}, a = area[name] || {}, tr = trade[name] || { x: {}, m: {}, c: {} };
+     Object.keys(d).forEach(function (y) { p[y] = d[y].t; });
+-    var yrs = Object.keys(p).concat(Object.keys(a)).map(Number), y0 = Math.min.apply(0, yrs), y1 = Math.max.apply(0, yrs);
++    var yrs = Object.keys(p).concat(Object.keys(a), Object.keys(tr.x), Object.keys(tr.m)).map(Number), y0 = Math.min.apply(0, yrs), y1 = Math.max.apply(0, yrs);
+     if (y0 === y1) { y0--; y1++; }
+     var W = wide("p-cprod") > 500 ? 520 : 440;
+     $("p-c-h").textContent = name;
+     var fmtT = function (v) { return v >= 1e6 ? (v / 1e6).toFixed(1) + "M" : v >= 1e3 ? Math.round(v / 1e3) + "k" : Math.round(v); };
+     [["p-cprod", p, "line-main", " t"], ["p-carea", a, "line-long prod-area", " ha"]].forEach(function (s) {
+       var vals = Object.keys(s[1]).map(function (y) { return s[1][y]; });
+-      if (!vals.length) { $(s[0]).innerHTML = "<p class='muted'>No figures.</p>"; return; }
++      if (!vals.length) { $(s[0]).innerHTML = "<p class='muted'>" + (by[name] ? "No figures." : name + " grows no tea commercially.") + "</p>"; return; }
+       var c = chart($(s[0]), W, 260, { l: 44, r: 12, t: 12, b: 30 }, [y0, y1], Math.max.apply(0, vals), fmtT);
+       years(c, y0, y1, y1 - y0 > 40 ? 20 : 10);
+       var ys = series(c, s[1], s[2], function (y, v) { return name + ", " + y + ": " + num(v) + s[3]; });
+       var l = ys[ys.length - 1]; dot(c, c.X(l), c.Y(s[1][l]), 4, "pt pt-last", name + ", " + l + ": " + num(s[1][l]) + s[3]);
+     });
++    // exports and imports on one chart, tea drunk on its own
++    var tv = Object.keys(tr.x).map(function (y) { return tr.x[y]; }).concat(Object.keys(tr.m).map(function (y) { return tr.m[y]; }));
++    if (!T) $("p-ctrade").innerHTML = "<p class='muted'>Loading…</p>";
++    else if (!tv.length) $("p-ctrade").innerHTML = "<p class='muted'>No trade figures.</p>";
++    else {
++      var c = chart($("p-ctrade"), W, 260, { l: 44, r: 12, t: 12, b: 30 }, [y0, y1], Math.max.apply(0, tv), fmtT);
++      years(c, y0, y1, y1 - y0 > 40 ? 20 : 10);
++      series(c, tr.x, "line-main", function (y, v) { return name + " exports, " + y + ": " + num(v) + " t"; });
++      series(c, tr.m, "dash-line-prev", function (y, v) { return name + " imports, " + y + ": " + num(v) + " t"; });
++    }
++    var cv = Object.keys(tr.c).map(function (y) { return tr.c[y]; });
++    if (!T) $("p-ccons").innerHTML = "<p class='muted'>Loading…</p>";
++    else if (!cv.length) $("p-ccons").innerHTML = "<p class='muted'>Not worked out for " + name + (name === "Kenya" ? ": its exports include tea grown in neighbouring countries." : ".") + "</p>";
++    else {
++      var c2 = chart($("p-ccons"), W, 260, { l: 44, r: 12, t: 12, b: 30 }, [y0, y1], Math.max.apply(0, cv), fmtT);
++      years(c2, y0, y1, y1 - y0 > 40 ? 20 : 10);
++      series(c2, tr.c, "line-long prod-area", function (y, v) { return name + " drank, " + y + ": " + num(v) + " t"; });
++    }
+     var late = Object.keys(d).filter(function (y) { return +y > 2015; }).length;
+-    $("p-c-note").textContent = late ? "From 2016 the production figures come from industry and national statistics and can differ a little in method from earlier years. 2025 is provisional." : (y1 < 2015 ? "" : "Production figures after 2015 are not yet available for " + name + ".");
+-    var allY = Object.keys(p).concat(Object.keys(a)).map(Number).filter(function (y, i, s) { return s.indexOf(y) === i; }).sort(function (x, y) { return y - x; });
+-    $("p-ctable").innerHTML = "<thead><tr><th>Year</th><th>Made tea</th><th>On the year</th><th>Area harvested</th><th>Tonnes per hectare</th></tr></thead><tbody>" + allY.map(function (y) {
+-      var t = p[y], q = p[y - 1];
+-      return "<tr><td>" + y + "</td><td><b>" + (t != null ? num(t) + " t" : "–") + "</b></td><td>" + (t != null && q ? pct(t, q) : "") + "</td><td>" + (a[y] ? num(a[y]) + " ha" : "–") + "</td><td>" + (t != null && a[y] && y <= 2020 ? (t / a[y]).toFixed(2) : "") + "</td></tr>";
++    $("p-c-note").textContent = !by[name] ? "From 2016 the trade figures come from tea industry statistics and can differ a little in method from earlier years. 2025 is provisional." : late ? "From 2016 the production figures come from industry and national statistics and can differ a little in method from earlier years. 2025 is provisional." : (y1 < 2015 ? "" : "Production figures after 2015 are not yet available for " + name + ".");
++    var allY = Object.keys(p).concat(Object.keys(a), Object.keys(tr.x), Object.keys(tr.m)).map(Number).filter(function (y, i, s) { return s.indexOf(y) === i; }).sort(function (x, y) { return y - x; });
++    $("p-ctable").innerHTML = "<thead><tr><th>Year</th><th>Made tea</th><th>On the year</th><th>Area harvested</th><th>Tonnes per hectare</th><th>Exports</th><th>Imports</th><th>Tea drunk</th></tr></thead><tbody>" + allY.map(function (y) {
++      var t = p[y], q = p[y - 1], f = function (v) { return v != null ? num(v) + " t" : "–"; };
++      return "<tr><td>" + y + "</td><td><b>" + f(t) + "</b></td><td>" + (t != null && q ? pct(t, q) : "") + "</td><td>" + (a[y] ? num(a[y]) + " ha" : "–") + "</td><td>" + (t != null && a[y] && y <= 2020 ? (t / a[y]).toFixed(2) : "") + "</td><td>" + f(tr.x[y]) + "</td><td>" + f(tr.m[y]) + "</td><td>" + f(tr.c[y]) + "</td></tr>";
+     }).join("") + "</tbody>";
+   }
+   $("p-country").addEventListener("change", function () { show(this.value); });
+   show("Kenya");
++
++  // Trade and consumption (a separate file, loaded after the page)
++  fetch("{{ '/assets/data/tea-trade.json' | relative_url }}").then(function (r) { return r.json(); }).then(function (j) {
++    T = j;
++    var put = function (k, key) { Object.keys(j[k]).forEach(function (iso) { var n = j.places[iso][0], o = trade[n] = trade[n] || { x: {}, m: {}, c: {} }; j[k][iso].forEach(function (v, i) { if (v != null) o[key][j.from + i] = v; }); }); };
++    put("exports", "x"); put("imports", "m"); put("consumption", "c");
++    var cur = $("p-country").value; picker(cur); show(cur);
++    // World exports, Eastern Africa exports and Eastern Africa drinking
++    var wx = {}, ex = {}, ec = {};
++    j.world.exports.forEach(function (v, i) { if (v) wx[j.from + i] = v / 1e6; });
++    EA.forEach(function (n) { var o = trade[n]; if (!o) return; Object.keys(o.x).forEach(function (y) { ex[y] = (ex[y] || 0) + o.x[y] / 1e6; }); Object.keys(o.c).forEach(function (y) { ec[y] = (ec[y] || 0) + o.c[y] / 1e6; }); });
++    var ys = Object.keys(wx).map(Number), a0 = Math.min.apply(0, ys), a1 = Math.max.apply(0, ys);
++    var Wt = wide("p-trade"), c = chart($("p-trade"), Wt, 300, { l: 40, r: 14, t: 14, b: 30 }, [a0, a1], Math.max.apply(0, ys.map(function (y) { return wx[y]; })), function (v) { return v.toFixed(v % 1 ? 1 : 0); });
++    years(c, a0, a1, Wt < 600 ? 20 : 10);
++    series(c, wx, "line-main", function (y, v) { return "World exports, " + y + ": " + num(v * 1e6) + " t"; });
++    series(c, ex, "dash-line-prev", function (y, v) { return "Eastern Africa exports, " + y + ": " + num(v * 1e6) + " t (" + Math.round(100 * v / wx[y]) + "% of world)"; });
++    series(c, ec, "line-long prod-cons", function (y, v) { return "Drunk in Eastern Africa, " + y + ": " + num(v * 1e6) + " t"; });
++    dot(c, c.X(a1), c.Y(wx[a1]), 4.5, "pt pt-last", "World exports, " + a1 + ": " + num(wx[a1] * 1e6) + " t");
++  }).catch(function () { $("p-trade").innerHTML = "<p class='muted'>Trade figures could not be loaded.</p>"; });
+ })();
+ </script>
+diff --git a/tea-map.html b/tea-map.html
+index 18ef07d..1af27a2 100644
+--- a/tea-map.html
++++ b/tea-map.html
+@@ -7,7 +7,7 @@ permalink: /tea-map/
+ <article class="analysis wrap tmap" id="tmap">
+   <p class="kicker"><a href="{{ '/markets/' | relative_url }}">Markets</a> · Tea map</p>
+   <h1 class="headline">Where the world's tea is grown</h1>
+-  <p class="deck">Tap a country to open its figures, or a region to zoom in. Slide through the years to watch the tea map change since 1961.</p>
++  <p class="deck">Where tea is grown, where it is sent and where it is drunk. Tap a country to open its figures, or a region to zoom in. Slide through the years to watch the tea map change since 1961.</p>
+ 
+   <form class="dash-controls tmap-controls" onsubmit="return false" aria-label="Map controls">
+     <div class="dash-field tmap-year">
+@@ -17,6 +17,15 @@ permalink: /tea-map/
+         <input type="range" id="tm-year" aria-labelledby="tm-year-l" step="1">
+       </div>
+     </div>
++    <div class="dash-field">
++      <span id="tm-measure-l">Show</span>
++      <div class="chips" role="group" aria-labelledby="tm-measure-l">
++        <button type="button" class="chip" data-measure="production" aria-pressed="true">Grown</button>
++        <button type="button" class="chip" data-measure="exports" aria-pressed="false">Exported</button>
++        <button type="button" class="chip" data-measure="imports" aria-pressed="false">Imported</button>
++        <button type="button" class="chip" data-measure="consumption" aria-pressed="false">Drunk</button>
++      </div>
++    </div>
+     <div class="dash-field">
+       <span id="tm-view-l">View</span>
+       <div class="chips" role="group" aria-labelledby="tm-view-l">
+@@ -46,8 +55,9 @@ permalink: /tea-map/
+   <section class="sources">
+     <h2 class="label rule">Data and sources</h2>
+     <p><strong>Made tea</strong> is tea after processing, as it is sold. The map and the blocks run to 2025; figures for 2025 are provisional. See the <a href="{{ '/production/' | relative_url }}">Production</a> page for how the figures fit together.</p>
++    <p><strong>Exported</strong> is tea sent abroad by the countries that grow it; tea bought in and sold on is not counted again. <strong>Imported</strong> is tea bought in for drinking. <strong>Drunk</strong> is production plus imports less exports for tea-growing countries, and imports for the rest; it is left blank where it comes out below zero (Kenya, whose exports include neighbours' tea). The <a href="{{ '/production/' | relative_url }}">Production</a> page has every country's figures year by year.</p>
+     <p><strong>Auction prices</strong> are each year's average for all teas sold at the auction, weighted by the kilos sold. Every sale is on the <a href="{{ '/auctions/' | relative_url }}">Auctions</a> page.</p>
+-    <p class="fine muted">Production 1961 to 2015: FAO, FAOSTAT, CC BY 4.0; later years from tea industry statistics and national tea boards. Map outlines: Natural Earth. Borders are shown as drawn there and imply no view on any boundary.</p>
++    <p class="fine muted">Production and trade 1961 to 2015: FAO, FAOSTAT, CC BY 4.0; later years from tea industry statistics and national tea boards. Map outlines: Natural Earth. Borders are shown as drawn there and imply no view on any boundary.</p>
+   </section>
+   <noscript><p>The map and charts on this page need JavaScript.</p></noscript>
+ </article>
+@@ -59,6 +69,7 @@ window.TEA_MAP = {
+   layout: {{ site.data.tea_map | jsonify }},
+   world: "{{ '/assets/data/world-110m.json' | relative_url }}",
+   sales: "{{ '/assets/data/mombasa-sales.json' | relative_url }}",
++  trade: "{{ '/assets/data/tea-trade.json' | relative_url }}",
+   base: "{{ '' | relative_url }}"
+ };
+ </script>

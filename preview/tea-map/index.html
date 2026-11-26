@@ -22,9 +22,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/preview/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/preview/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/preview/assets/fonts/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/preview/assets/style.css?v=202611260640">
+<link rel="preload" href="/preview/assets/fonts/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/preview/assets/style.css?v=202611260702">
 <link rel="alternate" type="application/rss+xml" title="Chai Weekly" href="/feed.xml">
-<script defer src="/preview/assets/site.js?v=202611260640"></script>
+<script defer src="/preview/assets/site.js?v=202611260702"></script>
 
 
 <script>
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <article class="analysis wrap tmap" id="tmap">
   <p class="kicker"><a href="/preview/markets/">Markets</a> · Tea map</p>
   <h1 class="headline">Where the world's tea is grown</h1>
-  <p class="deck">Tap a country to open its figures, or a region to zoom in. Slide through the years to watch the tea map change since 1961.</p>
+  <p class="deck">Where tea is grown, where it is sent and where it is drunk. Tap a country to open its figures, or a region to zoom in. Slide through the years to watch the tea map change since 1961.</p>
 
   <form class="dash-controls tmap-controls" onsubmit="return false" aria-label="Map controls">
     <div class="dash-field tmap-year">
@@ -87,6 +87,15 @@ document.addEventListener("DOMContentLoaded", function () {
       <div class="tmap-year-row">
         <button type="button" class="chip tmap-play" id="tm-play" aria-label="Play through the years">▶ Play</button>
         <input type="range" id="tm-year" aria-labelledby="tm-year-l" step="1">
+      </div>
+    </div>
+    <div class="dash-field">
+      <span id="tm-measure-l">Show</span>
+      <div class="chips" role="group" aria-labelledby="tm-measure-l">
+        <button type="button" class="chip" data-measure="production" aria-pressed="true">Grown</button>
+        <button type="button" class="chip" data-measure="exports" aria-pressed="false">Exported</button>
+        <button type="button" class="chip" data-measure="imports" aria-pressed="false">Imported</button>
+        <button type="button" class="chip" data-measure="consumption" aria-pressed="false">Drunk</button>
       </div>
     </div>
     <div class="dash-field">
@@ -118,8 +127,9 @@ document.addEventListener("DOMContentLoaded", function () {
   <section class="sources">
     <h2 class="label rule">Data and sources</h2>
     <p><strong>Made tea</strong> is tea after processing, as it is sold. The map and the blocks run to 2025; figures for 2025 are provisional. See the <a href="/preview/production/">Production</a> page for how the figures fit together.</p>
+    <p><strong>Exported</strong> is tea sent abroad by the countries that grow it; tea bought in and sold on is not counted again. <strong>Imported</strong> is tea bought in for drinking. <strong>Drunk</strong> is production plus imports less exports for tea-growing countries, and imports for the rest; it is left blank where it comes out below zero (Kenya, whose exports include neighbours' tea). The <a href="/preview/production/">Production</a> page has every country's figures year by year.</p>
     <p><strong>Auction prices</strong> are each year's average for all teas sold at the auction, weighted by the kilos sold. Every sale is on the <a href="/preview/auctions/">Auctions</a> page.</p>
-    <p class="fine muted">Production 1961 to 2015: FAO, FAOSTAT, CC BY 4.0; later years from tea industry statistics and national tea boards. Map outlines: Natural Earth. Borders are shown as drawn there and imply no view on any boundary.</p>
+    <p class="fine muted">Production and trade 1961 to 2015: FAO, FAOSTAT, CC BY 4.0; later years from tea industry statistics and national tea boards. Map outlines: Natural Earth. Borders are shown as drawn there and imply no view on any boundary.</p>
   </section>
   <noscript><p>The map and charts on this page need JavaScript.</p></noscript>
 </article>
@@ -131,12 +141,13 @@ window.TEA_MAP = {
   layout: {"regions":[{"id":"eastern-africa","name":"Eastern Africa","countries":[{"iso3":"KEN","map":"404"},{"iso3":"UGA","map":"800"},{"iso3":"TZA","map":"834"},{"iso3":"RWA","map":"646"},{"iso3":"BDI","map":"108"},{"iso3":"ETH","map":"231"},{"iso3":"ETH_ERI","map":["231","232"],"to":1992},{"iso3":"MWI","map":"454"},{"iso3":"MOZ","map":"508"},{"iso3":"MDG","map":"450"},{"iso3":"ZMB","map":"894"},{"iso3":"ZWE","map":"716"},{"iso3":"MUS","dot":[57.55,-20.25]},{"iso3":"REU","dot":[55.53,-21.12]},{"iso3":"SYC","dot":[55.45,-4.68]}]},{"id":"rest-of-africa","name":"Rest of Africa","countries":[{"iso3":"COD","map":"180"},{"iso3":"CMR","map":"120"},{"iso3":"ZAF","map":"710"},{"iso3":"MLI","map":"466"}]},{"id":"south-asia","name":"South Asia","countries":[{"iso3":"IND","map":"356"},{"iso3":"LKA","map":"144"},{"iso3":"BGD","map":"050"},{"iso3":"NPL","map":"524"},{"iso3":"IRN","map":"364"}]},{"id":"east-asia","name":"East Asia","countries":[{"iso3":"CHN","map":"156"},{"iso3":"JPN","map":"392"},{"iso3":"KOR","map":"410"},{"iso3":"TWN","map":"158"}]},{"id":"southeast-asia","name":"Southeast Asia and Pacific","countries":[{"iso3":"VNM","map":"704"},{"iso3":"IDN","map":"360"},{"iso3":"MYS","map":"458"},{"iso3":"MMR","map":"104"},{"iso3":"THA","map":"764"},{"iso3":"LAO","map":"418"},{"iso3":"PNG","map":"598"}]},{"id":"europe-west-asia","name":"Europe and Western Asia","countries":[{"iso3":"TUR","map":"792"},{"iso3":"GEO","map":"268"},{"iso3":"AZE","map":"031"},{"iso3":"RUS","map":"643"},{"iso3":"SUN","map":["643","268","031"],"to":1991},{"iso3":"PRT","map":"620"},{"iso3":"MNE","map":"499"}]},{"id":"americas","name":"Americas","countries":[{"iso3":"ARG","map":"032"},{"iso3":"BRA","map":"076"},{"iso3":"BOL","map":"068"},{"iso3":"COL","map":"170"},{"iso3":"ECU","map":"218"},{"iso3":"SLV","map":"222"},{"iso3":"GTM","map":"320"},{"iso3":"PAN","map":"591"},{"iso3":"PER","map":"604"}]}],"markets":[{"id":"mombasa","name":"Mombasa auction","series":"mombasa","page":"/auctions/","countries":["KEN","UGA","TZA","RWA","BDI","COD"]}]},
   world: "/preview/assets/data/world-110m.json",
   sales: "/preview/assets/data/mombasa-sales.json",
+  trade: "/preview/assets/data/tea-trade.json",
   base: "/preview"
 };
 </script>
 <script defer src="/preview/assets/lib/d3-7.9.0.min.js"></script>
 <script defer src="/preview/assets/lib/topojson-client-3.1.0.min.js"></script>
-<script defer src="/preview/assets/tea-map.js?v=1795675234"></script>
+<script defer src="/preview/assets/tea-map.js?v=1795676563"></script>
 
   </main>
   <section class="subscribe" id="subscribe" aria-labelledby="subscribe-h">

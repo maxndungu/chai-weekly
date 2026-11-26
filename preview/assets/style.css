@@ -673,6 +673,9 @@ p { margin: 0 0 1em; }
 .prod .chart .prod-bar.last { fill: var(--green); }
 .prod .chart .prod-prev-pt { fill: var(--gold); }
 .prod .chart .line-long.prod-area { stroke: var(--green); stroke-width: 2; }
+.prod .chart .line-long.prod-cons { stroke: #79A68D; stroke-width: 2.4; }
+.dash-legend i.k-cons { border-top: 3px solid #79A68D; }
+.prod-trade-key { margin: 2px 0 0; font-size: 12px; }
 .prod .chart .dash-line-prev { fill: none; stroke: var(--gold); stroke-width: 2; stroke-dasharray: 5 4; stroke-linejoin: round; }
 .prod-charts { grid-template-columns: 1fr 1fr; margin-bottom: 12px; }
 .prod .dash-legend { margin-bottom: 8px; }
