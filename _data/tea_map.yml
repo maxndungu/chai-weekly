@@ -1,0 +1,92 @@
+# The Tea map page (/tea-map/): which region each producing country sits in, where it is on the map,
+# and which auction its figures can be drilled into.
+#
+# To add a country: put its yearly figures in _data/tea_production.csv (country, iso3, year, made_tea_t, source)
+# and add it under its region below. "map" is its ISO number in the world map file
+# (assets/data/world-110m.json); "dot" [longitude, latitude] draws it as a dot instead, for islands too
+# small for the map. A country with figures but no entry here still shows in the totals, under "Other".
+#
+# To add an auction: add it under "markets" with the countries it sells for and a "series" name, then
+# teach assets/tea-map.js how to read that series (see marketSeries() there). Countries listed under a
+# market get its price chart when they are tapped.
+
+regions:
+  - id: eastern-africa
+    name: Eastern Africa
+    countries:
+      - { iso3: KEN, map: "404" }
+      - { iso3: UGA, map: "800" }
+      - { iso3: TZA, map: "834" }
+      - { iso3: RWA, map: "646" }
+      - { iso3: BDI, map: "108" }
+      - { iso3: ETH, map: "231" }
+      - { iso3: ETH_ERI, map: ["231", "232"], to: 1992 }
+      - { iso3: MWI, map: "454" }
+      - { iso3: MOZ, map: "508" }
+      - { iso3: MDG, map: "450" }
+      - { iso3: ZMB, map: "894" }
+      - { iso3: ZWE, map: "716" }
+      - { iso3: MUS, dot: [57.55, -20.25] }
+      - { iso3: REU, dot: [55.53, -21.12] }
+      - { iso3: SYC, dot: [55.45, -4.68] }
+  - id: rest-of-africa
+    name: Rest of Africa
+    countries:
+      - { iso3: COD, map: "180" }
+      - { iso3: CMR, map: "120" }
+      - { iso3: ZAF, map: "710" }
+      - { iso3: MLI, map: "466" }
+  - id: south-asia
+    name: South Asia
+    countries:
+      - { iso3: IND, map: "356" }
+      - { iso3: LKA, map: "144" }
+      - { iso3: BGD, map: "050" }
+      - { iso3: NPL, map: "524" }
+      - { iso3: IRN, map: "364" }
+  - id: east-asia
+    name: East Asia
+    countries:
+      - { iso3: CHN, map: "156" }
+      - { iso3: JPN, map: "392" }
+      - { iso3: KOR, map: "410" }
+      - { iso3: TWN, map: "158" }
+  - id: southeast-asia
+    name: Southeast Asia and Pacific
+    countries:
+      - { iso3: VNM, map: "704" }
+      - { iso3: IDN, map: "360" }
+      - { iso3: MYS, map: "458" }
+      - { iso3: MMR, map: "104" }
+      - { iso3: THA, map: "764" }
+      - { iso3: LAO, map: "418" }
+      - { iso3: PNG, map: "598" }
+  - id: europe-west-asia
+    name: Europe and Western Asia
+    countries:
+      - { iso3: TUR, map: "792" }
+      - { iso3: GEO, map: "268" }
+      - { iso3: AZE, map: "031" }
+      - { iso3: RUS, map: "643" }
+      - { iso3: SUN, map: ["643", "268", "031"], to: 1991 }
+      - { iso3: PRT, map: "620" }
+      - { iso3: MNE, map: "499" }
+  - id: americas
+    name: Americas
+    countries:
+      - { iso3: ARG, map: "032" }
+      - { iso3: BRA, map: "076" }
+      - { iso3: BOL, map: "068" }
+      - { iso3: COL, map: "170" }
+      - { iso3: ECU, map: "218" }
+      - { iso3: SLV, map: "222" }
+      - { iso3: GTM, map: "320" }
+      - { iso3: PAN, map: "591" }
+      - { iso3: PER, map: "604" }
+
+markets:
+  - id: mombasa
+    name: Mombasa auction
+    series: mombasa
+    page: /auctions/
+    countries: [KEN, UGA, TZA, RWA, BDI, COD]

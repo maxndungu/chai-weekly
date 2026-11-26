@@ -1,0 +1,79 @@
+---
+layout: default
+title: Tea map
+description: Where the world's tea is grown. Tap a country on the map or globe for its production since 1961 and, where it sells at auction, its prices.
+permalink: /tea-map/
+rail: false
+---
+<article class="analysis tmap dash" id="tmap">
+  <p class="kicker">Markets · Tea map</p>
+  <h1 class="headline">Where the world's tea is grown</h1>
+  <p class="deck">Where tea is grown, where it is sent and where it is drunk. Tap a country to open its figures, or a region to zoom in. Slide through the years to watch the tea map change since 1961.</p>
+
+  <form class="dash-controls tmap-controls" onsubmit="return false" aria-label="Map controls">
+    <div class="dash-field tmap-year">
+      <span id="tm-year-l">Year <b id="tm-year-v"></b></span>
+      <div class="tmap-year-row">
+        <button type="button" class="chip tmap-play" id="tm-play" aria-label="Play through the years">▶ Play</button>
+        <input type="range" id="tm-year" aria-labelledby="tm-year-l" step="1">
+      </div>
+    </div>
+    <div class="dash-field">
+      <span id="tm-measure-l">Show</span>
+      <div class="chips" role="group" aria-labelledby="tm-measure-l">
+        <button type="button" class="chip" data-measure="production" aria-pressed="true">Grown</button>
+        <button type="button" class="chip" data-measure="exports" aria-pressed="false">Exported</button>
+        <button type="button" class="chip" data-measure="imports" aria-pressed="false">Imported</button>
+        <button type="button" class="chip" data-measure="consumption" aria-pressed="false">Drunk</button>
+      </div>
+    </div>
+    <div class="dash-field">
+      <span id="tm-view-l">View</span>
+      <div class="chips" role="group" aria-labelledby="tm-view-l">
+        <button type="button" class="chip" data-view="map" aria-pressed="true">Map</button>
+        <button type="button" class="chip" data-view="globe" aria-pressed="false">Globe</button>
+      </div>
+    </div>
+  </form>
+
+  <nav class="tmap-crumbs" id="tm-crumbs" aria-label="Where you are on the map"></nav>
+
+  <div class="tmap-stage">
+    <figure class="tmap-figure" id="tm-map" role="group" aria-label="World map of tea production. Tap a country for its figures."></figure>
+    <div class="tmap-tip" id="tm-tip" hidden></div>
+    <p class="tmap-hint" id="tm-hint"></p>
+  </div>
+  <div class="dash-legend tmap-legend" id="tm-legend"></div>
+
+  <section class="tmap-panel" id="tm-panel" aria-live="polite"></section>
+
+  <section>
+    <h2 class="label rule">The world's tea, piece by piece</h2>
+    <p class="chart-note" id="tm-tree-note">Each block is one country's share of the world's made tea. Tap a region to open it, then a country for its figures.</p>
+    <figure class="tmap-tree" id="tm-tree" role="group" aria-label="Blocks sized by each region's and country's tea production"></figure>
+  </section>
+
+  <section class="sources">
+    <h2 class="label rule">Data and sources</h2>
+    <p><strong>Made tea</strong> is tea after processing, as it is sold. The map and the blocks run to 2025; figures for 2025 are provisional. See the <a href="{{ '/production/' | relative_url }}">Production</a> page for how the figures fit together.</p>
+    <p><strong>Exported</strong> is tea sent abroad by the countries that grow it; tea bought in and sold on is not counted again. <strong>Imported</strong> is tea bought in for drinking. <strong>Drunk</strong> is production plus imports less exports for tea-growing countries, and imports for the rest; it is left blank where it comes out below zero (Kenya, whose exports include neighbours' tea). The <a href="{{ '/production/' | relative_url }}">Production</a> page has every country's figures year by year.</p>
+    <p><strong>Auction prices</strong> are each year's average for all teas sold at the auction, weighted by the kilos sold. Every sale is on the <a href="{{ '/auctions/' | relative_url }}">Auctions</a> page.</p>
+    <p class="fine muted">Production and trade 1961 to 2015: FAO, FAOSTAT, CC BY 4.0; 2016 on: International Tea Committee and national tea boards. Map outlines: Natural Earth. Borders are shown as drawn there and imply no view on any boundary.</p>
+  </section>
+  <noscript><p>The map and charts on this page need JavaScript.</p></noscript>
+</article>
+
+<script>
+window.TEA_MAP = {
+  production: {{ site.data.tea_production | jsonify }},
+  area: {{ site.data.tea_production_fao | jsonify }},
+  layout: {{ site.data.tea_map | jsonify }},
+  world: "{{ '/assets/data/world-110m.json' | relative_url }}",
+  sales: "{{ '/assets/data/mombasa-sales.json' | relative_url }}",
+  trade: "{{ '/assets/data/tea-trade.json' | relative_url }}",
+  base: "{{ '' | relative_url }}"
+};
+</script>
+<script defer src="{{ '/assets/lib/d3-7.9.0.min.js' | relative_url }}"></script>
+<script defer src="{{ '/assets/lib/topojson-client-3.1.0.min.js' | relative_url }}"></script>
+<script defer src="{{ '/assets/tea-map.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
