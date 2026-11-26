@@ -659,7 +659,7 @@ index 0000000..f2b8973
 +})();
 diff --git a/tea-map.html b/tea-map.html
 new file mode 100644
-index 0000000..f798c19
+index 0000000..18ef07d
 --- /dev/null
 +++ b/tea-map.html
 @@ -0,0 +1,67 @@
@@ -710,9 +710,9 @@ index 0000000..f798c19
 +
 +  <section class="sources">
 +    <h2 class="label rule">Data and sources</h2>
-+    <p><strong>Made tea</strong> is tea after processing, as it is sold. The map and the blocks run to 2020, the last year with figures for every country. Each country's own chart carries on where newer national figures have been gathered. See the <a href="{{ '/production/' | relative_url }}">Production</a> page for how the figures fit together.</p>
++    <p><strong>Made tea</strong> is tea after processing, as it is sold. The map and the blocks run to 2025; figures for 2025 are provisional. See the <a href="{{ '/production/' | relative_url }}">Production</a> page for how the figures fit together.</p>
 +    <p><strong>Auction prices</strong> are each year's average for all teas sold at the auction, weighted by the kilos sold. Every sale is on the <a href="{{ '/auctions/' | relative_url }}">Auctions</a> page.</p>
-+    <p class="fine muted">Production 1961 to 2020: FAO, FAOSTAT, CC BY 4.0; later years from national tea boards and statistics offices. Map outlines: Natural Earth. Borders are shown as drawn there and imply no view on any boundary.</p>
++    <p class="fine muted">Production 1961 to 2015: FAO, FAOSTAT, CC BY 4.0; later years from tea industry statistics and national tea boards. Map outlines: Natural Earth. Borders are shown as drawn there and imply no view on any boundary.</p>
 +  </section>
 +  <noscript><p>The map and charts on this page need JavaScript.</p></noscript>
 +</article>

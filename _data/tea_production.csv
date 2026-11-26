@@ -54,11 +54,26 @@ Argentina,ARG,2012,82813,fao
 Argentina,ARG,2013,80423,fao
 Argentina,ARG,2014,82632,fao
 Argentina,ARG,2015,82492,fao
-Argentina,ARG,2016,382618,fao
-Argentina,ARG,2017,366159,fao
-Argentina,ARG,2018,369613,fao
-Argentina,ARG,2019,375115,fao
-Argentina,ARG,2020,335225,fao
+Argentina,ARG,2016,84000,itc
+Argentina,ARG,2017,82000,itc
+Argentina,ARG,2018,80000,itc
+Argentina,ARG,2019,77000,itc
+Argentina,ARG,2020,73000,itc
+Argentina,ARG,2021,70700,itc
+Argentina,ARG,2022,71200,itc
+Argentina,ARG,2023,68000,itc
+Argentina,ARG,2024,80991,itc
+Argentina,ARG,2025,67700,itc
+Australia,AUS,2016,1800,itc
+Australia,AUS,2017,1840,itc
+Australia,AUS,2018,1870,itc
+Australia,AUS,2019,1900,itc
+Australia,AUS,2020,1930,itc
+Australia,AUS,2021,1950,itc
+Australia,AUS,2022,1980,itc
+Australia,AUS,2023,2000,itc
+Australia,AUS,2024,2057,itc
+Australia,AUS,2025,900,itc
 Azerbaijan,AZE,1992,22600,fao
 Azerbaijan,AZE,1993,24000,fao
 Azerbaijan,AZE,1994,19400,fao
@@ -83,11 +98,16 @@ Azerbaijan,AZE,2012,568,fao
 Azerbaijan,AZE,2013,568,fao
 Azerbaijan,AZE,2014,474,fao
 Azerbaijan,AZE,2015,579,fao
-Azerbaijan,AZE,2016,1016,fao
-Azerbaijan,AZE,2017,775,fao
-Azerbaijan,AZE,2018,869,fao
-Azerbaijan,AZE,2019,929,fao
-Azerbaijan,AZE,2020,932,fao
+Azerbaijan,AZE,2016,200,itc
+Azerbaijan,AZE,2017,220,itc
+Azerbaijan,AZE,2018,230,itc
+Azerbaijan,AZE,2019,230,itc
+Azerbaijan,AZE,2020,220,itc
+Azerbaijan,AZE,2021,210,itc
+Azerbaijan,AZE,2022,220,itc
+Azerbaijan,AZE,2023,220,itc
+Azerbaijan,AZE,2024,231,itc
+Azerbaijan,AZE,2025,190,itc
 Bangladesh,BGD,1961,26542,fao
 Bangladesh,BGD,1962,23387,fao
 Bangladesh,BGD,1963,24599,fao
@@ -143,11 +163,16 @@ Bangladesh,BGD,2012,62524,fao
 Bangladesh,BGD,2013,66259,fao
 Bangladesh,BGD,2014,63780,fao
 Bangladesh,BGD,2015,66101,fao
-Bangladesh,BGD,2016,64500,fao
-Bangladesh,BGD,2017,81850,fao
-Bangladesh,BGD,2018,78150,fao
-Bangladesh,BGD,2019,90685,fao
-Bangladesh,BGD,2020,89931,fao
+Bangladesh,BGD,2016,85050,itc
+Bangladesh,BGD,2017,78949,itc
+Bangladesh,BGD,2018,82134,itc
+Bangladesh,BGD,2019,96069,itc
+Bangladesh,BGD,2020,86394,itc
+Bangladesh,BGD,2021,96506,itc
+Bangladesh,BGD,2022,93829,itc
+Bangladesh,BGD,2023,102951,itc
+Bangladesh,BGD,2024,93042,itc
+Bangladesh,BGD,2025,94912,itc
 Bolivia,BOL,1961,100,fao
 Bolivia,BOL,1962,100,fao
 Bolivia,BOL,1963,110,fao
@@ -203,11 +228,6 @@ Bolivia,BOL,2012,1358,fao
 Bolivia,BOL,2013,1339,fao
 Bolivia,BOL,2014,1196,fao
 Bolivia,BOL,2015,1243,fao
-Bolivia,BOL,2016,1251,fao
-Bolivia,BOL,2017,1177,fao
-Bolivia,BOL,2018,1192,fao
-Bolivia,BOL,2019,1203,fao
-Bolivia,BOL,2020,1212,fao
 Brazil,BRA,1961,5000,fao
 Brazil,BRA,1962,5044,fao
 Brazil,BRA,1963,6133,fao
@@ -263,11 +283,16 @@ Brazil,BRA,2012,1496,fao
 Brazil,BRA,2013,763,fao
 Brazil,BRA,2014,1421,fao
 Brazil,BRA,2015,633,fao
-Brazil,BRA,2016,459,fao
-Brazil,BRA,2017,459,fao
-Brazil,BRA,2018,483,fao
-Brazil,BRA,2019,475,fao
-Brazil,BRA,2020,467,fao
+Brazil,BRA,2016,4300,itc
+Brazil,BRA,2017,3600,itc
+Brazil,BRA,2018,3400,itc
+Brazil,BRA,2019,3400,itc
+Brazil,BRA,2020,3000,itc
+Brazil,BRA,2021,3100,itc
+Brazil,BRA,2022,3000,itc
+Brazil,BRA,2023,3100,itc
+Brazil,BRA,2024,2627,itc
+Brazil,BRA,2025,1000,itc
 Burundi,BDI,1967,18,fao
 Burundi,BDI,1968,79,fao
 Burundi,BDI,1969,92,fao
@@ -292,36 +317,16 @@ Burundi,BDI,1987,4382,fao
 Burundi,BDI,1988,3721,fao
 Burundi,BDI,1989,3862,fao
 Burundi,BDI,1990,4040,fao
-Burundi,BDI,1991,5323,fao
-Burundi,BDI,1992,5952,fao
-Burundi,BDI,1993,5520,fao
-Burundi,BDI,1994,6864,fao
-Burundi,BDI,1995,6985,fao
-Burundi,BDI,1996,5648,fao
-Burundi,BDI,1997,4169,fao
-Burundi,BDI,1998,6669,fao
-Burundi,BDI,1999,6865,fao
-Burundi,BDI,2000,34060,fao
-Burundi,BDI,2001,44400,fao
-Burundi,BDI,2002,33234,fao
-Burundi,BDI,2003,35225,fao
-Burundi,BDI,2004,37523,fao
-Burundi,BDI,2005,39335,fao
-Burundi,BDI,2006,30836,fao
-Burundi,BDI,2007,33676,fao
-Burundi,BDI,2008,31787,fao
-Burundi,BDI,2009,31828,fao
-Burundi,BDI,2010,37875,fao
-Burundi,BDI,2011,40853,fao
-Burundi,BDI,2012,42147,fao
-Burundi,BDI,2013,41817,fao
-Burundi,BDI,2014,53893,fao
-Burundi,BDI,2015,53802,fao
-Burundi,BDI,2016,52701,fao
-Burundi,BDI,2017,10657,fao
-Burundi,BDI,2018,11367,fao
-Burundi,BDI,2019,11383,fao
-Burundi,BDI,2020,16337,fao
+Burundi,BDI,2016,11000,itc
+Burundi,BDI,2017,11200,itc
+Burundi,BDI,2018,11300,itc
+Burundi,BDI,2019,11500,itc
+Burundi,BDI,2020,11200,itc
+Burundi,BDI,2021,11000,itc
+Burundi,BDI,2022,11300,itc
+Burundi,BDI,2023,11000,itc
+Burundi,BDI,2024,11440,itc
+Burundi,BDI,2025,9200,itc
 Cameroon,CMR,1961,83,fao
 Cameroon,CMR,1962,136,fao
 Cameroon,CMR,1963,242,fao
@@ -377,11 +382,16 @@ Cameroon,CMR,2012,5268,fao
 Cameroon,CMR,2013,5342,fao
 Cameroon,CMR,2014,5478,fao
 Cameroon,CMR,2015,5631,fao
-Cameroon,CMR,2016,5698,fao
-Cameroon,CMR,2017,5602,fao
-Cameroon,CMR,2018,5644,fao
-Cameroon,CMR,2019,5648,fao
-Cameroon,CMR,2020,5631,fao
+Cameroon,CMR,2016,5400,itc
+Cameroon,CMR,2017,5500,itc
+Cameroon,CMR,2018,5500,itc
+Cameroon,CMR,2019,5600,itc
+Cameroon,CMR,2020,5300,itc
+Cameroon,CMR,2021,5400,itc
+Cameroon,CMR,2022,5500,itc
+Cameroon,CMR,2023,5600,itc
+Cameroon,CMR,2024,5549,itc
+Cameroon,CMR,2025,4000,itc
 China,CHN,1961,79000,fao
 China,CHN,1962,74000,fao
 China,CHN,1963,84000,fao
@@ -437,15 +447,16 @@ China,CHN,2012,1789753,fao
 China,CHN,2013,1924457,fao
 China,CHN,2014,2095570,fao
 China,CHN,2015,2277000,fao
-China,CHN,2016,2313000,fao
-China,CHN,2017,2460400,fao
-China,CHN,2018,2610400,fao
-China,CHN,2019,2777200,fao
-China,CHN,2020,2970000,fao
-China,CHN,2021,3063150,itc
-China,CHN,2022,3181040,itc
-China,CHN,2023,3339480,itc
+China,CHN,2016,2404947,itc
+China,CHN,2017,2496412,itc
+China,CHN,2018,2610393,itc
+China,CHN,2019,2799382,itc
+China,CHN,2020,2986016,itc
+China,CHN,2021,3063151,itc
+China,CHN,2022,3181039,itc
+China,CHN,2023,3339483,itc
 China,CHN,2024,3740000,itc
+China,CHN,2025,3920000,itc
 Colombia,COL,1999,100,fao
 Colombia,COL,2000,72,fao
 Colombia,COL,2001,120,fao
@@ -463,11 +474,6 @@ Colombia,COL,2012,134,fao
 Colombia,COL,2013,125,fao
 Colombia,COL,2014,144,fao
 Colombia,COL,2015,149,fao
-Colombia,COL,2016,149,fao
-Colombia,COL,2017,132,fao
-Colombia,COL,2018,157,fao
-Colombia,COL,2019,159,fao
-Colombia,COL,2020,157,fao
 DR Congo,COD,1961,7000,fao
 DR Congo,COD,1962,8000,fao
 DR Congo,COD,1963,8500,fao
@@ -523,11 +529,16 @@ DR Congo,COD,2012,3533,fao
 DR Congo,COD,2013,2937,fao
 DR Congo,COD,2014,3116,fao
 DR Congo,COD,2015,3206,fao
-DR Congo,COD,2016,3293,fao
-DR Congo,COD,2017,3463,fao
-DR Congo,COD,2018,3531,fao
-DR Congo,COD,2019,2941,fao
-DR Congo,COD,2020,2749,fao
+DR Congo,COD,2016,3700,itc
+DR Congo,COD,2017,3800,itc
+DR Congo,COD,2018,3900,itc
+DR Congo,COD,2019,4000,itc
+DR Congo,COD,2020,4000,itc
+DR Congo,COD,2021,4100,itc
+DR Congo,COD,2022,4200,itc
+DR Congo,COD,2023,4300,itc
+DR Congo,COD,2024,4347,itc
+DR Congo,COD,2025,3000,itc
 Ecuador,ECU,1961,40,fao
 Ecuador,ECU,1962,40,fao
 Ecuador,ECU,1963,40,fao
@@ -583,11 +594,16 @@ Ecuador,ECU,2012,1423,fao
 Ecuador,ECU,2013,1394,fao
 Ecuador,ECU,2014,1387,fao
 Ecuador,ECU,2015,1355,fao
-Ecuador,ECU,2016,1335,fao
-Ecuador,ECU,2017,1359,fao
-Ecuador,ECU,2018,1350,fao
-Ecuador,ECU,2019,1348,fao
-Ecuador,ECU,2020,1352,fao
+Ecuador,ECU,2016,2300,itc
+Ecuador,ECU,2017,2350,itc
+Ecuador,ECU,2018,2400,itc
+Ecuador,ECU,2019,2400,itc
+Ecuador,ECU,2020,2200,itc
+Ecuador,ECU,2021,2300,itc
+Ecuador,ECU,2022,2330,itc
+Ecuador,ECU,2023,2350,itc
+Ecuador,ECU,2024,2363,itc
+Ecuador,ECU,2025,900,itc
 El Salvador,SLV,1990,20,fao
 El Salvador,SLV,1991,20,fao
 El Salvador,SLV,1992,10,fao
@@ -614,11 +630,6 @@ El Salvador,SLV,2012,460,fao
 El Salvador,SLV,2013,475,fao
 El Salvador,SLV,2014,641,fao
 El Salvador,SLV,2015,717,fao
-El Salvador,SLV,2016,611,fao
-El Salvador,SLV,2017,657,fao
-El Salvador,SLV,2018,662,fao
-El Salvador,SLV,2019,643,fao
-El Salvador,SLV,2020,654,fao
 Ethiopia,ETH,1993,1700,fao
 Ethiopia,ETH,1994,1800,fao
 Ethiopia,ETH,1995,1900,fao
@@ -642,11 +653,16 @@ Ethiopia,ETH,2012,9959,fao
 Ethiopia,ETH,2013,9977,fao
 Ethiopia,ETH,2014,10198,fao
 Ethiopia,ETH,2015,10543,fao
-Ethiopia,ETH,2016,10239,fao
-Ethiopia,ETH,2017,10327,fao
-Ethiopia,ETH,2018,10370,fao
-Ethiopia,ETH,2019,10312,fao
-Ethiopia,ETH,2020,10336,fao
+Ethiopia,ETH,2016,6400,itc
+Ethiopia,ETH,2017,6400,itc
+Ethiopia,ETH,2018,6600,itc
+Ethiopia,ETH,2019,6800,itc
+Ethiopia,ETH,2020,6900,itc
+Ethiopia,ETH,2021,6800,itc
+Ethiopia,ETH,2022,6900,itc
+Ethiopia,ETH,2023,7200,itc
+Ethiopia,ETH,2024,7227,itc
+Ethiopia,ETH,2025,6000,itc
 "Ethiopia (with Eritrea, to 1992)",ETH_ERI,1976,15,fao
 "Ethiopia (with Eritrea, to 1992)",ETH_ERI,1977,27,fao
 "Ethiopia (with Eritrea, to 1992)",ETH_ERI,1978,38,fao
@@ -688,11 +704,16 @@ Georgia,GEO,2012,2600,fao
 Georgia,GEO,2013,3300,fao
 Georgia,GEO,2014,1800,fao
 Georgia,GEO,2015,2100,fao
-Georgia,GEO,2016,3000,fao
-Georgia,GEO,2017,2300,fao
-Georgia,GEO,2018,1700,fao
-Georgia,GEO,2019,2000,fao
-Georgia,GEO,2020,2400,fao
+Georgia,GEO,2016,4800,itc
+Georgia,GEO,2017,5000,itc
+Georgia,GEO,2018,5400,itc
+Georgia,GEO,2019,5500,itc
+Georgia,GEO,2020,5000,itc
+Georgia,GEO,2021,5300,itc
+Georgia,GEO,2022,5400,itc
+Georgia,GEO,2023,5400,itc
+Georgia,GEO,2024,5613,itc
+Georgia,GEO,2025,3500,itc
 Guatemala,GTM,1972,40,fao
 Guatemala,GTM,1973,50,fao
 Guatemala,GTM,1974,60,fao
@@ -737,11 +758,6 @@ Guatemala,GTM,2012,420,fao
 Guatemala,GTM,2013,437,fao
 Guatemala,GTM,2014,526,fao
 Guatemala,GTM,2015,553,fao
-Guatemala,GTM,2016,558,fao
-Guatemala,GTM,2017,526,fao
-Guatemala,GTM,2018,546,fao
-Guatemala,GTM,2019,543,fao
-Guatemala,GTM,2020,538,fao
 India,IND,1961,354397,fao
 India,IND,1962,346736,fao
 India,IND,1963,346413,fao
@@ -797,11 +813,11 @@ India,IND,2012,1135070,fao
 India,IND,2013,1208780,fao
 India,IND,2014,1207310,fao
 India,IND,2015,1233140,fao
-India,IND,2016,1250490,fao
-India,IND,2017,1325050,fao
-India,IND,2018,1338630,fao
-India,IND,2019,1390080,fao
-India,IND,2020,1424662,fao
+India,IND,2016,1267360,itc
+India,IND,2017,1321760,itc
+India,IND,2018,1338630,itc
+India,IND,2019,1390080,itc
+India,IND,2020,1257530,itc
 India,IND,2021,1343060,tbi
 India,IND,2022,1366360,tbi
 India,IND,2023,1393660,tbi
@@ -862,15 +878,16 @@ Indonesia,IDN,2012,143413,fao
 Indonesia,IDN,2013,145855,fao
 Indonesia,IDN,2014,154369,fao
 Indonesia,IDN,2015,132615,fao
-Indonesia,IDN,2016,144015,fao
-Indonesia,IDN,2017,146251,fao
-Indonesia,IDN,2018,140237,fao
-Indonesia,IDN,2019,128724,fao
-Indonesia,IDN,2020,138323,fao
+Indonesia,IDN,2016,137015,itc
+Indonesia,IDN,2017,134000,itc
+Indonesia,IDN,2018,131000,itc
+Indonesia,IDN,2019,128800,itc
+Indonesia,IDN,2020,126000,itc
 Indonesia,IDN,2021,127000,itc
 Indonesia,IDN,2022,125100,itc
 Indonesia,IDN,2023,120800,itc
-Indonesia,IDN,2024,124970,itc
+Indonesia,IDN,2024,124966,itc
+Indonesia,IDN,2025,120000,itc
 Iran,IRN,1961,10922,fao
 Iran,IRN,1962,11934,fao
 Iran,IRN,1963,12479,fao
@@ -901,36 +918,16 @@ Iran,IRN,1987,43026,fao
 Iran,IRN,1988,43268,fao
 Iran,IRN,1989,27808,fao
 Iran,IRN,1990,37091,fao
-Iran,IRN,1991,196651,fao
-Iran,IRN,1992,245338,fao
-Iran,IRN,1993,254288,fao
-Iran,IRN,1994,248228,fao
-Iran,IRN,1995,242642,fao
-Iran,IRN,1996,277188,fao
-Iran,IRN,1997,309342,fao
-Iran,IRN,1998,270443,fao
-Iran,IRN,1999,275381,fao
-Iran,IRN,2000,222653,fao
-Iran,IRN,2001,228393,fao
-Iran,IRN,2002,212538,fao
-Iran,IRN,2003,212168,fao
-Iran,IRN,2004,134179,fao
-Iran,IRN,2005,197270,fao
-Iran,IRN,2006,112803,fao
-Iran,IRN,2007,162737,fao
-Iran,IRN,2008,141160,fao
-Iran,IRN,2009,130714,fao
-Iran,IRN,2010,121041,fao
-Iran,IRN,2011,112084,fao
-Iran,IRN,2012,103890,fao
-Iran,IRN,2013,97475,fao
-Iran,IRN,2014,72277,fao
-Iran,IRN,2015,196957,fao
-Iran,IRN,2016,121771,fao
-Iran,IRN,2017,100580,fao
-Iran,IRN,2018,99245,fao
-Iran,IRN,2019,90832,fao
-Iran,IRN,2020,84683,fao
+Iran,IRN,2016,20700,itc
+Iran,IRN,2017,21400,itc
+Iran,IRN,2018,21000,itc
+Iran,IRN,2019,20000,itc
+Iran,IRN,2020,19000,itc
+Iran,IRN,2021,19700,itc
+Iran,IRN,2022,19000,itc
+Iran,IRN,2023,19400,itc
+Iran,IRN,2024,21380,itc
+Iran,IRN,2025,18000,itc
 Japan,JPN,1961,81527,fao
 Japan,JPN,1962,77608,fao
 Japan,JPN,1963,81239,fao
@@ -986,11 +983,16 @@ Japan,JPN,2012,85900,fao
 Japan,JPN,2013,84800,fao
 Japan,JPN,2014,83600,fao
 Japan,JPN,2015,79500,fao
-Japan,JPN,2016,80200,fao
-Japan,JPN,2017,82000,fao
-Japan,JPN,2018,86300,fao
-Japan,JPN,2019,81700,fao
-Japan,JPN,2020,69800,fao
+Japan,JPN,2016,77100,itc
+Japan,JPN,2017,78800,itc
+Japan,JPN,2018,81500,itc
+Japan,JPN,2019,76500,itc
+Japan,JPN,2020,69800,itc
+Japan,JPN,2021,74854,itc
+Japan,JPN,2022,70000,itc
+Japan,JPN,2023,75200,itc
+Japan,JPN,2024,73900,itc
+Japan,JPN,2025,68000,itc
 Kenya,KEN,1961,12641,fao
 Kenya,KEN,1962,16428,fao
 Kenya,KEN,1963,18082,fao
@@ -1046,15 +1048,16 @@ Kenya,KEN,2012,369400,fao
 Kenya,KEN,2013,432400,fao
 Kenya,KEN,2014,445105,fao
 Kenya,KEN,2015,399100,fao
-Kenya,KEN,2016,473000,fao
-Kenya,KEN,2017,439857,fao
-Kenya,KEN,2018,492990,fao
+Kenya,KEN,2016,473011,itc
+Kenya,KEN,2017,439858,itc
+Kenya,KEN,2018,492999,itc
 Kenya,KEN,2019,458853,tbk
 Kenya,KEN,2020,569535,tbk
 Kenya,KEN,2021,537833,tbk
 Kenya,KEN,2022,535044,tbk
 Kenya,KEN,2023,570260,tbk
 Kenya,KEN,2024,598478,tbk
+Kenya,KEN,2025,549000,itc
 Laos,LAO,1976,61,fao
 Laos,LAO,1977,65,fao
 Laos,LAO,1978,63,fao
@@ -1095,11 +1098,6 @@ Laos,LAO,2012,3975,fao
 Laos,LAO,2013,6105,fao
 Laos,LAO,2014,7935,fao
 Laos,LAO,2015,6295,fao
-Laos,LAO,2016,7300,fao
-Laos,LAO,2017,7660,fao
-Laos,LAO,2018,8055,fao
-Laos,LAO,2019,8375,fao
-Laos,LAO,2020,9557,fao
 Madagascar,MDG,1974,30,fao
 Madagascar,MDG,1975,60,fao
 Madagascar,MDG,1976,80,fao
@@ -1142,11 +1140,6 @@ Madagascar,MDG,2012,382,fao
 Madagascar,MDG,2013,384,fao
 Madagascar,MDG,2014,386,fao
 Madagascar,MDG,2015,387,fao
-Madagascar,MDG,2016,385,fao
-Madagascar,MDG,2017,383,fao
-Madagascar,MDG,2018,381,fao
-Madagascar,MDG,2019,381,fao
-Madagascar,MDG,2020,382,fao
 Malawi,MWI,1961,14288,fao
 Malawi,MWI,1962,13336,fao
 Malawi,MWI,1963,11929,fao
@@ -1202,15 +1195,16 @@ Malawi,MWI,2012,42490,fao
 Malawi,MWI,2013,46460,fao
 Malawi,MWI,2014,45480,fao
 Malawi,MWI,2015,47877,fao
-Malawi,MWI,2016,48887,fao
-Malawi,MWI,2017,47415,fao
-Malawi,MWI,2018,48060,fao
-Malawi,MWI,2019,48121,fao
-Malawi,MWI,2020,47865,fao
-Malawi,MWI,2021,50600,nso_mw
-Malawi,MWI,2022,47800,nso_mw
-Malawi,MWI,2023,43300,tam
-Malawi,MWI,2024,49700,tam
+Malawi,MWI,2016,43127,itc
+Malawi,MWI,2017,45582,itc
+Malawi,MWI,2018,50588,itc
+Malawi,MWI,2019,48192,itc
+Malawi,MWI,2020,45173,itc
+Malawi,MWI,2021,50566,itc
+Malawi,MWI,2022,47755,itc
+Malawi,MWI,2023,43351,itc
+Malawi,MWI,2024,49794,itc
+Malawi,MWI,2025,45359,itc
 Malaysia,MYS,1961,2635,fao
 Malaysia,MYS,1962,2839,fao
 Malaysia,MYS,1963,2731,fao
@@ -1241,36 +1235,16 @@ Malaysia,MYS,1987,4830,fao
 Malaysia,MYS,1988,4830,fao
 Malaysia,MYS,1989,4830,fao
 Malaysia,MYS,1990,6200,fao
-Malaysia,MYS,1991,7000,fao
-Malaysia,MYS,1992,5900,fao
-Malaysia,MYS,1993,6000,fao
-Malaysia,MYS,1994,5400,fao
-Malaysia,MYS,1995,6000,fao
-Malaysia,MYS,1996,6000,fao
-Malaysia,MYS,1997,6000,fao
-Malaysia,MYS,1998,4600,fao
-Malaysia,MYS,1999,5900,fao
-Malaysia,MYS,2000,5642,fao
-Malaysia,MYS,2001,5413,fao
-Malaysia,MYS,2002,5100,fao
-Malaysia,MYS,2003,4125,fao
-Malaysia,MYS,2004,3900,fao
-Malaysia,MYS,2005,2850,fao
-Malaysia,MYS,2006,6213,fao
-Malaysia,MYS,2007,5540,fao
-Malaysia,MYS,2008,9548,fao
-Malaysia,MYS,2009,7223,fao
-Malaysia,MYS,2010,19738,fao
-Malaysia,MYS,2011,16632,fao
-Malaysia,MYS,2012,14711,fao
-Malaysia,MYS,2013,12094,fao
-Malaysia,MYS,2014,11923,fao
-Malaysia,MYS,2015,11130,fao
-Malaysia,MYS,2016,11708,fao
-Malaysia,MYS,2017,10385,fao
-Malaysia,MYS,2018,10808,fao
-Malaysia,MYS,2019,6621,fao
-Malaysia,MYS,2020,9395,fao
+Malaysia,MYS,2016,2100,itc
+Malaysia,MYS,2017,2100,itc
+Malaysia,MYS,2018,2000,itc
+Malaysia,MYS,2019,2000,itc
+Malaysia,MYS,2020,2000,itc
+Malaysia,MYS,2021,1900,itc
+Malaysia,MYS,2022,1930,itc
+Malaysia,MYS,2023,1950,itc
+Malaysia,MYS,2024,1890,itc
+Malaysia,MYS,2025,3200,itc
 Mali,MLI,1974,60,fao
 Mali,MLI,1975,80,fao
 Mali,MLI,1976,80,fao
@@ -1313,11 +1287,6 @@ Mali,MLI,2012,98,fao
 Mali,MLI,2013,89,fao
 Mali,MLI,2014,89,fao
 Mali,MLI,2015,88,fao
-Mali,MLI,2016,88,fao
-Mali,MLI,2017,86,fao
-Mali,MLI,2018,87,fao
-Mali,MLI,2019,87,fao
-Mali,MLI,2020,86,fao
 Mauritius,MUS,1961,1274,fao
 Mauritius,MUS,1962,1270,fao
 Mauritius,MUS,1963,1418,fao
@@ -1373,11 +1342,16 @@ Mauritius,MUS,2012,1577,fao
 Mauritius,MUS,2013,1563,fao
 Mauritius,MUS,2014,1504,fao
 Mauritius,MUS,2015,1295,fao
-Mauritius,MUS,2016,1353,fao
-Mauritius,MUS,2017,1379,fao
-Mauritius,MUS,2018,1470,fao
-Mauritius,MUS,2019,1583,fao
-Mauritius,MUS,2020,1083,fao
+Mauritius,MUS,2016,1650,itc
+Mauritius,MUS,2017,1630,itc
+Mauritius,MUS,2018,1600,itc
+Mauritius,MUS,2019,1550,itc
+Mauritius,MUS,2020,1500,itc
+Mauritius,MUS,2021,1450,itc
+Mauritius,MUS,2022,1470,itc
+Mauritius,MUS,2023,1440,itc
+Mauritius,MUS,2024,1389,itc
+Mauritius,MUS,2025,900,itc
 Montenegro,MNE,2006,100,fao
 Montenegro,MNE,2007,100,fao
 Montenegro,MNE,2008,100,fao
@@ -1388,11 +1362,6 @@ Montenegro,MNE,2012,100,fao
 Montenegro,MNE,2013,100,fao
 Montenegro,MNE,2014,100,fao
 Montenegro,MNE,2015,100,fao
-Montenegro,MNE,2016,100,fao
-Montenegro,MNE,2017,100,fao
-Montenegro,MNE,2018,100,fao
-Montenegro,MNE,2019,100,fao
-Montenegro,MNE,2020,100,fao
 Mozambique,MOZ,1961,8100,fao
 Mozambique,MOZ,1962,8100,fao
 Mozambique,MOZ,1963,8600,fao
@@ -1423,36 +1392,16 @@ Mozambique,MOZ,1987,3000,fao
 Mozambique,MOZ,1988,1500,fao
 Mozambique,MOZ,1989,2500,fao
 Mozambique,MOZ,1990,4000,fao
-Mozambique,MOZ,1991,4941,fao
-Mozambique,MOZ,1992,1018,fao
-Mozambique,MOZ,1993,1673,fao
-Mozambique,MOZ,1994,2000,fao
-Mozambique,MOZ,1995,976,fao
-Mozambique,MOZ,1996,1670,fao
-Mozambique,MOZ,1997,1500,fao
-Mozambique,MOZ,1998,1500,fao
-Mozambique,MOZ,1999,1600,fao
-Mozambique,MOZ,2000,10466,fao
-Mozambique,MOZ,2001,9029,fao
-Mozambique,MOZ,2002,12579,fao
-Mozambique,MOZ,2003,12690,fao
-Mozambique,MOZ,2004,15127,fao
-Mozambique,MOZ,2005,16000,fao
-Mozambique,MOZ,2006,16256,fao
-Mozambique,MOZ,2007,16256,fao
-Mozambique,MOZ,2008,16866,fao
-Mozambique,MOZ,2009,30000,fao
-Mozambique,MOZ,2010,28995,fao
-Mozambique,MOZ,2011,27000,fao
-Mozambique,MOZ,2012,22000,fao
-Mozambique,MOZ,2013,25428,fao
-Mozambique,MOZ,2014,28840,fao
-Mozambique,MOZ,2015,32000,fao
-Mozambique,MOZ,2016,32000,fao
-Mozambique,MOZ,2017,32000,fao
-Mozambique,MOZ,2018,31000,fao
-Mozambique,MOZ,2019,32000,fao
-Mozambique,MOZ,2020,33592,fao
+Mozambique,MOZ,2016,6700,itc
+Mozambique,MOZ,2017,6800,itc
+Mozambique,MOZ,2018,7000,itc
+Mozambique,MOZ,2019,7100,itc
+Mozambique,MOZ,2020,6800,itc
+Mozambique,MOZ,2021,6900,itc
+Mozambique,MOZ,2022,7100,itc
+Mozambique,MOZ,2023,7300,itc
+Mozambique,MOZ,2024,7253,itc
+Mozambique,MOZ,2025,4500,itc
 Myanmar,MMR,1961,5200,fao
 Myanmar,MMR,1962,5200,fao
 Myanmar,MMR,1963,5300,fao
@@ -1483,36 +1432,16 @@ Myanmar,MMR,1987,14100,fao
 Myanmar,MMR,1988,14900,fao
 Myanmar,MMR,1989,14700,fao
 Myanmar,MMR,1990,14900,fao
-Myanmar,MMR,1991,47300,fao
-Myanmar,MMR,1992,50200,fao
-Myanmar,MMR,1993,53700,fao
-Myanmar,MMR,1994,51900,fao
-Myanmar,MMR,1995,52400,fao
-Myanmar,MMR,1996,54600,fao
-Myanmar,MMR,1997,65800,fao
-Myanmar,MMR,1998,60500,fao
-Myanmar,MMR,1999,61700,fao
-Myanmar,MMR,2000,63000,fao
-Myanmar,MMR,2001,67200,fao
-Myanmar,MMR,2002,69200,fao
-Myanmar,MMR,2003,73400,fao
-Myanmar,MMR,2004,75600,fao
-Myanmar,MMR,2005,79000,fao
-Myanmar,MMR,2006,83000,fao
-Myanmar,MMR,2007,87000,fao
-Myanmar,MMR,2008,90000,fao
-Myanmar,MMR,2009,92600,fao
-Myanmar,MMR,2010,94500,fao
-Myanmar,MMR,2011,92500,fao
-Myanmar,MMR,2012,94600,fao
-Myanmar,MMR,2013,96300,fao
-Myanmar,MMR,2014,98600,fao
-Myanmar,MMR,2015,100150,fao
-Myanmar,MMR,2016,102404,fao
-Myanmar,MMR,2017,104746,fao
-Myanmar,MMR,2018,143571,fao
-Myanmar,MMR,2019,132494,fao
-Myanmar,MMR,2020,126486,fao
+Myanmar,MMR,2016,20500,itc
+Myanmar,MMR,2017,21000,itc
+Myanmar,MMR,2018,21400,itc
+Myanmar,MMR,2019,21700,itc
+Myanmar,MMR,2020,21000,itc
+Myanmar,MMR,2021,20000,itc
+Myanmar,MMR,2022,20300,itc
+Myanmar,MMR,2023,20200,itc
+Myanmar,MMR,2024,20587,itc
+Myanmar,MMR,2025,18900,itc
 Nepal,NPL,1974,254,fao
 Nepal,NPL,1975,366,fao
 Nepal,NPL,1976,395,fao
@@ -1555,11 +1484,16 @@ Nepal,NPL,2012,18726,fao
 Nepal,NPL,2013,20588,fao
 Nepal,NPL,2014,21394,fao
 Nepal,NPL,2015,21394,fao
-Nepal,NPL,2016,23821,fao
-Nepal,NPL,2017,24653,fao
-Nepal,NPL,2018,24803,fao
-Nepal,NPL,2019,25206,fao
-Nepal,NPL,2020,24270,fao
+Nepal,NPL,2016,24409,itc
+Nepal,NPL,2017,24804,itc
+Nepal,NPL,2018,25206,itc
+Nepal,NPL,2019,24118,itc
+Nepal,NPL,2020,24000,itc
+Nepal,NPL,2021,24400,itc
+Nepal,NPL,2022,24700,itc
+Nepal,NPL,2023,25500,itc
+Nepal,NPL,2024,26983,itc
+Nepal,NPL,2025,25000,itc
 Panama,PAN,1984,73,fao
 Panama,PAN,1985,152,fao
 Panama,PAN,1986,123,fao
@@ -1646,11 +1580,16 @@ Papua New Guinea,PNG,2012,5905,fao
 Papua New Guinea,PNG,2013,5857,fao
 Papua New Guinea,PNG,2014,5844,fao
 Papua New Guinea,PNG,2015,5892,fao
-Papua New Guinea,PNG,2016,5840,fao
-Papua New Guinea,PNG,2017,5812,fao
-Papua New Guinea,PNG,2018,5821,fao
-Papua New Guinea,PNG,2019,5786,fao
-Papua New Guinea,PNG,2020,5753,fao
+Papua New Guinea,PNG,2016,6800,itc
+Papua New Guinea,PNG,2017,6900,itc
+Papua New Guinea,PNG,2018,7000,itc
+Papua New Guinea,PNG,2019,6700,itc
+Papua New Guinea,PNG,2020,6600,itc
+Papua New Guinea,PNG,2021,6800,itc
+Papua New Guinea,PNG,2022,7000,itc
+Papua New Guinea,PNG,2023,6700,itc
+Papua New Guinea,PNG,2024,6893,itc
+Papua New Guinea,PNG,2025,4000,itc
 Peru,PER,1961,1239,fao
 Peru,PER,1962,1212,fao
 Peru,PER,1963,1220,fao
@@ -1706,11 +1645,16 @@ Peru,PER,2012,3434,fao
 Peru,PER,2013,4319,fao
 Peru,PER,2014,3874,fao
 Peru,PER,2015,3785,fao
-Peru,PER,2016,3307,fao
-Peru,PER,2017,2177,fao
-Peru,PER,2018,1085,fao
-Peru,PER,2019,1600,fao
-Peru,PER,2020,1646,fao
+Peru,PER,2016,3200,itc
+Peru,PER,2017,3230,itc
+Peru,PER,2018,3250,itc
+Peru,PER,2019,3300,itc
+Peru,PER,2020,3100,itc
+Peru,PER,2021,3200,itc
+Peru,PER,2022,3220,itc
+Peru,PER,2023,3230,itc
+Peru,PER,2024,3249,itc
+Peru,PER,2025,500,itc
 Portugal,PRT,1961,128,fao
 Portugal,PRT,1962,250,fao
 Portugal,PRT,1963,300,fao
@@ -1766,8 +1710,6 @@ Portugal,PRT,2012,57,fao
 Portugal,PRT,2013,58,fao
 Portugal,PRT,2014,62,fao
 Portugal,PRT,2015,89,fao
-Portugal,PRT,2016,84,fao
-Portugal,PRT,2017,78,fao
 Russia,RUS,1992,7240,fao
 Russia,RUS,1993,7630,fao
 Russia,RUS,1994,3960,fao
@@ -1792,11 +1734,16 @@ Russia,RUS,2012,90,fao
 Russia,RUS,2013,90,fao
 Russia,RUS,2014,222,fao
 Russia,RUS,2015,246,fao
-Russia,RUS,2016,449,fao
-Russia,RUS,2017,554,fao
-Russia,RUS,2018,504,fao
-Russia,RUS,2019,298,fao
-Russia,RUS,2020,342,fao
+Russia,RUS,2016,3800,itc
+Russia,RUS,2017,3800,itc
+Russia,RUS,2018,4000,itc
+Russia,RUS,2019,4000,itc
+Russia,RUS,2020,4000,itc
+Russia,RUS,2021,4200,itc
+Russia,RUS,2022,4000,itc
+Russia,RUS,2023,4000,itc
+Russia,RUS,2024,4187,itc
+Russia,RUS,2025,2500,itc
 Rwanda,RWA,1961,160,fao
 Rwanda,RWA,1962,210,fao
 Rwanda,RWA,1963,300,fao
@@ -1852,11 +1799,16 @@ Rwanda,RWA,2012,22503,fao
 Rwanda,RWA,2013,22185,fao
 Rwanda,RWA,2014,24751,fao
 Rwanda,RWA,2015,25264,fao
-Rwanda,RWA,2016,25628,fao
-Rwanda,RWA,2017,27887,fao
-Rwanda,RWA,2018,31068,fao
-Rwanda,RWA,2019,30444,fao
-Rwanda,RWA,2020,33645,fao
+Rwanda,RWA,2016,25628,itc
+Rwanda,RWA,2017,27887,itc
+Rwanda,RWA,2018,31000,itc
+Rwanda,RWA,2019,32126,itc
+Rwanda,RWA,2020,33000,itc
+Rwanda,RWA,2021,33400,itc
+Rwanda,RWA,2022,38386,itc
+Rwanda,RWA,2023,38071,itc
+Rwanda,RWA,2024,38293,itc
+Rwanda,RWA,2025,40043,itc
 Réunion,REU,1961,100,fao
 Réunion,REU,1962,100,fao
 Réunion,REU,1963,100,fao
@@ -1958,11 +1910,6 @@ Seychelles,SYC,2012,28,fao
 Seychelles,SYC,2013,21,fao
 Seychelles,SYC,2014,27,fao
 Seychelles,SYC,2015,16,fao
-Seychelles,SYC,2016,17,fao
-Seychelles,SYC,2017,13,fao
-Seychelles,SYC,2018,11,fao
-Seychelles,SYC,2019,11,fao
-Seychelles,SYC,2020,9,fao
 South Africa,ZAF,1961,2000,fao
 South Africa,ZAF,1962,2000,fao
 South Africa,ZAF,1963,2000,fao
@@ -2018,11 +1965,16 @@ South Africa,ZAF,2012,870,fao
 South Africa,ZAF,2013,2180,fao
 South Africa,ZAF,2014,2399,fao
 South Africa,ZAF,2015,1972,fao
-South Africa,ZAF,2016,2184,fao
-South Africa,ZAF,2017,2185,fao
-South Africa,ZAF,2018,2114,fao
-South Africa,ZAF,2019,2161,fao
-South Africa,ZAF,2020,2153,fao
+South Africa,ZAF,2016,4000,itc
+South Africa,ZAF,2017,3800,itc
+South Africa,ZAF,2018,3600,itc
+South Africa,ZAF,2019,3600,itc
+South Africa,ZAF,2020,3300,itc
+South Africa,ZAF,2021,3100,itc
+South Africa,ZAF,2022,3000,itc
+South Africa,ZAF,2023,2900,itc
+South Africa,ZAF,2024,2800,itc
+South Africa,ZAF,2025,1000,itc
 South Korea,KOR,1961,50,fao
 South Korea,KOR,1962,50,fao
 South Korea,KOR,1963,50,fao
@@ -2078,11 +2030,16 @@ South Korea,KOR,2012,2202,fao
 South Korea,KOR,2013,2263,fao
 South Korea,KOR,2014,2427,fao
 South Korea,KOR,2015,2548,fao
-South Korea,KOR,2016,2413,fao
-South Korea,KOR,2017,2463,fao
-South Korea,KOR,2018,2474,fao
-South Korea,KOR,2019,2450,fao
-South Korea,KOR,2020,2462,fao
+South Korea,KOR,2016,4800,itc
+South Korea,KOR,2017,5000,itc
+South Korea,KOR,2018,5100,itc
+South Korea,KOR,2019,4973,itc
+South Korea,KOR,2020,4309,itc
+South Korea,KOR,2021,3820,itc
+South Korea,KOR,2022,3838,itc
+South Korea,KOR,2023,4185,itc
+South Korea,KOR,2024,3685,itc
+South Korea,KOR,2025,4100,itc
 Sri Lanka,LKA,1961,206488,fao
 Sri Lanka,LKA,1962,211850,fao
 Sri Lanka,LKA,1963,219798,fao
@@ -2138,15 +2095,15 @@ Sri Lanka,LKA,2012,330000,fao
 Sri Lanka,LKA,2013,340230,fao
 Sri Lanka,LKA,2014,338032,fao
 Sri Lanka,LKA,2015,317967,fao
-Sri Lanka,LKA,2016,292574,fao
-Sri Lanka,LKA,2017,307720,fao
-Sri Lanka,LKA,2018,303840,fao
-Sri Lanka,LKA,2019,300120,fao
-Sri Lanka,LKA,2020,278489,fao
-Sri Lanka,LKA,2021,299340,itc
-Sri Lanka,LKA,2022,251500,itc
+Sri Lanka,LKA,2016,292574,itc
+Sri Lanka,LKA,2017,307720,itc
+Sri Lanka,LKA,2018,304006,itc
+Sri Lanka,LKA,2019,300134,itc
+Sri Lanka,LKA,2020,278493,itc
+Sri Lanka,LKA,2021,299339,itc
+Sri Lanka,LKA,2022,251499,itc
 Sri Lanka,LKA,2023,256040,itc
-Sri Lanka,LKA,2024,262160,itc
+Sri Lanka,LKA,2024,262694,itc
 Sri Lanka,LKA,2025,264616,sltb
 Taiwan,TWN,1961,18064,fao
 Taiwan,TWN,1962,19753,fao
@@ -2203,11 +2160,16 @@ Taiwan,TWN,2012,14902,fao
 Taiwan,TWN,2013,14718,fao
 Taiwan,TWN,2014,15200,fao
 Taiwan,TWN,2015,14405,fao
-Taiwan,TWN,2016,13018,fao
-Taiwan,TWN,2017,13443,fao
-Taiwan,TWN,2018,14738,fao
-Taiwan,TWN,2019,14637,fao
-Taiwan,TWN,2020,14341,fao
+Taiwan,TWN,2016,13018,itc
+Taiwan,TWN,2017,13443,itc
+Taiwan,TWN,2018,14738,itc
+Taiwan,TWN,2019,14637,itc
+Taiwan,TWN,2020,14341,itc
+Taiwan,TWN,2021,11883,itc
+Taiwan,TWN,2022,14027,itc
+Taiwan,TWN,2023,14000,itc
+Taiwan,TWN,2024,13552,itc
+Taiwan,TWN,2025,13000,itc
 Tanzania,TZA,1961,4459,fao
 Tanzania,TZA,1962,4310,fao
 Tanzania,TZA,1963,5019,fao
@@ -2263,11 +2225,16 @@ Tanzania,TZA,2012,32812,fao
 Tanzania,TZA,2013,33700,fao
 Tanzania,TZA,2014,33500,fao
 Tanzania,TZA,2015,35749,fao
-Tanzania,TZA,2016,32629,fao
-Tanzania,TZA,2017,41495,fao
-Tanzania,TZA,2018,55426,fao
-Tanzania,TZA,2019,61713,fao
-Tanzania,TZA,2020,46058,fao
+Tanzania,TZA,2016,29112,itc
+Tanzania,TZA,2017,31814,itc
+Tanzania,TZA,2018,35170,itc
+Tanzania,TZA,2019,33659,itc
+Tanzania,TZA,2020,28469,itc
+Tanzania,TZA,2021,26170,itc
+Tanzania,TZA,2022,25295,itc
+Tanzania,TZA,2023,26450,itc
+Tanzania,TZA,2024,17824,itc
+Tanzania,TZA,2025,25040,itc
 Thailand,THA,1972,50,fao
 Thailand,THA,1973,100,fao
 Thailand,THA,1974,150,fao
@@ -2287,36 +2254,16 @@ Thailand,THA,1987,3400,fao
 Thailand,THA,1988,4959,fao
 Thailand,THA,1989,5033,fao
 Thailand,THA,1990,6500,fao
-Thailand,THA,1991,8500,fao
-Thailand,THA,1992,11000,fao
-Thailand,THA,1993,13500,fao
-Thailand,THA,1994,16000,fao
-Thailand,THA,1995,18500,fao
-Thailand,THA,1996,22000,fao
-Thailand,THA,1997,25000,fao
-Thailand,THA,1998,28000,fao
-Thailand,THA,1999,30000,fao
-Thailand,THA,2000,32327,fao
-Thailand,THA,2001,33494,fao
-Thailand,THA,2002,36321,fao
-Thailand,THA,2003,43333,fao
-Thailand,THA,2004,51817,fao
-Thailand,THA,2005,51570,fao
-Thailand,THA,2006,53782,fao
-Thailand,THA,2007,57362,fao
-Thailand,THA,2008,61557,fao
-Thailand,THA,2009,63707,fao
-Thailand,THA,2010,67241,fao
-Thailand,THA,2011,73320,fao
-Thailand,THA,2012,68774,fao
-Thailand,THA,2013,68013,fao
-Thailand,THA,2014,40324,fao
-Thailand,THA,2015,49054,fao
-Thailand,THA,2016,65101,fao
-Thailand,THA,2017,78425,fao
-Thailand,THA,2018,93084,fao
-Thailand,THA,2019,96537,fao
-Thailand,THA,2020,97697,fao
+Thailand,THA,2016,20100,itc
+Thailand,THA,2017,20400,itc
+Thailand,THA,2018,20735,itc
+Thailand,THA,2019,21000,itc
+Thailand,THA,2020,20000,itc
+Thailand,THA,2021,20000,itc
+Thailand,THA,2022,20000,itc
+Thailand,THA,2023,20400,itc
+Thailand,THA,2024,20516,itc
+Thailand,THA,2025,19000,itc
 Türkiye,TUR,1961,5450,fao
 Türkiye,TUR,1962,8259,fao
 Türkiye,TUR,1963,10100,fao
@@ -2372,15 +2319,16 @@ Türkiye,TUR,2012,225000,fao
 Türkiye,TUR,2013,212400,fao
 Türkiye,TUR,2014,226800,fao
 Türkiye,TUR,2015,239028,fao
-Türkiye,TUR,2016,243000,fao
-Türkiye,TUR,2017,234000,fao
-Türkiye,TUR,2018,270000,fao
-Türkiye,TUR,2019,261000,fao
-Türkiye,TUR,2020,255183,fao
-Türkiye,TUR,2021,282030,itc
-Türkiye,TUR,2022,245770,itc
-Türkiye,TUR,2023,264990,itc
-Türkiye,TUR,2024,275130,itc
+Türkiye,TUR,2016,253312,itc
+Türkiye,TUR,2017,255404,itc
+Türkiye,TUR,2018,279998,itc
+Türkiye,TUR,2019,267804,itc
+Türkiye,TUR,2020,280019,itc
+Türkiye,TUR,2021,282028,itc
+Türkiye,TUR,2022,245773,itc
+Türkiye,TUR,2023,264989,itc
+Türkiye,TUR,2024,275132,itc
+Türkiye,TUR,2025,254130,itc
 USSR (to 1991),SUN,1961,39592,fao
 USSR (to 1991),SUN,1962,43831,fao
 USSR (to 1991),SUN,1963,47922,fao
@@ -2467,11 +2415,16 @@ Uganda,UGA,2012,57939,fao
 Uganda,UGA,2013,60969,fao
 Uganda,UGA,2014,65373,fao
 Uganda,UGA,2015,58588,fao
-Uganda,UGA,2016,39299,fao
-Uganda,UGA,2017,50055,fao
-Uganda,UGA,2018,74247,fao
-Uganda,UGA,2019,60337,fao
-Uganda,UGA,2020,63411,fao
+Uganda,UGA,2016,55736,itc
+Uganda,UGA,2017,53887,itc
+Uganda,UGA,2018,71553,itc
+Uganda,UGA,2019,72056,itc
+Uganda,UGA,2020,76857,itc
+Uganda,UGA,2021,81675,itc
+Uganda,UGA,2022,77261,itc
+Uganda,UGA,2023,71420,itc
+Uganda,UGA,2024,58215,itc
+Uganda,UGA,2025,47360,itc
 Vietnam,VNM,1961,7500,fao
 Vietnam,VNM,1962,7500,fao
 Vietnam,VNM,1963,8000,fao
@@ -2527,15 +2480,16 @@ Vietnam,VNM,2012,211500,fao
 Vietnam,VNM,2013,217700,fao
 Vietnam,VNM,2014,228360,fao
 Vietnam,VNM,2015,236000,fao
-Vietnam,VNM,2016,240000,fao
-Vietnam,VNM,2017,260000,fao
-Vietnam,VNM,2018,270000,fao
-Vietnam,VNM,2019,234052,fao
-Vietnam,VNM,2020,240493,fao
+Vietnam,VNM,2016,180000,itc
+Vietnam,VNM,2017,175000,itc
+Vietnam,VNM,2018,185000,itc
+Vietnam,VNM,2019,190000,itc
+Vietnam,VNM,2020,192000,itc
 Vietnam,VNM,2021,180000,itc
 Vietnam,VNM,2022,174000,itc
 Vietnam,VNM,2023,170000,itc
 Vietnam,VNM,2024,180400,itc
+Vietnam,VNM,2025,245000,itc
 Zambia,ZMB,1974,24,fao
 Zambia,ZMB,1975,68,fao
 Zambia,ZMB,1976,10,fao
@@ -2578,11 +2532,6 @@ Zambia,ZMB,2012,900,fao
 Zambia,ZMB,2013,900,fao
 Zambia,ZMB,2014,909,fao
 Zambia,ZMB,2015,937,fao
-Zambia,ZMB,2016,952,fao
-Zambia,ZMB,2017,933,fao
-Zambia,ZMB,2018,941,fao
-Zambia,ZMB,2019,942,fao
-Zambia,ZMB,2020,938,fao
 Zimbabwe,ZWE,1961,1100,fao
 Zimbabwe,ZWE,1962,1300,fao
 Zimbabwe,ZWE,1963,1223,fao
@@ -2638,11 +2587,16 @@ Zimbabwe,ZWE,2012,7986,fao
 Zimbabwe,ZWE,2013,6204,fao
 Zimbabwe,ZWE,2014,4717,fao
 Zimbabwe,ZWE,2015,2254,fao
-Zimbabwe,ZWE,2016,4391,fao
-Zimbabwe,ZWE,2017,3787,fao
-Zimbabwe,ZWE,2018,3478,fao
-Zimbabwe,ZWE,2019,3885,fao
-Zimbabwe,ZWE,2020,3717,fao
+Zimbabwe,ZWE,2016,15500,itc
+Zimbabwe,ZWE,2017,15700,itc
+Zimbabwe,ZWE,2018,15200,itc
+Zimbabwe,ZWE,2019,14900,itc
+Zimbabwe,ZWE,2020,14000,itc
+Zimbabwe,ZWE,2021,14000,itc
+Zimbabwe,ZWE,2022,14400,itc
+Zimbabwe,ZWE,2023,14000,itc
+Zimbabwe,ZWE,2024,14073,itc
+Zimbabwe,ZWE,2025,12500,itc
 World,WLD,1961,983785,fao
 World,WLD,1962,987350,fao
 World,WLD,1963,1021949,fao
@@ -2673,33 +2627,38 @@ World,WLD,1987,2358977,fao
 World,WLD,1988,2448034,fao
 World,WLD,1989,2472861,fao
 World,WLD,1990,2524670,fao
-World,WLD,1991,2755374,fao
-World,WLD,1992,2747611,fao
-World,WLD,1993,2880564,fao
-World,WLD,1994,2887674,fao
-World,WLD,1995,2862766,fao
-World,WLD,1996,2957706,fao
-World,WLD,1997,3063491,fao
-World,WLD,1998,3259674,fao
-World,WLD,1999,3355901,fao
-World,WLD,2000,3231082,fao
-World,WLD,2001,3358453,fao
-World,WLD,2002,3417963,fao
-World,WLD,2003,3485366,fao
-World,WLD,2004,3624609,fao
-World,WLD,2005,3874131,fao
-World,WLD,2006,3845559,fao
-World,WLD,2007,4164524,fao
-World,WLD,2008,4256470,fao
-World,WLD,2009,4300461,fao
-World,WLD,2010,4610749,fao
-World,WLD,2011,4827510,fao
-World,WLD,2012,5025690,fao
-World,WLD,2013,5309841,fao
-World,WLD,2014,5493989,fao
-World,WLD,2015,5761926,fao
-World,WLD,2016,6108836,fao
-World,WLD,2017,6299415,fao
-World,WLD,2018,6650602,fao
-World,WLD,2019,6761711,fao
-World,WLD,2020,7024042,fao
+World,WLD,1991,2485659,fao
+World,WLD,1992,2428203,fao
+World,WLD,1993,2545883,fao
+World,WLD,1994,2557282,fao
+World,WLD,1995,2535263,fao
+World,WLD,1996,2590600,fao
+World,WLD,1997,2651680,fao
+World,WLD,1998,2887962,fao
+World,WLD,1999,2974455,fao
+World,WLD,2000,2862934,fao
+World,WLD,2001,2970524,fao
+World,WLD,2002,3048991,fao
+World,WLD,2003,3104425,fao
+World,WLD,2004,3306463,fao
+World,WLD,2005,3488106,fao
+World,WLD,2006,3542669,fao
+World,WLD,2007,3801953,fao
+World,WLD,2008,3905552,fao
+World,WLD,2009,3944389,fao
+World,WLD,2010,4241359,fao
+World,WLD,2011,4465121,fao
+World,WLD,2012,4679568,fao
+World,WLD,2013,4968714,fao
+World,WLD,2014,5188132,fao
+World,WLD,2015,5318833,fao
+World,WLD,2016,5595149,itc
+World,WLD,2017,5718990,itc
+World,WLD,2018,5966400,itc
+World,WLD,2019,6161563,itc
+World,WLD,2020,6285986,itc
+World,WLD,2021,6447795,itc
+World,WLD,2022,6487356,itc
+World,WLD,2023,6727050,itc
+World,WLD,2024,7068400,itc
+World,WLD,2025,7292480,itc

@@ -48,7 +48,7 @@ index 4b95bbd..fca60e0 100644
 +.prod-kyear { margin-bottom: 12px; }
 diff --git a/production.html b/production.html
 new file mode 100644
-index 0000000..b6b2978
+index 0000000..0894cc1
 --- /dev/null
 +++ b/production.html
 @@ -0,0 +1,202 @@
@@ -65,7 +65,7 @@ index 0000000..b6b2978
 +  <div class="stat-row" id="p-stats" aria-live="polite"></div>
 +
 +  <section>
-+    <h2 class="label rule">The world, 1961 to 2020</h2>
++    <h2 class="label rule">The world since 1961</h2>
 +    <p class="chart-note">Made tea, million tonnes a year. Eastern Africa is Kenya, Uganda, Tanzania, Rwanda, Burundi, Ethiopia, Malawi, Mozambique, Madagascar, Zambia, Zimbabwe, Mauritius and Réunion.</p>
 +    <div class="dash-legend"><span><i></i>World</span><span><i class="k-prev"></i>Eastern Africa</span></div>
 +    <figure class="chart" id="p-world" role="img" aria-label="World and Eastern Africa tea production since 1961"></figure>
@@ -103,10 +103,10 @@ index 0000000..b6b2978
 +  <section class="sources">
 +    <h2 class="label rule">Data and sources</h2>
 +    <p><strong>Made tea</strong> is tea after processing, as it is sold. It is the figure the tea trade uses. Fresh green leaf weighs about four to five times as much.</p>
-+    <p><strong>1961 to 2020:</strong> national production as reported to the United Nations, for every country that grows tea commercially. Countries that have since split or merged are shown as they were reported, such as the USSR to 1991.</p>
-+    <p><strong>2021 on:</strong> national figures where they are published (tea boards, statistics offices and industry associations), and industry statistics for the other largest producers. They can differ a little in method from the earlier figures. Other countries are added as their national figures are gathered.</p>
++    <p><strong>1961 to 2015:</strong> national production as reported to the United Nations, for every country that grows tea commercially. For Iran, Malaysia, Myanmar, Thailand, Burundi and Mozambique the reported figures from 1991 to 2015 count fresh leaf rather than made tea, so those years are left out for them and taken off the world total. Countries that have since split or merged are shown as they were reported, such as the USSR to 1991.</p>
++    <p><strong>2016 on:</strong> tea industry statistics for every producing country, with national tea board figures in their place where published (Kenya, India and Sri Lanka). They can differ a little in method from the earlier figures. Figures for 2025 are provisional and may be revised.</p>
 +    <p><strong>Area harvested</strong> is the land under tea that was picked that year.</p>
-+    <p class="fine muted">Production 1961 to 2020 and area: FAO, FAOSTAT, CC BY 4.0. Figures are as published by each source. Spot an error? Just reply to any issue.</p>
++    <p class="fine muted">Production 1961 to 2015 and area: FAO, FAOSTAT, CC BY 4.0. Figures are as published by each source. Spot an error? Just reply to any issue.</p>
 +  </section>
 +  <noscript><p>The charts and tables on this page need JavaScript.</p></noscript>
 +</article>
@@ -133,7 +133,7 @@ index 0000000..b6b2978
 +  FAO.forEach(function (r) { if (!r.area_ha) return; var c = FAONAME[r.country] || r.country; (area[c] = area[c] || {})[+r.year] = +r.area_ha; });
 +  var world = by.World || {};
 +  var ea = {};
-+  EA.forEach(function (c) { var d = by[c] || {}; Object.keys(d).forEach(function (y) { if (+y <= 2020) ea[y] = (ea[y] || 0) + d[y].t; }); });
++  EA.forEach(function (c) { var d = by[c] || {}; Object.keys(d).forEach(function (y) { ea[y] = (ea[y] || 0) + d[y].t; }); });
 +  var wy = Object.keys(world).map(Number).sort(), wl = wy[wy.length - 1];
 +  var ken = by.Kenya, ky = Object.keys(ken).map(Number).sort(), kl = ky[ky.length - 1];
 +
@@ -242,8 +242,8 @@ index 0000000..b6b2978
 +      var ys = series(c, s[1], s[2], function (y, v) { return name + ", " + y + ": " + num(v) + s[3]; });
 +      var l = ys[ys.length - 1]; dot(c, c.X(l), c.Y(s[1][l]), 4, "pt pt-last", name + ", " + l + ": " + num(s[1][l]) + s[3]);
 +    });
-+    var late = Object.keys(d).filter(function (y) { return +y > 2020; }).length;
-+    $("p-c-note").textContent = late ? "From 2021 the production figures come from national or industry statistics and can differ a little in method from earlier years." : (y1 < 2020 ? "" : "Production figures after 2020 are not yet available for " + name + ".");
++    var late = Object.keys(d).filter(function (y) { return +y > 2015; }).length;
++    $("p-c-note").textContent = late ? "From 2016 the production figures come from industry and national statistics and can differ a little in method from earlier years. 2025 is provisional." : (y1 < 2015 ? "" : "Production figures after 2015 are not yet available for " + name + ".");
 +    var allY = Object.keys(p).concat(Object.keys(a)).map(Number).filter(function (y, i, s) { return s.indexOf(y) === i; }).sort(function (x, y) { return y - x; });
 +    $("p-ctable").innerHTML = "<thead><tr><th>Year</th><th>Made tea</th><th>On the year</th><th>Area harvested</th><th>Tonnes per hectare</th></tr></thead><tbody>" + allY.map(function (y) {
 +      var t = p[y], q = p[y - 1];
