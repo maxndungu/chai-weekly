@@ -6,10 +6,16 @@ permalink: /production/
 rail: false
 ---
 <article class="analysis prod dash">
-  <p class="kicker">Markets · Production</p>
-  <h1 class="headline">How much tea the world makes</h1>
-  <p class="deck">Tea production in every producing country since 1961, Eastern Africa against the rest of the world, Kenya month by month, and where the tea goes: exports, imports and how much each country drinks.</p>
+  <div class="auctions-head">
+    <div>
+      <p class="kicker">Markets · Production</p>
+      <h1 class="headline">How much tea the world makes</h1>
+      <p class="deck">Tea production in every producing country since 1961, Eastern Africa against the rest of the world, Kenya month by month, and where the tea goes: exports, imports and how much each country drinks.</p>
+    </div>
+    {% include signup.html id="production-side" class="signup-small" %}
+  </div>
   <div class="stat-row" id="p-stats" aria-live="polite"></div>
+  {% include signup.html id="production" class="signup-wide signup-phone-only" %}
 
   <section>
     <h2 class="label rule">The world since 1961</h2>
