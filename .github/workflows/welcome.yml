@@ -1,10 +1,9 @@
 # Sends each new subscriber the latest issue once, so they don't wait until next Wednesday.
-# Runs every 20 minutes (GitHub may run it later than that). Script: tools/welcome.py.
+# It runs every 10 minutes from cron on the VPS (deploy/listmonk/welcome.sh, SETUP.md step 8), because GitHub's
+# timer started it hours late or not at all. This workflow is kept to run it by hand: Actions > Run workflow. Script: tools/welcome.py.
 # Uses the same listmonk API secrets as the Email draft workflow. Turn it off by emptying welcome_since in _config.yml.
 name: Welcome new subscribers
 on:
-  schedule:
-    - cron: "7,27,47 * * * *"
   workflow_dispatch:
 concurrency: { group: welcome, cancel-in-progress: false }
 jobs:

@@ -179,10 +179,36 @@ Never paste the token into a chat, an issue or a file in the repository.
 3. Nothing else to do. If you spot a problem in those 15 minutes, open the campaign and press **Pause**.
    To go back to pressing Start yourself every week, empty `listmonk_autosend_minutes`.
 
-The same merge also puts the issue into the **welcome email**. Every 20 minutes or so, anyone who has
+The same merge also puts the issue into the **welcome email**. Every 10 minutes (step 8), anyone who has
 confirmed their subscription since `welcome_since` (in `_config.yml`) and has not had it yet is sent the
 latest issue once, with a short welcome note at the top. The reader gets a note in listmonk
 (attribute `chai_welcomed` with the date), so nobody gets it twice. To turn welcomes off, empty `welcome_since`.
+
+## 8. Welcome emails on time (VPS, 3 minutes)
+
+New readers get the latest issue from a small job on the VPS that runs every 10 minutes.
+Log in to the VPS as root and paste:
+
+```sh
+cd ~/chai-list
+curl -fsSLO https://raw.githubusercontent.com/maxndungu/chai-weekly/main/deploy/listmonk/welcome.sh
+chmod +x welcome.sh
+printf 'LISTMONK_API_USER=drafts\nLISTMONK_API_TOKEN=\n' > welcome.env
+chmod 600 welcome.env
+nano welcome.env
+```
+
+In `nano`, put the `drafts` token after `LISTMONK_API_TOKEN=` (the same token that is in GitHub's secrets; if you no longer
+have it, open **Users > drafts** in listmonk and make a new one, then put the new one in GitHub too).
+Save with Ctrl+O, Enter, then Ctrl+X. Then check it works and switch it on:
+
+```sh
+./welcome.sh
+(crontab -l 2>/dev/null; echo '*/10 * * * * cd ~/chai-list && ./welcome.sh >> welcome.log 2>&1') | crontab -
+```
+
+The first command should end with "Welcome email sent to 0 new reader(s)." (or a number). To see later runs:
+`tail -20 ~/chai-list/welcome.log`.
 
 ## Bringing in readers you already have
 
