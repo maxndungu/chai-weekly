@@ -6,9 +6,14 @@ permalink: /tea-map/
 rail: false
 ---
 <article class="analysis tmap dash" id="tmap">
-  <p class="kicker">Markets · Tea map</p>
-  <h1 class="headline">Where the world's tea is grown</h1>
-  <p class="deck">Where tea is grown, where it is sent and where it is drunk. Tap a country to open its figures, or a region to zoom in. Slide through the years to watch the tea map change since 1961.</p>
+  <div class="auctions-head">
+    <div>
+      <p class="kicker">Markets · Tea map</p>
+      <h1 class="headline">Where the world's tea is grown</h1>
+      <p class="deck">Where tea is grown, where it is sent and where it is drunk. Tap a country to open its figures, or a region to zoom in. Slide through the years to watch the tea map change since 1961.</p>
+    </div>
+    {% include signup.html id="teamap-side" class="signup-small" %}
+  </div>
 
   <form class="dash-controls tmap-controls" onsubmit="return false" aria-label="Map controls">
     <div class="dash-field tmap-year">
@@ -44,6 +49,7 @@ rail: false
     <p class="tmap-hint" id="tm-hint"></p>
   </div>
   <div class="dash-legend tmap-legend" id="tm-legend"></div>
+  {% include signup.html id="teamap" class="signup-wide signup-phone-only" %}
 
   <section class="tmap-panel" id="tm-panel" aria-live="polite"></section>
 
