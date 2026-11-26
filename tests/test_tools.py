@@ -212,8 +212,12 @@ class Listmonk(unittest.TestCase):
         self.assertIn("Chai Weekly</a>", body)            # nameplate
         self.assertIn("In this edition", body)            # contents box
         self.assertIn("Mombasa (Sale 47)", body)          # ticker
-        self.assertRegex(body, r'<table style="width:100%;[^"]*border-collapse')  # styled auction table
-        self.assertRegex(body, r'<h2 style="[^"]*text-transform:uppercase')
+        # Short email: the stories stay on the web, the email links to them.
+        self.assertIn("Read the full edition", body)
+        self.assertNotIn("border-collapse", body)
+        self.assertNotIn("<h2", body)
+        self.assertIn("Markets: Best price", sent["altbody"])
+        self.assertIn("Read the full edition: https://example.org/chai-weekly/issues/2026/11/18/issue-003/", sent["altbody"])
         self.assertNotIn("{{", body + sent["altbody"])
         self.assertNotIn("{%", body + sent["altbody"])
         self.assertIn("/admin/campaigns/7", stdout)
@@ -295,7 +299,7 @@ class Welcome(unittest.TestCase):
     @staticmethod
     def person(i, joined="2026-11-27T08:00:00Z", **kw):
         return {"id": i, "email": f"r{i}@example.org", "name": f"R{i}", "status": "enabled", "attribs": {"city": "Kericho"},
-                "created_at": joined, "lists": [{"id": 3, "subscription_status": "confirmed", "created_at": joined}], **kw}
+                "created_at": joined, "lists": [{"id": 3, "subscription_status": "confirmed", "created_at": "2026-11-25T10:00:00Z", "subscription_created_at": joined}], **kw}
 
     def test_new_reader_is_marked_then_sent(self):
         calls, stdout = self.run_welcome([self.person(1)])

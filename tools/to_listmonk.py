@@ -18,7 +18,7 @@ Optional:
 
 The campaign appears under Campaigns in listmonk. On a merge the workflow schedules it to send a few minutes
 later (listmonk_autosend_minutes in _config.yml); pause it there to stop it.
-The email is built here (masthead, contents, story, tables) as HTML with inline styles so it looks
+The email is built here (masthead, headline, contents and a link to the full edition on the web) as HTML with inline styles so it looks
 like the newspaper website in Gmail and on phones. Its frame and footer (with the unsubscribe link) are
 the listmonk template "Chai Weekly newspaper", kept in tools/email/listmonk-template.html and copied
 into listmonk on every run. A plain-text copy goes along for mail apps that do not show HTML.
@@ -107,7 +107,9 @@ def utm(url):
 
 # ---- Plain-text copy (also what older mail apps show) ----
 plain = (
-    f"{deck}\n\nRead this edition on the web: {web}?{tag}\n\n{body.strip()}\n\n---\n\n"
+    f"{deck}\n\nIn this edition:\n"
+    + "".join(f"- {s_.get('section', '')}: {s_.get('headline', '')}\n" for s_ in (meta.get("stories") or []))
+    + f"\nRead the full edition: {web}?{tag}\n\n---\n\n"
     f"Read online: {web}?{tag}\nAll editions: {site}/archive/?{tag}\n"
 )
 
@@ -209,7 +211,12 @@ if stories:
                 f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0">{rows}</table></td></tr></table>')
 
 words = len(re.findall(r"\w+", body))
-story_html = style_html(markdown.markdown(body.strip(), extensions=["tables", "sane_lists"], output_format="html"))
+# The email is the short version (Maxwell, 26 Nov 2026): headline, contents and a link to the full edition on the web.
+# Only a booked sponsor box from the issue comes along with it.
+_ad = issue_ad(f"{y}-{m}-{d}").strip().strip("-").strip()
+ad_html = style_html(markdown.markdown(_ad, output_format="html")) if _ad else ""
+if ad_html:
+    ad_html = f'<div style="border-top:1px solid {HAIR}; margin-top:24px; padding-top:16px; font-family:{SANS}; font-size:14px;">{ad_html}</div>'
 
 content = f"""{masthead}
 {ticker}
@@ -219,7 +226,10 @@ content = f"""{masthead}
   {f'<div style="font-family:{SERIF}; font-size:20px; line-height:1.4; color:{INK2}; margin:0 0 14px;">{esc(deck)}</div>' if deck else ''}
   <div style="font-family:{SANS}; font-size:13px; color:{MUTED}; margin:0 0 22px;">By the Chai Weekly desk · {words // 220 + 1} min read · <a href="{esc(utm(web))}" style="color:{ACCENT}; font-weight:600; text-decoration:none;">Read on the web</a></div>
   {contents}
-  {story_html}
+  <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 auto 8px;"><tr><td bgcolor="{ACCENT}" style="background:{ACCENT};">
+    <a href="{esc(utm(web))}" style="display:inline-block; padding:13px 26px; font-family:{SANS}; font-size:15px; font-weight:700; color:#ffffff; text-decoration:none;">Read the full edition →</a>
+  </td></tr></table>
+  {ad_html}
 </div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="{BOX}" style="background:{BOX}; border-top:2px solid {RULE}; margin-top:28px;">
   <tr><td style="padding:16px 18px; font-family:{SANS}; font-size:15px; line-height:1.5;">
