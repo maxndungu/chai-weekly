@@ -15,12 +15,21 @@
   var change = function (a, b) { var p = Math.round(100 * (a - b) / b); return "<span class='" + (p > 0 ? "up" : p < 0 ? "down" : "") + "'>" + (p > 0 ? "▲ " : p < 0 ? "▼ " : "▬ ") + Math.abs(p) + "%</span>"; };
 
   /* ---------- data ---------- */
-  var by = {}, names = {}, world = {};
+  // One set of figures per measure; by, world and the words on the page follow the measure chosen.
+  var M = { production: { by: {}, world: {} } }, names = {};
   D.production.forEach(function (r) {
     var t = +r.made_tea_t; if (!(t > 0)) return;
-    if (r.iso3 === "WLD") { world[+r.year] = t; return; }
-    (by[r.iso3] = by[r.iso3] || {})[+r.year] = t; names[r.iso3] = r.country;
+    if (r.iso3 === "WLD") { M.production.world[+r.year] = t; return; }
+    (M.production.by[r.iso3] = M.production.by[r.iso3] || {})[+r.year] = t; names[r.iso3] = r.country;
   });
+  var by = M.production.by, world = M.production.world;
+  var WORDS = {
+    production: { past: "grew", what: "Made tea", legend: "Made tea a year", of: "of the world's tea", count: "Countries growing tea", since: "Production", none: "No tea figure" },
+    exports: { past: "exported", what: "Exported", legend: "Tea exported a year", of: "of the world's tea exports", count: "Countries exporting tea", since: "Exports", none: "No export figure" },
+    imports: { past: "imported", what: "Imported", legend: "Tea imported a year", of: "of the world's tea imports", count: "Countries importing tea", since: "Imports", none: "No import figure" },
+    consumption: { past: "drank", what: "Drunk", legend: "Tea drunk a year", of: "of the world's tea drinking", count: "Countries with a figure", since: "Tea drunk", none: "No figure" }
+  };
+  var words = function () { return WORDS[st.measure]; };
   var FAONAME = { "United Republic of Tanzania": "Tanzania", "Democratic Republic of the Congo": "DR Congo", "Ethiopia PDR": "Ethiopia (with Eritrea, to 1992)",
     "Viet Nam": "Vietnam", "Iran (Islamic Republic of)": "Iran", "Lao People's Democratic Republic": "Laos", "Republic of Korea": "South Korea",
     "China, mainland": "China", "China, Taiwan Province of": "Taiwan", "Russian Federation": "Russia", "Bolivia (Plurinational State of)": "Bolivia", "USSR": "USSR (to 1991)" };
@@ -66,21 +75,24 @@
   var colour = function (t) { if (!t) return LAND; var i = 0; while (i < BINS.length && t >= BINS[i]) i++; return RAMP[i]; };
   var darkFill = function (t) { return t >= 5e4; };
   var binLabel = ["Under 1,000 t", "1,000 to 10,000", "10,000 to 50,000", "50,000 to 200,000", "200,000 to 1M", "1M t and over"];
-  $("tm-legend").innerHTML = "<span class='tmap-legend-h'>Made tea a year</span>" + RAMP.map(function (c, i) { return "<span><i class='k-sw' style='background:" + c + "'></i>" + binLabel[i] + "</span>"; }).join("") +
-    "<span><i class='k-sw' style='background:" + LAND + "'></i>No tea figure</span>";
+  function legend() {
+    $("tm-legend").innerHTML = "<span class='tmap-legend-h'>" + words().legend + "</span>" + RAMP.map(function (c, i) { return "<span><i class='k-sw' style='background:" + c + "'></i>" + binLabel[i] + "</span>"; }).join("") +
+      "<span><i class='k-sw' style='background:" + LAND + "'></i>" + words().none + "</span>";
+  }
 
   /* ---------- state ---------- */
-  var st = { year: Y1, view: "map", region: null, country: null };
+  var st = { year: Y1, view: "map", region: null, country: null, measure: "production" };
   (function readHash() {
     var h = {}; location.hash.slice(1).split("&").forEach(function (p) { var kv = p.split("="); if (kv[1]) h[kv[0]] = decodeURIComponent(kv[1]); });
     if (h.y && +h.y >= Y0 && +h.y <= Y1) st.year = +h.y;
     if (h.c && meta[h.c.toUpperCase()]) { st.country = h.c.toUpperCase(); st.region = meta[st.country].region; }
     else if (h.r && regionById[h.r]) st.region = h.r;
     if (h.v === "globe") st.view = "globe";
+    if (WORDS[h.m]) st.wantMeasure = h.m;   // applied once the trade figures arrive
   })();
   function writeHash() {
     var p = []; if (st.country) p.push("c=" + st.country); else if (st.region) p.push("r=" + st.region);
-    if (st.year !== Y1) p.push("y=" + st.year); if (st.view === "globe") p.push("v=globe");
+    if (st.year !== Y1) p.push("y=" + st.year); if (st.view === "globe") p.push("v=globe"); if (st.measure !== "production") p.push("m=" + st.measure);
     try { history.replaceState(null, "", p.length ? "#" + p.join("&") : location.pathname + location.search); } catch (e) {}
   }
   var listeners = [];
@@ -124,7 +136,7 @@
   var tip = $("tm-tip"), stage = root.querySelector(".tmap-stage");
   function tipHtml(iso) {
     var v = val(iso, st.year), n = names[iso] || iso;
-    return "<b>" + esc(n) + "</b>" + (v ? tonnes(v) + " in " + st.year + "<br><span>" + share(v, world[st.year]) + " of the world's tea</span>" : "<span>No tea figure for " + st.year + "</span>");
+    return "<b>" + esc(n) + "</b>" + (v ? tonnes(v) + " in " + st.year + "<br><span>" + share(v, world[st.year]) + " " + words().of + "</span>" : "<span>" + words().none + " for " + st.year + "</span>");
   }
   function showTip(e, html) {
     var r = stage.getBoundingClientRect();
@@ -169,7 +181,7 @@
     sphere = gMap.append("path").datum({ type: "Sphere" }).attr("class", "tm-sphere").attr("fill", st.view === "globe" ? "url(#tm-ocean)" : "none");
     grat = gMap.append("path").datum(graticule).attr("class", "tm-grat");
     paths = gMap.append("g").selectAll("path").data(shapes).join("path").attr("class", "tm-c")
-      .on("pointermove", function (e, d) { var o = owner(d.id, st.year); if (o) showTip(e, tipHtml(o.iso3)); else showTip(e, "<b>" + esc(d.properties.name) + "</b><span>No tea figures</span>"); })
+      .on("pointermove", function (e, d) { var o = owner(d.id, st.year); if (o) showTip(e, tipHtml(o.iso3)); else showTip(e, "<b>" + esc(d.properties.name) + "</b><span>" + words().none + "</span>"); })
       .on("pointerleave", hideTip)
       .on("click", function (e, d) { var o = owner(d.id, st.year); if (o) { hideTip(); pickCountry(o.iso3, { fromMap: true }); } });
     var dotList = Object.keys(meta).filter(function (k) { return meta[k].dot; }).map(function (k) { return meta[k]; });
@@ -309,6 +321,7 @@
     });
     hit.addEventListener("pointerleave", function () { guide.setAttribute("visibility", "hidden"); hot.setAttribute("visibility", "hidden"); lab.hidden = true; });
   }
+  var unit = function () { return st.measure === "production" ? "Tonnes of made tea" : "Tonnes"; };
   var axisT = function (v) { return v >= 1e6 ? (v / 1e6).toFixed(v % 1e6 ? 1 : 0) + "M" : v >= 1e3 ? Math.round(v / 1e3) + "k" : Math.round(v); };
 
   /* ---------- auction series ---------- */
@@ -339,8 +352,8 @@
       var rg = regionById[st.region], rt = regionTotal(st.region, y), prs = producers(st.region, y);
       var series = {}; wYears.forEach(function (yy) { var v = regionTotal(st.region, yy); if (v) series[yy] = v; });
       pbox.innerHTML = "<p class='eyebrow'>Region</p><h2 class='tmap-panel-h'>" + esc(rg.name) + "</h2>" +
-        stats([["Made tea, " + y, tonnes(rt), rt && series[y - 10] ? change(rt, series[y - 10]) + " in ten years" : ""], ["Share of world, " + y, share(rt, wt), ""], ["Countries growing tea", prs.length, "with figures for " + y]]) +
-        "<div class='tmap-grid'><figure class='dash-panel'><figcaption><span class='dash-panel-h'>" + esc(rg.name) + " since " + Y0 + "</span><span class='dash-panel-u'>Tonnes of made tea</span></figcaption><div class='chart tm-chart' id='tm-c1'></div></figure>" +
+        stats([[words().what + ", " + y, tonnes(rt), rt && series[y - 10] ? change(rt, series[y - 10]) + " in ten years" : ""], ["Share of world, " + y, share(rt, wt), ""], [words().count, prs.length, "with figures for " + y]]) +
+        "<div class='tmap-grid'><figure class='dash-panel'><figcaption><span class='dash-panel-h'>" + esc(rg.name) + " since " + Y0 + "</span><span class='dash-panel-u'>" + unit() + "</span></figcaption><div class='chart tm-chart' id='tm-c1'></div></figure>" +
         "<div><p class='dash-panel-u tmap-list-h'>Countries, " + y + "</p><ul class='tmap-list'>" + rg.countries.filter(function (c) { return by[c.iso3]; }).map(function (c) {
           var v = val(c.iso3, y); return "<li><button type='button' data-iso='" + c.iso3 + "'><span>" + esc(names[c.iso3]) + "</span><b>" + (v ? tonnes(v) : "–") + "</b></button></li>";
         }).join("") + "</ul></div></div>";
@@ -348,9 +361,9 @@
       return;
     }
     var ea = regionTotal("eastern-africa", y), n = Object.keys(by).filter(function (k) { return val(k, y); }).length;
-    pbox.innerHTML = "<p class='eyebrow'>The world</p><h2 class='tmap-panel-h'>The world's tea in " + y + "</h2>" +
-      stats([["World, " + y, tonnes(wt), world[y - 10] ? change(wt, world[y - 10]) + " in ten years" : ""], ["Eastern Africa", share(ea, wt), "of the world's tea"], ["Countries growing tea", n, "with figures for " + y]]) +
-      "<div class='tmap-grid'><figure class='dash-panel'><figcaption><span class='dash-panel-h'>World production since " + Y0 + "</span><span class='dash-panel-u'>Tonnes of made tea</span></figcaption><div class='chart tm-chart' id='tm-c1'></div></figure>" +
+    pbox.innerHTML = "<p class='eyebrow'>The world</p><h2 class='tmap-panel-h'>" + (st.measure === "production" ? "The world's tea in " : "The world's tea trade in ") + y + "</h2>" +
+      stats([["World, " + y, wt ? tonnes(wt) : "–", wt && world[y - 10] ? change(wt, world[y - 10]) + " in ten years" : ""], ["Eastern Africa", wt ? share(ea, wt) : "–", words().of], [words().count, n, "with figures for " + y]]) +
+      "<div class='tmap-grid'><figure class='dash-panel'><figcaption><span class='dash-panel-h'>World " + words().since.toLowerCase() + " since " + Y0 + "</span><span class='dash-panel-u'>" + unit() + "</span></figcaption><div class='chart tm-chart' id='tm-c1'></div></figure>" +
       "<div><p class='dash-panel-u tmap-list-h'>Regions, " + y + "</p><ul class='tmap-list'>" + regions.map(function (rg) {
         var v = regionTotal(rg.id, y); return "<li><button type='button' data-region='" + rg.id + "'><span>" + esc(rg.name) + "</span><b>" + (v ? tonnes(v) : "–") + "</b></button></li>";
       }).join("") + "</ul></div></div>";
@@ -361,11 +374,12 @@
     var ys = Object.keys(d).map(Number).sort(function (a, b) { return a - b; }), ly = ys[ys.length - 1];
     var a = (area[iso] || {})[y];
     var list = [
-      ["Made tea, " + y, v ? tonnes(v) : "–", v && d[y - 1] ? change(v, d[y - 1]) + " on " + (y - 1) : v ? "" : "No figure for " + y],
-      ["Share of world, " + y, v ? share(v, world[y]) : "–", ""],
-      ["Latest, " + ly, tonnes(d[ly]), d[ly - 1] ? change(d[ly], d[ly - 1]) + " on " + (ly - 1) : ""],
-      ["Tonnes a hectare, " + y, v && a ? (v / a).toFixed(2) : "–", a ? num(a) + " ha picked" : ""]
+      [words().what + ", " + y, v ? tonnes(v) : "–", v && d[y - 1] ? change(v, d[y - 1]) + " on " + (y - 1) : v ? "" : "No figure for " + y],
+      ["Share of world, " + y, v && world[y] ? share(v, world[y]) : "–", ""],
+      ["Latest, " + ly, ly ? tonnes(d[ly]) : "–", ly && d[ly - 1] ? change(d[ly], d[ly - 1]) + " on " + (ly - 1) : ""]
     ];
+    if (st.measure === "production") list.push(["Tonnes a hectare, " + y, v && a ? (v / a).toFixed(2) : "–", a ? num(a) + " ha picked" : ""]);
+    else { var g = M.production.by[iso] || {}; list.push(["Grown, " + y, g[y] ? tonnes(g[y]) : "–", g[y] ? "" : M.production.by[iso] ? "No figure for " + y : "Grows no tea"]); }
     var ms = m ? marketSeries(m) : null;
     var second = m
       ? "<figure class='dash-panel'><figcaption><span class='dash-panel-h'>" + esc(m.name) + "</span><span class='dash-panel-u'>US$ a kg, year average</span></figcaption>" +
@@ -373,8 +387,8 @@
           " <a href='" + D.base + m.page + "'>Every sale on the Auctions page</a></p>" : "<p class='muted'>Loading prices…</p>") + "</figure>"
       : "<figure class='dash-panel'><figcaption><span class='dash-panel-h'>Area picked</span><span class='dash-panel-u'>Hectares</span></figcaption><div class='chart tm-chart' id='tm-c2'></div></figure>";
     pbox.innerHTML = "<p class='eyebrow'>" + esc(regionById[meta[iso].region].name) + "</p><h2 class='tmap-panel-h'>" + esc(name) + "</h2>" + stats(list) +
-      "<div class='tmap-grid'><figure class='dash-panel'><figcaption><span class='dash-panel-h'>Production since " + ys[0] + "</span><span class='dash-panel-u'>Tonnes of made tea</span></figcaption><div class='chart tm-chart' id='tm-c1'></div>" +
-      (ly > Y1 ? "<p class='fine muted'>From " + (Y1 + 1) + ", national figures.</p>" : "") + "</figure>" + second + "</div>";
+      "<div class='tmap-grid'><figure class='dash-panel'><figcaption><span class='dash-panel-h'>" + words().since + (ys.length ? " since " + ys[0] : "") + "</span><span class='dash-panel-u'>" + unit() + "</span></figcaption><div class='chart tm-chart' id='tm-c1'></div>" +
+      (st.measure === "consumption" && iso === "KEN" ? "<p class='fine muted'>Not worked out for Kenya in most recent years: its exports include tea grown in neighbouring countries.</p>" : "") + "</figure>" + second + "</div>";
     lineChart($("tm-c1"), d, y, axisT, function (yy, val2) { return "<b>" + yy + "</b> " + num(val2) + " t"; });
     if (m && ms) lineChart($("tm-c2"), ms.avg, ms.avg[y] != null ? y : null, function (x) { return "$" + x.toFixed(x % 1 ? 1 : 0); }, function (yy, p) { return "<b>" + yy + (ms.current && yy === ms.last ? " so far" : "") + "</b> US$ " + p.toFixed(2) + " a kg"; });
     else if (!m) lineChart($("tm-c2"), area[iso] || {}, y, axisT, function (yy, h) { return "<b>" + yy + "</b> " + num(h) + " ha"; });
@@ -416,7 +430,7 @@
         t.style.background = colour(d.value); t.classList.toggle("on-dark", darkFill(d.value));
         t.classList.toggle("is-picked", d.iso === st.country);
         t.innerHTML = w > 46 && hh > 24 ? "<span class='tm-tn'>" + esc(nm) + "</span>" + (hh > 42 && w > 54 ? "<span class='tm-tv'>" + sh + "</span>" : "") : "";
-        t.title = nm + ": " + num(d.value) + " t in " + y + " (" + sh + " of the world)";
+        t.title = nm + ": " + num(d.value) + " t in " + y + " (" + sh + " " + words().of + ")";
         t.setAttribute("aria-label", t.title);
       } else {
         var rgT = n.value;
@@ -428,8 +442,8 @@
     });
     Object.keys(tiles).forEach(function (k) { if (!seen[k]) { tiles[k].remove(); delete tiles[k]; } });
     $("tm-tree-note").textContent = st.region
-      ? "Blocks are sized by each country's made tea in " + y + ", with its share of the world's tea. Tap a country for its figures, or the region's name to go back to the world."
-      : "Each block is one country's share of the world's made tea in " + y + ". Tap a region's name to open it, then a country for its figures.";
+      ? "Blocks are sized by the tea each country " + words().past + " in " + y + ", with its share " + words().of + ". Tap a country for its figures, or the region's name to go back to the world."
+      : "Each block is one country's share " + words().of + " in " + y + ". Tap a region's name to open it, then a country for its figures.";
   }
   tbox.addEventListener("click", function (e) {
     var b = e.target.closest("button"); if (!b) return;
@@ -444,6 +458,38 @@
   root.querySelectorAll("[data-view]").forEach(function (x) { x.setAttribute("aria-pressed", x.dataset.view === st.view ? "true" : "false"); });
   fetch(D.world).then(function (r) { return r.json(); }).then(function (topo) {
     shapes = topojson.feature(topo, topo.objects.countries).features.filter(function (f) { return f.id !== "010"; });
-    drawMap(); showYear(); crumbs(); panel(); tree();
+    legend(); drawMap(); showYear(); crumbs(); panel(); tree();
+    return fetch(D.trade).then(function (r) { return r.json(); });
+  }).then(function (j) {
+    if (!j) return;
+    var REGION_NAMES = { "middle-east-north-africa": "Middle East and North Africa" };
+    ["exports", "imports", "consumption"].forEach(function (k) {
+      var m = M[k] = { by: {}, world: {} };
+      Object.keys(j[k]).forEach(function (iso) { var o = m.by[iso] = {}; j[k][iso].forEach(function (v, i) { if (v) o[j.from + i] = v; }); });
+      j.world[k].forEach(function (v, i) { if (v) m.world[j.from + i] = v; });
+    });
+    // Countries that only trade tea get a place on the map and in a region
+    Object.keys(j.places).forEach(function (iso) {
+      var p = j.places[iso]; if (!names[iso]) names[iso] = p[0];
+      if (meta[iso]) return;
+      var rid = p[2];
+      if (!regionById[rid]) { regionById[rid] = { id: rid, name: REGION_NAMES[rid] || rid, countries: [] }; regions.splice(regions.length - (regionById.other ? 1 : 0), 0, regionById[rid]); }
+      regionById[rid].countries.push({ iso3: iso });
+      meta[iso] = { iso3: iso, region: rid, ids: p[1] ? [p[1]] : [] };
+      if (p[1]) (owners[p[1]] = owners[p[1]] || []).push(meta[iso]);
+    });
+    root.querySelectorAll("[data-measure]").forEach(function (b) { b.disabled = false; });
+    if (st.wantMeasure) { useMeasure(st.wantMeasure); delete st.wantMeasure; }
+  }).catch(function () {});
+  function useMeasure(k) {
+    if (!M[k]) return;
+    by = M[k].by; world = M[k].world;
+    root.querySelectorAll("[data-measure]").forEach(function (x) { x.setAttribute("aria-pressed", x.dataset.measure === k ? "true" : "false"); });
+    if (st.country && !by[st.country] && !M.production.by[st.country]) st.country = null;
+    st.measure = k; legend(); set({ measure: k }, { quick: true });
+  }
+  root.querySelectorAll("[data-measure]").forEach(function (b) {
+    b.disabled = b.dataset.measure !== "production";
+    b.addEventListener("click", function () { if (st.measure !== b.dataset.measure) useMeasure(b.dataset.measure); });
   });
 })();
