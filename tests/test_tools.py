@@ -295,7 +295,7 @@ class Welcome(unittest.TestCase):
     @staticmethod
     def person(i, joined="2026-11-27T08:00:00Z", **kw):
         return {"id": i, "email": f"r{i}@example.org", "name": f"R{i}", "status": "enabled", "attribs": {"city": "Kericho"},
-                "created_at": joined, "lists": [{"id": 3, "subscription_status": "confirmed", "created_at": joined}], **kw}
+                "created_at": joined, "lists": [{"id": 3, "subscription_status": "confirmed", "created_at": "2026-11-25T10:00:00Z", "subscription_created_at": joined}], **kw}
 
     def test_new_reader_is_marked_then_sent(self):
         calls, stdout = self.run_welcome([self.person(1)])

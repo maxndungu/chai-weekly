@@ -66,10 +66,11 @@ while True:
 
 
 def joined(p):
-    """When they joined this list (falls back to when the subscriber was created)."""
+    """When they joined this list (falls back to when the subscriber was created).
+    In a subscriber's lists, created_at is when the LIST was made; the join date is subscription_created_at."""
     for l in p.get("lists") or []:
         if l.get("id") == list_id:
-            return (l.get("created_at") or p.get("created_at") or "")[:10]
+            return (l.get("subscription_created_at") or p.get("created_at") or "")[:10]
     return (p.get("created_at") or "")[:10]
 
 
