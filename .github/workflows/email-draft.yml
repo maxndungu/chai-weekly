@@ -1,8 +1,11 @@
-# When a new issue is published (merged to main), create an email DRAFT of it in our own mailing list (listmonk).
-# Nothing is sent: open https://list.chaiweekly.co.ke/admin > Campaigns, check the draft and press Start.
+# When a new issue is published (merged to main), make it an email campaign in our own mailing list (listmonk)
+# and schedule it to send listmonk_autosend_minutes later (_config.yml; empty = leave it as a draft to start by hand).
+# To stop a send in that time: https://list.chaiweekly.co.ke/admin > Campaigns > the issue > Pause.
+# It also puts the issue into the welcome email that new subscribers get (see welcome.yml).
 # Needs two repo secrets from listmonk (Admin > Users > API user): LISTMONK_API_USER and LISTMONK_API_TOKEN.
 # The list's address and number come from _config.yml (listmonk_url, listmonk_list_id). Skips quietly until both are set.
 # To redo a draft by hand: Actions > Email draft > Run workflow, and give the issue file (e.g. _posts/2026-11-18-issue-003.md).
+# A draft made by hand is never sent on its own.
 # To refresh a draft that already exists in listmonk (e.g. after a design change), also give its campaign number.
 # The email's look lives in tools/to_listmonk.py and tools/email/listmonk-template.html.
 name: Email draft
@@ -39,7 +42,9 @@ jobs:
         run: |
           cfg() { python3 -c "import re,sys;c=open('_config.yml').read();m=re.search(r'^'+sys.argv[1]+r':\s*\"?([^\"\n#]*)',c,re.M);print(m[1].strip() if m else '')" "$1"; }
           SITE_URL=$(cfg canonical_url); [ -n "$SITE_URL" ] || SITE_URL="$(cfg url)$(cfg baseurl)"
-          export SITE_URL="${SITE_URL%/}" LISTMONK_URL=$(cfg listmonk_url) LISTMONK_LIST_ID=$(cfg listmonk_list_id)
+          export SITE_URL="${SITE_URL%/}" LISTMONK_URL=$(cfg listmonk_url) LISTMONK_LIST_ID=$(cfg listmonk_list_id) LISTMONK_WELCOME=1
+          # Only a merge sends on its own; a draft redone by hand waits for Start in listmonk.
+          if [ -z "$POST" ]; then export LISTMONK_AUTOSEND_MINUTES=$(cfg listmonk_autosend_minutes); fi
           if [ -z "$LISTMONK_URL" ] || [ -z "$LISTMONK_LIST_ID" ]; then
             echo "listmonk_url or listmonk_list_id is empty in _config.yml: no draft made."; exit 0
           fi

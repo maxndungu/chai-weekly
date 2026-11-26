@@ -8,6 +8,10 @@ description: "A free weekly tea newspaper from East Africa. Every Wednesday: tea
 listmonk_url: "https://list.chaiweekly.co.ke"
 listmonk_list_uuid: "9e6279b1-e0e0-4257-b93d-1cdc2bf9d4a1"
 listmonk_list_id: "3"
+# A merged issue emails out this many minutes after the merge (time to pause it in listmonk). Empty = draft only.
+listmonk_autosend_minutes: "15"
+# New subscribers who join on or after this date get the latest issue once, by email (tools/welcome.py). Empty = off.
+welcome_since: "2026-11-26"
 permalink: /issues/:year/:month/:day/:title/
 markdown: kramdown
 plugins: [jekyll-sitemap]

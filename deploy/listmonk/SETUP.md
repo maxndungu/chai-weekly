@@ -1,8 +1,8 @@
 # Setting up the Chai Weekly mailing list
 
 This runs our own subscribe and send system (listmonk, free and open source) on your VPS.
-Readers sign up on chaiweekly.co.ke, confirm by email, and every merged issue becomes an
-email draft that you check and send yourself. Nothing is ever sent without you pressing Start.
+Readers sign up on chaiweekly.co.ke, confirm by email, and get the latest issue straight away.
+Every merged issue is emailed to the list 15 minutes after the merge (you can pause it in that time).
 
 Emails go out through your chaiweekly.co.ke mailbox at StackMail. Its limits (20i, the company
 behind StackCP): about 2,000 different recipients a day and 8,000 messages a day per mailbox,
@@ -153,14 +153,19 @@ Open the new list and note two things: its **number** (e.g. `#3`, shown as ID) a
 **UUID**. Send both to me, or put them in `_config.yml` as `listmonk_list_id` and
 `listmonk_list_uuid`. The Subscribe box on the site switches on as soon as the UUID is in.
 
-## 6. A key for the weekly email drafts (5 minutes)
+## 6. A key for the weekly emails (5 minutes)
 
 1. **Users > User roles > + New**: name it `Drafts`. Tick the permissions for
-   **campaigns** (get and manage), **lists** (get) and **templates** (get and manage). Save.
-   (Templates lets each draft use the Chai Weekly newspaper design.)
-2. **Users > + New**: type **API**, name `drafts`, role `Drafts`. Save, then copy the token it shows
-   (it is shown once).
-3. In GitHub: **maxndungu/chai-weekly > Settings > Secrets and variables > Actions > New repository secret**:
+   **campaigns** (get, manage and send), **lists** (get), **templates** (get and manage),
+   **subscribers** (get and manage) and **tx** (send). Save.
+   (Templates lets each issue use the Chai Weekly newspaper design; send lets a merged issue go out
+   on its own; subscribers and tx let new readers get the welcome email.)
+2. **Users > User roles > List roles > + New**: name it `Chai list`, add the **Chai Weekly** list and
+   tick **get** and **manage**. Save. (Needed to note on each reader that they had the welcome email.)
+3. **Users > + New**: type **API**, name `drafts`, user role `Drafts`, list role `Chai list`. Save, then copy
+   the token it shows (it is shown once). If the `drafts` user already exists, just edit it and set the
+   list role; the token stays the same.
+4. In GitHub: **maxndungu/chai-weekly > Settings > Secrets and variables > Actions > New repository secret**:
    - `LISTMONK_API_USER` = `drafts`
    - `LISTMONK_API_TOKEN` = the token you copied
 
@@ -168,10 +173,16 @@ Never paste the token into a chat, an issue or a file in the repository.
 
 ## 7. Each Wednesday
 
-1. Merge the issue's pull request as usual (that publishes it on the site).
-2. A minute later, open **https://list.chaiweekly.co.ke/admin > Campaigns**. The issue is there as a draft.
-3. Open it, press **Send test** to your own address, look at it on your phone.
-4. Press **Start campaign**. Done.
+1. Merge the issue's pull request as usual. That publishes it on the site, and that is your approval.
+2. A minute later the issue is in **https://list.chaiweekly.co.ke/admin > Campaigns**, scheduled to send
+   15 minutes after the merge (`listmonk_autosend_minutes` in `_config.yml`).
+3. Nothing else to do. If you spot a problem in those 15 minutes, open the campaign and press **Pause**.
+   To go back to pressing Start yourself every week, empty `listmonk_autosend_minutes`.
+
+The same merge also puts the issue into the **welcome email**. Every 20 minutes or so, anyone who has
+confirmed their subscription since `welcome_since` (in `_config.yml`) and has not had it yet is sent the
+latest issue once, with a short welcome note at the top. The reader gets a note in listmonk
+(attribute `chai_welcomed` with the date), so nobody gets it twice. To turn welcomes off, empty `welcome_since`.
 
 ## Bringing in readers you already have
 

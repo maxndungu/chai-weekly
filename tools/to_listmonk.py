@@ -8,11 +8,16 @@ Usage:
 
 Optional:
   LISTMONK_CAMPAIGN_ID=2   update that existing draft instead of making a new one (e.g. after a design change)
+  LISTMONK_AUTOSEND_MINUTES=15  after making a NEW campaign, schedule it to send this many minutes later
+                           (0 = start at once). Unset or empty = leave it as a draft for a person to start.
+  LISTMONK_WELCOME=1       also copy this issue into the "Chai Weekly welcome" email, the one
+                           tools/welcome.py sends once to each new subscriber
   LISTMONK_FROM=...        sender (default: Chai Weekly <newsletter@chaiweekly.co.ke>)
   EMAIL_HTML_OUT=file      also save the email as a local HTML file (for previews)
   LISTMONK_DRY_RUN=1       do not contact listmonk at all (with EMAIL_HTML_OUT, for previews)
 
-The draft appears under Campaigns in listmonk; Maxwell sends himself a test and presses Start to send.
+The campaign appears under Campaigns in listmonk. On a merge the workflow schedules it to send a few minutes
+later (listmonk_autosend_minutes in _config.yml); pause it there to stop it.
 The email is built here (masthead, contents, story, tables) as HTML with inline styles so it looks
 like the newspaper website in Gmail and on phones. Its frame and footer (with the unsubscribe link) are
 the listmonk template "Chai Weekly newspaper", kept in tools/email/listmonk-template.html and copied
@@ -283,8 +288,64 @@ if template_id:
 # Always name the sender, so inboxes show "Chai Weekly" and not the mailbox name ("newsletter").
 payload["from_email"] = os.environ.get("LISTMONK_FROM") or "Chai Weekly <newsletter@chaiweekly.co.ke>"
 
-# A campaign is always a draft until a person presses Start in listmonk; we never ask it to send.
+WELCOME_NAME = "Chai Weekly welcome"
+
+
+def welcome_body():
+    """The whole welcome email: the newspaper frame, a short welcome note, then this issue."""
+    note = (f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="{BOX}" style="background:{BOX}; border-top:2px solid {ACCENT}; margin:14px 0 6px;">'
+            f'<tr><td style="padding:14px 18px; font-family:{SANS}; font-size:15px; line-height:1.55; color:{INK};">'
+            f'<b style="font-family:{DISPLAY}; font-size:20px;">Welcome to Chai Weekly.</b><br>'
+            f'Thank you for subscribing. Here is the latest edition, so you don\'t have to wait for Wednesday. '
+            f'The next one comes to this inbox next Wednesday, free.</td></tr></table>')
+    body_ = TEMPLATE_FILE.read_text()
+    body_ = body_.replace('{{ template "content" . }}', note + content)
+    body_ = body_.replace("{{ .Campaign.Subject }}", "Welcome to Chai Weekly")
+    body_ = body_.replace("{{ MessageURL }}", esc(utm(web)))
+    # A one-off welcome has no campaign, so listmonk offers no unsubscribe link here; say how instead.
+    body_ = re.sub(r'<a href="\{\{ UnsubscribeURL \}\}"[^>]*>Unsubscribe</a>',
+                   "To stop, reply to this email or use Unsubscribe in any weekly edition", body_)
+    return body_.replace("{{ TrackView }}", "")
+
+
+def sync_welcome():
+    """Put this issue into the transactional template that tools/welcome.py sends to new subscribers."""
+    tpl = {"name": WELCOME_NAME, "type": "tx", "subject": f"Welcome to Chai Weekly: No. {issue}, {title}", "body": welcome_body()}
+    try:
+        found = [t for t in (api("GET", "/api/templates") or []) if t.get("name") == WELCOME_NAME]
+        if found:
+            api("PUT", f"/api/templates/{found[0]['id']}", tpl)
+        else:
+            found = [api("POST", "/api/templates", tpl)]
+        print(f"Welcome email now carries issue No. {issue} (template {found[0]['id']}).")
+    except urllib.error.HTTPError as e:
+        print(f"::warning::Could not update the welcome email (listmonk said {e.code}: {e.read()[:300]!r}). "
+              "If it says 403: listmonk > Users > User roles > Drafts > tick templates (get and manage).")
+
+
 cid = os.environ.get("LISTMONK_CAMPAIGN_ID", "").strip()
 data = api("PUT", f"/api/campaigns/{int(cid)}", payload) if cid else api("POST", "/api/campaigns", payload)
 data = data or {}
-print(f"listmonk draft {'updated' if cid else 'created'}: {base}/admin/campaigns/{data.get('id', cid)} (status: {data.get('status')})")
+new_id = data.get("id", cid)
+print(f"listmonk campaign {'updated' if cid else 'created'}: {base}/admin/campaigns/{new_id} (status: {data.get('status')})")
+
+if os.environ.get("LISTMONK_WELCOME"):
+    sync_welcome()
+
+# Sending: only for a campaign made just now from a merge, and only when the workflow asks for it.
+# A person can still pause or cancel it in listmonk before the time comes.
+wait = os.environ.get("LISTMONK_AUTOSEND_MINUTES", "").strip()
+if wait and not cid and new_id:
+    import datetime
+    try:
+        if int(wait) <= 0:
+            api("PUT", f"/api/campaigns/{new_id}/status", {"status": "running"})
+            print("Sending now.")
+        else:
+            when = (datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(minutes=int(wait))).replace(microsecond=0)
+            api("PUT", f"/api/campaigns/{new_id}", dict(payload, send_at=when.isoformat().replace("+00:00", "Z")))
+            api("PUT", f"/api/campaigns/{new_id}/status", {"status": "scheduled"})
+            print(f"Scheduled to send at {when:%H:%M} UTC ({wait} minutes from now). To stop it: pause it in listmonk > Campaigns.")
+    except urllib.error.HTTPError as e:
+        print(f"::warning::Left as a draft: listmonk would not let the API user send ({e.code}). Press Start in listmonk, "
+              "or tick campaigns (send) for the Drafts role in listmonk > Users > User roles.")

@@ -5,10 +5,12 @@ permalink: /subscribe/thanks/
 rail: false
 sitemap: false
 ---
+{%- assign latest = site.posts | where_exp: "p", "p.preview != true" | first -%}
 <article class="analysis">
   <p class="kicker">Subscribe</p>
   <h1 class="headline">Almost done. Please check your email.</h1>
-  <p class="deck">We've sent you one email from Chai Weekly. Click the button in it to confirm, and the next issue will reach you on Wednesday.</p>
+  <p class="deck">We've sent you one email from Chai Weekly. Click the button in it to confirm. Soon after, we'll email you the latest edition, and the next one reaches you on Wednesday.</p>
   <p>Can't see it after a few minutes? Look in your spam or promotions folder, and mark it "not spam" so the weekly issue reaches your inbox.</p>
+  {% if latest %}<p><strong>Read this week's edition now:</strong> <a href="{{ latest.url | relative_url }}">{{ latest.title }} →</a></p>{% endif %}
   <p class="byline"><a href="{{ '/' | relative_url }}">Back to the front page →</a></p>
 </article>
