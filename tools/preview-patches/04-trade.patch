@@ -219,7 +219,7 @@ index f2b8973..944bee3 100644
    });
  })();
 diff --git a/production.html b/production.html
-index 0894cc1..8f71860 100644
+index 0894cc1..999fbea 100644
 --- a/production.html
 +++ b/production.html
 @@ -7,7 +7,7 @@ permalink: /production/
@@ -270,7 +270,7 @@ index 0894cc1..8f71860 100644
 +    <p><strong>Imports</strong> are tea bought in for drinking: for countries that grow no tea, imports less what they sell on; for tea-growing countries, all imports.</p>
 +    <p><strong>Tea drunk</strong> is worked out as production plus imports less exports for tea-growing countries, and imports for the rest. It moves with stocks, so a single year can jump. It is left blank where it comes out below zero, as it does for Kenya in most recent years because its exports include other countries' tea.</p>
 +    <p><strong>Trade, 1961 to 2015:</strong> national trade figures as reported to the United Nations. <strong>2016 on:</strong> tea industry statistics, with United Nations figures for countries they show only in groups.</p>
-+    <p class="fine muted">Production and trade 1961 to 2015, and area: FAO, FAOSTAT, CC BY 4.0. Figures are as published by each source. Spot an error? Just reply to any issue.</p>
++    <p class="fine muted">Production and trade 1961 to 2015, and area: FAO, FAOSTAT, CC BY 4.0. 2016 on: International Tea Committee, with national tea boards for Kenya, India and Sri Lanka. Figures are as published by each source. Spot an error? Just reply to any issue.</p>
    </section>
    <noscript><p>The charts and tables on this page need JavaScript.</p></noscript>
  </article>
@@ -370,7 +370,7 @@ index 0894cc1..8f71860 100644
  })();
  </script>
 diff --git a/tea-map.html b/tea-map.html
-index 18ef07d..1af27a2 100644
+index 18ef07d..5cf1ac8 100644
 --- a/tea-map.html
 +++ b/tea-map.html
 @@ -7,7 +7,7 @@ permalink: /tea-map/
@@ -405,7 +405,7 @@ index 18ef07d..1af27a2 100644
 +    <p><strong>Exported</strong> is tea sent abroad by the countries that grow it; tea bought in and sold on is not counted again. <strong>Imported</strong> is tea bought in for drinking. <strong>Drunk</strong> is production plus imports less exports for tea-growing countries, and imports for the rest; it is left blank where it comes out below zero (Kenya, whose exports include neighbours' tea). The <a href="{{ '/production/' | relative_url }}">Production</a> page has every country's figures year by year.</p>
      <p><strong>Auction prices</strong> are each year's average for all teas sold at the auction, weighted by the kilos sold. Every sale is on the <a href="{{ '/auctions/' | relative_url }}">Auctions</a> page.</p>
 -    <p class="fine muted">Production 1961 to 2015: FAO, FAOSTAT, CC BY 4.0; later years from tea industry statistics and national tea boards. Map outlines: Natural Earth. Borders are shown as drawn there and imply no view on any boundary.</p>
-+    <p class="fine muted">Production and trade 1961 to 2015: FAO, FAOSTAT, CC BY 4.0; later years from tea industry statistics and national tea boards. Map outlines: Natural Earth. Borders are shown as drawn there and imply no view on any boundary.</p>
++    <p class="fine muted">Production and trade 1961 to 2015: FAO, FAOSTAT, CC BY 4.0; 2016 on: International Tea Committee and national tea boards. Map outlines: Natural Earth. Borders are shown as drawn there and imply no view on any boundary.</p>
    </section>
    <noscript><p>The map and charts on this page need JavaScript.</p></noscript>
  </article>
