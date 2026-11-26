@@ -212,8 +212,12 @@ class Listmonk(unittest.TestCase):
         self.assertIn("Chai Weekly</a>", body)            # nameplate
         self.assertIn("In this edition", body)            # contents box
         self.assertIn("Mombasa (Sale 47)", body)          # ticker
-        self.assertRegex(body, r'<table style="width:100%;[^"]*border-collapse')  # styled auction table
-        self.assertRegex(body, r'<h2 style="[^"]*text-transform:uppercase')
+        # Short email: the stories stay on the web, the email links to them.
+        self.assertIn("Read the full edition", body)
+        self.assertNotIn("border-collapse", body)
+        self.assertNotIn("<h2", body)
+        self.assertIn("Markets: Best price", sent["altbody"])
+        self.assertIn("Read the full edition: https://example.org/chai-weekly/issues/2026/11/18/issue-003/", sent["altbody"])
         self.assertNotIn("{{", body + sent["altbody"])
         self.assertNotIn("{%", body + sent["altbody"])
         self.assertIn("/admin/campaigns/7", stdout)
