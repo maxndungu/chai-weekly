@@ -238,6 +238,95 @@ class Listmonk(unittest.TestCase):
         self.assertEqual((calls[-1]["method"], calls[-1]["url"]), ("PUT", "https://list.example.org/api/campaigns/2"))
         self.assertIn("updated", stdout)
 
+    def test_merge_schedules_the_send(self):
+        calls, stdout = self.run_tool({"LISTMONK_AUTOSEND_MINUTES": "15"})
+        sched = [c for c in calls if "/api/campaigns/7" in c["url"]]
+        self.assertEqual([(c["method"], c["url"].rsplit("/api", 1)[1]) for c in sched],
+                         [("PUT", "/campaigns/7"), ("PUT", "/campaigns/7/status")])
+        self.assertRegex(sched[0]["payload"]["send_at"], r"^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ$")
+        self.assertEqual(sched[1]["payload"], {"status": "scheduled"})
+        self.assertIn("Scheduled to send", stdout)
+
+    def test_redo_by_hand_never_sends(self):
+        calls, _ = self.run_tool({"LISTMONK_CAMPAIGN_ID": "2", "LISTMONK_AUTOSEND_MINUTES": "15"})
+        self.assertFalse([c for c in calls if c["url"].endswith("/status")])
+        calls, _ = self.run_tool({"LISTMONK_AUTOSEND_MINUTES": ""})
+        self.assertFalse([c for c in calls if c["url"].endswith("/status")])
+
+    def test_welcome_email_carries_the_issue(self):
+        calls, stdout = self.run_tool({"LISTMONK_WELCOME": "1"})
+        tx = [c for c in calls if "/api/templates" in c["url"] and c["payload"] and c["payload"].get("type") == "tx"]
+        self.assertEqual(len(tx), 1)
+        body = tx[0]["payload"]["body"]
+        self.assertEqual(tx[0]["payload"]["name"], "Chai Weekly welcome")
+        self.assertIn("Welcome to Chai Weekly.", body)
+        self.assertIn("In this edition", body)
+        self.assertNotIn("UnsubscribeURL", body)   # listmonk refuses it in one-off emails
+        self.assertNotIn('template "content"', body)
+        self.assertIn("Welcome email now carries issue No. 3", stdout)
+
+
+class Welcome(unittest.TestCase):
+    """New readers get the latest issue once; they are marked before the send so a failure never sends twice."""
+
+    def run_welcome(self, people, tx_status=200, extra_env=None):
+        tmp = pathlib.Path(tempfile.mkdtemp())
+        out = tmp / "calls.json"
+        (tmp / "sitecustomize.py").write_text(textwrap.dedent(f"""\
+            import io, json, urllib.request, urllib.error
+            calls = []
+            def fake(req, timeout=None):
+                calls.append({{"method": req.get_method(), "url": req.full_url, "payload": json.loads(req.data) if req.data else None}})
+                open({str(out)!r}, "w").write(json.dumps(calls))
+                if "/api/templates" in req.full_url:
+                    return io.BytesIO(b'{{"data": [{{"id": 5, "name": "Chai Weekly welcome", "type": "tx"}}]}}')
+                if "/api/subscribers?" in req.full_url:
+                    return io.BytesIO(json.dumps({{"data": {{"results": {people!r}}}}}).encode())
+                if "/api/tx" in req.full_url and {tx_status} != 200:
+                    raise urllib.error.HTTPError(req.full_url, {tx_status}, "no", {{}}, io.BytesIO(b"denied"))
+                return io.BytesIO(b'{{"data": true}}')
+            urllib.request.urlopen = fake
+            """))
+        env = {**os.environ, "PYTHONPATH": str(tmp), "LISTMONK_URL": "https://list.example.org", "LISTMONK_LIST_ID": "3",
+               "LISTMONK_API_USER": "drafts", "LISTMONK_API_TOKEN": "fake", "WELCOME_SINCE": "2026-11-26", **(extra_env or {})}
+        r = subprocess.run([sys.executable, str(TOOLS / "welcome.py")], cwd=ROOT, env=env, check=True, capture_output=True, text=True)
+        return (json.loads(out.read_text()) if out.exists() else []), r.stdout
+
+    @staticmethod
+    def person(i, joined="2026-11-27T08:00:00Z", **kw):
+        return {"id": i, "email": f"r{i}@example.org", "name": f"R{i}", "status": "enabled", "attribs": {"city": "Kericho"},
+                "created_at": joined, "lists": [{"id": 3, "subscription_status": "confirmed", "created_at": joined}], **kw}
+
+    def test_new_reader_is_marked_then_sent(self):
+        calls, stdout = self.run_welcome([self.person(1)])
+        writes = [(c["method"], c["url"].split("/api")[1]) for c in calls if c["method"] != "GET"]
+        self.assertEqual(writes, [("PUT", "/subscribers/1"), ("POST", "/tx")])
+        mark = calls[[c["method"] for c in calls].index("PUT")]["payload"]
+        self.assertEqual(mark["attribs"]["city"], "Kericho")          # keeps what was there
+        self.assertIn("chai_welcomed", mark["attribs"])
+        self.assertEqual((mark["lists"], mark["preserve_subscription_status"]), ([3], True))
+        tx = [c for c in calls if c["url"].endswith("/api/tx")][0]["payload"]
+        self.assertEqual((tx["subscriber_id"], tx["template_id"]), (1, 5))
+        self.assertIn("sent to 1", stdout)
+
+    def test_old_welcomed_and_disabled_readers_are_skipped(self):
+        people = [self.person(1, joined="2026-11-20T08:00:00Z"),
+                  self.person(2, attribs={"chai_welcomed": "2026-11-27"}),
+                  self.person(3, status="blocklisted")]
+        calls, _ = self.run_welcome(people)
+        self.assertFalse([c for c in calls if c["method"] != "GET"])
+
+    def test_failed_send_is_unmarked_for_next_run(self):
+        calls, _ = self.run_welcome([self.person(1), self.person(2)], tx_status=403)
+        writes = [(c["method"], c["url"].split("/api")[1]) for c in calls if c["method"] != "GET"]
+        self.assertEqual(writes, [("PUT", "/subscribers/1"), ("POST", "/tx"), ("PUT", "/subscribers/1")])
+        self.assertNotIn("chai_welcomed", calls[-1]["payload"]["attribs"])
+
+    def test_off_when_no_start_date(self):
+        calls, stdout = self.run_welcome([self.person(1)], extra_env={"WELCOME_SINCE": ""})
+        self.assertEqual(calls, [])
+        self.assertIn("off", stdout)
+
 
 if __name__ == "__main__":
     unittest.main()

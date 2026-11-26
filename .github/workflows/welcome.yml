@@ -1,0 +1,24 @@
+# Sends each new subscriber the latest issue once, so they don't wait until next Wednesday.
+# Runs every 20 minutes (GitHub may run it later than that). Script: tools/welcome.py.
+# Uses the same listmonk API secrets as the Email draft workflow. Turn it off by emptying welcome_since in _config.yml.
+name: Welcome new subscribers
+on:
+  schedule:
+    - cron: "7,27,47 * * * *"
+  workflow_dispatch:
+concurrency: { group: welcome, cancel-in-progress: false }
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    env:
+      LISTMONK_API_USER: ${{ secrets.LISTMONK_API_USER }}
+      LISTMONK_API_TOKEN: ${{ secrets.LISTMONK_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Send the welcome email to new readers
+        if: env.LISTMONK_API_TOKEN != ''
+        run: |
+          cfg() { python3 -c "import re,sys;c=open('_config.yml').read();m=re.search(r'^'+sys.argv[1]+r':\s*\"?([^\"\n#]*)',c,re.M);print(m[1].strip() if m else '')" "$1"; }
+          export LISTMONK_URL=$(cfg listmonk_url) LISTMONK_LIST_ID=$(cfg listmonk_list_id) WELCOME_SINCE=$(cfg welcome_since)
+          [ -n "$LISTMONK_URL" ] && [ -n "$LISTMONK_LIST_ID" ] || { echo "listmonk is not set up in _config.yml"; exit 0; }
+          python3 tools/welcome.py
