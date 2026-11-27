@@ -31,7 +31,7 @@ since = os.environ.get("WELCOME_SINCE", "").strip()
 most = int(os.environ.get("WELCOME_MAX") or 20)
 dry = bool(os.environ.get("WELCOME_DRY_RUN"))
 sender = os.environ.get("LISTMONK_FROM") or "Chai Weekly <newsletter@chaiweekly.co.ke>"
-auth = {"Authorization": f"token {os.environ['LISTMONK_API_USER']}:{os.environ['LISTMONK_API_TOKEN']}",
+auth = {"Authorization": f"token {os.environ['LISTMONK_API_USER'].strip()}:{os.environ['LISTMONK_API_TOKEN'].strip()}",
         "Content-Type": "application/json"}
 
 if not since:
@@ -48,7 +48,11 @@ def api(method, path, payload=None):
 try:
     tpl = [t for t in (api("GET", "/api/templates") or []) if t.get("name") == WELCOME_NAME and t.get("type") == "tx"]
 except urllib.error.HTTPError as e:
-    print(f"::warning::listmonk refused to list templates ({e.code}). Tick templates (get) for the Drafts role."); sys.exit(0)
+    said = e.read()[:200].decode("utf-8", "replace")
+    if "invalid API credentials" in said:
+        print("::warning::listmonk did not accept the API user and token. Check LISTMONK_API_USER (drafts) and that "
+              "LISTMONK_API_TOKEN is the current token from listmonk > Users > drafts."); sys.exit(0)
+    print(f"::warning::listmonk refused to list templates ({e.code}: {said}). Tick templates (get) for the Drafts role."); sys.exit(0)
 if not tpl:
     print("No welcome email yet: it is made when the next issue is merged (or run Email draft by hand)."); sys.exit(0)
 tpl_id = tpl[0]["id"]
