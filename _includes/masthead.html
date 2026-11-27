@@ -20,18 +20,35 @@ window.chaiUpdated = function () {
   </div>
   <a class="nameplate" href="{{ '/' | relative_url }}">{{ site.title }}</a>
   <p class="motto">{{ site.motto }}</p>
-  <nav class="sections">
-    {% for s in latest.stories %}<a href="{{ latest.url | relative_url }}#{{ s.anchor }}">{{ s.section }}</a>
-    {% endfor %}
-    <a href="{{ '/auctions/' | relative_url }}">Auctions</a>
-    <a href="{{ '/production/' | relative_url }}">Production</a>
-    <a href="{{ '/tea-map/' | relative_url }}">Tea map</a>
-    <a href="{{ '/events/' | relative_url }}">Events</a>
-    <a href="{{ '/weather/' | relative_url }}">Tea weather</a>
-    <a href="{{ '/archive/' | relative_url }}">Archive</a>
-    <a href="{{ '/submit/' | relative_url }}">Send a story</a>
-    <a href="{{ '/about/' | relative_url }}">About</a>
+  {%- comment -%}
+    Main menu, kept short: the week's edition, the auction figures, one "Tea data" menu for the other data pages,
+    then Events, Archive and About. "Send a story" lives in the footer and inside each issue.
+  {%- endcomment -%}
+  {%- assign u = page.url -%}
+  {%- assign data_on = false -%}{%- if u == "/production/" or u == "/tea-map/" or u == "/weather/" -%}{%- assign data_on = true -%}{%- endif -%}
+  <nav class="sections" aria-label="Main">
+    <a href="{{ latest.url | relative_url }}"{% if u == latest.url %} aria-current="page"{% endif %}>This week</a>
+    <a href="{{ '/auctions/' | relative_url }}"{% if u == "/auctions/" %} aria-current="page"{% endif %}>Auctions</a>
+    <details class="nav-more">
+      <summary{% if data_on %} aria-current="page"{% endif %}>Tea data</summary>
+      <div class="nav-menu">
+        <a href="{{ '/production/' | relative_url }}"{% if u == "/production/" %} aria-current="page"{% endif %}>Production<small>Who grows, sells and drinks tea, since 1961</small></a>
+        <a href="{{ '/tea-map/' | relative_url }}"{% if u == "/tea-map/" %} aria-current="page"{% endif %}>Tea map<small>The world's tea on a map and globe</small></a>
+        <a href="{{ '/weather/' | relative_url }}"{% if u == "/weather/" %} aria-current="page"{% endif %}>Tea weather<small>Rain and sun in the growing areas</small></a>
+      </div>
+    </details>
+    <a href="{{ '/events/' | relative_url }}"{% if u == "/events/" %} aria-current="page"{% endif %}>Events</a>
+    <a href="{{ '/archive/' | relative_url }}"{% if u == "/archive/" %} aria-current="page"{% endif %}>Archive</a>
+    <a href="{{ '/about/' | relative_url }}"{% if u == "/about/" %} aria-current="page"{% endif %}>About</a>
   </nav>
+  <script>
+  // Close the "Tea data" menu when a reader taps elsewhere or presses Escape.
+  (function () {
+    var d = document.querySelector(".nav-more"); if (!d) return;
+    document.addEventListener("click", function (e) { if (d.open && !d.contains(e.target)) d.open = false; });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") d.open = false; });
+  })();
+  </script>
   {%- comment -%}
     Mombasa figures come from _data/mombasa_eatta_sales.csv, so the ticker moves with the Auctions page (the auction
     data updates Tuesday 16:00 and Friday 14:00 Nairobi). The other markets come from the latest issue's snapshot.
