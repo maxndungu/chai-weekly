@@ -1,0 +1,117 @@
+<!doctype html><html><head><meta charset="utf-8">
+<!-- The weekly clip. render.js opens it with data.js (from data.py) beside it and films render(t) frame by frame. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Libre+Franklin:wght@400;600;800&display=swap">
+<style>
+:root{--paper:#fbfaf6;--ink:#121212;--ink-2:#3d3b37;--muted:#6e6a62;--rule:#1d1d1d;--hair:#d9d5cc;--accent:#1f5d34;--box:#f2efe6;
+ --display:"Playfair Display",Georgia,serif;--serif:"Source Serif 4",Georgia,serif;--sans:"Libre Franklin",system-ui,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;overflow:hidden;background:var(--paper);color:var(--ink)}
+#st{position:fixed;left:0;top:0;width:100vw;height:100vh;display:flex;flex-direction:column;overflow:hidden;background:var(--paper)}
+.strip{display:flex;justify-content:space-between;font:600 9.5px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);padding:10px 0 8px;border-bottom:1px solid var(--hair);margin:0 18px}
+.name{font:900 40px/1 var(--display);text-align:center;margin:8px 0 3px;letter-spacing:-.01em}
+.motto{font:italic 11.5px var(--serif);text-align:center;color:var(--ink-2);margin:0 0 7px}
+.rule{border-top:3px double var(--rule);margin:0 18px}
+.area{position:relative;flex:1 1 auto;min-height:0;margin:0 26px}
+.sc{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;opacity:0}
+.k{font:800 11px/1.3 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
+.h{font:700 34px/1.1 var(--display);margin:0 0 10px;letter-spacing:-.005em}
+.p{font:400 16px/1.45 var(--serif);color:var(--ink-2);margin:0}
+.big{display:flex;align-items:flex-end;gap:16px;margin:12px 0 4px}
+.big b{font:900 76px/0.9 var(--display);color:var(--accent);font-variant-numeric:lining-nums}
+.big span{font:600 14px/1.35 var(--sans);color:var(--ink-2);padding-bottom:6px}
+.big span em{font-style:normal;color:var(--accent);font-weight:800}
+svg{width:100%;height:80px;margin-top:8px;overflow:visible}
+svg .ln{fill:none;stroke:var(--accent);stroke-width:2.4;stroke-linejoin:round}
+svg .bl{stroke:var(--hair);stroke-width:1}
+svg text{font:600 10px var(--sans);fill:var(--muted)}
+.tiles{border-top:2px solid var(--rule);margin-top:6px}
+.tiles div{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--hair);padding:11px 0;opacity:0}
+.tiles small{font:800 10.5px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.tiles b{font:700 26px/1 var(--display)} .tiles i{display:block;font:600 12px/1.3 var(--sans);font-style:normal;color:var(--accent);text-align:right;margin-top:4px}
+.list{list-style:none;margin:10px 0 0;padding:0;border-top:2px solid var(--rule)}
+.list li{border-bottom:1px solid var(--hair);padding:5px 0;opacity:0}
+.list li small{display:block;font:800 9.5px/1.3 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.list li span{font:700 15px/1.25 var(--display)}
+.box{background:var(--box);border-top:2px solid var(--rule);padding:16px 18px;margin-top:16px}
+.box .bk{font:800 11px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;margin:0 0 8px}
+.box p{font:400 14.5px/1.4 var(--serif);margin:0 0 12px;color:var(--ink-2)}
+.row{display:flex}
+.in{flex:1;border:1px solid #9c978c;background:#fff;font:400 14px var(--sans);color:#8a857b;padding:10px 12px}
+.go{background:var(--ink);color:#fff;font:800 12px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:12px 14px;display:flex;align-items:center}
+.caret{display:inline-block;width:1.5px;height:1em;background:#555;vertical-align:-2px;margin-left:1px}
+.foot{background:var(--accent);color:#fff;display:flex;justify-content:space-between;align-items:center;padding:12px 18px;font:600 14px/1.2 var(--sans)}
+.foot b{font:700 18px/1 var(--display)}
+.foot .btn{background:#fff;color:var(--accent);padding:7px 12px;font:800 11.5px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase}
+.end{position:absolute;inset:0;background:var(--paper);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;opacity:0;padding:0 36px}
+.end .rule{align-self:stretch;margin:0}
+.end .n{font:900 64px/1 var(--display);margin:18px 0 8px;white-space:nowrap;letter-spacing:-.01em}
+.end .m{font:italic 17px/1.4 var(--serif);color:var(--ink-2);margin:0 0 18px}
+.end .l{font:600 15px/1.5 var(--sans);color:var(--ink-2);margin:18px 0}
+.end .l b{color:var(--accent)}
+.end .cta{background:var(--accent);color:#fff;padding:14px 22px;font:800 15px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase}
+.end .u{font:700 26px/1 var(--display);margin-top:16px}
+/* story (tall) layout */
+.tall .strip{font-size:11px;padding:16px 0 12px;margin:0 26px}.tall .name{font-size:64px;margin:18px 0 6px}.tall .motto{font-size:15px;margin-bottom:12px}.tall .rule{margin:0 26px}
+.tall .area{margin:0 34px}.tall .k{font-size:14px;margin-bottom:14px}.tall .h{font-size:48px;margin-bottom:16px}.tall .p{font-size:21px}
+.tall .big b{font-size:116px}.tall .big span{font-size:18px}.tall svg{height:150px;margin-top:20px}.tall svg text{font-size:12px}
+.tall .tiles div{padding:22px 0}.tall .tiles small{font-size:13px}.tall .tiles b{font-size:40px}.tall .tiles i{font-size:15px}
+.tall .list li{padding:13px 0}.tall .list li small{font-size:12px}.tall .list li span{font-size:22px}
+.tall .box{padding:24px;margin-top:26px}.tall .box .bk{font-size:13px}.tall .box p{font-size:18px}.tall .in{font-size:17px;padding:14px}.tall .go{font-size:15px;padding:14px 18px}
+.tall .foot{padding:22px 26px;font-size:17px}.tall .foot b{font-size:24px}.tall .foot .btn{font-size:14px;padding:10px 16px}
+.tall .end .n{font-size:84px}.tall .end .m{font-size:21px}.tall .end .l{font-size:19px}.tall .end .cta{font-size:18px;padding:18px 28px}.tall .end .u{font-size:32px}
+</style></head><body>
+<div id="st">
+ <div class="strip"><span id="no"></span><span>chaiweekly.co.ke</span></div>
+ <div class="name">Chai Weekly</div><p class="motto">Tea news from East Africa and the world, every week</p><div class="rule"></div>
+ <div class="area">
+  <div class="sc" id="s0"><p class="k" id="k0"></p><h1 class="h" id="hl"></h1></div>
+  <div class="sc" id="s1"><p class="k">At the Mombasa auction</p><h1 class="h" id="ml"></h1>
+   <div class="big"><b id="mv"></b><span id="mn"></span></div><svg id="sp"></svg></div>
+  <div class="sc" id="s2"><p class="k">The week in numbers</p><div class="tiles" id="tl"></div></div>
+  <div class="sc" id="s3"><p class="k">In this edition</p><ul class="list" id="ls"></ul></div>
+  <div class="sc" id="s4"><p class="k">Free, every Wednesday</p><h1 class="h">Get the full edition in your inbox</h1>
+   <div class="box"><p class="bk">Subscribe, free</p><p>The week in tea, every Wednesday.</p><div class="row"><div class="in" id="em">Your email</div><div class="go" id="go">Subscribe</div></div></div></div>
+ </div>
+ <div class="foot"><b>Chai Weekly</b><span>chaiweekly.co.ke</span><span class="btn">Subscribe free</span></div>
+ <div class="end" id="end"><div class="rule"></div><div class="n">Chai Weekly</div><p class="m">Chai Weekly is a free newsletter about tea</p><div class="rule"></div>
+  <p class="l" id="el"></p><span class="cta">Subscribe free</span><div class="u">chaiweekly.co.ke</div></div>
+</div>
+<script src="d3.min.js"></script><script src="data.js"></script>
+<script>
+const D=window.DATA,$=id=>document.getElementById(id),cl=x=>Math.max(0,Math.min(1,x)),fade=(t,a,b)=>cl((t-a)/(b-a)),ease=d3.easeCubicInOut,esc=s=>String(s??'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const tall=location.hash==='#tall'; if(tall)$('st').classList.add('tall');
+const snap=D.snapshot||[], m=snap[0]||{}, rest=snap.slice(1,4), st=D.stories||[];
+const hasM=!!m.value, hasT=rest.length>0;
+// Scene windows; scenes with nothing to show are skipped, so the clip stays tight.
+const plan=[['s0',6.5],hasM&&['s1',7.5],hasT&&['s2',5.5],['s3',2.5+st.length*1.1],['s4',5]].filter(Boolean);
+let t0=0; const W=plan.map(([id,len])=>{const w=[id,t0,t0+len];t0+=len;return w;}); const END=t0; window.TOTAL=END+4.5;
+$('no').textContent=`No. ${D.issue} · ${D.date}`;
+$('k0').textContent=`This week in tea · ${D.date}`; $('hl').textContent=D.title;
+$('ml').textContent=m.label||''; $('mv').textContent=(m.value||'').replace('/kg','');
+$('mn').innerHTML=`${/kg/.test(m.value||'')?'a kilo<br>':''}<em>${esc(m.note||'')}</em>`;
+$('tl').innerHTML=rest.map(s=>`<div><small>${esc(s.label)}</small><span><b>${esc(s.value)}</b><i>${esc(s.note||'')}</i></span></div>`).join('');
+$('ls').innerHTML=st.map(s=>`<li><small>${esc(s.section)}</small><span>${esc(s.headline)}</span></li>`).join('');
+$('el').innerHTML=`This week: ${esc(D.title)}.<br><b>Read it free at chaiweekly.co.ke</b>`;
+// Long headlines get a smaller size so they always fit.
+function fit(el,max){let f=max;el.style.fontSize=f+'px';while(el.scrollHeight>el.parentElement.clientHeight*0.8&&f>18){f-=1;el.style.fontSize=f+'px';}}
+document.fonts.ready.then(()=>{fit($('hl'),tall?64:42);window.ready=true;});
+function render(t){
+ W.forEach(([id,a,b],i)=>{const o=(i===0?1:fade(t,a,a+0.4))*(1-fade(t,b-0.4,b));$(id).style.opacity=(t>=a&&t<=b)?o:0;
+  $(id).style.transform=`translateY(${i?(1-ease(fade(t,a,a+0.6)))*14:0}px)`;});
+ const w=W.find(x=>x[0]==='s1');
+ if(w&&D.sales.length>1){const svg=d3.select('#sp');svg.selectAll('*').remove();const sw=$('sp').clientWidth,sh=$('sp').clientHeight,pts=D.sales;
+  const X=d3.scaleLinear([pts[0][0],Math.max(pts[pts.length-1][0],2)],[0,sw]),ex=d3.extent(pts,p=>p[1]),pad=(ex[1]-ex[0])*0.15||0.05,Y=d3.scaleLinear([ex[0]-pad,ex[1]+pad],[sh-14,4]);
+  svg.append('line').attr('class','bl').attr('x1',0).attr('x2',sw).attr('y1',sh-14).attr('y2',sh-14);
+  svg.append('text').attr('x',0).attr('y',sh).text(`Sale ${pts[0][0]}, ${D.year}`);
+  svg.append('text').attr('x',sw).attr('y',sh).attr('text-anchor','end').text(`Sale ${pts[pts.length-1][0]}`);
+  const p=ease(fade(t,w[1]+1,w[1]+5)),n=Math.max(1,Math.round(p*(pts.length-1))),seg=pts.slice(0,n+1).map(([s,v])=>[X(s),Y(v)]);
+  svg.append('path').attr('class','ln').attr('d',d3.line()(seg));const e=seg[seg.length-1];
+  svg.append('circle').attr('cx',e[0]).attr('cy',e[1]).attr('r',4.5).attr('fill','var(--accent)').attr('stroke','#fff').attr('stroke-width',2);}
+ const w2=W.find(x=>x[0]==='s2'); if(w2)document.querySelectorAll('#tl>div').forEach((d,i)=>d.style.opacity=fade(t,w2[1]+0.6+i*0.9,w2[1]+1.1+i*0.9));
+ const w3=W.find(x=>x[0]==='s3'); document.querySelectorAll('#ls li').forEach((li,i)=>li.style.opacity=fade(t,w3[1]+0.6+i*1.0,w3[1]+1.1+i*1.0));
+ const w4=W.find(x=>x[0]==='s4'),em='you@example.com',k=Math.floor(cl((t-w4[1]-1)/1.8)*em.length);
+ $('em').innerHTML=t<w4[1]+1?'Your email':`<span style="color:var(--ink)">${em.slice(0,k)}</span><i class="caret"></i>`;
+ $('go').style.background=t>w4[1]+3.2?'var(--accent)':'';
+ $('end').style.opacity=fade(t,END-0.4,END+0.4);
+}
+</script></body></html>
