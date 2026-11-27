@@ -253,7 +253,7 @@ if os.environ.get("LISTMONK_DRY_RUN"):
     sys.exit(0)
 
 base = os.environ["LISTMONK_URL"].rstrip("/")
-auth = {"Authorization": f"token {os.environ['LISTMONK_API_USER']}:{os.environ['LISTMONK_API_TOKEN']}",
+auth = {"Authorization": f"token {os.environ['LISTMONK_API_USER'].strip()}:{os.environ['LISTMONK_API_TOKEN'].strip()}",
         "Content-Type": "application/json"}
 
 
