@@ -51,5 +51,10 @@ publishes the issue to the site; nothing goes live without that merge.
    - Body: a 3-line summary of the issue, then **Reviewer notes**: figures you could not
      confirm, contradictions between sources, and anything that needs Maxwell's judgement.
    - Assign and request review from `maxndungu`.
-8. Do not merge. Do not push to `main`. If something blocks the draft, open the pull request
+8. Make the week's social clip from the draft: `tools/weekly_clip/make.sh _posts/<today>-issue-<NNN>.md /mnt/project-files/chai-weekly-social/weekly/issue-<NNN> /mnt/project-files/chai-weekly-social/music`
+   (about 5 minutes; square and story MP4s, with the music tracks taking turns by issue number). Attach both files
+   in your reply to Maxwell with one line saying which track it uses. They show the draft's figures, so if Maxwell's
+   review changes the headline, snapshot or stories, make the clip again after his changes. If it fails, say so in
+   one line and carry on: the clip never holds up the issue.
+9. Do not merge. Do not push to `main`. If something blocks the draft, open the pull request
    anyway with what you have and explain the gap in the reviewer notes.
