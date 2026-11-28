@@ -1,0 +1,19 @@
+# Counts the mailing list's readers (numbers only) for the Wednesday draft's reviewer notes.
+# The draft session starts it by hand and reads the READERS line from the log. Script: tools/reader_stats.py.
+name: Reader numbers
+on:
+  workflow_dispatch:
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    env:
+      LISTMONK_API_USER: ${{ secrets.LISTMONK_API_USER }}
+      LISTMONK_API_TOKEN: ${{ secrets.LISTMONK_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Count readers
+        if: env.LISTMONK_API_TOKEN != ''
+        run: |
+          cfg() { python3 -c "import re,sys;c=open('_config.yml').read();m=re.search(r'^'+sys.argv[1]+r':\s*\"?([^\"\n#]*)',c,re.M);print(m[1].strip() if m else '')" "$1"; }
+          export LISTMONK_URL=$(cfg listmonk_url) LISTMONK_LIST_ID=$(cfg listmonk_list_id)
+          python3 tools/reader_stats.py
