@@ -462,3 +462,29 @@ a { color:inherit; }
 .dash-legend i.k-cons { border-top: 3px solid #79A68D; }
 .prod-trade-key { margin: 2px 0 0; font-size: 12px; }
 @media (max-width: 760px) { .tmap-controls .dash-field { flex: 1 1 100%; } }
+
+/* Detailed statistics behind a free sign-up (_includes/data-signup.html) */
+.data-gate { margin-top:8px; }
+.data-locked { background:var(--box); border-top:2px solid var(--rule); padding:18px; }
+.data-pitch { margin:0 0 14px; max-width:62ch; }
+.data-form { display:grid; grid-template-columns:minmax(0, 1fr); gap:12px; max-width:640px; }
+.data-form label { display:flex; flex-direction:column; gap:4px; font:600 13px/1.3 var(--sans); letter-spacing:.02em; }
+.data-form input, .data-form select { font:16px var(--sans); padding:9px 10px; border:1px solid var(--rule); background:#fff; border-radius:0; }
+.data-form .data-check { flex-direction:row; align-items:center; gap:8px; font-weight:400; }
+.data-form button { justify-self:start; }
+.data-form .fine { margin:0; }
+.data-msg { font:600 15px/1.4 var(--sans); color:var(--accent); }
+@media (min-width:700px) { .data-form { grid-template-columns:1fr 1fr; } .data-form .data-check, .data-form button, .data-form .fine { grid-column:1 / -1; } }
+.grades { margin:0; }
+.grade-table-wrap { overflow-x:auto; margin-top:18px; }
+.grade-table th[scope=row] { font:600 14px var(--sans); text-transform:none; letter-spacing:0; color:var(--ink); white-space:normal; min-width:150px; }
+.grade-table td small { display:block; font-size:11.5px; color:var(--muted); }
+.grade-table td small.up { color:var(--accent); } .grade-table td small.down { color:#b0402b; }
+.grade-table td.nil { color:var(--muted); }
+.grade-table tr.total th, .grade-table tr.total td { font-weight:700; }
+.grade-table tr.sub th { padding-left:14px; font-weight:400; }
+.grade-panel { margin-top:28px; position:relative; }
+.grade-panel figcaption { align-items:flex-end; }
+.grade-pick select { min-width:100px; }
+.dash-legend i.k-line, .dash-tip-row i.k-line { width:14px; margin-right:6px; border-top-width:2px; border-top-style:solid; }
+.dash-legend { flex-wrap:wrap; gap:6px 18px; }
