@@ -1,0 +1,326 @@
+---
+layout: null
+permalink: /add-photo/
+sitemap: false
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Add a photo · Chai Weekly</title>
+<link rel="icon" href="{{ '/favicon.ico' | relative_url }}">
+<style>
+  :root {
+    --green: #173E32; --green-2: #24584A; --cream: #F4F0E6; --white: #FFFDF8; --gold: #B98B4B;
+    --ink: #1D2A25; --muted: #5E6B65; --line: #D9D2C2;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--cream); color: var(--ink); font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  header.top { background: var(--green); color: var(--white); padding: 14px 16px; }
+  header.top a { color: var(--white); text-decoration: none; font: 700 20px/1.2 Georgia, serif; }
+  main { max-width: 1180px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font: 700 30px/1.15 Georgia, serif; margin: 0 0 6px; color: var(--green); }
+  h2 { font: 700 19px/1.25 Georgia, serif; margin: 0 0 10px; color: var(--green); }
+  p.lead { margin: 0 0 22px; color: var(--muted); max-width: 46em; }
+  .step { background: var(--white); border: 1px solid var(--line); border-radius: 6px; padding: 18px; margin-bottom: 18px; }
+  .num { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--green); color: var(--white); font: 700 14px/1 system-ui; margin-right: 8px; vertical-align: 2px; }
+  .drop { display: block; border: 2px dashed var(--gold); border-radius: 6px; padding: 28px 16px; text-align: center; cursor: pointer; background: #FBF8F1; }
+  .drop strong { color: var(--green); }
+  .drop.over { background: #F1E8D6; }
+  .drop input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+  .shapes { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+  .shapes label { border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; cursor: pointer; background: var(--white); font-size: 15px; }
+  .shapes input { position: absolute; opacity: 0; }
+  .shapes input:checked + span { font-weight: 700; color: var(--green); }
+  .shapes label:has(input:checked) { border-color: var(--green); box-shadow: inset 0 0 0 1px var(--green); }
+  .shapes label:has(input:focus-visible) { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .work { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 20px; align-items: start; }
+  @media (max-width: 880px) { .work { grid-template-columns: 1fr; } }
+  .stage-wrap { background: #2A2F2C; border-radius: 6px; padding: 10px; display: grid; place-items: center; }
+  .stage { position: relative; touch-action: none; user-select: none; -webkit-user-select: none; max-width: 100%; }
+  .stage img { display: block; max-width: 100%; max-height: 70vh; pointer-events: none; }
+  .frame { position: absolute; border: 2px solid var(--white); box-shadow: 0 0 0 9999px rgba(15, 20, 18, .62); cursor: grab; outline: none; }
+  .frame:focus-visible { border-color: var(--gold); }
+  .frame.dragging { cursor: grabbing; }
+  .frame::before, .frame::after { content: ""; position: absolute; inset: 0; pointer-events: none; }
+  .frame::before { border-left: 1px solid rgba(255,255,255,.35); border-right: 1px solid rgba(255,255,255,.35); left: 33.33%; right: 33.33%; }
+  .frame::after { border-top: 1px solid rgba(255,255,255,.35); border-bottom: 1px solid rgba(255,255,255,.35); top: 33.33%; bottom: 33.33%; }
+  .stage { overflow: hidden; }
+  .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 12px; }
+  .controls label { font-weight: 600; }
+  .controls input[type=range] { flex: 1 1 200px; accent-color: var(--green); }
+  .hint { color: var(--muted); font-size: 14px; margin: 8px 0 0; }
+  .warn { background: #FFF4E0; border-left: 4px solid var(--gold); padding: 10px 12px; font-size: 15px; margin-top: 12px; }
+  .previews { display: grid; gap: 14px; }
+  .pv h3 { font: 600 13px/1.3 system-ui; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 0 0 5px; }
+  .pv canvas { display: block; width: 100%; height: auto; background: var(--green); border-radius: 3px; }
+  .pv.small { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  form.details { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 18px; }
+  @media (max-width: 700px) { form.details { grid-template-columns: 1fr; } }
+  form.details .full { grid-column: 1 / -1; }
+  form.details label { display: block; font-weight: 600; margin-bottom: 4px; }
+  form.details .opt { font-weight: 400; color: var(--muted); }
+  form.details input[type=text] { width: 100%; padding: 9px 10px; border: 1px solid var(--line); border-radius: 4px; font: inherit; background: var(--white); }
+  .cats { display: flex; flex-wrap: wrap; gap: 6px 16px; }
+  .cats label { font-weight: 400; }
+  .buttons { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+  button { font: 600 15px/1 system-ui; padding: 12px 18px; border-radius: 4px; border: 1px solid var(--green); background: var(--green); color: var(--white); cursor: pointer; }
+  button.ghost { background: var(--white); color: var(--green); }
+  button:disabled { opacity: .45; cursor: not-allowed; }
+  pre { background: #22302A; color: #EDE7D8; padding: 14px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.5; white-space: pre-wrap; word-break: break-word; }
+  .muted { color: var(--muted); }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<header class="top"><a href="{{ '/' | relative_url }}">Chai Weekly</a></header>
+<main>
+  <h1>Add a photo</h1>
+  <p class="lead">Pick a photo, then drag the frame over the part you want readers to see. Portrait (tall) photos work too: the frame shows exactly what will appear across the top of the page. Nothing here is published; the photo stays on your device until you send it.</p>
+
+  <section class="step">
+    <h2><span class="num">1</span>Choose the photo</h2>
+    <label class="drop" id="drop">
+      <input type="file" id="file" accept="image/jpeg,image/png,image/webp,image/heic">
+      <strong>Tap to choose a photo</strong> or drop it here<br><span class="muted">JPG or PNG, the bigger the better</span>
+    </label>
+  </section>
+
+  <section class="step" id="crop-step" hidden>
+    <h2><span class="num">2</span>Choose the part that shows</h2>
+    <div class="shapes" role="radiogroup" aria-label="Where the photo goes">
+      <label><input type="radio" name="shape" value="2" checked><span>Top of an issue (wide)</span></label>
+      <label><input type="radio" name="shape" value="2.3333"><span>Front-page cover (extra wide)</span></label>
+      <label><input type="radio" name="shape" value="1.5"><span>Story card</span></label>
+    </div>
+    <div class="work">
+      <div>
+        <div class="stage-wrap">
+          <div class="stage" id="stage">
+            <img id="src" alt="The photo you chose">
+            <div class="frame" id="frame" tabindex="0" role="slider" aria-label="Part of the photo that shows. Use the arrow keys to move it." aria-valuetext=""></div>
+          </div>
+        </div>
+        <div class="controls">
+          <label for="zoom">Zoom</label>
+          <input type="range" id="zoom" min="1" max="4" step="0.01" value="1">
+          <button type="button" class="ghost" id="centre">Centre</button>
+        </div>
+        <p class="hint">Drag the frame (or use the arrow keys) to move it. Zoom in to show a smaller part of the photo.</p>
+        <div class="warn" id="soft" hidden></div>
+      </div>
+      <div class="previews" aria-label="How it will look">
+        <div class="pv"><h3>On a computer</h3><canvas id="pv-desk" width="680" height="340"></canvas></div>
+        <div class="pv"><h3>On a phone</h3><canvas id="pv-phone" width="680" height="453"></canvas></div>
+        <div class="pv small">
+          <div><h3>Story card</h3><canvas id="pv-card" width="330" height="220"></canvas></div>
+          <div><h3>Small card</h3><canvas id="pv-sq" width="220" height="220"></canvas></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" id="save-step" hidden>
+    <h2><span class="num">3</span>Describe it and save</h2>
+    <form class="details" id="details" onsubmit="return false">
+      <div><label for="f-id">Short name <span class="opt">(used for the file)</span></label><input type="text" id="f-id" placeholder="e.g. ngere-tea-factory"></div>
+      <div><label for="f-credit">Credit</label><input type="text" id="f-credit" value="Photo: Maxwell Mbugua"></div>
+      <div class="full"><label for="f-alt">What the photo shows <span class="opt">(read aloud to blind readers)</span></label><input type="text" id="f-alt" placeholder="e.g. The Ngere tea factory building seen from the road, with tea bushes in front"></div>
+      <div class="full"><label for="f-caption">Caption <span class="opt">(where and when, only if you know it)</span></label><input type="text" id="f-caption" placeholder="e.g. Ngere tea factory, Murang'a, November 2026."></div>
+      <div class="full"><label>Sections it suits <span class="opt">(optional)</span></label>
+        <div class="cats">
+          <label><input type="checkbox" value="markets"> Markets</label>
+          <label><input type="checkbox" value="industry"> Industry</label>
+          <label><input type="checkbox" value="origins"> Origins</label>
+          <label><input type="checkbox" value="people"> People</label>
+          <label><input type="checkbox" value="culture"> Culture</label>
+        </div>
+      </div>
+    </form>
+    <div class="buttons" style="margin-top:16px">
+      <button type="button" id="save">Save the cropped photo</button>
+      <button type="button" class="ghost" id="copy">Copy the photo details</button>
+    </div>
+    <p class="hint" id="saved-note">This saves two files: the cropped photo and a smaller copy for phones.</p>
+    <pre id="yml" aria-label="Photo details for the photo library"></pre>
+    <p class="hint">To put it on the site, send the two files and these details to the editor, or upload the files to <code>assets/photos/</code> and add the details to <code>_data/photos.yml</code>. Then put <code>image: <span class="js-id">photo-name</span></code> at the top of the issue.</p>
+  </section>
+</main>
+
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var img = $("src"), stage = $("stage"), frame = $("frame"), zoom = $("zoom");
+  var W = 0, H = 0;          // photo size in pixels
+  var R = 2;                 // shape: width / height
+  var cw = 0, ch = 0, cx = 0, cy = 0; // crop box in photo pixels
+  var fileName = "photo";
+
+  function slug(s) {
+    return (s || "").toLowerCase().normalize("NFKD").replace(/[̀-ͯ]/g, "")
+      .replace(/\.[a-z0-9]+$/, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60) || "photo";
+  }
+
+  function load(file) {
+    if (!file || !/^image\//.test(file.type)) return;
+    fileName = slug(file.name);
+    if (!$("f-id").value) $("f-id").value = fileName;
+    var url = URL.createObjectURL(file);
+    img.onload = function () {
+      W = img.naturalWidth; H = img.naturalHeight;
+      $("crop-step").hidden = false; $("save-step").hidden = false;
+      zoom.value = 1; setShape(); centre();
+      $("crop-step").scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+    img.onerror = function () { alert("That file could not be opened as a photo. Try a JPG or PNG."); };
+    img.src = url;
+  }
+
+  function maxBox() { // the largest box of shape R that fits in the photo
+    return (W / H > R) ? { w: H * R, h: H } : { w: W, h: W / R };
+  }
+  function setShape() {
+    var midX = cx + cw / 2, midY = cy + ch / 2;
+    var m = maxBox(), z = +zoom.value;
+    cw = m.w / z; ch = m.h / z;
+    if (midX || midY) { cx = midX - cw / 2; cy = midY - ch / 2; }
+    clamp(); draw();
+  }
+  function centre() { cx = (W - cw) / 2; cy = (H - ch) / 2; draw(); }
+  function clamp() {
+    cx = Math.max(0, Math.min(W - cw, cx));
+    cy = Math.max(0, Math.min(H - ch, cy));
+  }
+  function scale() { return img.clientWidth / W; }
+
+  function draw() {
+    if (!W) return;
+    var s = scale();
+    frame.style.left = cx * s + "px"; frame.style.top = cy * s + "px";
+    frame.style.width = cw * s + "px"; frame.style.height = ch * s + "px";
+    frame.setAttribute("aria-valuetext", Math.round((cx + cw / 2) / W * 100) + "% across, " + Math.round((cy + ch / 2) / H * 100) + "% down");
+    // Each preview shows the saved photo the way the page fills that space (centred, edges trimmed).
+    preview($("pv-desk"), R >= 2.2 ? 21 / 9 : 2);
+    preview($("pv-phone"), R >= 2.2 ? 4 / 3 : 3 / 2);
+    preview($("pv-card"), 3 / 2);
+    preview($("pv-sq"), 1);
+    var outW = Math.min(2000, Math.round(cw));
+    var soft = $("soft");
+    if (outW < 1200) {
+      soft.hidden = false;
+      soft.textContent = "This part of the photo is only " + outW + " pixels wide, so it may look a little soft across a big screen. Zoom out, or use a larger copy of the photo if you have one.";
+    } else soft.hidden = true;
+    yml();
+  }
+  function preview(cv, t) {
+    var ctx = cv.getContext("2d");
+    var w = cv.width, h = Math.round(w / t); if (cv.height !== h) cv.height = h;
+    var sw = cw, sh = ch, sx = cx, sy = cy;
+    if (t > R) { sh = cw / t; sy = cy + (ch - sh) / 2; } else { sw = ch * t; sx = cx + (cw - sw) / 2; }
+    ctx.imageSmoothingQuality = "high";
+    ctx.drawImage(img, sx, sy, sw, sh, 0, 0, w, h);
+  }
+
+  // Dragging the frame (mouse, finger or pen).
+  var drag = null;
+  stage.addEventListener("pointerdown", function (e) {
+    if (!W) return;
+    var s = scale(), r = img.getBoundingClientRect();
+    var px = (e.clientX - r.left) / s, py = (e.clientY - r.top) / s;
+    // A press outside the frame moves the frame there first.
+    if (px < cx || px > cx + cw || py < cy || py > cy + ch) { cx = px - cw / 2; cy = py - ch / 2; clamp(); draw(); }
+    drag = { x: e.clientX, y: e.clientY, cx: cx, cy: cy };
+    frame.classList.add("dragging"); stage.setPointerCapture(e.pointerId); frame.focus({ preventScroll: true });
+    e.preventDefault();
+  });
+  stage.addEventListener("pointermove", function (e) {
+    if (!drag) return;
+    var s = scale();
+    cx = drag.cx + (e.clientX - drag.x) / s; cy = drag.cy + (e.clientY - drag.y) / s;
+    clamp(); draw();
+  });
+  function stop() { drag = null; frame.classList.remove("dragging"); }
+  stage.addEventListener("pointerup", stop);
+  stage.addEventListener("pointercancel", stop);
+  stage.addEventListener("wheel", function (e) {
+    if (!W) return; e.preventDefault();
+    zoom.value = Math.max(1, Math.min(4, +zoom.value * (e.deltaY < 0 ? 1.08 : 1 / 1.08))); setShape();
+  }, { passive: false });
+  frame.addEventListener("keydown", function (e) {
+    var step = (e.shiftKey ? 0.1 : 0.02) * Math.max(W, H);
+    var k = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] }[e.key];
+    if (!k) return;
+    cx += k[0] * step; cy += k[1] * step; clamp(); draw(); e.preventDefault();
+  });
+  zoom.addEventListener("input", setShape);
+  $("centre").addEventListener("click", centre);
+  window.addEventListener("resize", draw);
+  document.querySelectorAll('input[name="shape"]').forEach(function (r) {
+    r.addEventListener("change", function () { R = +r.value; setShape(); });
+  });
+
+  // Choosing or dropping a file.
+  var drop = $("drop");
+  $("file").addEventListener("change", function (e) { load(e.target.files[0]); });
+  ["dragenter", "dragover"].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add("over"); }); });
+  ["dragleave", "drop"].forEach(function (ev) { drop.addEventListener(ev, function () { drop.classList.remove("over"); }); });
+  drop.addEventListener("drop", function (e) { e.preventDefault(); load(e.dataTransfer.files[0]); });
+
+  // The details for _data/photos.yml.
+  function q(s) { return '"' + String(s).replace(/\\/g, "\\\\").replace(/"/g, '\\"') + '"'; }
+  function id() { return slug($("f-id").value || fileName); }
+  function yml() {
+    var i = id(), cats = [].map.call(document.querySelectorAll(".cats input:checked"), function (c) { return c.value; });
+    var lines = [
+      "- id: " + i,
+      "  file: assets/photos/" + i + ".jpg",
+      "  small: assets/photos/" + i + "-800.jpg",
+      "  alt: " + q($("f-alt").value || "DESCRIBE WHAT THE PHOTO SHOWS"),
+    ];
+    if ($("f-caption").value) lines.push("  caption: " + q($("f-caption").value));
+    lines.push("  credit: " + q($("f-credit").value || "Image supplied to Chai Weekly"));
+    if (cats.length) lines.push("  categories: [" + cats.join(", ") + "]");
+    lines.push("  position: \"50% 50%\"");
+    lines.push("  # cropped with /add-photo/ from a " + W + " x " + H + " original: " +
+      Math.round(cw) + " x " + Math.round(ch) + " at " + Math.round(cx) + ", " + Math.round(cy));
+    $("yml").textContent = lines.join("\n");
+    document.querySelectorAll(".js-id").forEach(function (el) { el.textContent = i; });
+  }
+  $("details").addEventListener("input", yml);
+
+  function save(width, name, done) {
+    var c = document.createElement("canvas");
+    c.width = width; c.height = Math.round(width / R);
+    var ctx = c.getContext("2d"); ctx.imageSmoothingQuality = "high";
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, c.width, c.height);
+    ctx.drawImage(img, cx, cy, cw, ch, 0, 0, c.width, c.height);
+    c.toBlob(function (b) {
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(b); a.download = name;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
+      if (done) done(b);
+    }, "image/jpeg", 0.86);
+  }
+  $("save").addEventListener("click", function () {
+    var i = id(), w = Math.min(2000, Math.round(cw));
+    save(w, i + ".jpg", function (big) {
+      var note = "Saved " + i + ".jpg (" + w + " x " + Math.round(w / R) + " px, " + Math.round(big.size / 1024) + " KB)";
+      if (w > 800) setTimeout(function () {
+        save(800, i + "-800.jpg", function () { $("saved-note").textContent = note + " and " + i + "-800.jpg."; });
+      }, 400);
+      else $("saved-note").textContent = note + ".";
+    });
+  });
+  $("copy").addEventListener("click", function () {
+    var t = $("yml").textContent, btn = this;
+    (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () {
+      btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy the photo details"; }, 1600);
+    }, function () { var r = document.createRange(); r.selectNode($("yml")); getSelection().removeAllRanges(); getSelection().addRange(r); });
+  });
+})();
+</script>
+</body>
+</html>

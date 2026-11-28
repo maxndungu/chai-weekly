@@ -116,6 +116,15 @@ https://chaiweekly.co.ke/preview/. It is not linked from the live site, is hidde
 search engines and shows a "preview" bar. Rebuild it from the redesign's commit or branch with
 `tools/build_preview.sh <commit-or-branch>` (currently built from 2761d7d plus tools/preview-patches/). Delete `preview/` once the redesign goes live.
 
+## Adding a photo (crop step)
+
+https://chaiweekly.co.ke/add-photo/ (not linked from the site, hidden from search engines) crops a photo before
+it goes in the photo library. Choose the photo, pick where it goes (top of an issue 2:1, front-page cover 21:9 or
+story card 3:2), drag the frame over the part that should show and zoom if needed; previews show it on a computer,
+a phone and the story cards. "Save the cropped photo" downloads `<name>.jpg` (up to 2000 px wide) and
+`<name>-800.jpg`, and the page gives the matching `_data/photos.yml` entry. Portrait photos work: the frame picks
+the band that fills the wide space. Everything happens in the browser; nothing is uploaded.
+
 ## Test copy for new features
 
 `preview2/` is a built copy of the live site, served at https://chaiweekly.co.ke/preview2/, where new
