@@ -471,13 +471,13 @@ a { color:inherit; }
 .data-form label { display:flex; flex-direction:column; gap:4px; font:600 13px/1.3 var(--sans); letter-spacing:.02em; }
 .data-form input, .data-form select { font:16px var(--sans); padding:9px 10px; border:1px solid var(--rule); background:#fff; border-radius:0; }
 .data-form .data-check { flex-direction:row; align-items:center; gap:8px; font-weight:400; }
-.data-form button { justify-self:start; }
+.data-form button { justify-self:start; padding:12px 20px; border:0; border-radius:0; background:var(--ink); color:var(--paper); font:800 13px var(--sans); letter-spacing:.08em; text-transform:uppercase; cursor:pointer; }
 .data-form .fine { margin:0; }
 .data-msg { font:600 15px/1.4 var(--sans); color:var(--accent); }
 @media (min-width:700px) { .data-form { grid-template-columns:1fr 1fr; } .data-form .data-check, .data-form button, .data-form .fine { grid-column:1 / -1; } }
 .grades { margin:0; }
 .grade-table-wrap { overflow-x:auto; margin-top:18px; }
-.grade-table th[scope=row] { font:600 14px var(--sans); text-transform:none; letter-spacing:0; color:var(--ink); white-space:normal; min-width:150px; }
+.grade-table th[scope=row] { font:600 14px var(--sans); text-transform:none; letter-spacing:0; color:var(--ink); white-space:normal; min-width:150px; border-bottom:1px solid var(--hair); }
 .grade-table td small { display:block; font-size:11.5px; color:var(--muted); }
 .grade-table td small.up { color:var(--accent); } .grade-table td small.down { color:#b0402b; }
 .grade-table td.nil { color:var(--muted); }

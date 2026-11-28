@@ -217,7 +217,7 @@ index 0000000..7dc0a65
 +[{%- for r in rows -%}[{{ r.sale }},"{{ r.date }}","{{ r.origin }}","{{ r.grade }}",{{ r.sold_kg }},{% if r.avg_usc == "" or r.avg_usc == nil %}null{% else %}{{ r.avg_usc }}{% endif %},{{ r.offered_kg }}]{% unless forloop.last %},{% endunless %}{%- endfor -%}]
 diff --git a/assets/grades.js b/assets/grades.js
 new file mode 100644
-index 0000000..24a5248
+index 0000000..62123d7
 --- /dev/null
 +++ b/assets/grades.js
 @@ -0,0 +1,115 @@
@@ -227,8 +227,8 @@ index 0000000..24a5248
 +  var root = document.getElementById("grades");
 +  if (!root) return;
 +  var base = root.dataset.base, years = root.dataset.years.split(",").sort();
-+  var ORIGINS = [["KE", "Kenya, all"], ["KE-E", "Kenya, east of the Rift (small-scale)"], ["KE-W", "Kenya, west of the Rift (small-scale)"],
-+    ["KE-P", "Kenya, plantations"], ["UG", "Uganda"], ["RW", "Rwanda"], ["TZ", "Tanzania"], ["BI", "Burundi"], ["OTHER", "Other origins"]];
++  var ORIGINS = [["KE", "Kenya, all"], ["KE-E", "East of Rift, small-scale"], ["KE-W", "West of Rift, small-scale"],
++    ["KE-P", "Plantations"], ["UG", "Uganda"], ["RW", "Rwanda"], ["TZ", "Tanzania"], ["BI", "Burundi"], ["OTHER", "Other origins"]];
 +  var SHORT = { "KE-E": "Kenya east", "KE-W": "Kenya west", "KE-P": "Plantations", UG: "Uganda", RW: "Rwanda" };
 +  var LINES = [["KE-E", "#257de0"], ["KE-W", "#f47230"], ["KE-P", "#00b894"], ["UG", "#f2a600"], ["RW", "#ee7fac"]];
 +  var SETS = { main: ["BP1", "PF1", "PD", "DUST1"], other: ["BP", "PF", "DUST", "FNGS1", "FNGS", "BMF"] };
@@ -337,10 +337,10 @@ index 0000000..24a5248
 +  draw();
 +})();
 diff --git a/assets/style.css b/assets/style.css
-index c71d947..aeb8116 100644
+index c71d947..c368c93 100644
 --- a/assets/style.css
 +++ b/assets/style.css
-@@ -462,3 +462,29 @@ a { color:inherit; }
+@@ -462,3 +462,36 @@ a { color:inherit; }
  .dash-legend i.k-cons { border-top: 3px solid #79A68D; }
  .prod-trade-key { margin: 2px 0 0; font-size: 12px; }
  @media (max-width: 760px) { .tmap-controls .dash-field { flex: 1 1 100%; } }
@@ -370,6 +370,13 @@ index c71d947..aeb8116 100644
 +.grade-pick select { min-width:100px; }
 +.dash-legend i.k-line, .dash-tip-row i.k-line { width:14px; margin-right:6px; border-top-width:2px; border-top-style:solid; }
 +.dash-legend { flex-wrap:wrap; gap:6px 18px; }
++@media (max-width:520px) {
++  .grade-table { font-size:13px; }
++  .grade-table th, .grade-table td { padding:6px 4px; }
++  .grade-table th[scope=row] { min-width:0; width:34%; font-size:13px; }
++  .grade-table tr.sub th { padding-left:8px; }
++  .grade-table caption { font-size:11px; }
++}
 diff --git a/auctions.html b/auctions.html
 index 4dd3e46..6e4e49b 100644
 --- a/auctions.html
