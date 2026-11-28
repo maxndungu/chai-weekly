@@ -1,0 +1,20 @@
+# Sign-up helper for the detailed auction statistics. Runs in ~/chai-list next to the mailing list
+# (steps in deploy/listmonk/SETUP.md, step 10). Caddy sends https://list.chaiweekly.co.ke/data-signup here.
+services:
+  datasignup:
+    image: python:3.12-alpine
+    container_name: chai-datasignup
+    restart: unless-stopped
+    command: [python3, -u, /app/signup.py]
+    env_file: datasignup.env
+    environment:
+      LISTMONK_URL: http://chai-listmonk:9000
+      SITE_URL: https://chaiweekly.co.ke
+    volumes:
+      - ./signup.py:/app/signup.py:ro
+    networks: [proxy]
+
+networks:
+  proxy:
+    external: true
+    name: ${PROXY_NETWORK:?Set PROXY_NETWORK in .env}

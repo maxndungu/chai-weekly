@@ -210,6 +210,38 @@ Save with Ctrl+O, Enter, then Ctrl+X. Then check it works and switch it on:
 The first command should end with "Welcome email sent to 0 new reader(s)." (or a number). To see later runs:
 `tail -20 ~/chai-list/welcome.log`.
 
+## 9. Sign-ups for the detailed auction statistics (15 minutes)
+
+The detailed statistics (on the test copy at /preview2/auctions/ for now) open to readers who give their name,
+email, company and what they do in tea. A small helper on the VPS puts them on their own list in listmonk.
+
+1. **Lists > + New**: name `Auction data`, type **Private**, optin **Double**. Note its number (e.g. `#5`).
+2. **Users > User roles > List roles**: open `Chai list` and add the **Auction data** list with **get** and **manage**.
+3. On the VPS as root:
+
+```sh
+cd ~/chai-list
+RAW=https://raw.githubusercontent.com/maxndungu/chai-weekly/main/deploy/datasignup
+curl -fsSL $RAW/signup.py -o signup.py
+curl -fsSL $RAW/docker-compose.yml -o datasignup-compose.yml
+printf 'LISTMONK_API_USER=drafts\nLISTMONK_API_TOKEN=\nDATA_LIST_ID=\nNEWS_LIST_ID=3\n' > datasignup.env
+chmod 600 datasignup.env
+nano datasignup.env     # paste the drafts token and the Auction data list number
+docker compose -p chai-datasignup -f datasignup-compose.yml --env-file .env up -d
+```
+
+4. In the Caddy site file for the list (`/opt/kazora/deploy/server/sites/chai-list.caddy`), replace the
+   `reverse_proxy chai-listmonk:9000` line with:
+
+```
+	reverse_proxy /data-signup chai-datasignup:8080
+	reverse_proxy chai-listmonk:9000
+```
+
+   then reload Caddy as in step 3. Each sign-up shows in listmonk under the Auction data list, with the company
+   and role on the reader's record (attributes `data_company`, `data_role`). `docker logs chai-datasignup` shows
+   only "sign-up: ok/bad/error", never names or emails.
+
 ## Bringing in readers you already have
 
 Only add people who agreed to receive Chai Weekly. **Subscribers > Import**, upload a CSV with

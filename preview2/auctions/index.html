@@ -32,7 +32,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Libre+Franklin:wght@400;600;800&display=swap">
-  <link rel="stylesheet" href="/preview2/assets/style.css?v=202611280512">
+  <link rel="stylesheet" href="/preview2/assets/style.css?v=202611280532">
   
 
 <script>
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <script>
 // When the site's figures were last updated (the build time), and a short Nairobi-time label for it,
 // shown next to an "in progress" sale: e.g. "Updated Mon 23 Nov, 2:13 pm".
-window.CHAI_UPDATED = 1795842760000;
+window.CHAI_UPDATED = 1795843945000;
 window.chaiUpdated = function () {
   try {
     var d = new Date(window.CHAI_UPDATED);
@@ -234,7 +234,7 @@ window.chaiUpdated = function () {
   
 </section>
 
-  <script defer src="/preview2/assets/dashboard.js?v=1795842760"></script>
+  <script defer src="/preview2/assets/dashboard.js?v=1795843945"></script>
 
   <section>
     <h2 class="label rule">This year, sale by sale</h2>
@@ -262,6 +262,74 @@ window.chaiUpdated = function () {
     <h2 class="label rule">Year by year</h2>
     <div class="table-wrap"><table class="data-table" id="t-year"></table></div>
   </section>
+
+  
+  <section class="data-gate" id="detailed">
+  <h2 class="label rule">Detailed statistics</h2>
+  <div class="data-locked">
+    <p class="data-pitch"><strong>Free to read until 31 March 2027.</strong>
+      Tell us who you are and the detailed figures open straight away. Readers who sign up now keep a founding-member
+      price when the detail becomes a paid service. The weekly averages on this page stay free for everyone.</p>
+    <p class="data-msg" hidden data-for="bad">Please fill in your name, a working email address and your company.</p>
+    <p class="data-msg" hidden data-for="error">Something went wrong on our side. Please try again in a few minutes.</p>
+    <form class="data-form" action="https://list.chaiweekly.co.ke/data-signup" method="post">
+      <input type="hidden" name="next" value="https://chaiweekly.co.ke/preview2/auctions/">
+      <label>Your name<input name="name" autocomplete="name" required maxlength="120"></label>
+      <label>Email<input type="email" name="email" autocomplete="email" required maxlength="200"></label>
+      <label>Company or organisation<input name="company" autocomplete="organization" required maxlength="160"></label>
+      <label>What you do in tea
+        <select name="role">
+          <option value="grower">Grow tea</option>
+          <option value="factory">Run or work at a factory</option>
+          <option value="broker">Broker</option>
+          <option value="buyer">Buy, blend or pack</option>
+          <option value="warehouse">Warehouse or logistics</option>
+          <option value="researcher">Research, finance or government</option>
+          <option value="other" selected>Something else</option>
+        </select>
+      </label>
+      <label class="data-check"><input type="checkbox" name="newsletter" value="1" checked> Also send me Chai Weekly, free every Wednesday</label>
+      <input type="text" name="nonce" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+      <button type="submit">Open the detailed statistics</button>
+      <p class="fine">We'll email you once to confirm your address. We never share your details.</p>
+    </form>
+  </div>
+  <div class="data-open" hidden>
+    <p class="data-msg" hidden data-for="ok">Thank you. The detailed figures are open on this device. Please click the link in the email we just sent to confirm your address.</p>
+    
+  <div class="dash grades" id="grades" data-base="/preview2/assets/data/grades/" data-years="2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020">
+    <p class="chart-note">Average price for each grade by origin at every Mombasa sale, US$ per kg, CTC teas. Small-scale means factories run for smallholder growers.</p>
+    <div class="dash-controls">
+      <label class="dash-field"><span>Year</span><select name="g-year"></select></label>
+      <label class="dash-field"><span>Sale</span><select name="g-sale"></select></label>
+      <div class="dash-field"><span>Grades</span><div class="chips"><button type="button" class="chip" data-set="main">Main grades</button><button type="button" class="chip" data-set="other">Other grades</button></div></div>
+    </div>
+    <div class="grade-table-wrap"></div>
+    <p class="fine grade-table-note"></p>
+    <figure class="dash-panel grade-panel">
+      <figcaption><span class="dash-panel-h grade-chart-h"></span><label class="dash-field grade-pick"><span>Grade</span><select name="g-grade"></select></label></figcaption>
+      <div class="chart dash-chart grade-chart"></div>
+    </figure>
+  </div>
+  <script defer src="/preview2/assets/grades.js?v=1795843945"></script>
+  
+  </div>
+</section>
+<script>
+(function () {
+  var box = document.getElementById("detailed"), key = "chai-data-access", q = new URLSearchParams(location.search), r = q.get("signup");
+  function store(v) { try { if (v) localStorage.setItem(key, v); return localStorage.getItem(key); } catch (e) { return null; } }
+  var open = store(r === "ok" ? "1" : null) === "1" || r === "ok";
+  box.querySelector(".data-locked").hidden = open;
+  box.querySelector(".data-open").hidden = !open;
+  if (r) {
+    var m = box.querySelector('.data-msg[data-for="' + r + '"]');
+    if (m) { m.hidden = false; box.scrollIntoView(); }
+    history.replaceState(null, "", location.pathname + "#detailed");
+  }
+})();
+</script>
+
 
   <section class="sources">
     <h2 class="label rule">Data and sources</h2>
