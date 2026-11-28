@@ -488,3 +488,10 @@ a { color:inherit; }
 .grade-pick select { min-width:100px; }
 .dash-legend i.k-line, .dash-tip-row i.k-line { width:14px; margin-right:6px; border-top-width:2px; border-top-style:solid; }
 .dash-legend { flex-wrap:wrap; gap:6px 18px; }
+@media (max-width:520px) {
+  .grade-table { font-size:13px; }
+  .grade-table th, .grade-table td { padding:6px 4px; }
+  .grade-table th[scope=row] { min-width:0; width:34%; font-size:13px; }
+  .grade-table tr.sub th { padding-left:8px; }
+  .grade-table caption { font-size:11px; }
+}

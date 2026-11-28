@@ -123,3 +123,8 @@ features are tried before they go live (first: detailed auction statistics behin
 `preview/` it is hidden from search engines, not linked from the live site, shows a "test copy" bar and
 is not counted in the reader stats. Its own changes live in `tools/preview2-patches/*.patch`. Rebuild it
 from main with `tools/build_preview2.sh` after a patch changes or when it should catch up with the live site.
+
+The first test there is the detailed auction statistics (grade prices by origin, `tools/preview2-patches/01-detailed-auction-stats.patch`),
+from `_data/mombasa_grade_prices.csv` (rebuild with `tools/lots_to_grades.py` from the lot workbooks). The sign-up form
+posts to `deploy/datasignup` on the VPS (deploy/listmonk/SETUP.md step 9). `data_free_until` in `_config.yml` is the
+announced end of the free period.
