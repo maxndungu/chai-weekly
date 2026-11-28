@@ -1,0 +1,5 @@
+# Chai Weekly website stats (GoatCounter). Goes in /opt/kazora/deploy/server/sites/chai-stats.caddy on the VPS.
+stats.chaiweekly.co.ke {
+	encode gzip
+	reverse_proxy chai-stats:8080
+}

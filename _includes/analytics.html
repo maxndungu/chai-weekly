@@ -1,4 +1,7 @@
-{% if site.goatcounter_code != "" and jekyll.environment == "production" %}
+{% if site.goatcounter_url != "" and jekyll.environment == "production" %}
+{% assign gc_host = site.goatcounter_url | remove: "/count" %}
+<script data-goatcounter="{{ site.goatcounter_url }}" async src="{{ gc_host }}/count.js"></script>
+{% elsif site.goatcounter_code != "" and jekyll.environment == "production" %}
 <script data-goatcounter="https://{{ site.goatcounter_code }}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 {% endif %}
 {% if site.umami_src != "" and site.umami_website_id != "" %}

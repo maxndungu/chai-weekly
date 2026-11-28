@@ -1,0 +1,21 @@
+# Chai Weekly website stats (GoatCounter, free and open source) on the VPS, at stats.chaiweekly.co.ke.
+# Counts page views, visitors, where they came from, countries and devices. No cookies, no personal data,
+# so no cookie banner is needed. Only you can see the dashboard (log in with the account made in SETUP.md).
+# Runs next to the mailing list and behind the same Caddy. Steps in SETUP.md next to this file.
+services:
+  goatcounter:
+    image: arp242/goatcounter:2.7.0
+    container_name: chai-stats   # the name Caddy uses to reach it
+    restart: unless-stopped
+    command: [serve, -listen, ":8080", -tls, none, -automigrate, -db, "sqlite3+/home/goatcounter/goatcounter-data/goatcounter.sqlite3"]
+    volumes:
+      - stats-data:/home/goatcounter/goatcounter-data
+    networks: [proxy]
+
+networks:
+  proxy:
+    external: true
+    name: kazora_default   # the network of the Caddy already on the VPS (same as the mailing list's PROXY_NETWORK)
+
+volumes:
+  stats-data:

@@ -214,6 +214,7 @@ class Listmonk(unittest.TestCase):
         self.assertIn("Mombasa (Sale 47)", body)          # ticker
         # Short email: the stories stay on the web, the email links to them.
         self.assertIn("Read the full edition", body)
+        self.assertIn('utm_campaign=issue-3@TrackLink"', body)  # clicks are counted
         self.assertNotIn("border-collapse", body)
         self.assertNotIn("<h2", body)
         self.assertIn("Markets: Best price", sent["altbody"])

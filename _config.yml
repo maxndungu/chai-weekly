@@ -31,6 +31,8 @@ share_image: "assets/share-newspaper.jpg"
 # put your code here (e.g. "chaiweekly" for chaiweekly.goatcounter.com). Visits from the email show
 # up as campaign "newsletter"; shared links show up by referring site.
 goatcounter_code: ""
+# Our own GoatCounter on the VPS (deploy/goatcounter/SETUP.md). When set, it is used instead of goatcounter_code.
+goatcounter_url: "https://stats.chaiweekly.co.ke/count"
 # Or self-host Umami on your VPS and fill these two in instead.
 umami_src: ""
 umami_website_id: ""

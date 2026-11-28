@@ -287,7 +287,8 @@ payload = {
     "lists": [int(x) for x in os.environ["LISTMONK_LIST_ID"].replace(" ", "").split(",") if x],
     "type": "regular",
     "content_type": "html",
-    "body": content,
+    # @TrackLink makes listmonk count clicks on each link (Campaigns > Analytics); only in the weekly campaign.
+    "body": re.sub(r'href="(https?://[^"]+)"', r'href="\1@TrackLink"', content),
     "altbody": plain,
     "messenger": "email",
     "tags": ["issue"],
