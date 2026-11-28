@@ -1,5 +1,5 @@
-# Counts the mailing list's readers (numbers only) for the Wednesday draft's reviewer notes.
-# The draft session starts it by hand and reads the READERS line from the log. Script: tools/reader_stats.py.
+# Counts the mailing list's readers and emails the numbers privately to Maxwell (secret READER_REPORT_TO).
+# This repository and its logs are public, so the numbers are never printed. Script: tools/reader_stats.py.
 name: Reader numbers
 on:
   workflow_dispatch:
@@ -9,6 +9,7 @@ jobs:
     env:
       LISTMONK_API_USER: ${{ secrets.LISTMONK_API_USER }}
       LISTMONK_API_TOKEN: ${{ secrets.LISTMONK_API_TOKEN }}
+      READER_REPORT_TO: ${{ secrets.READER_REPORT_TO }}
     steps:
       - uses: actions/checkout@v4
       - name: Count readers

@@ -51,10 +51,10 @@ publishes the issue to the site; nothing goes live without that merge.
    - Body: a 3-line summary of the issue, then **Reviewer notes**: figures you could not
      confirm, contradictions between sources, and anything that needs Maxwell's judgement.
    - Assign and request review from `maxndungu`.
-   - **Readers** line in the reviewer notes: start the "Reader numbers" workflow
-     (`gh api -X POST repos/maxndungu/chai-weekly/actions/workflows/reader-stats.yml/dispatches -f ref=main`),
-     wait about a minute, read the `READERS:` line from its log and copy it in, with last week's line for comparison
-     if you can find it in the previous draft. If it fails, write "Reader numbers: not available this week".
+   - Reader numbers: start the "Reader numbers" workflow
+     (`gh api -X POST repos/maxndungu/chai-weekly/actions/workflows/reader-stats.yml/dispatches -f ref=main`).
+     It emails the numbers privately to Maxwell. Never put reader or subscriber numbers in the pull request,
+     a commit or any file in the repository: the repository is public.
 8. Make the week's social clip from the draft: `tools/weekly_clip/make.sh _posts/<today>-issue-<NNN>.md /mnt/project-files/chai-weekly-social/weekly/issue-<NNN> /mnt/project-files/chai-weekly-social/music`
    (about 5 minutes; square and story MP4s, with the music tracks taking turns by issue number). Also write the
    posts to paste: `python3 tools/social_text.py _posts/<today>-issue-<NNN>.md > /mnt/project-files/chai-weekly-social/weekly/issue-<NNN>/posts.md`
