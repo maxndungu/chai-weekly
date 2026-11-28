@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Check your email · Chai Weekly</title>
+  <meta name="description" content="A free weekly tea newspaper from East Africa. Every Wednesday: tea news from Kenya, the region and the world, Mombasa auction prices, tea weather and coming events.">
+  
+  <meta property="og:site_name" content="Chai Weekly">
+  <meta property="og:title" content="Check your email">
+  <meta property="og:description" content="A free weekly tea newspaper from East Africa. Every Wednesday: tea news from Kenya, the region and the world, Mombasa auction prices, tea weather and coming events.">
+  <meta property="og:url" content="https://chaiweekly.co.ke/subscribe/thanks/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:image" content="https://chaiweekly.co.ke/assets/share-newspaper.jpg">
+  <meta property="og:image:secure_url" content="https://chaiweekly.co.ke/assets/share-newspaper.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Chai Weekly nameplate: free weekly tea newspaper, chaiweekly.co.ke">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Check your email">
+  <meta name="twitter:description" content="A free weekly tea newspaper from East Africa. Every Wednesday: tea news from Kenya, the region and the world, Mombasa auction prices, tea weather and coming events.">
+  <meta name="twitter:image" content="https://chaiweekly.co.ke/assets/share-newspaper.jpg">
+  <link rel="icon" href="/preview2/favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="icon" href="/preview2/assets/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/preview2/apple-touch-icon.png">
+  <meta name="theme-color" content="#fbfaf6">
+  <link rel="canonical" href="https://chaiweekly.co.ke/subscribe/thanks/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Libre+Franklin:wght@400;600;800&display=swap">
+  <link rel="stylesheet" href="/preview2/assets/style.css?v=202611280512">
+  
+
+<script>
+// Hide ads outside their dates (the site only rebuilds weekly); show the front-page events list instead of an expired poster.
+document.addEventListener("DOMContentLoaded", function () {
+  var t = (function () { var p = {}; new Intl.DateTimeFormat("en-US", { timeZone: "Africa/Nairobi", year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; }); return p.year + "-" + p.month + "-" + p.day; })();
+  document.querySelectorAll(".ad[data-start]").forEach(function (a) {
+    var live = a.getAttribute("data-start") <= t && t <= a.getAttribute("data-end");
+    a.hidden = !live;
+    if (a.classList.contains("ad-poster")) { var ev = document.querySelector(".rail .events"); if (ev) ev.hidden = live; }
+  });
+});
+</script>
+
+  <link rel="alternate" type="application/rss+xml" title="Chai Weekly" href="/feed.xml">
+</head>
+<body><div style="background:#B98B4B;color:#173E32;font:600 14px/1.4 system-ui,sans-serif;padding:8px 16px;text-align:center">Test copy of Chai Weekly for new features, not public. <a style="color:#173E32" href="/">Go to the live site</a></div>
+  <div class="paper">
+    
+<script>
+// When the site's figures were last updated (the build time), and a short Nairobi-time label for it,
+// shown next to an "in progress" sale: e.g. "Updated Mon 23 Nov, 2:13 pm".
+window.CHAI_UPDATED = 1795842760000;
+window.chaiUpdated = function () {
+  try {
+    var d = new Date(window.CHAI_UPDATED);
+    var p = {}; new Intl.DateTimeFormat("en-GB", { timeZone: "Africa/Nairobi", weekday: "short", day: "numeric", month: "short", hour: "numeric", minute: "2-digit", hour12: true })
+      .formatToParts(d).forEach(function (x) { p[x.type] = x.value; });
+    return "Updated " + p.weekday + " " + p.day + " " + p.month + ", " + p.hour + ":" + p.minute + " " + String(p.dayPeriod || "").toLowerCase();
+  } catch (e) { return ""; }
+};
+</script>
+<header class="masthead ">
+  <div class="strip">
+    <span>Vol. I · No. 4</span>
+    <span class="strip-mid">Wednesday, 25 November 2026</span>
+    <span>Free · Weekly</span>
+  </div>
+  <a class="nameplate" href="/preview2/">Chai Weekly</a>
+  <p class="motto">Tea news from East Africa and the world, every week</p><nav class="sections" aria-label="Main">
+    <a href="/preview2/issues/2026/11/25/issue-004/">This week</a>
+    <a href="/preview2/auctions/">Auctions</a>
+    <details class="nav-more">
+      <summary>Tea data</summary>
+      <div class="nav-menu">
+        <a href="/preview2/production/">Production<small>Who grows, sells and drinks tea, since 1961</small></a>
+        <a href="/preview2/tea-map/">Tea map<small>The world's tea on a map and globe</small></a>
+        <a href="/preview2/weather/">Tea weather<small>Rain and sun in the growing areas</small></a>
+      </div>
+    </details>
+    <a href="/preview2/events/">Events</a>
+    <a href="/preview2/archive/">Archive</a>
+    <a href="/preview2/about/">About</a>
+  </nav>
+  <script>
+  // Close the "Tea data" menu when a reader taps elsewhere or presses Escape.
+  (function () {
+    var d = document.querySelector(".nav-more"); if (!d) return;
+    document.addEventListener("click", function (e) { if (d.open && !d.contains(e.target)) d.open = false; });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") d.open = false; });
+  })();
+  </script>
+  
+  <div class="ticker" aria-label="Market snapshot"><span><b>Mombasa (Sale 47)</b> $2.39/kg <em>▲ 5¢</em></span>
+      <span><b>Tea sold</b> 7.88M kg <em>▲ 4%</em></span><span><b>2026 average</b> $2.21/kg <em>47 sales</em></span><span><b>Colombo (Sale 46)</b> 5.28M kg offered <em>23 & 25 Nov</em></span>
+  </div>
+  <script>
+  // The newest Mombasa sale reads "in progress" while the auction is still running (auction date to Tuesday 17:30 Nairobi).
+  (function () {
+    var m = document.querySelector(".ticker .ticker-prov[data-sale-date]"); if (!m) return;
+    var t = Date.parse(m.getAttribute("data-sale-date") + "T00:00:00Z"), w = new Date(t).getUTCDay();
+    if (Date.now() < t + ((2 - w + 7) % 7) * 864e5 + 14.5 * 36e5) { m.textContent = "in progress"; m.className += " live"; var u = window.chaiUpdated(); if (u) m.insertAdjacentHTML("afterend", ' <i class="ticker-upd">' + u + "</i>"); }
+  })();
+  </script>
+  
+</header>
+
+    <main><article class="analysis">
+  <p class="kicker">Subscribe</p>
+  <h1 class="headline">Almost done. Please check your email.</h1>
+  <p class="deck">We've sent you one email from Chai Weekly. Click the button in it to confirm. Soon after, we'll email you the latest edition, and the next one reaches you on Wednesday.</p>
+  <p>Can't see it after a few minutes? Look in your spam or promotions folder, and mark it "not spam" so the weekly issue reaches your inbox.</p>
+  <p><strong>Read this week's edition now:</strong> <a href="/preview2/issues/2026/11/25/issue-004/">Mombasa Tea Fetches Its Best Price of 2026 as Kenya Pushes Its Own Brands →</a></p>
+  <p class="byline"><a href="/preview2/">Back to the front page →</a></p>
+</article>
+</main>
+    
+    <footer class="colophon">
+      <span>Chai Weekly · A free, independent newsletter about tea, from East Africa and the world.</span>
+      <span><a href="/preview2/submit/">Send a story</a> · <a href="/preview2/archive/">Archive</a> · <a href="/preview2/about/">About</a> · <a href="/feed.xml">RSS</a></span>
+    </footer>
+  </div>
+</body>
+</html>

@@ -115,3 +115,11 @@ A built copy of the magazine redesign lives in `preview/` and is served at
 https://chaiweekly.co.ke/preview/. It is not linked from the live site, is hidden from
 search engines and shows a "preview" bar. Rebuild it from the redesign's commit or branch with
 `tools/build_preview.sh <commit-or-branch>` (currently built from 2761d7d plus tools/preview-patches/). Delete `preview/` once the redesign goes live.
+
+## Test copy for new features
+
+`preview2/` is a built copy of the live site, served at https://chaiweekly.co.ke/preview2/, where new
+features are tried before they go live (first: detailed auction statistics behind a free sign-up). Like
+`preview/` it is hidden from search engines, not linked from the live site, shows a "test copy" bar and
+is not counted in the reader stats. Its own changes live in `tools/preview2-patches/*.patch`. Rebuild it
+from main with `tools/build_preview2.sh` after a patch changes or when it should catch up with the live site.
