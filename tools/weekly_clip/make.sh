@@ -1,7 +1,8 @@
 #!/bin/bash
 # Makes this week's social clip from an issue, square (1080) and story (1080x1920), as MP4s.
 #   tools/weekly_clip/make.sh _posts/2026-11-25-issue-004.md <output folder> [music folder]
-# Music: the MP3s in the music folder take turns by issue number (issue 4 of 3 tracks = track 2, and so on).
+# Music: the MP3s in the music folder take turns by issue number (with 3 tracks: issue 4 = track 1, issue 5 = track 2...).
+# A track shorter than the clip ends on its own and the clip finishes in silence; a longer one fades out at the end.
 # Without a music folder the clips are silent. Needs python3 + PyYAML, node + playwright, ffmpeg.
 set -euo pipefail
 post=$1; out=$2; music=${3:-}
@@ -23,8 +24,8 @@ for mode in square tall; do
   if [ -n "$track" ]; then
     d=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$work/silent-$mode.mp4"); fo=$(python3 -c "print($d-3)")
     ffmpeg -v error -y -i "$work/silent-$mode.mp4" -i "$track" -filter_complex \
-      "[1:a]silenceremove=start_periods=1:start_threshold=-35dB,atrim=0:$d,asetpts=N/SR/TB,afade=t=in:d=0.3,afade=t=out:st=$fo:d=3,loudnorm=I=-16:TP=-1.5:LRA=11[a]" \
-      -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -movflags +faststart -shortest "$dest"
+      "[1:a]silenceremove=start_periods=1:start_threshold=-35dB,afade=t=in:d=0.3,loudnorm=I=-16:TP=-1.5:LRA=11,apad,atrim=0:$d,asetpts=N/SR/TB,afade=t=out:st=$fo:d=3[a]" \
+      -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -movflags +faststart "$dest"
   else
     cp "$work/silent-$mode.mp4" "$dest"
   fi
